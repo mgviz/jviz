@@ -1,0 +1,69 @@
+// The MIT License (MIT)
+//
+// Copyright (c) 2016 BioWT
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+// Include this module using
+// @import "../jviz/scss/_animation";
+//
+// Use this module with
+// @include jvizAnimation(#COLOR);
+
+//Animation mixin
+@mixin jvizAnimation($color)
+{
+	//Keyframes for load animation
+	@keyframes animation_load { 0%, 80%, 100% { background-color: $color; } }
+	@keyframes animation_load { 40% { background-color: $color; } }
+
+	//Loading animation mixin
+	@mixin animation_default
+	{
+		//Circle styles
+		border-radius: 100px; width: 10px; height: 10px;
+
+		//Animation style
+		animation: animation_load 1.2s infinite ease-in-out; animation-fill-mode: both;
+
+		//Content
+		content: '';
+	}
+
+	//Include the default animation
+	@include animation_default;
+
+	//Position
+	position: relative;
+
+	//Text style for animation
+	text-indent: -9999em; font-size: 10px;
+
+	//Animation style
+	transform: translateZ(0); animation-delay: -0.2s;
+
+	//Margin
+	margin: { left: auto; right: auto; top: 0px; }
+
+	//Animation before
+	&:before { @include animation_default; left: -15px; animation-delay: -0.4s; position: absolute; top: 0; }
+
+	//Animation after
+	&:after { @include animation_default; left: 15px; position: absolute; top: 0; }
+}
