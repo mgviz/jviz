@@ -24,6 +24,10 @@ function jvizTrack(id, cl, cn)
 	this.head.title.id = this.head.id + '-title'; //Track title ID
 	this.head.title.class = this.head.class + '-title'; //Track title ID
 
+	//Track head subtitle
+	this.head.title.subtitle = {};
+	this.head.title.subtitle.class = this.head.title.class + '-subtitle'; //Subtitle class
+
 	//Track head arrow
 	this.head.arrow = {};
 	this.head.arrow.show = true; //Show track arrow
@@ -119,12 +123,12 @@ jvizTrack.prototype.Build = function(parent)
 jvizTrack.prototype.SetTitle = function(title, subtitle)
 {
 	//Add the title
-	var text = '<b>' + title + '</b>';
+	var text = title;
 
 	//Check for the subtitle
 	if(typeof subtitle !== 'undefined')
 	{
-		text = text + ' ' + subtitle;
+		text = text + ' <div class="' + this.head.title.subtitle.class + '">' + subtitle + '</div>';
 	}
 
 	//Show the title
