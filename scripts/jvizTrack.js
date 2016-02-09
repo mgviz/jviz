@@ -110,7 +110,7 @@ jvizTrack.prototype.Build = function(parent)
 		for(var i = 0; i < this.canvas.num; i++)
 		{
 			//Initialize the canvas i
-			this.draw.layer.push(new cvjs({ id: this.canvas.id + i, width: 0, height: 0 }));
+			this.draw.layer.push(new cvjs({ id: this.canvas.id + i, width: this.width, height: this.height }));
 		}
 	}
 };
