@@ -61,7 +61,7 @@
 			display: inline-block; line-height: 22px; height: 22px; cursor: hand; float: left;
 
 			//Font
-			font: { weight: 300; size: 14px; }
+			font: { weight: normal; size: 14px; }
 
 			//Margin
 			margin: { left: 5px; top: 4px; }
@@ -74,6 +74,16 @@
 
 			//Border
 			border-radius: 5px;
+
+			//Track subtitle
+			&-subtitle
+			{
+				//Subtitle font
+				font: { weight: 300 !important; size: 12px; }
+
+				//Subtitle margin
+				margin: { left: 10px; }
+			}
 		}
 
 		//Track arrow for close
