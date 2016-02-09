@@ -128,7 +128,7 @@ jvizTrack.prototype.SetTitle = function(title, subtitle)
 	//Check for the subtitle
 	if(typeof subtitle !== 'undefined')
 	{
-		text = text + ' <div class="' + this.head.title.subtitle.class + '">' + subtitle + '</div>';
+		text = text + ' <span class="' + this.head.title.subtitle.class + '">' + subtitle + '</span>';
 	}
 
 	//Show the title
