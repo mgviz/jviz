@@ -144,4 +144,7 @@ jvizTrack.prototype.Resize = function()
 			this.draw.layer[i].Height(this.height);
 		}
 	}
+
+	//Set the track height
+	$('#' + this.id).height(this.height);
 };
