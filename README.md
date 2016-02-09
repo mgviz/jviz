@@ -9,6 +9,7 @@ Use git for include the **jviz** library on your project:
 
 ```
 git submodule add https://github.com/biowt/jviz.git
+git submodule init
 ```
 
 You can update the library at any time using
