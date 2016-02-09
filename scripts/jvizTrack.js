@@ -148,3 +148,10 @@ jvizTrack.prototype.Resize = function()
 	//Set the track height
 	$('#' + this.id).height(this.height);
 };
+
+//jvizTrack get the layer
+jvizTrack.prototype.Layer = function(id)
+{
+	//Return the layer
+	return this.draw.layer[id];
+};
