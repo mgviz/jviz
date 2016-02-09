@@ -116,10 +116,19 @@ jvizTrack.prototype.Build = function(parent)
 };
 
 //jvizTrack set track title
-jvizTrack.prototype.SetTitle = function(text)
+jvizTrack.prototype.SetTitle = function(title, subtitle)
 {
-	//Show the name
-	$('#' + this.head.title.id).text(text);
+	//Add the title
+	var text = '<b>' + title + '</b>';
+
+	//Check for the subtitle
+	if(typeof subtitle !== 'undefined')
+	{
+		text = text + ' ' + subtitle;
+	}
+
+	//Show the title
+	$('#' + this.head.title.id).html(text);
 };
 
 //jvizTrack resize
