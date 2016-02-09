@@ -1,12 +1,15 @@
 //Track main class
-function jvizTrack(id, cl)
+function jvizTrack(id, cl, cn)
 {
+	//id: track ID
+	//cl: track class
+	//cn: number of canvas layers
+
 	//Track
 	this.id = id; //Track ID
 	this.class = cl; //Track class
 	this.width = 0; //Track width
 	this.height = 0; //Track height
-	this.draw = null; //Track canvas draw
 
 	//Track head
 	this.head = {};
@@ -32,6 +35,13 @@ function jvizTrack(id, cl)
 	this.canvas.show = true; //Show the canvas
 	this.canvas.id = this.id + '-canvas'; //Canvas ID
 	this.canvas.class = this.class + '-canvas'; //Canvas class
+	this.canvas.num = cn; //Number of canvas elements
+
+	//Track draw
+	this.draw = {};
+  this.draw.layer = []; //Draw layers
+  this.draw.width = 0; //Draw width
+  this.draw.height = 0; //Draw height
 
 	//Return the new track
 	return this;
@@ -73,8 +83,18 @@ jvizTrack.prototype.Build = function(parent)
 	//Check for show the canvas element
 	if(this.canvas.show === true)
 	{
-		//Show the canvas element
-		div = div + '<canvas id="' + this.canvas.id + '" class="' + this.canvas.class + '"></canvas>';
+		//Get the canvas numbers
+		for(var i = 0; i < this.canvas.num; i++)
+		{
+			//Create the canvas
+			div = div + '<canvas id="' + this.canvas.id + i + '" class="' + this.canvas.class + '" ';
+
+			//Add the canvas z-index
+			div = div + 'style="z-index: ' + i + ';"';
+
+			//Close the canvas
+			div = div + '></canvas>';
+		}
 	}
 
 	//Close the track div
@@ -86,8 +106,12 @@ jvizTrack.prototype.Build = function(parent)
 	//Check for canvas
 	if(this.canvas.show === true)
 	{
-		//Create the canvas
-
+		//Initialize all the canvas
+		for(var i = 0; i < this.canvas.num; i++)
+		{
+			//Initialize the canvas i
+			this.draw.layer.push(new cvjs({ id: this.canvas.id + i, width: 0, height: 0 }));
+		}
 	}
 };
 
@@ -99,36 +123,25 @@ jvizTrack.prototype.SetTitle = function(text)
 };
 
 //jvizTrack resize
-jvizTrack.prototype.Resize = function(p)
+jvizTrack.prototype.Resize = function()
 {
-	//Check the property
-	if(typeof p === 'undefined'){ var p = 'wh'; }
+	//Save the width
+	this.width = $('#' + this.id).width();
 
-	//Check for save the width
-	if(p.indexOf('w') > -1)
+	//Save the height
+	//this.height = $('#' + this.id).height();
+
+	//Check the canvas
+	if(this.canvas.show === true)
 	{
-		//Save the width
-		this.width = $('#' + this.id).width();
-
-		//Set the canvas width
-		if(this.canvas.show === true)
+		//Get all the canvas elements
+		for(var i = 0; i < this.canvas.num; i++)
 		{
-			//Save the canvas width
-			this.draw.Width(this.width);
-		}
-	}
+			//Save the up canvas width
+			this.draw.layer[i].Width(this.width);
 
-	//Check for save the height
-	if(p.indexOf('h') > -1)
-	{
-		//Save the height
-		this.height = $('#' + this.id).height();
-
-		//Set the canvas height
-		if(this.canvas.show === true)
-		{
-			//Save the canvas height
-			this.draw.Height(this.height);
+			//Save the up canvas height
+			this.draw.layer[i].Height(this.height);
 		}
 	}
 };
