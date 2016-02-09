@@ -62,18 +62,18 @@ jvizTrack.prototype.Build = function(parent)
 		//Create the track head
 		div = div + '<div id="' + this.head.id + '" class="' + this.head.class + '">';
 
-		//Check for show the title
-		if(this.head.title.show === true)
-		{
-			//Add the track title
-			div = div + '<span id="' + this.head.title.id + '" class="' + this.head.title.class + '"></span>';
-		}
-
 		//Check for show the track arrow
 		if(this.head.arrow.show === true)
 		{
 			//Add the arrow
 			div = div + '<div id="' + this.head.arrow.id + '" class="' + this.head.arrow.class + '"></div>';
+		}
+
+		//Check for show the title
+		if(this.head.title.show === true)
+		{
+			//Add the track title
+			div = div + '<span id="' + this.head.title.id + '" class="' + this.head.title.class + '"></span>';
 		}
 
 		//Close the head track
