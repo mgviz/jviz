@@ -60,6 +60,23 @@ jvizTrack.prototype.Build = function(parent)
 	//Create the main track div
 	div = div + '<div id="' + this.id + '" class="' + this.class + '">';
 
+	//Check for show the canvas element
+	if(this.canvas.show === true)
+	{
+		//Get the canvas numbers
+		for(var i = 0; i < this.canvas.num; i++)
+		{
+			//Create the canvas
+			div = div + '<canvas id="' + this.canvas.id + i + '" class="' + this.canvas.class + '" ';
+
+			//Add the canvas z-index
+			div = div + 'style="z-index: ' + i + ';"';
+
+			//Close the canvas
+			div = div + '></canvas>';
+		}
+	}
+
 	//Check for show the head
 	if(this.head.show === true)
 	{
@@ -82,23 +99,6 @@ jvizTrack.prototype.Build = function(parent)
 
 		//Close the head track
 		div = div + '</div>';
-	}
-
-	//Check for show the canvas element
-	if(this.canvas.show === true)
-	{
-		//Get the canvas numbers
-		for(var i = 0; i < this.canvas.num; i++)
-		{
-			//Create the canvas
-			div = div + '<canvas id="' + this.canvas.id + i + '" class="' + this.canvas.class + '" ';
-
-			//Add the canvas z-index
-			div = div + 'style="z-index: ' + i + ';"';
-
-			//Close the canvas
-			div = div + '></canvas>';
-		}
 	}
 
 	//Close the track div
