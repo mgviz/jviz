@@ -1,13 +1,18 @@
 //Track main class
-function jvizTrack(id, cl, cn)
+function jvizTrack(obj)
 {
-	//id: track ID
-	//cl: track class
-	//cn: number of canvas layers
+	//Check the track ID
+	obj.id = (typeof obj.id !== 'undefined')? obj.id : '';
+
+	//Check the track class
+	obj.class = (typeof obj.class !== 'undefined')? obj.class : 'jviz-track';
+
+	//Check the number of layers
+	obj.layers = (typeof obj.layers !== 'undefined')? obj.layers : 0;
 
 	//Track
-	this.id = id; //Track ID
-	this.class = cl; //Track class
+	this.id = obj.id; //Track ID
+	this.class = obj.class; //Track class
 	this.width = 0; //Track width
 	this.height = 0; //Track height
 
@@ -39,7 +44,7 @@ function jvizTrack(id, cl, cn)
 	this.canvas.show = true; //Show the canvas
 	this.canvas.id = this.id + '-canvas'; //Canvas ID
 	this.canvas.class = this.class + '-canvas'; //Canvas class
-	this.canvas.num = cn; //Number of canvas elements
+	this.canvas.num = obj.layers; //Number of canvas elements
 
 	//Track draw
 	this.draw = {};
@@ -165,6 +170,29 @@ jvizTrack.prototype.Resize = function()
 //jvizTrack get the layer
 jvizTrack.prototype.Layer = function(id)
 {
+	//Check the layer id
+	if(typeof id === 'undefined')
+	{
+		//Show warning
+		console.warn('jvizTrack: undefined layer num.');
+
+		//Set as 0
+		var id = 0;
+	}
+
+	//Get the integer value
+	id = Math.max(0, parseInt(id));
+
+	//Check the number
+	if(this.canvas.num <= id)
+	{
+		//Show warning
+		console.warn('jvizTrack: invalid layer num');
+
+		//Set as 0
+		id = 0;
+	}
+
 	//Return the layer
 	return this.draw.layer[id];
 };
