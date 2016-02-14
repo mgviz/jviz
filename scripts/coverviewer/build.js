@@ -1,0 +1,71 @@
+//CoverViewer build function
+CoverViewer.prototype.Build = function()
+{
+  //Add app div
+  $('#' + this.parent).append(this.BuildApp());
+
+  //Create the Navbar
+  $('#' + this.app.id).append(this.NavbarBuild());
+
+  //Create the settings panel
+  //$('#' + this.app.id).append(this.SettingsBuild());
+
+  //Create the main content
+  $('#' + this.app.id).append(this.MainBuild());
+
+  //Create the Foot
+  $('#' + this.app.id).append(this.FootBuild());
+
+  //Create the preview track
+  this.preview.Build(this.main.id);
+
+  //Set the preview title
+  this.preview.SetTitle(this.preview.title);
+
+  //Create the Cover track
+  this.cover.Build(this.main.id);
+
+  //Set the cover title
+  this.cover.SetTitle(this.cover.title);
+
+  //Create the genes track
+  this.genes.Build(this.main.id);
+
+  //Add the genes title
+  this.genes.SetTitle(this.genes.title);
+
+  //Build the genes box div
+  $('#' + this.main.id).append(this.GenesTrackInfoBuild());
+
+  //Initialize the resize event
+  this.ResizeEvntInit();
+
+  //Initialize the NAvbar events
+  this.NavbarEvnt();
+
+  //Initialize the mouse events for cover track
+  this.CoverTrackMouseEvnt();
+
+  //Initialize the mouse events for genes track
+  this.GenesTrackMouseEvnt();
+
+  //Initialize the mouse events for preview track
+  this.PreviewTrackMouseEvnt();
+
+  //Resize
+  this.Resize();
+};
+
+//App div builder
+CoverViewer.prototype.BuildApp = function()
+{
+  //Build the app content div
+  return '<div id="' + this.app.id + '" class="' + this.app.class + '"></div>';
+};
+
+//Function for build
+function CoverViewerBuildTimeOut(_main)
+{
+  //Set the build timeout
+  setTimeout(function(){ _main.Build(); }, _main.default.buildtime);
+}
