@@ -28,7 +28,8 @@ var paths = {
 	'scripts': ['scripts/core/**/*', 'scripts/' + tool + '/**/*'],
 	'images': ['img/**/*'],
 	'vendor': ['vendor/**/*'],
-	'scss': ['scss/font.scss', 'scss/' + tool + '.scss']
+	'scss': ['scss/font.scss', 'scss/' + tool + '.scss'],
+	'test': ['test/' + tool + '.html']
 };
 
 //Concat all script files
@@ -41,7 +42,7 @@ gulp.task('scripts', function(){
   .pipe(concat(tool + '.js'))
 
   //Add the header
-  .pipe(header(banner, { pkg : pkg } ))
+  //.pipe(header(banner, { pkg : pkg } ))
 
   //Save in css/ folder
   .pipe(gulp.dest(output + 'js/'));
@@ -61,7 +62,7 @@ gulp.task('scripts-min', function(){
   .pipe(rename(tool + '.min.js'))
 
   //Add the header
-  .pipe(header(banner, { pkg : pkg } ))
+  //.pipe(header(banner, { pkg : pkg } ))
 
   //Save on the output folder
   .pipe(gulp.dest(output + 'js/'));
@@ -78,10 +79,24 @@ gulp.task('scss', function(){
   .pipe(sass().on('error', sass.logError))
 
 	//Add the header
-  .pipe(header(banner, { pkg : pkg } ))
+  //.pipe(header(banner, { pkg : pkg } ))
 
 	//Save to the output dir
   .pipe(gulp.dest(output + 'css/'))
+
+});
+
+//Copy test files
+gulp.task('test', function(){
+
+  //Select the html file
+  gulp.src(paths.test, {base: '../'})
+
+	//Rename as index.html
+	.pipe(rename('index.html'))
+
+	//Save to the build folder
+	.pipe(gulp.dest(output));
 
 });
 
