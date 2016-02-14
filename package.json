@@ -1,0 +1,20 @@
+{
+  "name": "jviz",
+  "version": "0.1.0",
+  "description": "JavaScript and SASS/SCSS library for build genomic visualization tools",
+  "private": true,
+  "author": "Josemi Juanes <josemijuanes@gmail.com>",
+  "license": "MIT",
+  "dependencies": { "jquery": "^2.1.4", "cvjs": "0.1.0-alpha.3", "objectsort": "0.1.2" },
+  "devDependencies":
+	{
+    "gulp": "^3.0.9",
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "1.4.2",
+    "gulp-rename": "1.2.2",
+    "gulp-header": "1.7.1",
+    "gulp-sass": "^2.1.1",
+    "stattic": "0.1.5"
+  },
+  "scripts": { "test": "node dev.js" }
+}
