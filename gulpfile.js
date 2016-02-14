@@ -24,8 +24,9 @@ if(process.argv.length > 3)
 var output = './build/' + tool + '/';
 
 //Files list
-var paths = {
-	'scripts': ['scripts/core/**/*', 'scripts/' + tool + '/**/*'],
+var paths =
+{
+	'scripts': ['scripts/core/**/*', 'scripts/' + tool + '/' + tool + '.js', 'scripts/' + tool + '/**/*'],
 	'images': ['img/**/*'],
 	'vendor': ['vendor/**/*'],
 	'scss': ['scss/font.scss', 'scss/' + tool + '.scss'],
