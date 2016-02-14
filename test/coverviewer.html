@@ -1,0 +1,80 @@
+<html>
+<head>
+
+  <!-- Styles -->
+  <link rel="stylesheet" type="text/css" href="./css/font.css">
+  <link rel="stylesheet" type="text/css" href="./css/coverviewer.css">
+
+  <!-- JavaScript vendor -->
+  <script type="text/javascript" src="./vendor/jquery.min.js"></script>
+  <script type="text/javascript" src="./vendor/cv.js"></script>
+  <script type="text/javascript" src="./vendor/objectsort.js"></script>
+
+  <!-- Javascript libs -->
+  <script type="text/javascript" src="./js/coverviewer.js"></script>
+
+  <!-- JavaScript runs -->
+  <script type="text/javascript">
+
+    //Initialize the element
+    var c = null;
+
+    //When document is ready
+    $(document).ready(function(){
+
+      //Initialize
+      c = new CoverViewer('div');
+
+      //Options
+      c.Options({ testMode: true });
+
+      //Import cover data
+      c.ImportCover({
+        url: '/test/coverviewer/test3.json',
+        label: ['CONTROL','BAM1','BAM2','BAM3'],
+        parser: function(response)
+        {
+          //Create the new object
+          var obj = [];
+
+          //Read all the response
+          for(var i = 0; i < response.length; i++)
+          {
+            //Create the cover
+            var cover = [response[i].bam1,response[i].bam2,response[i].bam3,response[i].bam4,response[i].bam5];
+
+            //Create the new item
+            var item = {'pos': response[i].pos, 'cover': cover};
+
+            //Push to the object
+            obj.push(item);
+          }
+
+          //Return the new object
+          return obj;
+        }
+      });
+
+      //Import genes from cellbase
+      c.ImportGenes({
+        url: CellBaseAdapter.UrlGenes('hsa'),
+        parser: function(response){ return CellBaseAdapter.ParseGenes(response); }
+      });
+
+      //Import exons from cellbase
+      c.ImportExons({
+        url: CellBaseAdapter.UrlExons('hsa'),
+        parser: function(response){ return CellBaseAdapter.ParseExons(response); }
+      });
+
+    });
+  </script>
+
+</head>
+<body style="margin: 10px; padding: 0px; background-color: #ffffff;">
+
+  <!-- Content div -->
+  <div id="div"></div>
+
+</body>
+</html>
