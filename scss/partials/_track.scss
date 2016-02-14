@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 //
-// Copyright (c) 2016 BioWT
+// Copyright (c) 2016 Jose M. Juanes
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +20,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-// Include this module using
-// @import "../jviz/scss/_track";
-
-// Use this module with
-// @include jvizTrack;
-
 //Track mixin
 @mixin jvizTrack
 {
@@ -39,47 +33,26 @@
 	//Tracks head
 	&-head
 	{
-		//Navbar style
-		display: block; width: calc(100% - 10px);
-
-		//Position
-		position: absoulte; top: 0px; left: 0px; z-index: 12;
-
-		//Padding
-		padding: { left: 5px; right: 5px; }
-
-		//Head height
-		height: 30px; line-height: 30px;
-
-		//Navbar border
-		//border-bottom: 1px solid $grey5;
+		//Include head style
+		@include jvizTrackHead;
 
 		//Track title
 		&-title
 		{
-			//Display
-			display: inline-block; line-height: 22px; height: 22px; cursor: hand; float: left;
+			//Import head button mixin
+			@include jvizTrackHeadBtn;
 
-			//Font
-			font: { weight: normal; size: 14px; }
-
-			//Margin
-			margin: { left: 5px; top: 4px; }
-
-			//Padding
-			padding: { left: 8px; right: 8px; }
-
-			//Background
-			background-color: $grey2;
-
-			//Border
-			border-radius: 5px;
+			//Float
+			float: left;
 
 			//Track subtitle
 			&-subtitle
 			{
-				//Subtitle font
-				font: { weight: 300 !important; size: 12px; }
+				//Import light text
+				@include jvizFontLight;
+
+				//text size
+				font: { size: 12px; }
 
 				//Subtitle margin
 				margin: { left: 10px; }
@@ -87,28 +60,72 @@
 		}
 
 		//Track arrow for close
-		&-arrow
-		{
-			//Display
-			display: inline-block; width: 22px; height: 22px; cursor: hand; float: left;
-
-			//Background
-			background: { size: 20px 20px; position: center center; repeat: no-repeat; color: $grey2; }
-
-			//Background image
-			background-image: url('../img/arrow.svg');
-
-			//Transition
-			transition: all 0.3s;
-
-			//Margin
-			margin: { top: 4px; }
-
-			//Border
-			border: { radius: 5px; }
-		}
+		&-arrow { @include jvizTrackHeadIcon; float: left; background-image: url('../img/arrow.svg'); }
 	}
 
 	//Canvas
-	&-canvas { display: block; position: absolute; top: 0px; left: 0px; }
-};
+	&-canvas { @include jvizTrackCanvas; }
+}
+
+//Mixin for track head
+@mixin jvizTrackHead
+{
+	//Navbar style
+	display: block; width: calc(100% - 10px);
+
+	//Position
+	position: absoulte; top: 0px; left: 0px; z-index: 12;
+
+	//Padding
+	padding: { left: 5px; right: 5px; }
+
+	//Head height
+	height: 30px; line-height: 30px;
+}
+
+//Mixin for track head button
+@mixin jvizTrackHeadBtn
+{
+	//Display
+	display: inline-block; cursor: hand;
+
+	//Size
+	height: 22px;
+
+	//Font
+	@include jvizFontNormal;
+
+	//Padding
+	padding: { left: 8px; right: 8px; }
+
+	//Transition
+	transition: all 0.3s;
+
+	//Background
+	background-color: $grey2;
+
+	//Margin
+	margin: { top: 4px; right: 5px; }
+
+	//Border
+	border: { radius: 5px; }
+}
+
+//Mixin for track head icon
+@mixin jvizTrackHeadIcon
+{
+	//Import mixin
+	@include jvizTrackHeadBtn;
+
+	//Size
+	width: 22px;
+
+	//Padding
+	padding: 0px !important;
+
+	//Background
+	background: { size: 20px 20px; position: center center; repeat: no-repeat; }
+}
+
+//Mixin for track canvas
+@mixin jvizTrackCanvas { display: block; position: absolute; top: 0px; left: 0px; }
