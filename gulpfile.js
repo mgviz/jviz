@@ -14,10 +14,10 @@ var pkg = require('./package.json');
 var tool = 'coverviewer';
 
 //Check the arguments
-if(process.argv.length > 2)
+if(process.argv.length > 3)
 {
 	//Save the tool
-	tool = process.argv[2];
+	tool = process.argv[3];
 }
 
 //Output dir
@@ -73,7 +73,7 @@ gulp.task('scripts-min', function(){
 gulp.task('scss', function(){
 
 	//Get all the scss files
-  gulp.src(paths.styles)
+  gulp.src(paths.scss)
 
 	//Build the css files
   .pipe(sass().on('error', sass.logError))
@@ -126,12 +126,12 @@ gulp.task('watch', function(){
   gulp.watch(paths.images, ['images']);
 
 	//Watch the scss
-	gulp.watch(paths.styles, ['scss']);
+	gulp.watch(paths.scss, ['scss']);
 
 });
 
 //Execute the tasks
-gulp.task('build', ['scripts','scss','images','vendor']);
+gulp.task('build', ['scripts','scss','images','vendor', 'test']);
 
 //Default task
 gulp.task('default', ['build']);
