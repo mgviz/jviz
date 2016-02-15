@@ -31,6 +31,7 @@
 @import "partials/cursor";
 @import "partials/animation";
 @import "partials/navbar";
+@import "partials/panel";
 @import "partials/track";
 
 $teal: #00BFA5 !default;
@@ -106,21 +107,8 @@ $teal: #00BFA5 !default;
 		}
 	}
 
-	//Main content
-	&-main
-	{
-		//Style
-		display: block; width: 100%; padding: 0px;
-
-		//Background
-		background-color: $grey3;
-
-		//Border
-		border: { radius: 5px; }
-
-		//Margin
-		margin: { bottom: 10px; }
-	}
+	//Panels
+	&-panel { @include jvizPanel; }
 
 	//Track
 	&-track { @include jvizTrack; }
