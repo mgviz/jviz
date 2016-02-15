@@ -84,13 +84,10 @@ var CoverViewer = function(id)
   this.navbar.btn.right.show = true; //Navbar show right button
   this.navbar.btn.right.title = 'Go right'; //Navbar right button title
 
-  //Main content
-  this.main = {};
-  this.main.id1 = this.app.id + '-main1'; //Main ID
-  this.main.id2 = this.app.id + '-main2'; //Main ID
-  this.main.class = this.app.class + '-main'; //Main class
-  this.main.width = 0; //Main div width
-  this.main.height = 0; //Main div height
+  //Panels
+  this.panel = {};
+  this.panel.preview = new jvizPanel({ id: this.app.id + '-panel-preview', class: this.app.class + '-panel' });
+  this.panel.tracks = new jvizPanel({ id: this.app.id + '-panel-tracks', class: this.app.class + '-panel' });
 
   //Foot
   this.foot = {};
