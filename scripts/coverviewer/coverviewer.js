@@ -86,7 +86,8 @@ var CoverViewer = function(id)
 
   //Main content
   this.main = {};
-  this.main.id = this.app.id + '-main'; //Main ID
+  this.main.id1 = this.app.id + '-main1'; //Main ID
+  this.main.id2 = this.app.id + '-main2'; //Main ID
   this.main.class = this.app.class + '-main'; //Main class
   this.main.width = 0; //Main div width
   this.main.height = 0; //Main div height
@@ -165,7 +166,7 @@ var CoverViewer = function(id)
   this.preview = new jvizTrack({ id: this.app.id + '-preview', class: this.app.class + '-track', layers: 2 });
   this.preview.title = 'Full preview'; //Preview title
   this.preview.width = 0; //Preview width
-  this.preview.height = 120; //Preview height
+  this.preview.height = 90; //Preview height
   this.preview.show = true; //Preview show
   this.preview.busy = false; //Preview is busy
   this.preview.data = null; //Preview data
@@ -176,8 +177,11 @@ var CoverViewer = function(id)
   this.preview.stroke = 1; //Stroke width
   this.preview.mouse = false; //Mouse active
 
+  //Preview head
+  this.preview.head.show = false;
+
   //Preview draw
-  this.preview.draw.margin = { top: 40, bottom: 40, left: 50, right: 50 }; //Preview margin
+  this.preview.draw.margin = { top: 10, bottom: 40, left: 50, right: 50 }; //Preview margin
   this.preview.draw.width = 0; //Preview draw width
   this.preview.draw.height = 0; //Preview draw height
 
