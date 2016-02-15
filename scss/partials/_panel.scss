@@ -20,8 +20,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-//Box mixin
-@mixin jvizBox
+//Panel mixin
+@mixin jvizPanel
 {
 	//Set display
 	display: block;
@@ -31,4 +31,10 @@
 
 	//Border
 	border-radius: 5px;
+
+	//Background
+	background-color: $grey3;
+
+	//Margin
+	margin: { bottom: 10px; }
 }
