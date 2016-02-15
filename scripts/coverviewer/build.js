@@ -10,32 +10,35 @@ CoverViewer.prototype.Build = function()
   //Create the settings panel
   //$('#' + this.app.id).append(this.SettingsBuild());
 
-  //Create the main content
-  $('#' + this.app.id).append(this.MainBuild());
+  //Create the preview panel
+  this.panel.preview.Build(this.app.id);
+
+  //Create the tracks panel
+  this.panel.tracks.Build(this.app.id);
 
   //Create the Foot
   $('#' + this.app.id).append(this.FootBuild());
 
   //Create the preview track
-  this.preview.Build(this.main.id1);
+  this.preview.Build(this.panel.preview.id);
 
   //Set the preview title
   this.preview.SetTitle(this.preview.title);
 
   //Create the Cover track
-  this.cover.Build(this.main.id2);
+  this.cover.Build(this.panel.tracks.id);
 
   //Set the cover title
   this.cover.SetTitle(this.cover.title);
 
   //Create the genes track
-  this.genes.Build(this.main.id2);
+  this.genes.Build(this.panel.tracks.id);
 
   //Add the genes title
   this.genes.SetTitle(this.genes.title);
 
   //Build the genes box div
-  $('#' + this.main.id).append(this.GenesTrackInfoBuild());
+  $('#' + this.panel.tracks.id).append(this.GenesTrackInfoBuild());
 
   //Initialize the resize event
   this.ResizeEvntInit();
