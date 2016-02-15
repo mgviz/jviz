@@ -17,19 +17,19 @@ CoverViewer.prototype.Build = function()
   $('#' + this.app.id).append(this.FootBuild());
 
   //Create the preview track
-  this.preview.Build(this.main.id);
+  this.preview.Build(this.main.id1);
 
   //Set the preview title
   this.preview.SetTitle(this.preview.title);
 
   //Create the Cover track
-  this.cover.Build(this.main.id);
+  this.cover.Build(this.main.id2);
 
   //Set the cover title
   this.cover.SetTitle(this.cover.title);
 
   //Create the genes track
-  this.genes.Build(this.main.id);
+  this.genes.Build(this.main.id2);
 
   //Add the genes title
   this.genes.SetTitle(this.genes.title);
