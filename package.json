@@ -5,6 +5,7 @@
   "private": true,
   "author": "Josemi Juanes <josemijuanes@gmail.com>",
   "license": "MIT",
+  "repository": { "type": "git", "url": "git://github.com/nodebio/jviz.git" },
   "dependencies": { "jquery": "^2.1.4", "cvjs": "0.1.0-alpha.3", "objectsort": "0.1.2" },
   "devDependencies":
 	{
