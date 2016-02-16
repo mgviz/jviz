@@ -222,7 +222,7 @@ var CoverViewer = function(id)
   this.cover.clickstart = 0; //Click orginal position
 
   //Cover draw
-  this.cover.draw.margin = { top: 25, bottom: 40, right: 50, left: 50 }; //Cover draw margin
+  this.cover.draw.margin = { top: 35, bottom: 40, right: 50, left: 50 }; //Cover draw margin
   this.cover.draw.width = 0; //Cover draw width
   this.cover.draw.height = 0; //Cover draw height
 
