@@ -1,0 +1,4 @@
+[submodule "libs/sfy"]
+	path = libs/sfy
+	url = https://github.com/nodebio/sfy.git
+	branch = dev
