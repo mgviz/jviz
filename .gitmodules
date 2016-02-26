@@ -1,4 +1,0 @@
-[submodule "libs/cv.js"]
-	path = libs/cv.js
-	url = https://github.com/jmjuanes/cv.js.git
-	branch = master
