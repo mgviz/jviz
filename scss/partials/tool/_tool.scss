@@ -2,14 +2,14 @@
 @mixin jvizTool
 {
 	//App style
-	display: block;  overflow: hidden; color: $sfyGrey1;
+	display: block;  overflow: hidden; color: $jvizGrey1;
 
 	//Padding
 	padding: { top: 5px; left: 5px; bottom: 5px; right: 5px; }
 
 	//Font style
-	@include sfyFontNormal;
+	@include jvizFontNormal;
 
 	//Border
-	&-border { border: 1px solid $sfyGrey1; border-radius: 5px; }
+	&-border { border: 1px solid $jvizGrey1; border-radius: 5px; }
 }
