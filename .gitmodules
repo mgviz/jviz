@@ -1,7 +1,3 @@
-[submodule "libs/sfy"]
-	path = libs/sfy
-	url = https://github.com/nodebio/sfy.git
-	branch = dev
 [submodule "libs/cv.js"]
 	path = libs/cv.js
 	url = https://github.com/jmjuanes/cv.js.git
