@@ -1,0 +1,24 @@
+//Input mixin
+@mixin sfyInput
+{
+	//Input display
+	display: inline-block;
+
+	//Input height
+	height: 30px;
+
+	//Input font
+	@include sfyFontNormal; font-size: 14px;
+
+	//Input text style
+	color: $sfyGrey1;
+
+	//Input margin and padding
+	padding: 10px; margin: { left: 5px; right: 5px; }
+
+	//Input border
+	border: 0px; border-radius: 5px; outline: 0px;
+
+	//Input background
+	background-color: $sfyGrey8;
+}
