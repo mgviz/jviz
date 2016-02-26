@@ -20,7 +20,7 @@ jvizTable.prototype.Create = function()
   this.Page();
 
   //Add the foot events
-  //this.FootEvnt();
+  this.FootEvnt();
 
   //Show the total of rows
   //this.FootShowTotal();
