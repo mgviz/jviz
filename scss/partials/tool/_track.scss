@@ -1,27 +1,5 @@
-// The MIT License (MIT)
-//
-// Copyright (c) 2016 Jose M. Juanes
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-
-//Track mixin
-@mixin jvizTrack
+//Tool Track mixin
+@mixin jvizToolTrack
 {
 	//Track style
 	display: block; width: 100%; position: relative;
@@ -34,13 +12,13 @@
 	&-head
 	{
 		//Include head style
-		@include jvizTrackHead;
+		@include jvizToolTrackHead;
 
 		//Track title
 		&-title
 		{
 			//Include head button mixin
-			@include jvizTrackHeadBtn;
+			@include jvizToolTrackHeadBtn;
 
 			//Float
 			float: left;
@@ -60,15 +38,15 @@
 		}
 
 		//Track arrow for close
-		&-arrow { @include jvizTrackHeadIcon; float: left; background-image: url('../img/arrows/up.svg'); }
+		&-arrow { @include jvizToolTrackHeadIcon; float: left; background-image: url('../img/arrows/up.svg'); }
 	}
 
 	//Canvas
-	&-canvas { @include jvizTrackCanvas; }
+	&-canvas { @include jvizToolTrackCanvas; }
 }
 
 //Mixin for track head
-@mixin jvizTrackHead
+@mixin jvizToolTrackHead
 {
 	//Navbar style
 	display: block; width: calc(100% - 10px);
@@ -84,7 +62,7 @@
 }
 
 //Mixin for track head button
-@mixin jvizTrackHeadBtn
+@mixin jvizToolTrackHeadBtn
 {
 	//Display
 	display: inline-block; cursor: hand;
@@ -112,10 +90,10 @@
 }
 
 //Mixin for track head icon
-@mixin jvizTrackHeadIcon
+@mixin jvizToolTrackHeadIcon
 {
 	//Import mixin
-	@include jvizTrackHeadBtn;
+	@include jvizToolTrackHeadBtn;
 
 	//Size
 	width: 22px;
@@ -128,4 +106,4 @@
 }
 
 //Mixin for track canvas
-@mixin jvizTrackCanvas { display: block; position: absolute; top: 0px; left: 0px; }
+@mixin jvizToolTrackCanvas { display: block; position: absolute; top: 0px; left: 0px; }
