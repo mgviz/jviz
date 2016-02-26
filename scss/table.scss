@@ -3,21 +3,17 @@
 @import "modules/font";
 
 //Import partials
-@import "partials/btn";
-@import "partials/foot";
-@import "partials/navbar";
+@import "partials/form/btn";
+@import "partials/form/input";
+@import "partials/tool/bar";
+@import "partials/tool/panel";
+@import "partials/tool/tool";
 
 //jvizTable main class
 .jvizTable
 {
-	//Default style
-	display: block; width: 100%; overflow: hidden;
-
-	//Margin
-	margin: { top: 5px; bottom: 5px; left: 5px; right: 5px; }
-
-	//Include default font
-	@include jvizFontNormal; font-size: 14px; color: $jvizGrey1;
+	//Include the tool class
+	@include jvizTool;
 
 	//Navbar
 	&-navbar
@@ -105,7 +101,7 @@
 			margin: { left: 10px; right: 10px; }
 
 			//Page input
-			
+
 		}
 
 		//Foot prev button
