@@ -8,10 +8,10 @@
 	height: 30px;
 
 	//Input font
-	@include sfyFontNormal; font-size: 14px;
+	@include jvizFontNormal; font-size: 14px;
 
 	//Input text style
-	color: $sfyGrey1;
+	color: $jvizGrey1;
 
 	//Input margin and padding
 	padding: 10px; margin: { left: 5px; right: 5px; }
@@ -20,5 +20,5 @@
 	border: 0px; border-radius: 5px; outline: 0px;
 
 	//Input background
-	background-color: $sfyGrey6;
+	background-color: $jvizGrey6;
 }
