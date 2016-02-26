@@ -1,0 +1,12 @@
+//Tool bar mixin
+@mixin jvizToolBar
+{
+	//Bar display
+	display: block; width: 100%;
+
+	//Bar height
+	height: 30px; line-height: 30px;
+
+	//Bar margin
+	margin: { top: 10px; bottom: 10px; }
+}
