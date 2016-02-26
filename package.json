@@ -6,7 +6,7 @@
   "author": "Josemi Juanes <josemijuanes@gmail.com>",
   "license": "MIT",
   "repository": { "type": "git", "url": "https://github.com/nodebio/jviz.git" },
-  "dependencies": { "jquery": "^2.1.4", "cvjs": "0.1.0-alpha.3", "objectsort": "0.1.2" },
+  "dependencies": { "jquery": "^2.1.4", "cvjs": "0.1.0-alpha.3", "objectsort": "0.2.0" },
   "devDependencies":
 	{
     "gulp": "^3.0.9",
