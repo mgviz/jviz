@@ -1,0 +1,196 @@
+//Import modules
+@import "modules/colors";
+@import "modules/font";
+
+//Import partials
+@import "partials/btn";
+@import "partials/foot";
+@import "partials/navbar";
+
+//jvizTable main class
+.jvizTable
+{
+	//Default style
+	display: block; width: 100%; overflow: hidden;
+
+	//Margin
+	margin: { top: 5px; bottom: 5px; left: 5px; right: 5px; }
+
+	//Include default font
+	@include jvizFontNormal; font-size: 14px; color: $jvizGrey1;
+
+	//Navbar
+	&-navbar
+	{
+		//Include navbar
+		@include jvizNavbar;
+
+		//Button sort
+		&-btn-sort { @include jvizBtn($jvizGrey8, $jvizGrey7, $jvizGrey1); float: right; }
+
+	}
+
+	//Table
+	&-table
+	{
+		//Style
+		display: block; width: 100%; overflow-x: auto;
+
+		//Border
+		border-collapse: collapse; border: 0px;
+
+		//Table head
+		&-head
+		{
+			//Style
+			height: 40px; line-height: 40px;
+
+			//Background color
+			background-color: $jvizGrey6;
+
+			//Font
+			@include jvizFontBold; font-size: 14px; color: $jvizGrey1;
+		}
+
+		//Head col first child
+		&-head &-cols:first-child { border-top-left-radius: 5px !important; }
+
+		//Head col Last child
+		&-head &-cols:last-child { border-top-right-radius: 5px !important; }
+
+		//Table body
+		&-body
+		{
+			//Background color
+			background-color: $jvizGrey8;
+		}
+
+		//Table column
+		&-cols
+		{
+			//Font
+			font-size: 14px; color: $jvizGrey1;
+
+			//Padding
+			padding: { left: 10px; right: 10px; }
+		}
+
+		//Table rows
+		&-rows
+		{
+			//Row style
+			min-height: 40px; line-height: 40px;
+
+			//Align
+			vertical-align: middle;
+
+			//Even rows
+			&:nth-child(even) { background-color: $jvizGrey7; }
+		}
+	}
+
+	//Foot
+	&-foot
+	{
+		//Include foot
+		@include jvizFoot;
+
+		//Foot actual page
+		&-page
+		{
+			//Style
+			display: inline-block; height: 30px;
+
+			//Margin
+			margin: { left: 10px; right: 10px; }
+
+			//Page input
+			
+		}
+
+		//Foot prev button
+		&-btn-prev { @include jvizBtnIconLight(''); }
+
+		//Foot next button
+		&-btn-next { @include jvizBtnIconLight(''); }
+	}
+}
+
+
+/* jvizTable head */
+.stables-head { display: inline-block; width: calc(100% - 20px); height: 55px; line-height: 55px; }
+.stables-head { font-weight: bold; border-bottom: 1px solid #ccdde4; background-color: #ffffff; }
+.stables-head { padding-left: 9px; padding-right: 9px; }
+
+/* jvizTable title */
+.stables-title { display: inline-block; height: 55px; line-height: 55px; }
+
+/* jvizTable Arrow */
+.stables-arrow { width: 39px; height: 55px; float: right; transition: 0.3s all; }
+.stables-arrow { background-size: 39px 55px; background-position: center center; }
+.stables-arrow { background-image: url('../img/arrow.png'); background-repeat: no-repeat; }
+
+/* jvizTable body */
+.stables-body { display: block; }
+
+/* jvizTable table */
+.stables-table { display: table; width: calc(100% - 0px); border-width: 0px; border-collapse: collapse; }
+.stables-table { margin-left: 0px; margin-right: 0px; }
+
+/* jvizTable Table cols */
+.stables-table tr td { border-bottom: 1px solid #ccdde4; padding-top: 10px; padding-bottom: 10px; }
+.stables-table tr td { padding-left: 10px; color: #455A64; font-weight: 300; }
+
+/* jvizTable Table head */
+.stables-table thead { font-weight: bold; border-bottom: 2px solid #ccdde4; color: #546E7A; }
+.stables-table thead td { font-weight: bold; padding-left: 20px; }
+
+/* jvizTable Table hover */
+.stables-table  tr:hover > td { background-color: #eaf0f2; cursor: pointer; }
+.stables-table  thead tr:hover > td { background-color: #ffffff; cursor: auto; }
+
+/* jvizTable Table striped */
+.stables-table  tr:nth-child(even) { background-color: #FAFAFA; }
+
+/* jvizTable Sort icon */
+
+
+/* jvizTable no data div */
+.stables-nodata { display: block; width: calc(100% - 20px); height: 40px; line-height: 40px; }
+.stables-nodata { background-color: #eaf0f2; padding-left: 10px; padding-right: 10px; }
+
+/* jvizTable foot */
+.stables-foot { display: block; font-size: 14px; }
+
+/* jvizTable foot button */
+.stables-foot-btn { display: inline-block; text-align: center; line-height: 20px; }
+.stables-foot-btn { border-radius: 5px; text-decoration: none; font-size: 14px; }
+.stables-foot-btn { font-weight: 300; font-family: OpenSans; }
+.stables-foot-btn { padding-left: 15px; padding-right: 15px; padding-top: 4px; padding-bottom: 4px; }
+.stables-foot-btn { margin-left: 5px; margin-right: 5px; margin-top: 10px; margin-bottom: 10px; }
+.stables-foot-btn { border: 1px solid #09a0f6; color: #09a0f6; background-color: transparent; }
+.stables-foot-btn { transition: background-color 0.3s, color 0.3s; }
+.stables-foot-btn:hover { color: #ffffff; background-color: #09a0f6; cursor: hand; }
+
+/* jvizTable foot text */
+.stables-foot-text { display: inline-block; line-height: 20px; font-weight: 300; }
+.stables-foot-text { padding-left: 10px; padding-right: 10px; padding-top: 4px; padding-bottom: 4px; }
+.stables-foot-text { margin-top: 10px; margin-bottom: 10px; }
+
+/* jvizTable foot text pages */
+.stables-foot-text-page { width: 110px; text-align: center; }
+
+/* jvizTable foot text total */
+.stables-foot-text-total { float: right; }
+
+/* jvizTable foot rows select */
+.stables-foot-rows-select { display: inline-block; font-size: 14px; height: 30px; }
+.stables-foot-rows-select { padding-left: 15px; padding-right: 15px; padding-top: 4px; padding-bottom: 4px; }
+.stables-foot-rows-select { -webkit-appearance: menulist-button; -webkit-rtl-ordering: logical; }
+.stables-foot-rows-select { background-color: #ffffff; border: 1px solid #ccdde4; color: #546E7A; }
+.stables-foot-rows-select { outline: 0px; transition: all 0.3s; margin-top: 10px; margin-bottom: 10px; }
+.stables-foot-rows-select:focus { border: 1px solid #09a0f6; }
+
+/* jvizTable foot rows text */
+.stables-foot-rows-text { display: inline-block; line-height: 20px; font-weight: 300; }
+.stables-foot-rows-text { margin-left: 20px; margin-right: 5px; padding-top: 4px; padding-bottom: 4px; }
