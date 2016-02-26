@@ -1,5 +1,5 @@
 //Tool Navbar mixin
-@mixin jvizNavbar
+@mixin jvizToolNavbar
 {
 	//Navbar display
 	display: block;
@@ -11,8 +11,8 @@
 	padding: { top: 10px; bottom: 10px; }
 }
 
-//Navbar Icon
-@mixin jvizNavbarIcon($img)
+//Tool Navbar Icon
+@mixin jvizToolNavbarIcon($img)
 {
 	//Display
 	display: inline-block; height: 30px; width: 30px; transition: all 0.3s;
