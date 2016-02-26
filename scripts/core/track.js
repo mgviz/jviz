@@ -128,14 +128,7 @@ jvizTrack.prototype.Build = function(parent)
 jvizTrack.prototype.Layer = function(id)
 {
 	//Check the layer id
-	if(typeof id === 'undefined')
-	{
-		//Show warning
-		console.warn('jvizTrack: undefined layer num.');
-
-		//Set as 0
-		var id = 0;
-	}
+	if(typeof id === 'undefined'){ var id = 0; }
 
 	//Get the integer value
 	id = Math.max(0, parseInt(id));
