@@ -1,0 +1,41 @@
+//Animation mixin
+@mixin jvizAnimation($color: $jvizBlue)
+{
+	//Keyframes for load animation
+	@keyframes animation_load { 0%, 80%, 100% { background-color: $color; } }
+	@keyframes animation_load { 40% { background-color: $color; } }
+
+	//Loading animation mixin
+	@mixin animation_default
+	{
+		//Circle styles
+		border-radius: 100px; width: 10px; height: 10px;
+
+		//Animation style
+		animation: animation_load 1.2s infinite ease-in-out; animation-fill-mode: both;
+
+		//Content
+		content: '';
+	}
+
+	//Include the default animation
+	@include animation_default;
+
+	//Position
+	position: relative;
+
+	//Text style for animation
+	text-indent: -9999em; font-size: 10px;
+
+	//Animation style
+	transform: translateZ(0); animation-delay: -0.2s;
+
+	//Margin
+	margin: { left: auto; right: auto; top: 0px; }
+
+	//Animation before
+	&:before { @include animation_default; left: -15px; animation-delay: -0.4s; position: absolute; top: 0; }
+
+	//Animation after
+	&:after { @include animation_default; left: 15px; position: absolute; top: 0; }
+}
