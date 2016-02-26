@@ -64,46 +64,17 @@ $teal: #00BFA5 !default;
 	//Navbar
 	&-navbar
 	{
-		//Navbar display
-		display: block;
+		//Include navbar
+		@include jvizNavbar;
 
-		//Navbar height
-		height: 30px; line-height: 30px;
+		//Navbar Left icon button
+		&-btn-left { @include jvizNavbarIcon('../img/arrows/left.svg'); float: left; }
 
-		//Navbar padding
-		padding: { top: 10px; bottom: 10px; }
+		//Navbar Right icon button
+		&-btn-right { @include jvizNavbarIcon('../img/arrows/right.svg'); float: left; }
 
-		//Navbar buttons
-		&-btn
-		{
-			//Button mixin
-			@mixin NavbarBtn
-			{
-				//Display
-				display: inline-block; height: 30px; width: 30px; transition: all 0.3s;
-
-				//Border
-				border-radius: 5px;
-
-				//Background
-				background: { repeat: no-repeat; position: center center; size: 30px 30px; color: $sfyGrey8; }
-
-				//Margin
-				margin: { top: 0px; bottom: 0px; left: 5px; right: 5px; }
-
-				//Hover
-				&:hover { cursor: hand; background-color: $sfyGrey6; }
-			}
-
-			//Button left
-			&-left { @include NavbarBtn; background-image: url('../img/arrows/left.svg'); float: left; }
-
-			//Button right
-			&-right { @include NavbarBtn; background-image: url('../img/arrows/right.svg'); float: left; }
-
-			//Button settings
-			&-settings { @include NavbarBtn; background-image: url('../img/settings.svg'); float: right; }
-		}
+		//Navbar Settings icon button
+		&-btn-settings { @include jvizNavbarBtn('../img/settings.svg'); float: right; }
 	}
 
 	//Panels
@@ -119,7 +90,7 @@ $teal: #00BFA5 !default;
 		display: block; width: calc(100% - 20px); padding: 10px;
 
 		//Background
-		background-color: $sfyGrey8;
+		background-color: $jvizGrey8;
 
 		//Border
 		border: { radius: 5px; }
