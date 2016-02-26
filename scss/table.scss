@@ -18,8 +18,8 @@
 	//Navbar
 	&-navbar
 	{
-		//Include navbar
-		@include jvizNavbar;
+		//Include tool bar
+		@include jvizToolBar;
 
 		//Button sort
 		&-btn-sort { @include jvizBtn($jvizGrey8, $jvizGrey7, $jvizGrey1); float: right; }
@@ -88,8 +88,8 @@
 	//Foot
 	&-foot
 	{
-		//Include foot
-		@include jvizFoot;
+		//Include tool bar
+		@include jvizToolBar;
 
 		//Foot actual page
 		&-page
@@ -101,7 +101,7 @@
 			margin: { left: 10px; right: 10px; }
 
 			//Page input
-
+			&-input { @include jvizInput; width: 50px; }
 		}
 
 		//Foot prev button
