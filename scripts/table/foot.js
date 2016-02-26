@@ -32,7 +32,7 @@ jvizTable.prototype.FootShowTotal = function()
 jvizTable.prototype.FootEvnt = function()
 {
   //Call the function for the buttons
-  jvizTableFootBtnEvnt(this);
+  jvizTableFootEvent(this);
 };
 
 //jvizTable foot click event
