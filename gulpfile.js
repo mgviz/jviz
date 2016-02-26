@@ -131,6 +131,10 @@ gulp.task('watch', function(){
 
 });
 
+//Tools tasks
+gulp.task('coverviewer');
+gulp.task('genom');
+
 //Execute the tasks
 gulp.task('build', ['scripts','scss','images','vendor', 'test']);
 
