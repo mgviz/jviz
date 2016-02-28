@@ -63,11 +63,48 @@ var jvizTable = function(obj)
 
   //For sort the data
   this.sort = {};
-  this.sort.col = -1; //Shorted column
-  this.sort.order = 1; //Shor order
-  this.sort.class = this.app.class + '-sort'; //Default icon
-  this.sort.asc = this.sort.class + '-asc'; //Asc icon
-  this.sort.des = this.sort.class + '-des'; //Des incon
+  this.sort.id = this.app.id + '-sort'; //Sort id
+  this.sort.class = this.app.class + '-sort'; //Sort class
+
+  //Sort list
+  this.sort.list = {};
+  this.sort.list.id = this.sort.id + '-list'; //Sort list Id
+  this.sort.list.class = this.sort.class + '-list'; //Sort list class
+  this.sort.list.items = []; //Sort list items
+
+  //Sort list item
+  this.sort.list.item = {};
+  this.sort.list.item.id = this.sort.list.id + '-item'; //List item ID
+  this.sort.list.item.class = this.sort.list.class + '-item'; //List item class
+
+  //Sort list item select
+  this.sort.list.item.select = {};
+  this.sort.list.item.select.id = this.sort.list.item.id + '-select'; //Select ID
+  this.sort.list.item.select.class = this.sort.list.item.class + '-select'; //Select class
+  this.sort.list.item.select.column = this.sort.list.item.select.id + '-column'; //Select column ID
+  this.sort.list.item.select.order = this.sort.list.item.select.id + '-order'; //Select order ID
+
+  //Sort list item remove
+  this.sort.list.item.remove = {};
+  this.sort.list.item.remove.id = this.sort.list.item.id + '-remove'; //List item remove
+  this.sort.list.item.remove.class = this.sort.list.item.class + '-remove'; //List item remove class
+
+  //Sort buttons
+  this.sort.btn = {};
+  this.sort.btn.id = this.sort.id + '-btn'; //Sort buttons ID
+  this.sort.btn.class = this.sort.class + '-btn'; //Sort buttons class
+
+  //Sort button sort
+  this.sort.btn.sort = {};
+  this.sort.btn.sort.id = this.sort.btn.id + '-sort'; //Sort btn ID
+  this.sort.btn.sort.class = this.sort.btn.class + '-sort'; //Sort btn class
+  this.sort.btn.sort.title = 'Sort'; //Sort title
+
+  //Sort button add
+  this.sort.btn.add = {};
+  this.sort.btn.add.id = this.sort.btn.id + '-add'; //Add btn ID
+  this.sort.btn.add.class = this.sort.btn.class + '-add'; //Add btn class
+  this.sort.btn.add.title = 'Add'; //Add title
 
   //Callback
   this.callback = null; //Callback function
@@ -129,4 +166,8 @@ var jvizTable = function(obj)
   this.footrows.text.id = this.footrows.id + '_text'; //Foot rows text ID
   this.footrows.text.class = this.app.class + '-foot-rows-text'; //Foot rows text class
   this.footrows.text.txt = 'Rows per page: '; //Foot rows text text
+
+  //Sort dialog
+  this.dialog = new jvizDialog({ id: this.app.id + '-dialog', class: this.app.class + '-dialog' });
+
 }
