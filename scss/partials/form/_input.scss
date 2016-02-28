@@ -1,5 +1,5 @@
 //Input mixin
-@mixin jvizInput
+@mixin jvizInput($bg: $jvizGrey8)
 {
 	//Input display
 	display: inline-block;
@@ -20,5 +20,5 @@
 	border: 0px; border-radius: 5px; outline: 0px;
 
 	//Input background
-	background-color: $jvizGrey8;
+	background-color: $bg;
 }
