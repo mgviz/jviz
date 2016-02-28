@@ -1,6 +1,7 @@
 # jviz
 
 [![Dependency Status](https://david-dm.org/nodebio/jviz.svg?style=flat-square)](https://david-dm.org/nodebio/jviz)
+[![devDependency Status](https://david-dm.org/nodebio/jviz/dev-status.svg?style=flat-square)](https://david-dm.org/nodebio/jviz#info=devDependencies)
 
 JavaScript and SASS/SCSS library for build genomic visualization tools.
 
