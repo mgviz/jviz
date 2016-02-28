@@ -1,0 +1,91 @@
+//Dialog mixin
+@mixin jvizDialog()
+{
+	//Panel width
+	$panelWidth: 680px !default;
+
+	//Main style
+	display: none; width: 100%; height: 100%;
+
+	//Position
+	position: fixed; top: 0px; left: 0px; z-index: 9999999;
+
+	//Background
+	background-color: rgba(96, 108, 137, 0.7);
+
+	//Panel
+	&-panel
+	{
+		//Display
+		display: block; width: $panelWidth;
+
+		//Margin
+		margin: { left: auto; right: auto; top: 100px; }
+
+		//Panel head
+		&-head
+		{
+			//Display
+			display: block; width: $panelWidth; height: 30px;
+
+			//Padding
+			padding: { top: 10px; bottom: 10px; left: 10px; right: 10px; }
+
+			//Margin
+			margin: { left: auto; right: auto; }
+
+			//Background
+			background-color: $jvizGrey1;
+
+			//Text
+			@include jvizFontBold; color: $jvizWhite; font-size: 14px;
+
+			//Border
+			border: { top-left-radius: 5px; top-right-radius: 5px; }
+
+			//Close button
+			&-close
+			{
+				//Display
+				display: inline-block; width: 30px; height: 30px; cursor: hand; float: right;
+
+				//Background
+				background: { position: center center; size: 26px 26px; repeat: no-repeat; }
+
+				//Background image
+				background-image: url('../img/white/navigation/close.svg');
+
+				//Background color
+				background-color: $jvizGrey2;
+
+				//Border
+				border-radius: 5px;
+
+				//Transition
+				transition: all 0.3s;
+
+				//Close hover
+				&:hover { background-color: $jvizGrey3; }
+			}
+		}
+
+		//Panel body
+		&-body
+		{
+			//Display
+			display: inline-block; width: $panelWidth;
+
+			//Padding
+			padding: { top: 10px; bottom: 10px; left: 10px; right: 10px; }
+
+			//Margin
+			margin: { left: auto; right: auto; }
+
+			//Border
+			border: { bottom-left-radius: 5px; bottom-right-radius: 5px; }
+
+			//Background
+			background-color: $jvizGrey8;
+		}
+	}
+}
