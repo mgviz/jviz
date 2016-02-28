@@ -8,7 +8,7 @@ jvizTable.prototype.Create = function()
   if(this.table.cols.items.length < 1) { return console.error('jvizTable: first add the columns before create the table.'); }
 
   //Save the data to the procesed
-  this.data.procesed = this.data.orig;
+  this.data.procesed = this.data.orig.slice(0);
 
   //Build the div
   this.Build();
@@ -20,7 +20,10 @@ jvizTable.prototype.Create = function()
   this.Page();
 
   //Add the foot events
-  this.FootEvnt();
+  jvizTableFootEvents(this);
+
+  //Add the navbar events
+  jvizTableNavbarEvents(this);
 
   //Show the total of rows
   //this.FootShowTotal();
