@@ -51,29 +51,41 @@ jvizTable.prototype.PageNext = function()
   //Add 1 to the page
   this.page.now = this.page.now + 1;
 
-  //Check
-  if(this.page.now >= this.page.num)
-  {
-    //Go back
-    this.page.now = this.page.now - 1;
-  }
-
-  //Call the page
-  this.Page();
+  //Open page
+  this.PageOpen();
 };
 
 //jvizTable prev page
-jvizTable.prototype.PageRev = function()
+jvizTable.prototype.PagePrev = function()
 {
   //Add -1 to the page
   this.page.now = this.page.now - 1;
 
-  //Check
-  if(this.page.now < 0)
-  {
-    //Go back
-    this.page.now = 0;
-  }
+  //Open page
+  this.PageOpen();
+};
+
+//jvizTable get page
+jvizTable.prototype.PageGet = function()
+{
+  //Get the page value
+  this.page.now = parseInt($('#' + this.foot.page.input.id).val()) - 1;
+
+  //Check for NaN
+  if(isNaN(this.page.now)){ this.page.now = 0; }
+
+  //Open the page
+  this.PageOpen();
+};
+
+//jvizTable page open
+jvizTable.prototype.PageOpen = function()
+{
+  //Check for negative page number
+  if(this.page.now < 0){ this.page.now = 0; }
+
+  //Check for inexistent page
+  if(this.page.now >= this.page.num){ this.page.now = this.page.num - 1; }
 
   //Call the page
   this.Page();
