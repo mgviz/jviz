@@ -3,6 +3,7 @@
 @import "modules/font";
 
 //Import partials
+@import "partials/dialog";
 @import "partials/form/btn";
 @import "partials/form/input";
 @import "partials/tool/bar";
@@ -85,6 +86,9 @@
 		}
 	}
 
+	//Dialog
+	&-dialog { @include jvizDialog; }
+
 	//Foot
 	&-foot
 	{
@@ -105,11 +109,78 @@
 		}
 
 		//Foot prev button
-		&-btn-prev { @include jvizBtnIconLight(''); }
+		&-btn-prev { @include jvizBtnIconLight('../img/navy/navigation/left.svg'); }
 
 		//Foot next button
-		&-btn-next { @include jvizBtnIconLight(''); }
+		&-btn-next { @include jvizBtnIconLight('../img/navy/navigation/right.svg'); }
 	}
+
+	//Sort dialog
+	&-sort
+	{
+		//Buttons
+		&-btn
+		{
+			//Sort button
+			&-sort { @include jvizBtn($jvizGreen, $jvizGreen); float: right; }
+
+			//Add
+			&-add { @include jvizBtn($jvizGrey1, $jvizGrey2); }
+		}
+
+		//List
+		&-list
+		{
+			//Style
+			display: block; width: calc(100% - 10px);
+
+			//Margin
+			margin: { top: 10px; bottom: 10px; left: 5px; right: 5px; }
+
+			//Item
+			&-item
+			{
+				//Style
+				display: block; width: calc(100% - 10px); height: 30px; line-height: 30px;
+
+				//Background
+				background-color: $jvizWhite;
+
+				//Border radius
+				border-radius: 5px;
+
+				//Padding
+				padding: { top: 5px; bottom: 5px; left: 5px; right: 5px; }
+
+				//Margin
+				margin: { bottom: 5px; }
+
+				//Item remove
+				&-remove
+				{
+					//Style
+					display: inline-block; width: 30px; height: 30px; float: right; cursor: hand;
+
+					//Background
+					background: { position: center center; size: 20px 20px; repeat: no-repeat; }
+
+					//Background image
+					background-image: url('../img/white/action/delete.svg');
+
+					//Background color
+					background-color: $jvizRed;
+
+					//Border
+					border-radius: 5px;
+				}
+
+				//Select
+				&-select { @include jvizInput; background-color: $jvizGrey6 !important; }
+			}
+		}
+	}
+
+
 }
 
 
