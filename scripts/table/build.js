@@ -69,6 +69,12 @@ jvizTable.prototype.Build = function()
 
   //Append the table html
   $('#' + this.app.id).html(div);
+
+  //Build the dialog
+  this.dialog.Build(this.app.id);
+
+  //Add the sort dialog
+  this.SortBuild();
 };
 
 //jvizTable Build the navbar
