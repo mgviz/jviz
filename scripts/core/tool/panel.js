@@ -1,5 +1,5 @@
-//jvizPanel main class
-function jvizPanel(obj)
+//jvizToolPanel main class
+function jvizToolPanel(obj)
 {
 	//Check the panel ID
 	obj.id = (typeof obj.id !== 'undefined')? obj.id : '';
@@ -12,8 +12,8 @@ function jvizPanel(obj)
 	this.class = obj.class; //Panel class
 }
 
-//jvizPanel Build
-jvizPanel.prototype.Build = function(parent)
+//jvizToolPanel Build
+jvizToolPanel.prototype.Build = function(parent)
 {
 	//Initialize the div
 	var div = '<div id="' + this.id + '" class="' + this.class + '"></div>';

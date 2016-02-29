@@ -1,5 +1,5 @@
 //Track main class
-function jvizTrack(obj)
+function jvizToolTrack(obj)
 {
 	//Check the track ID
 	obj.id = (typeof obj.id !== 'undefined')? obj.id : '';
@@ -56,8 +56,8 @@ function jvizTrack(obj)
 	return this;
 }
 
-//jvizTrack Build
-jvizTrack.prototype.Build = function(parent)
+//jvizToolTrack Build
+jvizToolTrack.prototype.Build = function(parent)
 {
 	//Create the new div
 	var div = '';
@@ -124,8 +124,8 @@ jvizTrack.prototype.Build = function(parent)
 	}
 };
 
-//jvizTrack get the layer
-jvizTrack.prototype.Layer = function(id)
+//jvizToolTrack get the layer
+jvizToolTrack.prototype.Layer = function(id)
 {
 	//Check the layer id
 	if(typeof id === 'undefined'){ var id = 0; }
@@ -137,7 +137,7 @@ jvizTrack.prototype.Layer = function(id)
 	if(this.canvas.num <= id)
 	{
 		//Show warning
-		console.warn('jvizTrack: invalid layer num');
+		console.warn('jvizToolTrack: invalid layer num');
 
 		//Set as 0
 		id = 0;
@@ -147,8 +147,8 @@ jvizTrack.prototype.Layer = function(id)
 	return this.draw.layer[id];
 };
 
-//jvizTrack resize
-jvizTrack.prototype.Resize = function()
+//jvizToolTrack resize
+jvizToolTrack.prototype.Resize = function()
 {
 	//Save the width
 	this.width = $('#' + this.id).width();
@@ -174,8 +174,8 @@ jvizTrack.prototype.Resize = function()
 	$('#' + this.id).height(this.height);
 };
 
-//jvizTrack set track title
-jvizTrack.prototype.SetTitle = function(title, subtitle)
+//jvizToolTrack set track title
+jvizToolTrack.prototype.SetTitle = function(title, subtitle)
 {
 	//Add the title
 	var text = title;
