@@ -5,16 +5,14 @@ function jvizToolTrack(obj)
 	obj.id = (typeof obj.id !== 'undefined')? obj.id : '';
 
 	//Check the track class
-	obj.class = (typeof obj.class !== 'undefined')? obj.class : 'jviz-track';
-
-	//Check the number of layers
-	obj.layers = (typeof obj.layers !== 'undefined')? obj.layers : 0;
+	obj.class = (typeof obj.class !== 'undefined')? obj.class : 'jvizToolTrack';
 
 	//Track
 	this.id = obj.id; //Track ID
 	this.class = obj.class; //Track class
 	this.width = 0; //Track width
 	this.height = 0; //Track height
+	this.active = true; //Track active
 
 	//Track head
 	this.head = {};
@@ -39,18 +37,11 @@ function jvizToolTrack(obj)
 	this.head.arrow.id = this.head.id + '-arrow'; //Track arrow ID
 	this.head.arrow.class = this.head.class + '-arrow'; //Track arrow Class
 
-	//Track canvas
-	this.canvas = {};
-	this.canvas.show = true; //Show the canvas
-	this.canvas.id = this.id + '-canvas'; //Canvas ID
-	this.canvas.class = this.class + '-canvas'; //Canvas class
-	this.canvas.num = obj.layers; //Number of canvas elements
-
-	//Track draw
-	this.draw = {};
-  this.draw.layer = []; //Draw layers
-  this.draw.width = 0; //Draw width
-  this.draw.height = 0; //Draw height
+	//Track body
+	this.body = {};
+	this.body.id = this.id + '-body'; //Body ID
+	this.body.class = this.class + '-body'; //Body class
+	this.body.content = ''; //Body default content
 
 	//Return the new track
 	return this;
@@ -65,86 +56,50 @@ jvizToolTrack.prototype.Build = function(parent)
 	//Create the main track div
 	div = div + '<div id="' + this.id + '" class="' + this.class + '">';
 
-	//Check for show the canvas element
-	if(this.canvas.show === true)
-	{
-		//Get the canvas numbers
-		for(var i = 0; i < this.canvas.num; i++)
-		{
-			//Create the canvas
-			div = div + '<canvas id="' + this.canvas.id + i + '" class="' + this.canvas.class + '" ';
+	//Create the body
+	div = div + '<div id="' + this.body.id + '" class="' + this.body.app + '">' + this.body.content + '</div>';
 
-			//Add the canvas z-index
-			div = div + 'style="z-index: ' + i + ';"';
-
-			//Close the canvas
-			div = div + '></canvas>';
-		}
-	}
-
-	//Check for show the head
-	if(this.head.show === true)
-	{
-		//Create the track head
-		div = div + '<div id="' + this.head.id + '" class="' + this.head.class + '">';
-
-		//Check for show the track arrow
-		if(this.head.arrow.show === true)
-		{
-			//Add the arrow
-			div = div + '<div id="' + this.head.arrow.id + '" class="' + this.head.arrow.class + '"></div>';
-		}
-
-		//Check for show the title
-		if(this.head.title.show === true)
-		{
-			//Add the track title
-			div = div + '<span id="' + this.head.title.id + '" class="' + this.head.title.class + '"></span>';
-		}
-
-		//Close the head track
-		div = div + '</div>';
-	}
+	//Add the head
+	div = div + this.BuildHead();
 
 	//Close the track div
 	div = div + '</div>';
 
 	//Create the track
 	$('#' + parent).append(div);
-
-	//Check for canvas
-	if(this.canvas.show === true)
-	{
-		//Initialize all the canvas
-		for(var i = 0; i < this.canvas.num; i++)
-		{
-			//Initialize the canvas i
-			this.draw.layer.push(new cvjs({ id: this.canvas.id + i, width: this.width, height: this.height }));
-		}
-	}
 };
 
-//jvizToolTrack get the layer
-jvizToolTrack.prototype.Layer = function(id)
+//jvizToolTrack build head
+jvizToolTrack.prototype.BuildHead = function()
 {
-	//Check the layer id
-	if(typeof id === 'undefined'){ var id = 0; }
+	//Check for show the head
+	if(this.head.show === false){ return ''; }
 
-	//Get the integer value
-	id = Math.max(0, parseInt(id));
+	//Initialize the head div
+	var div = '';
 
-	//Check the number
-	if(this.canvas.num <= id)
+	//Create the track head
+	div = div + '<div id="' + this.head.id + '" class="' + this.head.class + '">';
+
+	//Check for show the track arrow
+	if(this.head.arrow.show === true)
 	{
-		//Show warning
-		console.warn('jvizToolTrack: invalid layer num');
-
-		//Set as 0
-		id = 0;
+		//Add the arrow
+		div = div + '<div id="' + this.head.arrow.id + '" class="' + this.head.arrow.class + '"></div>';
 	}
 
-	//Return the layer
-	return this.draw.layer[id];
+	//Check for show the title
+	if(this.head.title.show === true)
+	{
+		//Add the track title
+		div = div + '<span id="' + this.head.title.id + '" class="' + this.head.title.class + '"></span>';
+	}
+
+	//Close the track head
+	div = div + '</div>';
+
+	//Return the head
+	return div;
 };
 
 //jvizToolTrack resize
@@ -155,23 +110,6 @@ jvizToolTrack.prototype.Resize = function()
 
 	//Save the height
 	//this.height = $('#' + this.id).height();
-
-	//Check the canvas
-	if(this.canvas.show === true)
-	{
-		//Get all the canvas elements
-		for(var i = 0; i < this.canvas.num; i++)
-		{
-			//Save the up canvas width
-			this.draw.layer[i].Width(this.width);
-
-			//Save the up canvas height
-			this.draw.layer[i].Height(this.height);
-		}
-	}
-
-	//Set the track height
-	$('#' + this.id).height(this.height);
 };
 
 //jvizToolTrack set track title
@@ -189,3 +127,54 @@ jvizToolTrack.prototype.SetTitle = function(title, subtitle)
 	//Show the title
 	$('#' + this.head.title.id).html(text);
 };
+
+//jvizToolTrack set body content
+jvizToolTrack.prototype.Content = function(div)
+{
+	//Show the content
+	$('#' + this.body.id).html(div);
+};
+
+//jvizToolTrack Show hide body
+jvizToolTrack.prototype.ShowHide = function()
+{
+	//Show or hide
+	(this.active === true) ? this.Hide() : this.Show();
+};
+
+//jvizToolTrack show body
+jvizToolTrack.prototype.Show = function()
+{
+	//Set visible
+	$('#' + this.body.id).css('display', 'block');
+
+	//Set active as true
+	this.active = true;
+};
+
+//jvizToolTrack hide body
+jvizToolTrack.prototype.Hide = function()
+{
+	//Set hidden
+	$('#' + this.body.id).css('display', 'none');
+
+	//Set active as false
+	this.active = false;
+};
+
+//jvizToolTrack Events caller
+jvizToolTrack.prototype.Events = function()
+{
+	//Set the navbar event
+	jvizToolTrackEventsHead(this);
+};
+
+//jvizToolTrack Events
+function jvizToolTrackEventsHead(_this)
+{
+	//Click on arrow button
+	$('#' + _this.head.arrow.id).on('click', function(){ _this.ShowHide(); });
+
+	//Check on title box
+	$('#' + _this.head.title.id).on('click', function(){ _this.ShowHide(); });
+}
