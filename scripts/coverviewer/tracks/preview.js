@@ -5,34 +5,6 @@ CoverViewer.prototype.PreviewTrack = function(opt)
   if(typeof opt.stroke !== 'undefined') { this.preview.stroke = opt.stroke; }
 };
 
-//CoverViewer Preview build
-CoverViewer.prototype.PreviewTrackBuild = function()
-{
-  //Create the main track div
-	var div = '<div id="' + this.preview.id + '" class="' + this.preview.class + '">';
-
-	//Create the track head
-	div = div + '<div id="' + this.preview.head.id + '" class="' + this.preview.head.class + '">';
-
-  //Add the arrow
-  div = div + '<div id="' + this.preview.head.arrow.id + '" class="' + this.preview.head.arrow.class + '"></div>';
-
-	//Add the track title
-	div = div + '<div id="' + this.preview.head.title.id + '" class="' + this.preview.head.title.class + '"></div>';
-
-  //Close the head track
-	div = div + '</div>';
-
-	//Show the canvas element
-	div = div + '<canvas id="' + this.preview.canvas.id + '" class="' + this.preview.canvas.class + '"></canvas>';
-
-	//Close the track div
-	div = div + '</div>';
-
-  //Return the new div
-  return div;
-};
-
 //CoverViewer preview track show full region info
 CoverViewer.prototype.PreviewTrackBarRegionInfo = function()
 {
@@ -40,20 +12,13 @@ CoverViewer.prototype.PreviewTrackBarRegionInfo = function()
   var reg = 'Chromosome ' + this.draw.chromosome;
 
   //Add the start point
-  reg = reg + ', start: '+ this.preview.start;
+  reg = reg + ', start: '+ this.preview.draw.start;
 
   //Add the end point
-  reg = reg + ', end: ' + this.preview.end;
+  reg = reg + ', end: ' + this.preview.draw.end;
 
   //Show the region info
   this.preview.SetTitle(this.preview.title, reg);
-};
-
-//CoverViewer preview mouse
-CoverViewer.prototype.PreviewTrackMouseEvnt = function()
-{
-  //Call the Mouse event
-  CoverViewerPreviewTrackMouseEvnt(this);
 };
 
 //CoverViewer Preview Draw
@@ -65,22 +30,19 @@ CoverViewer.prototype.PreviewTrackDraw = function()
   //Clear the layer
 	canvas.Clear();
 
-  //Get the preview region draw width
-  this.preview.draw.width = this.preview.width - this.preview.draw.margin.left - this.preview.draw.margin.right;
-
-  //Get the preview region draw height
-  this.preview.draw.height = this.preview.height - this.preview.draw.margin.top - this.preview.draw.margin.bottom;
-
   //Save the start position
-  this.preview.start = this.data.cover.data[0].pos;
+  this.preview.draw.start = this.data.cover.data[0].pos;
 
   //Save the end position
-  this.preview.end = this.data.cover.data[this.data.cover.data.length - 1].pos;
+  this.preview.draw.end = this.data.cover.data[this.data.cover.data.length - 1].pos;
 
-  //Calculate
-  this.preview.mult = (this.preview.end - this.preview.start)/this.preview.draw.width;
+  //Save the draw length
+  this.preview.draw.length = this.preview.draw.end - this.preview.draw.start;
 
-  //Check if is necessary adjust the data
+  //Calculate the scale
+  this.preview.draw.scale = this.preview.draw.length/this.preview.draw.width;
+
+  //Check for adjust the data
   if(this.core.resized === true || this.preview.data === null)
   {
     //Adjust the data
@@ -108,8 +70,9 @@ CoverViewer.prototype.PreviewTrackDraw = function()
       //Calculate the x position
       var posx = this.preview.draw.margin.left + i;
 
+/****************************/
       //Get the end index
-      var index = this.DataFindPos(Math.floor(this.preview.start + i*this.preview.mult))
+      var index = this.DataFindPos(Math.floor(this.preview.draw.start + i*this.preview.draw.scale))
 
       //Calculate the y position
       var posy = this.preview.height - this.preview.draw.margin.bottom - this.preview.data[index][j];
@@ -126,13 +89,13 @@ CoverViewer.prototype.PreviewTrackDraw = function()
   }
 
   //Calculate the window width
-  this.preview.window.width = this.cover.draw.width/this.preview.mult;
+  this.preview.window.width = this.cover.draw.width/this.preview.draw.scale;
 
   //Calculate the window height
   this.preview.window.height = this.preview.draw.height;
 
   //Reset the preview start point
-  this.preview.window.start = this.preview.draw.margin.left;
+  this.preview.window.start = 0;
 
   //Initialize the label position y
   this.preview.label.posy = this.preview.height - this.preview.draw.margin.bottom + this.preview.label.margin;
@@ -153,41 +116,43 @@ CoverViewer.prototype.PreviewTrackDrawWindow = function()
   //Clear the layer
 	canvas.Clear();
 
-  //Calculate the window start position
-  //this.preview.window.start = Math.floor(px - this.preview.window.width/2);
-
   //Check the start position
-  if(this.preview.window.start < this.preview.draw.margin.left)
+  if(this.preview.window.start < 0)
   {
     //Set the start position in 0
-    this.preview.window.start = this.preview.draw.margin.left;
+    this.preview.window.start = 0;
   }
 
   //Check if start + length > margin-left + width
-  if(this.preview.window.start + this.preview.window.width > this.preview.draw.margin.left + this.preview.draw.width)
+  if(this.preview.window.start + this.preview.window.width > this.preview.draw.width)
   {
     //Change the start position
-    this.preview.window.start = this.preview.draw.margin.left + this.preview.draw.width - this.preview.window.width;
+    this.preview.window.start = this.preview.draw.width - this.preview.window.width;
   }
 
   //Calculate the end position
   this.preview.window.end = this.preview.window.start + this.preview.window.width;
 
   //Calculate the region start coordinates
-  this.preview.window.region.start = (this.preview.window.start - this.preview.draw.margin.left)*this.preview.mult;
-  this.preview.window.region.start = Math.floor(this.preview.start + this.preview.window.region.start);
+  this.preview.region.start = Math.floor(this.preview.window.start*this.data.cover.data.length/this.preview.draw.width);
 
   //Calculate the region end coordinates
-  this.preview.window.region.end = (this.preview.window.end - this.preview.draw.margin.left)*this.preview.mult;
-  this.preview.window.region.end = Math.floor(this.preview.start + this.preview.window.region.end);
+  this.preview.region.end = Math.floor(this.preview.window.end*this.data.cover.data.length/this.preview.draw.width);
+
+  //Get the rectangle position x
+  var rect_x = this.preview.window.start + this.preview.draw.margin.left;
+
+  //Get the rectangle position y
+  var rect_y = this.preview.draw.margin.top;
+
+  //Get the rectangle width
+  var rect_width = this.preview.window.width;
+
+  //Get the rectangle height
+  var rect_height = this.preview.window.height;
 
   //Draw the rectangle
-  canvas.Rect({
-    x: this.preview.window.start,
-    y: this.preview.draw.margin.top,
-    width: this.preview.window.width,
-    height: this.preview.window.height
-  });
+  canvas.Rect({ x: rect_x, y: rect_y, width: rect_width, height: rect_height });
 
   //Add the fill
   canvas.Fill(this.preview.window.fill);
@@ -203,36 +168,55 @@ CoverViewer.prototype.PreviewTrackDrawLabel = function()
   var canvas = this.preview.Layer(1);
 
   //Save the position x
-  var posx = this.preview.window.start+ this.preview.window.width/2;
+  var posx = this.preview.window.start + this.preview.window.width/2 + this.preview.draw.margin.left;
 
   //Save the position y
   var posy = this.preview.label.posy;
 
+  //Get the rectangle position x
+  var rect_x = posx - this.preview.label.width/2;
+
+  //Get the rectangle position y
+  var rect_y = posy;
+
+  //Get the rectangle width
+  var rect_width = this.preview.label.width;
+
+  //Get the rectangle height
+  var rect_height = this.preview.label.height;
+
+  //Get the rectangle radius
+  var rect_radius = this.preview.label.radius;
+
   //Draw the rectangle
-  canvas.Rect({
-    x: posx - this.preview.label.width/2,
-    y: posy,
-    width: this.preview.label.width,
-    height: this.preview.label.height,
-    radius: this.preview.label.radius
-  });
+  canvas.Rect({ x: rect_x, y: rect_y, width: rect_width, height: rect_height, radius: rect_radius });
 
   //Set the style
   canvas.Fill(this.preview.label.fill);
 
   //Get the text
-  var txt = this.preview.window.region.start + ' - ' + this.preview.window.region.end;
+  var text_txt = this.preview.window.region.start + ' - ' + this.preview.window.region.end;
+
+  //Get the text position x
+  var text_x = posx;
+
+  //Get the text position y
+  var text_y = posy + 1;
+
+  //Get the text font
+  var text_font = this.preview.label.text.font;
+
+  //Get the text size
+  var text_size = this.preview.label.text.size;
+
+  //Get the text align
+  var text_align = this.preview.label.text.align;
+
+  //Get the text color
+  var text_color = this.preview.label.text.color;
 
   //Show the text
-  canvas.Text({
-    text: txt,
-    x: posx,
-    y: posy + 2,
-    font: this.preview.label.text.font,
-    size: this.preview.label.text.size,
-    align: this.preview.label.text.align,
-    color: this.preview.label.text.color
-  });
+  canvas.Text({ text: text_txt, x: text_x, y: text_y, font: text_font, size: text_size, align: text_align, color: text_color });
 
   //Draw the triangle
   canvas.Polygon([[posx - 6, posy + 2],[posx, posy - 6],[posx + 6, posy + 2]]);
@@ -251,10 +235,10 @@ CoverViewer.prototype.PreviewTrackMouseDown = function(x)
   $('body').addClass(this.cursor.move);
 
   //Save the click position
-  this.preview.window.click = x;
+  this.preview.click.point = x;
 
   //Save the start position
-  this.preview.window.clickstart = this.preview.window.start;
+  this.preview.click.start = this.preview.window.start;
 
   //Destroy the genes info
   this.GenesTrackInfoClear();
@@ -267,7 +251,7 @@ CoverViewer.prototype.PreviewTrackMouseMove = function(x)
   if(this.preview.mouse === true)
   {
     //Calculate the start point
-    this.preview.window.start = this.preview.window.clickstart + (x - this.preview.window.click);
+    this.preview.window.start = this.preview.click.start + (x - this.preview.click.point);
 
     //Draw the region
     this.Move();
@@ -285,10 +269,10 @@ CoverViewer.prototype.PreviewTrackMouseUp = function(x)
 };
 
 //CoverViewer Preview Track mouse function event
-function CoverViewerPreviewTrackMouseEvnt(_main)
+function CoverViewerPreviewTrackEvents(_this)
 {
   //Save the ID
-  var _id = '#' + _main.preview.id;
+  var _id = '#' + _this.preview.id;
 
   //Mouse up
   $(_id).mouseup(function(e){
@@ -297,7 +281,7 @@ function CoverViewerPreviewTrackMouseEvnt(_main)
     e.preventDefault();
 
     //Call the click handler
-    _main.PreviewTrackMouseUp(e.pageX - $(this).offset().left);
+    _this.PreviewTrackMouseUp(e.pageX - $(this).offset().left);
 
   });
 
@@ -308,7 +292,7 @@ function CoverViewerPreviewTrackMouseEvnt(_main)
     e.preventDefault();
 
     //Call the click handler
-    _main.PreviewTrackMouseDown(e.pageX - $(this).offset().left);
+    _this.PreviewTrackMouseDown(e.pageX - $(this).offset().left);
 
   });
 
@@ -319,7 +303,7 @@ function CoverViewerPreviewTrackMouseEvnt(_main)
     e.preventDefault();
 
     //Call the click handler
-    _main.PreviewTrackMouseMove(e.pageX - $(this).offset().left);
+    _this.PreviewTrackMouseMove(e.pageX - $(this).offset().left);
 
   });
 }
