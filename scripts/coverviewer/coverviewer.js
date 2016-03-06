@@ -5,7 +5,7 @@ var CoverViewer = function(id)
   this.info = {};
   this.info.version = '0.1.0'; //App Version
   this.info.name = 'CoverViewer'; //App name
-  this.info.website = 'https://biowt.github.io/coverviewer'; //App website
+  this.info.website = 'https://nodebio.github.io/coverviewer'; //App website
 
   //Start the default values
   this.default = {};
@@ -86,8 +86,8 @@ var CoverViewer = function(id)
 
   //Panels
   this.panel = {};
-  this.panel.preview = new jvizPanel({ id: this.app.id + '-panel-preview', class: this.app.class + '-panel' });
-  this.panel.tracks = new jvizPanel({ id: this.app.id + '-panel-tracks', class: this.app.class + '-panel' });
+  this.panel.preview = new jvizToolPanel({ id: this.app.id + '-panel-preview', class: this.app.class + '-panel' });
+  this.panel.tracks = new jvizToolPanel({ id: this.app.id + '-panel-tracks', class: this.app.class + '-panel' });
 
   //Foot
   this.foot = {};
@@ -148,6 +148,9 @@ var CoverViewer = function(id)
   this.data.genes.info = {}; //Genes Info box
   this.data.genes.info.title = null; //Genes info title function
   this.data.genes.info.content = null; //Genes info content function
+  this.data.genes.list = []; //Genes list
+  this.data.genes.specie = 'hsapiens'; //Specie name
+  this.data.genes.assembly = 'GRCh38'; //Specie assembly
 
   //Data for exons
   this.data.exons = {};
@@ -160,27 +163,27 @@ var CoverViewer = function(id)
   this.data.exons.num = 0; //Exons number
 
   //Preview track
-  this.preview = new jvizTrack({ id: this.app.id + '-preview', class: this.app.class + '-track', layers: 2 });
+  this.preview = new jvizToolCanvasTrack({ id: this.app.id + '-preview', class: this.app.class + '-track', layers: 2 });
   this.preview.title = 'Full preview'; //Preview title
   this.preview.width = 0; //Preview width
-  this.preview.height = 90; //Preview height
+  this.preview.height = 120; //Preview height
   this.preview.show = true; //Preview show
   this.preview.busy = false; //Preview is busy
   this.preview.data = null; //Preview data
-  this.preview.start = 0; //Start position
-  this.preview.end = 0; //End position
-  this.preview.mult = 0; //Multiplier
   this.preview.opacity = 0.6; //Lines opacity
   this.preview.stroke = 1; //Stroke width
   this.preview.mouse = false; //Mouse active
 
   //Preview head
-  this.preview.head.show = false;
+  this.preview.head.show = true;
 
   //Preview draw
-  this.preview.draw.margin = { top: 10, bottom: 40, left: 50, right: 50 }; //Preview margin
+  this.preview.draw.margin = { top: 40, bottom: 40, left: 50, right: 50 }; //Preview margin
   this.preview.draw.width = 0; //Preview draw width
   this.preview.draw.height = 0; //Preview draw height
+  this.preview.draw.start = 0; //Start position
+  this.preview.draw.end = 0; //End position
+  this.preview.draw.scale = 0; //Scale
 
   //Preview window
   this.preview.window = {};
@@ -205,26 +208,34 @@ var CoverViewer = function(id)
   this.preview.label.radius = 5; //Label rectangle radius
 
   //Cover track
-  this.cover = new jvizTrack({ id: this.app.id + '-cover', class: this.app.class + '-track', layers: 2 });
+  this.cover = new jvizToolCanvasTrack({ id: this.app.id + '-cover', class: this.app.class + '-track', layers: 2 });
   this.cover.title = 'Coverage'; //Cover title
   this.cover.height = 250; //Cover div height
   this.cover.data = null; //Cover data
-  this.cover.length = 0; //Cover length
-  this.cover.start = 0; //Cover start position
-  this.cover.end = 0; //Cover end position
   this.cover.show = true; //Show cover track
   this.cover.busy = false; //Cover is busy
-  this.cover.margin =
   this.cover.stroke = 2; //Stroke width
   this.cover.mouse = false; //Mouse active
-  this.cover.click = 0; //Click point
-  this.cover.clickfirst = false; //For prevent errors
-  this.cover.clickstart = 0; //Click orginal position
+
+  //Cover click
+  this.cover.click = {};
+  this.cover.click.point = 0//Click point
+  this.cover.click.first = false; //For prevent errors
+  this.cover.click.start = 0; //Click orginal position
+  this.cover.click.value = 0; //Click value
+
+  //Cover indexes
+  this.cover.index = {};
+  this.cover.index.start = 0; //Start index
+  this.cover.index.end = 0; //End index
 
   //Cover draw
   this.cover.draw.margin = { top: 35, bottom: 40, right: 50, left: 50 }; //Cover draw margin
   this.cover.draw.width = 0; //Cover draw width
   this.cover.draw.height = 0; //Cover draw height
+  this.cover.draw.start = 0; //Cover draw start
+  this.cover.draw.end = 0; //Cover draw end
+  this.cover.draw.length = 0; //Cover draw length
 
   //Cover axes
   this.cover.axes = {};
@@ -285,15 +296,10 @@ var CoverViewer = function(id)
   this.labelsbar.class = 'cover-track-bar'; //Labels bar class
 
   //Gene track
-  this.genes = new jvizTrack({ id: this.app.id + '-genes', class: this.app.class + '-track', layers: 1 });
+  this.genes = new jvizToolFeatureTrack({ id: this.app.id + '-genes', class: this.app.class + '-track', layers: 1 });
   this.genes.title = 'Genes'; //Genes track title
-  this.genes.width = '100%'; //Genes div width
-  this.genes.minheight = 0; //Genes div min height
-  this.genes.height = 30; //Genes div height
   this.genes.show = true; //Genes show
   this.genes.busy = false; //Genes is busy
-  this.genes.start = 0; //Genes start point
-  this.genes.end = 0; //Genes end point
   this.genes.length = 0; //Genes length
   this.genes.mouse = false; //Genes mouse event
   this.genes.click = 0; //Click point
@@ -309,20 +315,22 @@ var CoverViewer = function(id)
   //Genes strand
   this.strand = {};
   this.strand.text = { font: 'OpenSans', size: '11px' }; //Strand text font
+
+  //Forward strand
   this.strand.forward = {}; //Positive strand (forward)
   this.strand.forward.index = 0; //Positive strand index for styles
   this.strand.forward.id = '1'; //Positive strand id
   this.strand.forward.text = ' (Forward strand)'; //Positive strand text
+  this.strand.forward.color = '#2196F3'; //Forward strand color
+  this.strand.forward.title = '> '; //Forward strand title
+
+  //Reverse strand
   this.strand.reverse = {}; //Genes negative strand (reverse)
   this.strand.reverse.index = 1; //Negative strand index for styles
   this.strand.reverse.id = '-1'; //Negative strand id
   this.strand.reverse.text = ' (Reverse strand)'; //Negative strand text
-  this.strand.color = []; //Strand colors
-  this.strand.color.push('#2196F3'); //Color for the forward strand
-  this.strand.color.push('#F44336'); //Color for the reverse strand
-  this.strand.dir = []; //Strand direction
-  this.strand.dir.push('> '); //Text for forward strand
-  this.strand.dir.push('< '); //Text for reverse strand
+  this.strand.reverse.color = '#F44336'; //Reverse strand color
+  this.strand.reverse.title = '< '; //Reverse strand title
 
   //Genes element
   this.genes.el = {};
@@ -348,13 +356,6 @@ var CoverViewer = function(id)
   this.genes.info.padding = 5; //Genes Info padding
   this.genes.info.posx = 0; //Genes Info posx
   this.genes.info.posy = 0; //Genes Info posy
-
-  //Exons
-  this.exons = {};
-  this.exons.size = 50; //Exons line size
-  this.exons.color = []; //Exons color
-  this.exons.color.push('#0D47A1'); //Color for forward genes exons
-  this.exons.color.push('#B71C1C'); //Color for reverse genes exons
 
   //Control points
   this.points = {};
