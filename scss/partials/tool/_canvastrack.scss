@@ -1,0 +1,23 @@
+//Import jviz track
+@import 'track';
+
+//Canvas Track mixin
+@mixin jvizToolCanvasTrack
+{
+	//Include the tool track
+	@include jvizToolTrack;
+
+	//Track closed
+	&-closed > &-canvas { display: none; }
+	&-closed > &-canvas-first { display: none; } 
+
+	//Canvas
+	&-canvas
+	{
+		//Default canvas
+		display: block; position: absolute; top: 0px; left: 0px;
+
+		//First canvas
+		&-first { display: block; }
+	}
+}
