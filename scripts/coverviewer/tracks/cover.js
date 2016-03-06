@@ -61,15 +61,6 @@ CoverViewer.prototype.CoverTrackDraw = function(s)
   //Save the length window
   this.cover.draw.length = this.cover.draw.end - this.cover.draw.start;
 
-  //Show in console
-  //console.log('CoverViewer: drawing [' + this.cover.draw.start + ',' + this.cover.draw.end + ']');
-
-  //Find the start position
-  //var starti = this.DataFindPos(this.cover.draw.start);
-
-  //Find the end position
-  //var endi = this.DataFindPos(this.cover.draw.end);
-
   //Draw the control points
 	this.PointsDraw(canvas, this.cover.draw.start, this.cover.draw.end, this.cover.height, this.cover.draw.margin);
 
