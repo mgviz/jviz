@@ -137,7 +137,7 @@ CoverViewer.prototype.PreviewTrackDrawWindow = function()
   this.preview.region.start = Math.floor(this.preview.window.start*this.data.cover.data.length/this.preview.draw.width);
 
   //Calculate the region end coordinates
-  this.preview.region.end = Math.floor(this.preview.window.end*this.data.cover.data.length/this.preview.draw.width);
+  this.preview.region.end = Math.floor(this.preview.window.end*this.data.cover.data.length/this.preview.draw.width) - 1;
 
   //Get the rectangle position x
   var rect_x = this.preview.window.start + this.preview.draw.margin.left;
@@ -194,8 +194,14 @@ CoverViewer.prototype.PreviewTrackDrawLabel = function()
   //Set the style
   canvas.Fill(this.preview.label.fill);
 
+  //Get the start point
+  var text_start = this.data.cover.data[this.preview.region.start].pos;
+
+  //Get the end point
+  var text_end = this.data.cover.data[this.preview.region.end].pos;
+
   //Get the text
-  var text_txt = this.preview.window.region.start + ' - ' + this.preview.window.region.end;
+  var text_txt = text_start + ' - ' + text_end;
 
   //Get the text position x
   var text_x = posx;
