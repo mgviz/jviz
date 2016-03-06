@@ -3,19 +3,22 @@
 @import "modules/font";
 
 //Import partials
-@import "partials/app";
+@import "partials/animation";
 @import "partials/cursor";
-@import "partials/navbar";
-@import "partials/panel";
-@import "partials/track";
+@import "partials/form/btn";
+@import "partials/tool/tool";
+@import "partials/tool/bar";
+@import "partials/tool/canvastrack";
+@import "partials/tool/panel";
+@import "partials/tool/track";
 
 $teal: #00BFA5 !default;
 
 //Main class
 .CoverViewer
 {
-	//Include app
-	@include jvizApp;
+	//Include tool
+	@include jvizTool;
 
 	//Include cursor
 	@include jvizCursor;
@@ -34,30 +37,30 @@ $teal: #00BFA5 !default;
 		}
 
 		//Animation
-		&-anim { @include sfyAnimation($teal); }
+		&-anim { @include jvizAnimation($teal); }
 	}
 
 	//Navbar
 	&-navbar
 	{
 		//Include navbar
-		@include jvizNavbar;
+		@include jvizToolBar;
 
 		//Navbar Left icon button
-		&-btn-left { @include jvizNavbarIcon('../img/arrows/left.svg'); float: left; }
+		&-btn-left { @include jvizBtnIconLight('../img/arrows/left.svg'); float: left; }
 
 		//Navbar Right icon button
-		&-btn-right { @include jvizNavbarIcon('../img/arrows/right.svg'); float: left; }
+		&-btn-right { @include jvizBtnIconLight('../img/arrows/right.svg'); float: left; }
 
 		//Navbar Settings icon button
-		&-btn-settings { @include jvizNavbarBtn('../img/settings.svg'); float: right; }
+		&-btn-settings { @include jvizBtnIconLight('../img/settings.svg'); float: right; }
 	}
 
 	//Panels
-	&-panel { @include jvizPanel; }
+	&-panel { @include jvizToolPanel; }
 
 	//Track
-	&-track { @include jvizTrack; }
+	&-track { @include jvizToolCanvasTrack; }
 
 	//Foot
 	&-foot
