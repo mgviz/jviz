@@ -57,14 +57,8 @@
 
       //Import genes from cellbase
       c.ImportGenes({
-        url: CellBaseAdapter.UrlGenes('hsa'),
-        parser: function(response){ return CellBaseAdapter.ParseGenes(response); }
-      });
-
-      //Import exons from cellbase
-      c.ImportExons({
-        url: CellBaseAdapter.UrlExons('hsa'),
-        parser: function(response){ return CellBaseAdapter.ParseExons(response); }
+        url: 'http://nodebio.uv.es:4000/get/hsapiens/grch38/region/{region}',
+        parser: function(response){ return response; }
       });
 
     });
