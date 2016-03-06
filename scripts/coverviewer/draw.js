@@ -74,9 +74,6 @@ CoverViewer.prototype.DrawReady = function()
   //Check for error importing the genes data
   if(this.data.genes.error === true) { return false; }
 
-  //Check for error importing the exons data
-  if(this.data.exons.error === true && this.data.exons.use === true) { return false; }
-
   //For check if all is ready
   var ready = true;
 
@@ -86,9 +83,6 @@ CoverViewer.prototype.DrawReady = function()
   //Check if genes is ready
   if(this.data.genes.busy === true) { ready = false; }
 
-  //Check if exons is ready
-  if(this.data.exons.busy === true && this.data.exons.use === true) { ready = false; }
-
   //Check
   if(ready === true)
   {
@@ -96,7 +90,7 @@ CoverViewer.prototype.DrawReady = function()
     console.log('CoverViewer: system ready for draw');
 
     //Draw cover track
-    this.CoverTrackDraw(this.draw.start);
+    this.CoverTrackDraw(0);
 
     //Draw preview track
     this.PreviewTrackDraw();
@@ -122,8 +116,8 @@ CoverViewer.prototype.DrawReady = function()
 };
 
 //Time out for draw the region
-function CoverViewerDrawTimeOut(_main, _region)
+function CoverViewerDrawTimeOut(_this, _region)
 {
   //Set the time out
-  setTimeout(function(){ _main.Draw(_region); }, _main.draw.delay);
+  setTimeout(function(){ _this.Draw(_region); }, _this.draw.delay);
 }
