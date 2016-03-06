@@ -54,7 +54,7 @@ CoverViewer.prototype.ImportDataCoverParser = function(data)
   if(this.data.cover.data.length > 0)
   {
     //Fix data bugs
-    if(this.data.cover.fixgaps === true){ this.DataFix(); } 
+    if(this.data.cover.fixgaps === true){ this.DataFix(); }
 
     //Show in console
     console.log('CoverViewer: region length: ' + this.data.cover.data.length);
@@ -118,14 +118,14 @@ CoverViewer.prototype.ImportDataCoverFindMinMax = function()
 };
 
 //Function for import the data with jquery
-function CoverViewerImportDataCoverJson(_url, _main)
+function CoverViewerImportDataCoverJson(_url, _this)
 {
   //Create the conection
   var _import = $.ajax({url: _url, dataType: 'json'});
 
   //Done function
-  _import.done(function(data){ _main.ImportDataCoverParser(data); });
+  _import.done(function(data){ _this.ImportDataCoverParser(data); });
 
   //Fail function
-  _import.fail(function(){ _main.ImportDataCoverError(_url); });
+  _import.fail(function(){ _this.ImportDataCoverError(_url); });
 }
