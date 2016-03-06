@@ -47,13 +47,13 @@ CoverViewer.prototype.Build = function()
   this.NavbarEvnt();
 
   //Initialize the mouse events for cover track
-  this.CoverTrackMouseEvnt();
+  CoverViewerCoverTrackEvents(this);
 
   //Initialize the mouse events for genes track
-  this.GenesTrackMouseEvnt();
+  CoverViewerGenesTrackEvents(this);
 
   //Initialize the mouse events for preview track
-  this.PreviewTrackMouseEvnt();
+  CoverViewerPreviewTrackEvents(this);
 
   //Resize
   this.Resize();
@@ -67,8 +67,8 @@ CoverViewer.prototype.BuildApp = function()
 };
 
 //Function for build
-function CoverViewerBuildTimeOut(_main)
+function CoverViewerBuildTimeOut(_this)
 {
   //Set the build timeout
-  setTimeout(function(){ _main.Build(); }, _main.default.buildtime);
+  setTimeout(function(){ _this.Build(); }, _this.default.buildtime);
 }
