@@ -8,7 +8,7 @@ CoverViewer.prototype.Move = function()
     this.PreviewTrackDrawWindow();
 
     //Move the cover track
-    this.CoverTrackDraw(this.preview.window.region.start);
+    this.CoverTrackDraw(this.preview.region.start);
 
     //Move the genes track
     this.GenesTrackDraw();
