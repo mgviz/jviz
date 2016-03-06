@@ -311,7 +311,7 @@ CoverViewer.prototype.CoverTrackMouseMove = function(x, y)
   if(this.cover.mouse === true)
   {
     //Calculate the difference
-    var diff = this.cover.click.position - x;
+    var diff = this.cover.click.point - x;
 
     //Calculate the start point
     this.preview.window.start = this.cover.click.start + diff/this.preview.draw.scale;
@@ -347,7 +347,7 @@ CoverViewer.prototype.CoverTrackMouseDown = function(x)
   $('body').addClass(this.cursor.move);
 
   //Save the click position
-  this.cover.click = x;
+  this.cover.click.point = x;
 
   //Save the start position
   this.cover.click.start = this.preview.window.start;
