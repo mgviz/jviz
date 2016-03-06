@@ -22,7 +22,7 @@ function jvizToolFeatureTrack(obj)
 	this.feature.box = {};
 	this.feature.box.width = 0; //Feature box width
 	this.feature.box.height = 8; //Feature box height
-	this.feature.box.margin = 6; //Feature box margin
+	this.feature.box.margin = { top: 8, bottom: 5 }; //Feature box margin
 
 	//Feature name
 	this.feature.name = {};
@@ -139,7 +139,7 @@ jvizToolFeatureTrack.prototype.DrawBox = function(canvas, feature)
 	var feature_end = this.draw.margin.left + (Math.min(feature.end, this.draw.end) - this.draw.start)*this.draw.scale;
 
 	//Get the feature y point
-	var feature_y = this.feature.posy;
+	var feature_y = this.feature.posy + this.feature.box.margin.top;
 
 	//Get the feature width
 	var feature_width = Math.max(1, feature_end - feature_start);
@@ -161,7 +161,7 @@ jvizToolFeatureTrack.prototype.DrawName = function(canvas, name)
 	var name_x = this.feature.posx;
 
 	//Set the feature text position y
-	var name_y = this.feature.posy + this.feature.box.height + this.feature.box.margin;
+	var name_y = this.feature.posy + this.feature.box.height + this.feature.box.margin.top + this.feature.box.margin.bottom;
 
 	//Get the feature name font
 	var name_font = this.feature.name.font;
@@ -186,7 +186,7 @@ jvizToolFeatureTrack.prototype.DrawLine = function(canvas, feature)
 	var feature_end = this.draw.margin.left + (Math.min(feature.end, this.draw.end) - this.draw.start)*this.draw.scale;
 
 	//Get the line position y
-	var feature_y = this.feature.posy + this.feature.box.height/2;
+	var feature_y = this.feature.posy + this.feature.box.height/2 + this.feature.box.margin.top;
 
 	//Draw the line
 	canvas.Line([[feature_start, feature_y], [feature_end, feature_y]]);
