@@ -6,7 +6,6 @@
 
 	//Track closed
 	&-closed > &-head &-head-arrow { transform: rotate(180deg); }
-	&-closed > &-canvas { display: none; }
 
 	//Tracks head
 	&-head
@@ -41,8 +40,8 @@
 		&-arrow { @include jvizToolTrackHeadIcon; float: left; background-image: url('../img/arrows/up.svg'); }
 	}
 
-	//Canvas
-	&-canvas { @include jvizToolTrackCanvas; }
+	//Track body
+	&-body { display: block; }
 }
 
 //Mixin for track head
@@ -52,7 +51,7 @@
 	display: block; width: calc(100% - 10px);
 
 	//Position
-	position: absoulte; top: 0px; left: 0px; z-index: 12;
+	position: absolute; top: 0px; left: 0px; z-index: 999999;
 
 	//Padding
 	padding: { left: 5px; right: 5px; }
@@ -104,6 +103,3 @@
 	//Background
 	background: { size: 20px 20px; position: center center; repeat: no-repeat; }
 }
-
-//Mixin for track canvas
-@mixin jvizToolTrackCanvas { display: block; position: absolute; top: 0px; left: 0px; }
