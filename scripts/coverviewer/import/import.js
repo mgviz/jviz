@@ -32,19 +32,3 @@ CoverViewer.prototype.ImportGenes = function(opt)
   //Check Info Content
   if(typeof opt.infoContent !== 'undefined') { this.data.genes.info.content = opt.infoContent; }
 };
-
-//CoverViewer Import Exons from
-CoverViewer.prototype.ImportExons = function(opt)
-{
-  //Set use exons as true
-  this.data.exons.use = true;
-
-  //Check url
-  if(typeof opt.url !== 'undefined') { this.data.exons.url = opt.url; }
-
-  //Check parser
-  if(typeof opt.parser !== 'undefined') { this.data.exons.parser = opt.parser; }
-
-  //Check label function
-  if(typeof opt.label !== 'undefined') { this.data.exons.label = opt.label; }
-};
