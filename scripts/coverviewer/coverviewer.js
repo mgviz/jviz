@@ -191,10 +191,17 @@ var CoverViewer = function(id)
   this.preview.window.end = 0; //Window end
   this.preview.window.width = 0; //Window width
   this.preview.window.height = 0; //Window height
-  this.preview.window.region = {"start": 0, "end": 0}; //Region coordinates
-  this.preview.window.click = 0; //Click point
-  this.preview.window.clickstart = 0; //Original start
   this.preview.window.fill = { color: '#FF9100', opacity: 0.2 }; //Window fill
+
+  //Preview click
+  this.preview.click = {};
+  this.preview.click.point = 0; //Click point
+  this.preview.click.start = 0; //Original start
+
+  //Preview region coordinates
+  this.preview.region = {};
+  this.preview.region.start = 0; //Region coordinates start
+  this.preview.region.end = 0; //Region coordinates end
 
   //Preview lavel
   this.preview.label = {};
