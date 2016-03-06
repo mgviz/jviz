@@ -27,6 +27,7 @@ function jvizToolCanvasTrack(obj)
 	this.draw.scale = 1; //Draw scale
 	this.draw.start = 0; //Draw start position
 	this.draw.end = 0; //Draw end position
+	this.draw.length = 0; //Draw length
 
 	//Return the new track
 	return this;
@@ -152,13 +153,16 @@ jvizToolCanvasTrack.prototype.SetScale = function(s)
 };
 
 //Set the position
-jvizToolCanvasTrack.prototype.SetStart = function(start)
+jvizToolCanvasTrack.prototype.SetPosition = function(start, end)
 {
 	//Save the start position
 	this.draw.start = start;
 
 	//Calculate the end position
-	this.draw.end = this.draw.start + this.draw.width/this.draw.scale;
+	this.draw.end = (typeof end !== 'undefined') ? end : this.draw.start + this.draw.width/this.draw.scale;
+
+	//Calculate the length
+	this.draw.length = this.draw.end - this.draw.start;
 };
 
 //Set the track height
@@ -218,7 +222,7 @@ function jvizToolCanvasTrackEvents(_this)
 		e.preventDefault();
 
 		//Call the out handler
-		_this.MouseOut(_i);
+		_this.MouseOut();
 
 	});
 }
