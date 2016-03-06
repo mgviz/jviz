@@ -4,18 +4,11 @@ CoverViewer.prototype.GenesTrack = function(opt)
 
 };
 
-//CoverViewer genes track mouse Init
-CoverViewer.prototype.GenesTrackMouseEvnt = function()
-{
-  //Call the Mouse event
-  CoverViewerGenesTrackMouseEvnt(this);
-}
-
 //CoverViewer Genes Track Show specie info
 CoverViewer.prototype.GenesTrackBarSpecieInfo = function()
 {
   //Generate the region
-  var spe = this.data.genes.data.specie + ' (' + this.data.genes.data.assembly + ')';
+  var spe = this.data.genes.specie + ' (' + this.data.genes.assembly + ')';
 
   //Show in the bar
   this.genes.SetTitle(this.genes.title, spe);
@@ -31,10 +24,10 @@ CoverViewer.prototype.GenesTrackHeight = function()
   var endp = 0;
 
   //Loop for read all genes
-  for(var i = 0; i < this.data.genes.data.genes.length; i++)
+  for(var i = 0; i < this.data.genes.list.length; i++)
   {
     //Get the gene
-    var g = this.data.genes.data.genes[i];
+    var g = this.data.genes.list[i];
 
     //Check
     if(g.start >= endp)
@@ -50,74 +43,17 @@ CoverViewer.prototype.GenesTrackHeight = function()
     endp = Math.max(endp, g.end);
 
     //Save the count
-    this.data.genes.data.genes[i].count = count;
+    this.data.genes.list[i].chunk = count;
 
-    //Increement the counter
+    //Increment the counter
     count = count + 1;
   }
 
   //Save the count max
   countmax = Math.max(countmax, count);
 
-  //Calculate the genes block total
-  this.genes.el.block = this.genes.el.margin + this.genes.el.rect + this.genes.el.text;
-
-  //Check for add the exons track
-  if(this.data.exons.use === true)
-  {
-    //Add the exons track
-    this.genes.el.block = this.genes.el.block + this.genes.el.exon;
-
-    //Check for add the text to the exon
-    if(this.exons.showtext === true)
-    {
-      //Add the text space
-      this.genes.el.block = this.genes.el.block + this.genes.el.text
-    }
-  }
-
-  //Required height
-  var req = Math.max(this.genes.minheight, countmax*this.genes.el.block);
-
-  //Calculate the new height
-  this.genes.height = req + this.genes.draw.margin.top + this.genes.draw.margin.bottom;
-
-  //Resize the track
-	this.genes.Resize();
-};
-
-//CoverViewer Genes Track strand check
-CoverViewer.prototype.GenesTrackStrandCheck = function()
-{
-  //Read all genes
-  for(var i = 0; i < this.data.genes.data.genes.length; i++)
-  {
-    //Save
-    var g = this.data.genes.data.genes[i];
-
-    //Check for positive strand
-    if(g.strand === '1' || g.strand === 1 || g.strand === '+')
-    {
-      //Save as positive
-      this.data.genes.data.genes[i].strand = this.strand.forward.id;
-
-      //Save the strand index for styles
-      this.data.genes.data.genes[i].strandindex = this.strand.forward.index;
-    }
-    else if(g.strand === '-1' || g.strand === -1 || g.strand === '-')
-    {
-      //Save as negative
-      this.data.genes.data.genes[i].strand = this.strand.reverse.id;
-
-      //Save the strand index for styles
-      this.data.genes.data.genes[i].strandindex = this.strand.reverse.index;
-    }
-    else
-    {
-      //Show error
-      console.error('CoverViewer: unknow strand "' + g.strand + '"');
-    }
-  }
+  //Set the number of blocks
+  this.genes.SetChunks(countmax);
 };
 
 //CoverViewer Genes Track Label
@@ -144,126 +80,50 @@ CoverViewer.prototype.GenesTrackDraw = function()
 	canvas.Clear();
 
   //Calculate the draw width
-  this.genes.draw.width = this.genes.width - this.genes.draw.margin.left - this.genes.draw.margin.right;
+  //this.genes.draw.width = this.genes.width - this.genes.draw.margin.left - this.genes.draw.margin.right;
 
   //Calculate the draw height
-  this.genes.draw.height = this.genes.height - this.genes.draw.margin.top - this.genes.draw.margin.bottom;
+  //this.genes.draw.height = this.genes.height - this.genes.draw.margin.top - this.genes.draw.margin.bottom;
 
-  //Save the start position
-  this.genes.start = this.cover.start;
-
-  //Save the end position
-  this.genes.end = this.cover.end;
-
-  //Save the genes length
-  this.genes.length = this.cover.length;
+  //Save the position
+  this.genes.SetPosition(this.cover.draw.start, this.cover.draw.end);
 
 	//Draw the control points
-	this.PointsDraw(canvas, this.genes.start, this.genes.end, this.genes.height, this.genes.draw.margin);
+	this.PointsDraw(canvas, this.genes.draw.start, this.genes.draw.end, this.genes.height, this.genes.draw.margin);
 
 	//Reset the genes list
 	this.genes.list = [];
 
   //Read all genes
-  for(var i = 0; i < this.data.genes.data.genes.length; i++)
+  for(var i = 0; i < this.data.genes.list.length; i++)
   {
     //Save the gene
-    var g = this.data.genes.data.genes[i];
+    var g = this.data.genes.list[i];
 
     //Check for the region
-    if(g.start <= this.genes.end && this.genes.start <= g.end)
-    {
-      //Selected gene, draw
-      var obj = {};
+    if(this.genes.draw.end <= g.start || g.end < this.genes.draw.start){ continue; }
 
-      //Save the gene index
-      obj.index = i;
+    //Get the color
+    var color = (jvizFeatureStrand(g.strand) === '<') ? this.strand.reverse.color : this.strand.forward.color;
 
-      //Position x1
-      obj.posx1 = this.genes.draw.margin.left + Math.max(0, g.start - this.genes.start);
-
-      //Position x2
-      obj.posx2 = Math.max(0, Math.min(this.genes.draw.width, g.end - this.genes.start));
-      obj.posx2 = obj.posx2 + this.genes.draw.margin.left;
-
-      //Length
-      obj.length = Math.max(0, obj.posx2 - obj.posx1);
-
-      //Position y
-      obj.posy = this.genes.draw.margin.top + g.count*this.genes.el.block;
-
-      //Draw the rectangle
-      canvas.Rect({ x: obj.posx1, y: obj.posy, width: obj.length, height: this.genes.el.rect });
-
-      //Add the rectangle fill
-      canvas.Fill(this.strand.color[g.strandindex]);
-
-      //Create the text
-      canvas.Text({
-				text: this.strand.dir[g.strandindex] + this.GenesTrackLabel(g),
-				x: obj.posx1,
-				y: obj.posy + this.genes.el.rect,
-				font: this.strand.text.font,
-				size: this.strand.text.size,
-				color: this.strand.color[g.strandindex]
-			});
-
-      //Read all the exons for this gene
-      for(var j = 0; j < this.data.exons.data[i].length; j++)
-      {
-        //Save the exon
-        var e = this.data.exons.data[i][j];
-
-        //Check for the region
-        if(e.start <= this.genes.end && this.genes.start <= e.end)
-        {
-          //Create the new exon
-          var ex = {};
-
-          //Position x1
-          ex.posx1 = this.genes.draw.margin.left + Math.max(0, e.start - this.genes.start);
-
-          //Position x2
-          ex.posx2 = Math.max(0, Math.min(this.genes.draw.width, e.end - this.genes.start));
-          ex.posx2 = ex.posx2 + this.genes.draw.margin.left;
-
-          //Length
-          ex.length = Math.max(0, ex.posx2 - ex.posx1);
-
-          //Position y
-          ex.posy = this.genes.draw.margin.top + g.count*this.genes.el.block + this.genes.el.rect + this.genes.el.text;
-
-          //Draw the rectangle
-        	canvas.Rect({ x: ex.posx1, y: ex.posy, width: ex.length, height: this.genes.el.exon });
-
-          //Add the rectangle color
-          canvas.Fill(this.exons.color[g.strandindex]);
-        }
-      }
-
-      //Check for add the exons lines
-      if(this.data.exons.use === true)
-      {
-        //Get the position y
-        var py = obj.posy + 3*this.genes.el.rect/2 + this.genes.el.text;
-
-        //Add the line between the exons
-        canvas.Line([[obj.posx1, py], [obj.posx2, py]]);
-
-        //Add the color
-        canvas.Stroke(this.exons.color[g.strandindex]);
-      }
-
-      //Push
-      this.genes.list.push(obj);
-    }
+    //Draw the gene
+    this.genes.DrawFeature(canvas, g, color);
   }
 
-  //Clear the margin right
-  canvas.Clear({ x: this.genes.width - this.genes.draw.margin.right, y: 0, width: this.genes.draw.margin.right, height: this.genes.height });
+  //Clear position x
+  var clear_x = this.genes.width - this.genes.draw.margin.right;
 
-  //Show the specie info
-  this.GenesTrackBarSpecieInfo();
+  //Clear position y
+  var clear_y = 0;
+
+  //Clear width
+  var clear_width = this.genes.draw.margin.right;
+
+  //Clear height
+  var clear_height = this.genes.height;
+
+  //Clear the margin right
+  canvas.Clear({ x: clear_x, y: clear_y, width: clear_width, height: clear_height });
 };
 
 //CoverViewer Genes track info build
@@ -370,7 +230,7 @@ CoverViewer.prototype.GenesTrackMouseMove = function(x, y)
     var diff = this.genes.click - x;
 
     //Calculate the start point
-    this.preview.window.start = this.genes.clickstart + diff/this.preview.mult;
+    this.preview.window.start = this.genes.clickstart + diff/this.preview.draw.scale;
 
     //Draw the region
     this.Move();
@@ -431,10 +291,10 @@ CoverViewer.prototype.GenesTrackMouseUp = function(x, y)
 };
 
 //CoverViewer Genes Track mouse function event
-function CoverViewerGenesTrackMouseEvnt(_main)
+function CoverViewerGenesTrackEvents(_this)
 {
   //Save the ID
-  var _id = '#' + _main.genes.id;
+  var _id = '#' + _this.genes.id;
 
   //Mouse up
   $(_id).mouseup(function(e){
@@ -443,7 +303,7 @@ function CoverViewerGenesTrackMouseEvnt(_main)
     e.preventDefault();
 
     //Call the click handler
-    _main.GenesTrackMouseUp(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top);
+    _this.GenesTrackMouseUp(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top);
 
   });
 
@@ -454,7 +314,7 @@ function CoverViewerGenesTrackMouseEvnt(_main)
     e.preventDefault();
 
     //Call the click handler
-    _main.GenesTrackMouseDown(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top);
+    _this.GenesTrackMouseDown(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top);
 
   });
 
@@ -465,7 +325,7 @@ function CoverViewerGenesTrackMouseEvnt(_main)
     e.preventDefault();
 
     //Call the click handler
-    _main.GenesTrackMouseMove(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top);
+    _this.GenesTrackMouseMove(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top);
 
   });
 }
