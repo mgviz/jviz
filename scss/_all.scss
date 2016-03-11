@@ -1,0 +1,21 @@
+//Import modules
+@import "modules/colors";
+@import "modules/font";
+@import "modules/icons";
+
+//Import partials
+@import "partials/animation";
+@import "partials/cursor";
+@import "partials/dialog";
+
+//Import form partials
+@import "partials/form/btn";
+@import "partials/form/checkbox";
+@import "partials/form/input";
+
+//Import tool partials
+@import "partials/tool/bar";
+@import "partials/tool/canvastrack";
+@import "partials/tool/panel";
+@import "partials/tool/tool";
+@import "partials/tool/track";
