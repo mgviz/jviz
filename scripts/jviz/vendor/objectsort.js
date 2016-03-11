@@ -85,10 +85,3 @@ function Compare(left, right, columns, order)
 	//Default, return 0
 	return 0;
 }
-
-//Check for exports
-if (typeof module === "object" && module.exports)
-{
-	//Export module
-	module.exports = ObjectSort;
-}
