@@ -4,14 +4,10 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
-var header = require('gulp-header');
 var sass = require('gulp-sass');
 
-//Import the package
-var pkg = require('./package.json');
-
 //Default tool
-var tool = 'coverviewer';
+var tool = 'jviz';
 
 //Check the arguments
 if(process.argv.length > 3)
@@ -26,10 +22,9 @@ var output = './build/' + tool + '/';
 //Files list
 var paths =
 {
-	'scripts': ['scripts/core/**/*', 'scripts/' + tool + '/' + tool + '.js', 'scripts/' + tool + '/**/*'],
+	'scripts': ['scripts/' + tool + '/' + tool + '.js', 'scripts/' + tool + '/**/*'],
 	'images': ['img/**/*'],
-	'vendor': ['vendor/**/*'],
-	'scss': ['scss/font.scss', 'scss/' + tool + '.scss'],
+	'scss': ['scss/' + tool + '.scss'],
 	'test': ['test/' + tool + '.html']
 };
 
@@ -42,11 +37,8 @@ gulp.task('scripts', function(){
   //Concat all files
   .pipe(concat(tool + '.js'))
 
-  //Add the header
-  //.pipe(header(banner, { pkg : pkg } ))
-
   //Save in css/ folder
-  .pipe(gulp.dest(output + 'js/'));
+  .pipe(gulp.dest(output));
 
 });
 
@@ -54,7 +46,7 @@ gulp.task('scripts', function(){
 gulp.task('scripts-min', function(){
 
   //Set the source file
-  gulp.src(output + 'js/' + tool + '.js')
+  gulp.src(output + tool + '.js')
 
   //Minimize
   .pipe(uglify())
@@ -62,11 +54,8 @@ gulp.task('scripts-min', function(){
   //Save the minimized file
   .pipe(rename(tool + '.min.js'))
 
-  //Add the header
-  //.pipe(header(banner, { pkg : pkg } ))
-
   //Save on the output folder
-  .pipe(gulp.dest(output + 'js/'));
+  .pipe(gulp.dest(output));
 
 });
 
@@ -83,7 +72,7 @@ gulp.task('scss', function(){
   //.pipe(header(banner, { pkg : pkg } ))
 
 	//Save to the output dir
-  .pipe(gulp.dest(output + 'css/'))
+  .pipe(gulp.dest(output))
 
 });
 
@@ -98,22 +87,6 @@ gulp.task('test', function(){
 
 	//Save to the build folder
 	.pipe(gulp.dest(output));
-
-});
-
-//Copy vendor files
-gulp.task('vendor', function(){
-
-  //Select the files and folders to copy
-  gulp.src(paths.vendor, {base: './'}).pipe(gulp.dest(output));
-
-});
-
-//Copy images
-gulp.task('images', function(){
-
-  //Select the files and folders to copy
-  gulp.src(paths.images, {base: './'}).pipe(gulp.dest(output));
 
 });
 
@@ -135,10 +108,9 @@ gulp.task('watch', function(){
 gulp.task('coverviewer');
 gulp.task('genom');
 gulp.task('table');
-gulp.task('tselector');
 
 //Execute the tasks
-gulp.task('build', ['scripts','scss','images','vendor', 'test']);
+gulp.task('build', ['scripts', 'scss', 'test']);
 
 //Default task
 gulp.task('default', ['build']);
