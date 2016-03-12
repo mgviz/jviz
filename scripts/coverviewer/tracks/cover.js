@@ -98,20 +98,17 @@ CoverViewer.prototype.CoverTrackDraw = function(s)
     p = p + 1;
   }
 
-  //Get the line style
-  var lstyle = { 'width': this.cover.stroke, 'color': this.bams.color[j] };
-
-  //Check the line opacity
-  lstyle.opacity = (this.bams.active[j] === false)? this.bams.opacity : 1.0;
-
   //Draw all the lines
   for(var j = 0; j < this.bams.num; j++)
   {
+    //Get the line opacity
+    var opacity = (this.bams.active[j] === false)? this.bams.opacity : 1.0;
+
     //Draw the line
     canvas.Line(lines[j]);
 
     //Set the line style
-    canvas.Stroke(lstyle);
+    canvas.Stroke({ width: this.cover.stroke, color: this.bams.color[j], opacity: opacity });
   }
 
   //Initialize the position y for the cover label
