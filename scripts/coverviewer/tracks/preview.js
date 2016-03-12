@@ -31,10 +31,10 @@ CoverViewer.prototype.PreviewTrackDraw = function()
 	canvas.Clear();
 
   //Save the start position
-  this.preview.draw.start = this.data.cover.data[0].pos;
+  this.preview.draw.start = this.draw.start;
 
   //Save the end position
-  this.preview.draw.end = this.data.cover.data[this.data.cover.data.length - 1].pos;
+  this.preview.draw.end = this.draw.end;
 
   //Save the draw length
   this.preview.draw.length = this.preview.draw.end - this.preview.draw.start;
@@ -49,40 +49,53 @@ CoverViewer.prototype.PreviewTrackDraw = function()
     this.preview.data = this.DataGen(this.preview.draw.height);
 
     //Apply the Gauss filter
-    this.preview.data = this.GaussFilter(this.preview.data);
+    //this.preview.data = this.GaussFilter(this.preview.data);
 
     //Show in console
     console.log('CoverViewer: preview data successful adjusted to draw window');
   }
 
-  //Draw the lines
+  //Lines array
+  var lines = [];
+
+  //Initialize the lines array
   for(var j = 0; j < this.bams.num; j++)
   {
-    //New object
-    var obj = [];
+    //Initialize the lines array
+    lines[j] = [];
+  }
 
-    //Lines
-    var poly = [];
+  //Real position counter
+  var p = this.preview.draw.margin.left;
 
-    //Read all the positions
-    for(var i = 0; i < this.preview.draw.width; i++)
+  //Read all the positions
+  for(var i = 0; i < this.preview.draw.width; i++)
+  {
+    //Get the real index
+    var index = Math.floor(this.preview.draw.start + i*this.preview.draw.scale);
+
+    //Get the cover
+    var cover = (typeof this.preview.data[index] === 'undefined') ? this.bams.empty : this.preview.data[index];
+
+    //Draw all the lines
+    for(var j = 0; j < this.bams.num; j++)
     {
-      //Calculate the x position
-      var posx = this.preview.draw.margin.left + i;
-
-/****************************/
-      //Get the end index
-      var index = this.DataFindPos(Math.floor(this.preview.draw.start + i*this.preview.draw.scale))
-
       //Calculate the y position
-      var posy = this.preview.height - this.preview.draw.margin.bottom - this.preview.data[index][j];
+      var py = this.preview.height - this.preview.draw.margin.bottom - cover[j];
 
-      //Push the new point
-      poly.push([posx, posy]);
+      //Push
+      lines[j].push([p, py]);
     }
 
+    //Increment the position
+    p = p + 1;
+  }
+
+  //Draw all the lines
+  for(var j = 0; j < this.bams.num; j++)
+  {
     //Draw the line
-    canvas.Line(poly);
+    canvas.Line(lines[j]);
 
     //Set the line style
     canvas.Stroke({ width: this.preview.stroke, color: this.bams.color[j], opacity: this.preview.opacity });
@@ -134,10 +147,10 @@ CoverViewer.prototype.PreviewTrackDrawWindow = function()
   this.preview.window.end = this.preview.window.start + this.preview.window.width;
 
   //Calculate the region start coordinates
-  this.preview.region.start = Math.floor(this.preview.window.start*this.data.cover.data.length/this.preview.draw.width);
+  this.preview.region.start = Math.floor(this.preview.draw.start + this.preview.window.start*this.preview.draw.scale);
 
   //Calculate the region end coordinates
-  this.preview.region.end = Math.floor(this.preview.window.end*this.data.cover.data.length/this.preview.draw.width) - 1;
+  this.preview.region.end = Math.floor(this.preview.draw.start + this.preview.window.end*this.preview.draw.scale);
 
   //Get the rectangle position x
   var rect_x = this.preview.window.start + this.preview.draw.margin.left;
@@ -195,10 +208,10 @@ CoverViewer.prototype.PreviewTrackDrawLabel = function()
   canvas.Fill(this.preview.label.fill);
 
   //Get the start point
-  var text_start = this.data.cover.data[this.preview.region.start].pos;
+  var text_start = this.preview.region.start;
 
   //Get the end point
-  var text_end = this.data.cover.data[this.preview.region.end].pos;
+  var text_end = this.preview.region.end;
 
   //Get the text
   var text_txt = text_start + ' - ' + text_end;
