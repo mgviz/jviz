@@ -101,19 +101,22 @@ CoverViewer.prototype.DataNullVals = function(position, ncovers)
 CoverViewer.prototype.DataGen = function(hei)
 {
   //Initialize the transformed data
-  var ele = [];
+  var ele = {};
 
   //Transform the original data to a new data
-  for(var i = 0; i < this.data.cover.data.length; i++)
+  for(var key in this.data.cover.data)
   {
     //Create the new element
     var obj = [];
+
+    //Get the cover values
+    var cover = this.data.cover.data[key];
 
     //Get all the coverages
     for(var j = 0; j < this.bams.num; j++)
     {
       //Calculate the new height
-      var h = this.data.cover.data[i].cover[j]/this.data.cover.max;
+      var h = cover[j]/this.data.cover.max;
 
       //Round
       h = Math.floor(h*hei);
@@ -123,7 +126,7 @@ CoverViewer.prototype.DataGen = function(hei)
     }
 
     //Push the new object
-    ele.push(obj);
+    ele[key] = obj;
   }
 
   //Return the new element
