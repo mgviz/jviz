@@ -2,16 +2,15 @@
 <head>
 
   <!-- Styles -->
-  <link rel="stylesheet" type="text/css" href="./css/font.css">
-  <link rel="stylesheet" type="text/css" href="./css/coverviewer.css">
+  <link rel="stylesheet" type="text/css" href="../jviz/jviz.css">
+  <link rel="stylesheet" type="text/css" href="./coverviewer.css">
 
   <!-- JavaScript vendor -->
-  <script type="text/javascript" src="./vendor/jquery.min.js"></script>
-  <script type="text/javascript" src="./vendor/cv.js"></script>
-  <script type="text/javascript" src="./vendor/objectsort.js"></script>
+  <script src="../../vendor/jquery.min.js"></script>
 
   <!-- Javascript libs -->
-  <script type="text/javascript" src="./js/coverviewer.js"></script>
+  <script src="../jviz/jviz.js"></script>
+  <script src="./coverviewer.js"></script>
 
   <!-- JavaScript runs -->
   <script type="text/javascript">
@@ -30,29 +29,9 @@
 
       //Import cover data
       c.ImportCover({
-        url: '/test/coverviewer/test3.json',
-        label: ['CONTROL','BAM1','BAM2','BAM3'],
-        parser: function(response)
-        {
-          //Create the new object
-          var obj = [];
-
-          //Read all the response
-          for(var i = 0; i < response.length; i++)
-          {
-            //Create the cover
-            var cover = [response[i].bam1,response[i].bam2,response[i].bam3,response[i].bam4,response[i].bam5];
-
-            //Create the new item
-            var item = {'pos': response[i].pos, 'cover': cover};
-
-            //Push to the object
-            obj.push(item);
-          }
-
-          //Return the new object
-          return obj;
-        }
+        url: '/test/coverviewer/test4.json',
+        label: ['CONTROL','BAM1','BAM2','BAM3','BAM4'],
+        parser: function(response){ return response['1']; }
       });
 
       //Import genes from cellbase
