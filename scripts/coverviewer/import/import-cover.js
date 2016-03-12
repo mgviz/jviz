@@ -50,29 +50,14 @@ CoverViewer.prototype.ImportDataCoverParser = function(data)
     this.data.cover.data = this.data.cover.parser(data);
   }
 
-  //Check region length
-  if(this.data.cover.data.length > 0)
-  {
-    //Fix data bugs
-    if(this.data.cover.fixgaps === true){ this.DataFix(); }
+  //Get the region chromosome
+  //this.data.cover.data = this.data.cover.data[this.draw.chromosome];
 
-    //Show in console
-    console.log('CoverViewer: region length: ' + this.data.cover.data.length);
+  //Find the min and max values
+  this.ImportDataCoverFindMinMax();
 
-    //Find the min and max values
-    this.ImportDataCoverFindMinMax();
-
-    //Parse the bams
-    this.BamsParser();
-  }
-  else
-  {
-    //Show error
-    this.data.cover.error = true;
-
-    //Show in console
-    console.log('CoverViewer: No coverage data for this region');
-  }
+  //Parse the bams
+  this.BamsParser();
 
   //Set cover busy as false
   this.data.cover.busy = false;
@@ -85,28 +70,23 @@ CoverViewer.prototype.ImportDataCoverParser = function(data)
 CoverViewer.prototype.ImportDataCoverFindMinMax = function()
 {
   //Find the max and min
-  this.data.cover.min = this.data.cover.data[0].cover[0];
-  this.data.cover.max = this.data.cover.data[0].cover[0];
+  this.data.cover.min = 99999999;
+  this.data.cover.max = 0;
 
   //Read the others
-  for(var i = 0; i < this.data.cover.data.length; i++)
+  for(var key in this.data.cover.data)
   {
+    //Get the cover values
+    var cover = this.data.cover.data[key];
+
     //Check each cover
-    for(var j = 0; j < this.data.cover.data[i].cover.length; j++)
+    for(var j = 0; j < cover.length; j++)
     {
       //Check the min
-      if(this.data.cover.min > this.data.cover.data[i].cover[j])
-      {
-        //Save the new min
-        this.data.cover.min = this.data.cover.data[i].cover[j];
-      }
+      if(this.data.cover.min > cover[j]){ this.data.cover.min = cover[j]; }
 
       //Check the max
-      if(this.data.cover.max < this.data.cover.data[i].cover[j])
-      {
-        //Save the new max
-        this.data.cover.max = this.data.cover.data[i].cover[j];
-      }
+      if(this.data.cover.max < cover[j]){ this.data.cover.max = cover[j]; }
     }
   }
 
