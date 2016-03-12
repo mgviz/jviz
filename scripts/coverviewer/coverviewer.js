@@ -231,11 +231,6 @@ var CoverViewer = function(id)
   this.cover.click.start = 0; //Click orginal position
   this.cover.click.value = 0; //Click value
 
-  //Cover indexes
-  this.cover.index = {};
-  this.cover.index.start = 0; //Start index
-  this.cover.index.end = 0; //End index
-
   //Cover draw
   this.cover.draw.margin = { top: 35, bottom: 40, right: 50, left: 50 }; //Cover draw margin
   this.cover.draw.width = 0; //Cover draw width
@@ -256,7 +251,6 @@ var CoverViewer = function(id)
   this.cover.hover.circle = []; //Circle list
   this.cover.hover.radius = 4; //Circle radius
   this.cover.hover.position = 0; //Hover position
-  this.cover.hover.positioni = 0; //Hover position index
 
   //Cover label for value
   this.cover.value = {};
@@ -389,6 +383,7 @@ var CoverViewer = function(id)
   //Bams files
   this.bams = {};
   this.bams.num = 0; //Number of bams
+  this.bams.empty = []; //Empty cover
   this.bams.color = []; //Color for each bams
   this.bams.label = []; //Label for each bam
   this.bams.active = []; //Bams active
