@@ -30,70 +30,85 @@ CoverViewer.prototype.CoverTrackDraw = function(s)
     this.cover.data = this.DataGen(this.cover.draw.height);
 
     //Apply the Gauss filter
-    this.cover.data = this.GaussFilter(this.cover.data);
+    //this.cover.data = this.GaussFilter(this.cover.data);
 
     //Show in console
     console.log('CoverViewer: data successful adjusted to draw window');
   }
 
-  //Save the start index
-  this.cover.index.start = (s < 0) ? 0 : s;
-
-  //Save the end index
-  this.cover.index.end = this.cover.index.start + this.cover.draw.width - 1;
-
-  //Check the end index
-  if(this.data.cover.data.length <= this.cover.index.end)
-  {
-    //Replace the end index
-    this.cover.index.end = this.data.cover.data.length - 1;
-
-    //Update hte start index
-    this.cover.index.start = this.cover.index.end - this.cover.draw.width + 1;
-  }
-
   //Get the draw start
-  this.cover.draw.start = this.data.cover.data[this.cover.index.start].pos
-
-  //Get the draw end
-  this.cover.draw.end = this.data.cover.data[this.cover.index.end].pos;
+  this.cover.draw.start = s;
 
   //Save the length window
-  this.cover.draw.length = this.cover.draw.end - this.cover.draw.start;
+  this.cover.draw.length = this.cover.draw.width;
+
+  //Check the start point
+  if(this.cover.draw.start < this.draw.start)
+  {
+    //Replace the start point
+    this.cover.draw.start = this.draw.start;
+  }
+
+  //Save the end point
+  this.cover.draw.end = this.cover.draw.start + this.cover.draw.length;
+
+  //Check the end point
+  if(this.draw.end < this.cover.draw.end)
+  {
+    //Replace the end point
+    this.cover.draw.end = this.draw.end;
+
+    //Replace the start point
+    this.cover.draw.start = this.cover.draw.end - this.cover.draw.length;
+  }
 
   //Draw the control points
 	this.PointsDraw(canvas, this.cover.draw.start, this.cover.draw.end, this.cover.height, this.cover.draw.margin);
 
-  //Draw the lines
+  //Lines array
+  var lines = [];
+
+  //Initialize the lines array
   for(var j = 0; j < this.bams.num; j++)
   {
-    //Poly lines
-    var poly = [];
+    //Initialize the lines array
+    lines[j] = [];
+  }
 
-    //Real position counter
-    var p = this.cover.draw.margin.left;
+  //Real position counter
+  var p = this.cover.draw.margin.left;
 
-    //Get the line style
-    var lstyle = { 'width': this.cover.stroke, 'color': this.bams.color[j] };
+  //Read all the positions
+  for(var i = this.cover.draw.start; i < this.cover.draw.end; i++)
+  {
+    //Get the cover array
+    var cover = (typeof this.cover.data[i] === 'undefined') ? this.bams.empty : this.cover.data[i];
 
-		//Check the line opacity
-		lstyle.opacity = (this.bams.active[j] === false)? this.bams.opacity : 1.0;
-
-    //Read all the positions
-    for(var i = this.cover.index.start; i <= this.cover.index.end; i++)
+    //Draw the lines
+    for(var j = 0; j < this.bams.num; j++)
     {
-      //Calculate the next position
-      var py = this.cover.height - this.cover.draw.margin.bottom - this.cover.data[i][j];
+      //Calculate the y position
+      var py = this.cover.height - this.cover.draw.margin.bottom - cover[j];
 
       //Push
-      poly.push([p, py]);
-
-      //Increment the position
-      p = p + 1;
+      lines[j].push([p, py]);
     }
 
+    //Increment the counter
+    p = p + 1;
+  }
+
+  //Get the line style
+  var lstyle = { 'width': this.cover.stroke, 'color': this.bams.color[j] };
+
+  //Check the line opacity
+  lstyle.opacity = (this.bams.active[j] === false)? this.bams.opacity : 1.0;
+
+  //Draw all the lines
+  for(var j = 0; j < this.bams.num; j++)
+  {
     //Draw the line
-    canvas.Line(poly);
+    canvas.Line(lines[j]);
 
     //Set the line style
     canvas.Stroke(lstyle);
@@ -188,14 +203,14 @@ CoverViewer.prototype.CoverTrackDrawHover = function(px, py)
   //Save the real position
   this.cover.hover.position = Math.floor(this.cover.draw.start + posx - this.cover.draw.margin.left);
 
-  //Save the index
-  this.cover.hover.positioni = this.DataFindPos(this.cover.hover.position);
-
   //Draw the line
   canvas.Line([[ posx, this.cover.draw.margin.top], [posx, this.cover.draw.margin.top + this.cover.hover.height]]);
 
   //Add the style
   canvas.Stroke(this.cover.hover.stroke);
+
+  //Get the cover for this position
+  var cover = (typeof this.cover.data[this.cover.hover.position] === 'undefined') ? this.bams.empty : this.cover.data[this.cover.hover.position];
 
   //Create one circle for each bam file
   for(var i = 0; i < this.bams.num; i++)
@@ -207,7 +222,7 @@ CoverViewer.prototype.CoverTrackDrawHover = function(px, py)
     circ.posx = px;
 
     //Calculate the position y
-    circ.posy = this.cover.height - this.cover.draw.margin.bottom - this.cover.data[this.cover.hover.positioni][i];
+    circ.posy = this.cover.height - this.cover.draw.margin.bottom - cover[i];
 
     //Set the radius
     canvas.Circle({ x: circ.posx, y: circ.posy, radius: this.cover.hover.radius });
@@ -228,6 +243,9 @@ CoverViewer.prototype.CoverTrackDrawValue = function(px, py)
 {
 	//Get the up layer
 	var canvas = this.cover.Layer(1);
+
+  //Get the cover for this position
+  var cover = (typeof this.cover.data[this.cover.hover.position] === 'undefined') ? this.bams.empty : this.cover.data[this.cover.hover.position];
 
   //Check the circles
   for(var i = this.cover.hover.circle.length - 1; i >= 0; i--)
@@ -263,7 +281,7 @@ CoverViewer.prototype.CoverTrackDrawValue = function(px, py)
       canvas.Fill(this.bams.color[i]);
 
       //Create the text
-      var text_text = this.data.cover.data[this.cover.hover.positioni].cover[i].toString();
+      var text_text = cover[i].toString();
 
       //Save the text font
       var text_font = this.cover.value.text.font;
