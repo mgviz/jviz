@@ -51,6 +51,13 @@ $teal: #00BFA5 !default;
 	//Track
 	&-track { @include jvizToolCanvasTrack; }
 
+	//Labels dialog
+	&-labels
+	{
+		//Include the dialog mixin
+		@include jvizDialog;
+	}
+
 	//Foot
 	&-foot
 	{
@@ -67,94 +74,3 @@ $teal: #00BFA5 !default;
 		margin: { top: 10px; }
 	}
 }
-
-
-/* Cover settings */
-.cover-settings { color: #ffffff; background-color: #505659; font-weight: bold; }
-
-/* Cover settings small text */
-.cover-settings small { color: #e4e8ea; font-weight: normal; }
-
-/* Cover settings Row */
-.cover-settings > .row { display: block; padding-top: 10px; padding-bottom: 10px; }
-.cover-settings > .row { border-bottom: 1px solid #596063; }
-.cover-settings > .row:last-child { border-bottom: 0px; }
-
-/* Cover Settings Col left */
-.cover-settings > .row > .col-left { display: inline-block; vertical-align: top; }
-.cover-settings > .row > .col-left { width: calc(100% - 200px); }
-
-/* Cover Settings Col Right */
-.cover-settings > .row > .col-right { display: inline-block; vertical-align: top; width: 200px; }
-
-/* Cover settings input */
-.cover-settings > .row > .col-right > .input { display: block; background-color: #3a3f41; color: #ffffff; }
-.cover-settings > .row > .col-right > .input { border: 0px; font-family: OpenSans; font-size: 14px; }
-.cover-settings > .row > .col-right > .input { border-radius: 5px; padding: 10px; outline: 0px; }
-
-/* Cover Settings Apply button */
-.cover-settings > .row > .apply { display: inline-block; text-align: center; border-radius: 5px; }
-.cover-settings > .row > .apply { font-size: 14px; line-height: 20px; padding-top: 4px; padding-bottom: 4px; }
-.cover-settings > .row > .apply { padding-left: 15px; padding-right: 15px; background-color: #575d60; }
-.cover-settings > .row > .apply { border: 2px solid #2979FF; color: #ffffff; transition: all 0.3s; }
-.cover-settings > .row > .apply:hover { background-color: #2979FF; cursor: hand; }
-
-/* Track bar */
-.cover-track-bar { display: block; line-height: 30px; background-color: #e3eaf3; color: #546E7A; }
-.cover-track-bar { font-size: 14px; font-weight: 300; border-bottom: 1px solid #ccdde4; }
-.cover-track-bar { width: calc(100% - 20px); padding-left: 10px; padding-right: 10px; height: 30px; }
-
-/* Cover Track */
-.cover-track-cover { display: block; }
-
-/* Cover track hover */
-.cover-track-cover-hover { stroke: #00B0FF; opacity: 0.4; }
-
-/* Cover track label */
-.cover-track-cover-label { fill: #00B0FF; }
-
-/* Cover track cover axes */
-.cover-track-cover-axes { stroke: #CFD8DC; stroke-width: 1px; fill: none; }
-
-/* Genes track info */
-.cover-track-genes-info { display: block; position: relative; background-color: #AFB42B; }
-.cover-track-genes-info { color: #ffffff; border-radius: 5px; font-size: 12px; }
-.cover-track-genes-info { font-weight: 300; }
-.cover-track-genes-info hr { border: 0px; background-color: rgba(255, 255, 255, 0.4); height: 1px; }
-.cover-track-genes-info a { text-decoration: none; font-weight: bold; color: #ffffff; }
-
-/* Genes track info before */
-.cover-track-genes-info:before { content: ''; display: block; width: 180px; height: 10px; }
-.cover-track-genes-info:before { padding-left: 5px; padding-right: 5px; position: absolute; }
-.cover-track-genes-info:before { top: -8px; background-position: center center; background-repeat: no-repeat; }
-.cover-track-genes-info:before { background-image: url('../img/triangle.svg'); }
-
-/* Names track */
-.cover-track-names { background-color: #f2f6fa; color: #546E7A; font-size: 14px; font-weight: 300; }
-.cover-track-names { display: block; width: calc(100% - 20px); padding-left: 10px; padding-right: 10px; }
-.cover-track-names { line-height: 40px; }
-
-/* Names track element */
-.cover-track-names-el { display: inline-block; padding-left: 15px; padding-right: 15px; height: 40px; }
-.cover-track-names-el { line-height: 40px; }
-
-/* Names track element checkbox */
-.cover-track-names-checkbox { display: inline-block; margin-right: 10px; float: left; position: relative }
-.cover-track-names-checkbox { border-radius: 50px; width: 40px; height: 16px; margin-top: 12px; }
-.cover-track-names-checkbox { cursor: hand; }
-
-.cover-track-names-checkbox input[type=checkbox] { visibility: hidden; }
-.cover-track-names-checkbox label { display: block; width: 12px; height: 12px; border-radius: 50px; }
-.cover-track-names-checkbox label { transition: all 0.3s ease; position: absolute; cursor: hand; }
-.cover-track-names-checkbox label { top: 2px; z-index: 2; left: 2px; background: #ffffff; }
-
-.cover-track-names-checkbox div { width: 100%; height:100%; background: #b8c6d6; border-radius: 50px; }
-.cover-track-names-checkbox div { position: relative; top: -18px; z-index: 1; transition: all 0.3s; }
-
-.cover-track-names-checkbox input[type=checkbox]:checked ~ div { background: #67ba2f; }
-.cover-track-names-checkbox input[type=checkbox]:checked ~ label { left: 26px; }
-
-
-/* Cover foot */
-.cover-foot { display: block; line-height: 30px; background-color: #e3eaf3; color: #546E7A; }
-.cover-foot { border-top: 1px solid #ccdde4; margin-top: 5px; height: 30px; }
