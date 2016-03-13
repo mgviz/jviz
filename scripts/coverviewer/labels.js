@@ -12,7 +12,7 @@ CoverViewer.prototype.LabelsOpen = function()
 	}
 
 	//Show the labels dialog
-	this.labels.ShowHide();
+	this.labels.Show();
 };
 
 //CoverViewer labels create
