@@ -24,14 +24,14 @@ CoverViewer.prototype.LabelsCreate = function()
 	//Read all the names
 	for(var i = 0; i < this.bams.label.length; i++)
 	{
-		//Create the name element
-		div = div + '<div>';
+		//Create the name row
+		div = div + '<div class="' + this.labels.row.class + '">';
 
 		//Add the switch div
 		div = div + '<div id="' + this.labels.switch.id + '_' + i + '" class="' + this.labels.switch.class + '">';
 
 		//Add the switch input
-		div = div + '<input type="checkbox" value="1" id="' + this.labels.switch.id + '_' + i + 'ch" name="" />';
+		div = div + '<input type="checkbox" value="1" id="' + this.labels.switch.id + '_' + i + 'ch" name>';
 
 		//Add the switch label
 	  div = div + '<label for="' + this.labels.switch.id + '_' + i + 'ch2"></label>';
@@ -43,7 +43,9 @@ CoverViewer.prototype.LabelsCreate = function()
   	div = div + '</div>';
 
 		//Show the bam name
-		div = div + '<span style="color:' + this.bams.color[i] + ';">' + this.bams.label[i] + '</span>';
+		div = div + '<span class="' + this.labels.names.class + '" style="color:' + this.bams.color[i] + ';">';
+		div = div + this.bams.label[i];
+		div = div + '</span>';
 
 		//Close the name element
 		div = div + '</div>';
