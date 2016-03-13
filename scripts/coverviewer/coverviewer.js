@@ -274,11 +274,16 @@ var CoverViewer = function(id)
 
   //Bam labels dialog
   this.labels = new jvizDialog({ id: this.app.id + '-labels', class: this.app.class + '-labels' });
+  this.labels.title = 'BAM Labels';
   this.labels.created = false; //Labels created
 
-  //Labels element
-  this.labels.el = {};
-  this.labels.el.class = 'cover-track-names-el'; //Labels element class
+  //Labels row
+  this.labels.row = {};
+  this.labels.row.class = this.labels.class + '-row'; //Labels row class
+
+  //Labels names
+  this.labels.names = {};
+  this.labels.names.class = this.labels.class + '-names'; //Labels names class
 
   //Labels switch
   this.labels.switch = {};
