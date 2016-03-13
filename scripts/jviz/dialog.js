@@ -87,7 +87,7 @@ jvizDialog.prototype.Build = function(parent)
 jvizDialog.prototype.SetTitle = function(title)
 {
 	//Add the title
-	$('#' + this.panel.head.title).html(title);
+	$('#' + this.panel.head.title.id).html(title);
 };
 
 //jvizDialog content
