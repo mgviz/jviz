@@ -170,7 +170,7 @@ CoverViewer.prototype.CoverTrackDrawLabel = function(px)
   var text_color = this.cover.label.text.color;
 
   //Show the text
-  canvas.Text({ text: text_text, x: posx, y: posy + 2, font: text_font, size: text_size, align: text_align, color: text_color });
+  canvas.Text({ text: text_text, x: posx, y: posy + 4, font: text_font, size: text_size, align: text_align, color: text_color });
 
   //Draw the triangle
   canvas.Polygon([[posx - 6, posy + 2],[posx, posy - 6],[posx + 6, posy + 2]]);
@@ -293,7 +293,7 @@ CoverViewer.prototype.CoverTrackDrawValue = function(px, py)
       var text_x = posx - this.cover.value.width/2;
 
       //Save the text position y
-      var text_y = posy - 1;
+      var text_y = posy + 1;
 
       //Save the text align
       var text_align = this.cover.value.text.align;
