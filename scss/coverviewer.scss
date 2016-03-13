@@ -84,6 +84,9 @@ $teal: #00BFA5 !default;
 
 		//Switchers
 		&-switch { @include jvizSwitch; }
+
+		//Done button
+		&-done { @include jvizBtn($jvizGreen, $jvizGreen); margin-top: 10px; }
 	}
 
 	//Foot
