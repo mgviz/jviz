@@ -220,7 +220,7 @@ CoverViewer.prototype.PreviewTrackDrawLabel = function()
   var text_x = posx;
 
   //Get the text position y
-  var text_y = posy + 1;
+  var text_y = posy + 4;
 
   //Get the text font
   var text_font = this.preview.label.text.font;
