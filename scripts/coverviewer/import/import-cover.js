@@ -56,9 +56,6 @@ CoverViewer.prototype.ImportDataCoverParser = function(data)
   //Find the min and max values
   this.ImportDataCoverFindMinMax();
 
-  //Parse the bams
-  this.BamsParser();
-
   //Set cover busy as false
   this.data.cover.busy = false;
 
