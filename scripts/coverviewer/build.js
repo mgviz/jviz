@@ -37,6 +37,9 @@ CoverViewer.prototype.Build = function()
   //Add the genes title
   this.genes.SetTitle(this.genes.title);
 
+  //Build the labels dialog
+  this.labels.Build(this.app.id);
+
   //Build the genes box div
   $('#' + this.panel.tracks.id).append(this.GenesTrackInfoBuild());
 
