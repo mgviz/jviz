@@ -51,6 +51,12 @@ CoverViewer.prototype.LabelsCreate = function()
 		div = div + '</div>';
 	}
 
+	//Add a line break
+	div = div + '<br>';
+
+	//Add the done button
+	div = div + '<div id="' + this.labels.done.id + '" class="' + this.labels.done.class + '">' + this.labels.done.title + '</div>';
+
 	//Show the names
 	this.labels.Content(div);
 
@@ -58,11 +64,14 @@ CoverViewer.prototype.LabelsCreate = function()
 	for(var i = 0; i < this.bams.label.length; i++)
 	{
 		//Add the event
-		CoverViewerLabelsEvent(this, i);
+		CoverViewerLabelsSwitchEvent(this, i);
 
 		//Change the status
 		document.getElementById(this.labels.switch.id + '_' + i + 'ch').checked = true;
 	}
+
+	//dd the done button event
+	CoverViewerLabelsDoneEvent(this);
 };
 
 //CoverViewer Labels Click event
@@ -81,9 +90,23 @@ CoverViewer.prototype.LabelsClick = function(i)
   this.Move();
 };
 
-//CoverViewer labels event
-function CoverViewerLabelsEvent(_this, _i)
+//CoverViewer labels done
+CoverViewer.prototype.LabelsDone = function()
+{
+	//Hide the labels dialog
+	this.labels.Hide();
+};
+
+//CoverViewer labels switch event
+function CoverViewerLabelsSwitchEvent(_this, _i)
 {
 	//Add the on click event
 	$('#' + _this.labels.switch.id + '_' + _i).on('click', function(){ _this.LabelsClick(_i); });
+}
+
+//CoverViewer labels done event
+function CoverViewerLabelsDoneEvent(_this)
+{
+	//Add the click event
+	$('#' + _this.labels.done.id).on('click', function(){ _this.LabelsDone(); });
 }
