@@ -1,15 +1,8 @@
 //CoverViewer Preview Stroke
 CoverViewer.prototype.BamsParser = function()
 {
-  //For get hte number of bams
-  for(var key in this.data.cover.data)
-  {
-    //Save the number of bams
-    this.bams.num = this.data.cover.data[key].length;
-
-    //Exit
-    break;
-  }
+  //Save the number of bams
+  this.bams.num = this.bams.label.length;
 
   //Initialize the empty bams
   this.BamsEmptyInit();
@@ -17,37 +10,15 @@ CoverViewer.prototype.BamsParser = function()
   //Initialize the bams color
   this.BamsColorInit();
 
-  //Initialize the bams labels
-  this.BamsLabelsInit();
-
   //Initialize the bams Active
   this.BamsActiveInit();
-};
-
-//CoverViewer Bams labels Init
-CoverViewer.prototype.BamsLabelsInit = function()
-{
-  //Check the label
-  if(this.bams.label.length < this.bams.num)
-	{
-    //Read all the bam files
-  	for(var i = this.bams.label.length + 1; i <= this.bams.num; i++)
-  	{
-  		//Add the BAM i
-  		this.bams.label.push('BAM' + i);
-  	}
-	}
 };
 
 //CoverViewer Bams active creator
 CoverViewer.prototype.BamsActiveInit = function()
 {
-  //Check the length
-  if(this.bams.active.length > 0)
-  {
-    //Exit
-    return;
-  }
+  //Reset the active array
+  this.bams.active = [];
 
   //Initialize the array
   for(var i = 0; i < this.bams.num; i++)
