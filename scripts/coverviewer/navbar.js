@@ -20,8 +20,8 @@ CoverViewer.prototype.NavbarBuild = function()
   //Create the right button
   div = div + this.NavbarBuildBtn(this.navbar.btn.right);
 
-  //Create the setting button
-  div = div + this.NavbarBuildBtn(this.navbar.btn.settings);
+  //Create the labels button
+  div = div + this.NavbarBuildBtn(this.navbar.btn.labels);
 
   //Close the navbar div
   div = div + '</div>';
