@@ -41,8 +41,8 @@ $teal: #00BFA5 !default;
 		//Navbar Right icon button
 		&-btn-right { @include jvizBtnIconLight('../img/arrows/right.svg'); float: left; }
 
-		//Navbar Settings icon button
-		&-btn-settings { @include jvizBtnIconLight('../img/settings.svg'); float: right; }
+		//Navbar Labels icon button
+		&-btn-labels { @include jvizBtnIconLight('../img/labels.svg'); float: right; }
 	}
 
 	//Panels
