@@ -40,13 +40,6 @@ CoverViewer.prototype.NavbarBuildBtn = function(obj)
   return '<div id="' + obj.id + '" class="' + obj.class + '" title="' + obj.title + '"></div>';
 };
 
-//CoverViewer navbar event
-CoverViewer.prototype.NavbarEvnt = function()
-{
-  //Start the navbar button event
-  CoverViewerNavbarBtnEvnt(this);
-};
-
 //CoverViewer Settings button click
 CoverViewer.prototype.NavbarBtnSettingsClick = function()
 {
@@ -84,14 +77,14 @@ CoverViewer.prototype.NavbarBtnArrowClick = function(btn)
 };
 
 //Navbar Buttons event
-function CoverViewerNavbarBtnEvnt(_main)
+function CoverViewerNavbarBtnEvents(_this)
 {
   //Left button
-  $('#' + _main.navbar.btn.left.id).click(function(e){ _main.NavbarBtnArrowClick('l'); });
+  $('#' + _this.navbar.btn.left.id).click(function(e){ _this.NavbarBtnArrowClick('l'); });
 
   //Right button
-  $('#' + _main.navbar.btn.right.id).click(function(e){ _main.NavbarBtnArrowClick('r'); });
+  $('#' + _this.navbar.btn.right.id).click(function(e){ _this.NavbarBtnArrowClick('r'); });
 
   //Settings button
-  $('#' + _main.navbar.btn.settings.id).click(function(e){ _main.NavbarBtnSettingsClick(); });
+  $('#' + _this.navbar.btn.settings.id).click(function(e){ _this.NavbarBtnSettingsClick(); });
 }
