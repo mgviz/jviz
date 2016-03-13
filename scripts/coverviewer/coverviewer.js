@@ -285,6 +285,12 @@ var CoverViewer = function(id)
   this.labels.names = {};
   this.labels.names.class = this.labels.class + '-names'; //Labels names class
 
+  //Labels Done
+  this.labels.done = {};
+  this.labels.done.id = this.labels.id + '-done'; //Labels done ID
+  this.labels.done.class = this.labels.class + '-done'; //Labels done class
+  this.labels.done.title = 'Done'; //Labels done title
+
   //Labels switch
   this.labels.switch = {};
   this.labels.switch.id = this.labels.id + '-switch'; //Labels switch id
