@@ -41,19 +41,10 @@ CoverViewer.prototype.NavbarBuildBtn = function(obj)
 };
 
 //CoverViewer Settings button click
-CoverViewer.prototype.NavbarBtnSettingsClick = function()
+CoverViewer.prototype.NavbarBtnLabelsClick = function()
 {
-  //Check
-  if(this.settings.show === true)
-  {
-    //Hide the settings track
-    this.SettingsHide();
-  }
-  else
-  {
-    //Show the settings track
-    this.SettingsShow();
-  }
+  //Open the labels dialog
+  this.LabelsOpen();
 };
 
 //CoverViewer Arrow events
@@ -85,6 +76,6 @@ function CoverViewerNavbarBtnEvents(_this)
   //Right button
   $('#' + _this.navbar.btn.right.id).click(function(e){ _this.NavbarBtnArrowClick('r'); });
 
-  //Settings button
-  $('#' + _this.navbar.btn.settings.id).click(function(e){ _this.NavbarBtnSettingsClick(); });
+  //Labels button
+  $('#' + _this.navbar.btn.labels.id).click(function(e){ _this.NavbarBtnLabelsClick(); });
 }
