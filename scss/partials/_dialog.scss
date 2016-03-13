@@ -43,6 +43,9 @@
 			//Border
 			border: { top-left-radius: 5px; top-right-radius: 5px; }
 
+			//Title
+			&-title { @include jvizFontBold; font-size: 14px; }
+
 			//Close button
 			&-close
 			{
