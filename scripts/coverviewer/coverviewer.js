@@ -274,22 +274,16 @@ var CoverViewer = function(id)
 
   //Bam labels dialog
   this.labels = new jvizDialog({ id: this.app.id + '-labels', class: this.app.class + '-labels' });
-  this.labels.id = this.app.id + '-names'; //Labels ID
-  this.labels.width = '100%'; //Labels div width
-  this.labels.height = 0; //Labels height
-  this.labels.title = 'Labels'; //Labels title
-  this.labels.class = 'cover-track-names'; //Labels class
-  this.labels.show = true; //Show labels track
-  this.labels.active = false; //For check if labels track is active
+  this.labels.created = false; //Labels created
 
   //Labels element
   this.labels.el = {};
   this.labels.el.class = 'cover-track-names-el'; //Labels element class
 
-  //Labels checkbox
-  this.labels.checkbox = {};
-  this.labels.checkbox.id = this.labels.id + '-checkbox'; //Labels checkbox id
-  this.labels.checkbox.class = 'cover-track-names-checkbox'; //Labels checkbox class
+  //Labels switch
+  this.labels.switch = {};
+  this.labels.switch.id = this.labels.id + '-switch'; //Labels switch id
+  this.labels.switch.class = this.labels.class + '-switch'; //Labels switch class
 
   //Gene track
   this.genes = new jvizToolFeatureTrack({ id: this.app.id + '-genes', class: this.app.class + '-track', layers: 1 });
