@@ -57,6 +57,12 @@ $teal: #00BFA5 !default;
 		//Include the dialog mixin
 		@include jvizDialog;
 
+		//Row
+		&-row { display: inline-block; height: 40px; line-height: 40px; width: 340px; }
+
+		//Names
+		&-names { @include jvizFontBold; font-size: 13px; }
+
 		//Switchers
 		&-switch { @include jvizSwitch; }
 	}
