@@ -42,9 +42,13 @@ CoverViewer.prototype.LabelsCreate = function()
 		//Close the switch
   	div = div + '</div>';
 
-		//Show the bam name
+		//Name span
 		div = div + '<span class="' + this.labels.names.class + '" style="color:' + this.bams.color[i] + ';">';
+
+		//Add the name
 		div = div + this.bams.label[i];
+
+		//Close the span name
 		div = div + '</span>';
 
 		//Close the name element
