@@ -46,6 +46,9 @@ CoverViewer.prototype.Build = function()
   //Build the genes box div
   $('#' + this.panel.tracks.id).append(this.GenesTrackInfoBuild());
 
+  //Parse the bams
+  this.BamsParser();
+
   //Initialize the resize event
   this.ResizeEvntInit();
 
