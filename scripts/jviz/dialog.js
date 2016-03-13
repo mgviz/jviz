@@ -26,6 +26,11 @@ function jvizDialog(obj)
 	this.panel.head.id = this.panel.id + '-head'; //Panel head ID
 	this.panel.head.class = this.panel.class + '-head'; //Panel head class
 
+	//Panel head title
+	this.panel.head.title = {};
+	this.panel.head.title.id = this.panel.head.id + '-title'; //Panel head title ID
+	this.panel.head.title.class = this.panel.head.class + '-title'; //Panel head title Class
+
 	//Close button
 	this.panel.head.close = {};
 	this.panel.head.close.id = this.panel.head.id + '-close'; //Close ID
@@ -53,6 +58,9 @@ jvizDialog.prototype.Build = function(parent)
 	//Add the panel head
 	div = div + '<div id="' + this.panel.head.id + '" class="' + this.panel.head.class + '" align="left">';
 
+	//Add the panel title
+	div = div + '<div id="' + this.panel.head.title.id + '" class="' + this.panel.head.title.class + '"></div>';
+
 	//Add the panel close button
 	div = div + '<div id="' + this.panel.head.close.id + '" class="' + this.panel.head.close.class + '"></div>';
 
@@ -73,6 +81,13 @@ jvizDialog.prototype.Build = function(parent)
 
 	//Add the events
 	jvizDialogEvent(this);
+};
+
+//jvizDialog set title
+jvizDialog.prototype.SetTitle = function(title)
+{
+	//Add the title
+	$('#' + this.panel.head.title).html(title);
 };
 
 //jvizDialog content
