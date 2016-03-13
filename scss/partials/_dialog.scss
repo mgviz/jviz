@@ -44,7 +44,14 @@
 			border: { top-left-radius: 5px; top-right-radius: 5px; }
 
 			//Title
-			&-title { @include jvizFontBold; font-size: 14px; }
+			&-title
+			{
+				//Display
+				display: inline-block; height: 30px; line-height: 30px;
+
+				//Title font
+				@include jvizFontBold; font-size: 14px;
+			}
 
 			//Close button
 			&-close
