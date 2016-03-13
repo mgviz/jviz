@@ -63,12 +63,12 @@ var CoverViewer = function(id)
   this.navbar.btn.id = this.navbar.id + '-btn'; //Navbar button
   this.navbar.btn.class = this.navbar.class + '-btn'; //Navbar class
 
-  //Navbar button settings
-  this.navbar.btn.settings = {};
-  this.navbar.btn.settings.id = this.navbar.btn.id + '-settings'; //Navbar settings button id
-  this.navbar.btn.settings.class = this.navbar.btn.class + '-settings'; //Navbar settings button class
-  this.navbar.btn.settings.show = true; //Navbar show settings button
-  this.navbar.btn.settings.title = 'Settings'; //Navbar settings button title
+  //Navbar button labels
+  this.navbar.btn.labels = {};
+  this.navbar.btn.labels.id = this.navbar.btn.id + '-labels'; //Navbar labels button id
+  this.navbar.btn.labels.class = this.navbar.btn.class + '-labels'; //Navbar labels button class
+  this.navbar.btn.labels.show = true; //Navbar show labels button
+  this.navbar.btn.labels.title = 'Labels'; //Navbar labels button title
 
   //Left button
   this.navbar.btn.left = {};
@@ -272,8 +272,8 @@ var CoverViewer = function(id)
   this.cover.label.margin = 8; //Margin top
   this.cover.label.radius = 5; //Label rectangle radius
 
-  //Bam labels track
-  this.labels = {};
+  //Bam labels dialog
+  this.labels = new jvizDialog({ id: this.app.id + '-labels', class: this.app.class + '-labels' });
   this.labels.id = this.app.id + '-names'; //Labels ID
   this.labels.width = '100%'; //Labels div width
   this.labels.height = 0; //Labels height
@@ -290,11 +290,6 @@ var CoverViewer = function(id)
   this.labels.checkbox = {};
   this.labels.checkbox.id = this.labels.id + '-checkbox'; //Labels checkbox id
   this.labels.checkbox.class = 'cover-track-names-checkbox'; //Labels checkbox class
-
-  //Labels bar
-  this.labelsbar = {};
-  this.labelsbar.id = this.labels.id + '-bar'; //Labels bar id
-  this.labelsbar.class = 'cover-track-bar'; //Labels bar class
 
   //Gene track
   this.genes = new jvizToolFeatureTrack({ id: this.app.id + '-genes', class: this.app.class + '-track', layers: 1 });
