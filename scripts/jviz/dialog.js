@@ -104,19 +104,33 @@ jvizDialog.prototype.ShowHide = function()
 	if(this.active === true)
 	{
 		//Hide the dialog
-		$('#' + this.id).css('display', 'none');
-
-		//Set as inactive
-		this.active = false;
+		this.Hide();
 	}
 	else
 	{
 		//Show the dialog
-		$('#' + this.id).css('display', 'block');
-
-		//Set as active
-		this.active = true;
+		this.Show();
 	}
+};
+
+//jvizDialog Show
+jvizDialog.prototype.Show = function()
+{
+	//Show the dialog
+	$('#' + this.id).css('display', 'block');
+
+	//Set as active
+	this.active = true;
+};
+
+//jvizDialog hide
+jvizDialog.prototype.Hide = function()
+{
+	//Hide the dialog
+	$('#' + this.id).css('display', 'none');
+
+	//Set as inactive
+	this.active = false;
 };
 
 //Function for add the dialog event
