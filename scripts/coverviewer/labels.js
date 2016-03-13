@@ -67,7 +67,7 @@ CoverViewer.prototype.LabelsCreate = function()
 CoverViewer.prototype.LabelsClick = function(i)
 {
 	//Get the element
-	var el = document.getElementById(this.labels.checkbox.id + '_' + i + 'ch');
+	var el = document.getElementById(this.labels.switch.id + '_' + i + 'ch');
 
 	//Change the active
 	this.bams.active[i] = (this.bams.active[i] === true)? false : true;
@@ -83,5 +83,5 @@ CoverViewer.prototype.LabelsClick = function(i)
 function CoverViewerLabelsEvent(_this, _i)
 {
 	//Add the on click event
-	$('#' + _this.labels.checkbox.id + '_' + _i).on('click', function(){ _this.LabelsClick(_i); });
+	$('#' + _this.labels.switch.id + '_' + _i).on('click', function(){ _this.LabelsClick(_i); });
 }
