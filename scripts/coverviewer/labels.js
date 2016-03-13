@@ -34,7 +34,7 @@ CoverViewer.prototype.LabelsCreate = function()
 		div = div + '<input type="checkbox" value="1" id="' + this.labels.switch.id + '_' + i + 'ch" name="" />';
 
 		//Add the switch label
-	  div = div + '<label for="' + this.labels.switch.id + '_' + i + 'ch"></label>';
+	  div = div + '<label for="' + this.labels.switch.id + '_' + i + 'ch2"></label>';
 
 		//Add the div for the background
 		div = div + '<div></div>';
@@ -43,7 +43,7 @@ CoverViewer.prototype.LabelsCreate = function()
   	div = div + '</div>';
 
 		//Show the bam name
-		div = div + '<span style="color:' + this.bams.color[i] + '";>' + this.bams.label[i] + '</span>';
+		div = div + '<span style="color:' + this.bams.color[i] + ';">' + this.bams.label[i] + '</span>';
 
 		//Close the name element
 		div = div + '</div>';
