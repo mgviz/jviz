@@ -210,7 +210,7 @@ var CoverViewer = function(id)
   this.preview.label.posx = 0; //Label position x
   this.preview.label.posy = 0; //Label position y
   this.preview.label.fill = '#FF9100'; //Label fill color
-  this.preview.label.text = { font: 'OpenSans', size: '12px', align: 'center', color: '#ffffff'}; //Font
+  this.preview.label.text = { font: 'Quicksand', size: '12px', align: 'center', color: '#ffffff'}; //Font
   this.preview.label.margin = 8; //Margin top
   this.preview.label.radius = 5; //Label rectangle radius
 
@@ -257,7 +257,7 @@ var CoverViewer = function(id)
   this.cover.value.width = 40; //Label width
   this.cover.value.height = 15; //Label height
   this.cover.value.margin = 15; //Margin right
-  this.cover.value.text = { font: 'OpenSans', size: '11px', align: 'center', color: '#ffffff' }; //Font
+  this.cover.value.text = { font: 'Quicksand', size: '11px', align: 'center', color: '#ffffff' }; //Font
   this.cover.value.radius = 5; //value label Rectangle radius
   this.cover.value.mindiff = 7; //Minim difference
 
@@ -268,7 +268,7 @@ var CoverViewer = function(id)
   this.cover.label.height = 22; //Label height
   this.cover.label.posx = 0; //Position x
   this.cover.label.posy = 0; //Position y
-  this.cover.label.text = { font: 'OpenSans', size: '12px', align: 'center', color: '#ffffff' }; //Label text
+  this.cover.label.text = { font: 'Quicksand', size: '12px', align: 'center', color: '#ffffff' }; //Label text
   this.cover.label.margin = 8; //Margin top
   this.cover.label.radius = 5; //Label rectangle radius
 
@@ -315,7 +315,7 @@ var CoverViewer = function(id)
 
   //Genes strand
   this.strand = {};
-  this.strand.text = { font: 'OpenSans', size: '11px' }; //Strand text font
+  this.strand.text = { font: 'Quicksand', size: '11px' }; //Strand text font
 
   //Forward strand
   this.strand.forward = {}; //Positive strand (forward)
@@ -362,7 +362,7 @@ var CoverViewer = function(id)
   this.points = {};
   this.points.gap = 1000; //Control points nucleotides gap
   this.points.stroke = { color: '#b8c6d6', width: 1, opacity: 0.3 }; //Points class
-  this.points.text = { font: 'OpenSans', size: '12px', color: '#b8c6d6' };
+  this.points.text = { font: 'Quicksand', size: '12px', color: '#b8c6d6' };
   this.points.letter = 'K'; //Control points letter
   this.points.margin = 20; //Points margin
   this.points.textmargin = {'top': 15, 'left': 4}; //Points text margin
