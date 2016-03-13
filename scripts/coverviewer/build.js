@@ -47,7 +47,7 @@ CoverViewer.prototype.Build = function()
   this.ResizeEvntInit();
 
   //Initialize the NAvbar events
-  this.NavbarEvnt();
+  CoverViewerNavbarBtnEvents(this);
 
   //Initialize the mouse events for cover track
   CoverViewerCoverTrackEvents(this);
