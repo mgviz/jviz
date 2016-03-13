@@ -58,7 +58,7 @@ $teal: #00BFA5 !default;
 		@include jvizDialog;
 
 		//Switchers
-		&-switch { @include jvizCheckbox; }
+		&-switch { @include jvizSwitch; }
 	}
 
 	//Foot
