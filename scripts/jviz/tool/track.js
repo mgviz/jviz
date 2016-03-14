@@ -67,6 +67,12 @@ jvizToolTrack.prototype.Build = function(parent)
 
 	//Create the track
 	$('#' + parent).append(div);
+
+	//Set the navbar event
+	//jvizToolTrackEventsHead(this);
+
+	//Call the custom events
+	this.Events();
 };
 
 //jvizToolTrack build head
@@ -165,8 +171,7 @@ jvizToolTrack.prototype.Hide = function()
 //jvizToolTrack Events caller
 jvizToolTrack.prototype.Events = function()
 {
-	//Set the navbar event
-	jvizToolTrackEventsHead(this);
+
 };
 
 //jvizToolTrack Events
