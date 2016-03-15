@@ -22,6 +22,7 @@ function jvizToolKaryotypeTrack(obj)
 	this.karyotypes.radius = 6; //Karyotypes radius
 	this.karyotypes.fill = '#38b1eb'; //Karyotypes fill color
 	this.karyotypes.max = 0; //Karyotypes max size
+	this.karyotypes.positions = []; //Karyotypes positions
 
 	//Karyotypes stroke
 	this.karyotypes.stroke = {};
@@ -107,6 +108,9 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 	//Calculate the margin
 	this.KaryotypesMargin();
 
+	//Reset the karyotypes positions
+	this.karyotypes.positions = [];
+
 	//Draw all the karyotypes
 	for(var i = 0; i < this.karyotypes.list.length; i++)
 	{
@@ -136,6 +140,9 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 
 		//Set the chromosome stroke
 		//canvas.Stroke(this.karyotypes.stroke);
+
+		//Save the position
+		this.karyotypes.positions.push({ x: posx, y: posy, width: width, height: height });
 
 		//Check for draw the centromere
 		if(typeof ch.centromere !== 'undefined')
@@ -221,14 +228,56 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 //jvizToolKaryotypeTrack Karyotypes mouse up
 jvizToolKaryotypeTrack.prototype.KaryotypesMouseUp = function(x, y)
 {
-	//Finc the chromosome
+	//Check for click on the margin left
+	if(x < this.draw.margin.left + this.karyotypes.margin){ return; }
 
+	//Check for click on the margin right
+	if(this.draw.margin.left + this.draw.width - this.karyotypes.margin < x){ return; }
+
+	//Check for click on the margin top
+	if(y < this.draw.margin.top){ return; }
+
+	//Check for click on the margin bottom
+	if(this.draw.margin.top + this.draw.height < y){ return; }
+
+	//Read all the chromosomes positions
+	for(var i = 0; i < this.karyotypes.positions.length; i++)
+	{
+		//Get the position
+		var pos = this.karyotypes.positions[i];
+
+		//Check the left position x
+		if(x < pos.x){ return; }
+
+		//Check the right position x
+		if(pos.x + pos.width < x){ continue; }
+
+		//Do the karyotype callback
+		this.KaryotypesCallback(i, this.karyotypes.list[i]);
+
+		//Exit
+		break;
+	}
+};
+
+//jvizToolKaryotypeTrack do karyotypes callback
+jvizToolKaryotypeTrack.prototype.KaryotypesCallback = function(index, chromosome)
+{
+	//Show in console
+	console.log('Do callback for karyotypes on chromosome ' + chromosome.id);
 };
 
 //jvizToolKaryotypeTrack draw chromosome in detail
 jvizToolKaryotypeTrack.prototype.ChromosomeDraw = function(canvas, chr)
 {
 
+};
+
+//jvizToolKaryotypeTrack do chromosome callback
+jvizToolKaryotypeTrack.prototype.ChromosomeCallback = function(chromosome, region)
+{
+	//Show in console
+	console.log('Do callback for chromosome on region ' + region);
 };
 
 //Initialize the track events
@@ -242,7 +291,7 @@ jvizToolKaryotypeTrack.prototype.Events = function()
 jvizToolKaryotypeTrack.prototype.EventsDo = function(action, event, x, y)
 {
 	//Prevent default
-	e.preventDefault();
+	event.preventDefault();
 
 	//Check for no status
 	if(this.status === ''){ return; }
@@ -265,10 +314,12 @@ jvizToolKaryotypeTrack.prototype.EventsDo = function(action, event, x, y)
 	}
 };
 
-
-
 //jvizToolKaryotypeTrack other status
-jvizToolKaryotypeTrack.prototype.EventsCaller = function(action, x, y){ };
+jvizToolKaryotypeTrack.prototype.EventsCaller = function(action, x, y)
+{
+	//Show in console
+	//console.log('Do EventsCaller for action ' + action);
+};
 
 //Function for initilize the karyotypes events
 function jvizToolKaryotypeTrackEvents(_this)
