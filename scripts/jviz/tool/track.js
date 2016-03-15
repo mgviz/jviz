@@ -169,10 +169,7 @@ jvizToolTrack.prototype.Hide = function()
 };
 
 //jvizToolTrack Events caller
-jvizToolTrack.prototype.Events = function()
-{
-
-};
+jvizToolTrack.prototype.Events = function(){ };
 
 //jvizToolTrack Events
 function jvizToolTrackEventsHead(_this)
