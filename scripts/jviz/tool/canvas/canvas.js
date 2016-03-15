@@ -90,6 +90,9 @@ jvizToolCanvasTrack.prototype.Build = function(parent)
 			this.draw.layer.push(new cvjs({ id: this.canvas.id + i, width: this.width, height: this.height }));
 		}
 	}
+
+	//Add the events
+	this.Events();
 };
 
 //jvizToolCanvasTrack get the layer
