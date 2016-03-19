@@ -13,6 +13,11 @@ function jvizToolKaryotypeTrack(obj)
 	//Actual status
 	this.status = '';
 
+	//Chromosome fill
+	this.fill = {};
+	this.fill.color = '#38b1eb'; //Chromosome fill color
+	this.fill.opacity = 0.7; //Chromosome fill opacity
+
 	//Karyotypes
 	this.karyotypes = {};
 	this.karyotypes.width = 15; //Karyotypes width
@@ -20,7 +25,6 @@ function jvizToolKaryotypeTrack(obj)
 	this.karyotypes.list = []; //Karyotypes list
 	this.karyotypes.margin = 0; //Margin between the chromosomes
 	this.karyotypes.radius = 6; //Karyotypes radius
-	this.karyotypes.fill = '#38b1eb'; //Karyotypes fill color
 	this.karyotypes.max = 0; //Karyotypes max size
 	this.karyotypes.positions = []; //Karyotypes positions
 
@@ -43,10 +47,13 @@ function jvizToolKaryotypeTrack(obj)
 
 	//Chromosome
 	this.chromosome = {};
+	this.chromosome.posx = 0; //Chromosome position x
+	this.chromosome.posy = 0; //Chromosome position y
 	this.chromosome.width = 0; //Chromsome width
-	this.chromosome.height = 0; //Chromosome height
+	this.chromosome.height = 50; //Chromosome height
 	this.chromosome.now = -1; //Actual chromosome
-
+	this.chromosome.scale = 1; //Chromosome scale
+	this.chromosome.radius = 20; //Chromosome radius
 }
 
 //Inherit the jvizToolTrack methods
@@ -171,10 +178,7 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 		canvas.Rect({ x: posx, y: posy, width: width, height: height, radius: radius });
 
 		//Set the chromsome fill color
-		canvas.Fill(this.karyotypes.fill);
-
-		//Set the chromosome stroke
-		//canvas.Stroke(this.karyotypes.stroke);
+		canvas.Fill({ color: this.fill.color, opacity: this.fill.opacity });
 
 		//Save the position
 		this.karyotypes.positions.push({ x: posx, y: posy, width: width, height: height });
@@ -228,7 +232,7 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 			canvas.Line(cent);
 
 			//Add the fill color
-			canvas.Fill(this.karyotypes.fill);
+			canvas.Fill({ color: this.fill.color, opacity: this.fill.opacity });
 		}
 
 		//Get the chromosome name
@@ -298,6 +302,86 @@ jvizToolKaryotypeTrack.prototype.KaryotypesClick = function(x, y)
 //jvizToolKaryotypeTrack draw chromosome in detail
 jvizToolKaryotypeTrack.prototype.ChromosomeDraw = function(canvas)
 {
+	//Check the actual chromosome
+	if(this.chromosome.now < 0){ return; }
 
+	//Get the chromosome info
+	var chr = this.karyotypes.list[this.chromosome.now];
+
+	//Save the chromosome scale
+	this.chromosome.scale = this.draw.width/chr.length;
+
+	//Save the chromosome width
+	this.chromosome.width = this.draw.width;
+
+	//Calculate the chromosome position x
+	this.chromosome.posx = this.draw.margin.left;
+
+	//Calculate the chromosome position y
+	this.chromosome.posy = this.draw.margin.top + (this.draw.height - this.chromosome.height)/2;
+
+	//Get the chromosome x point
+	var chr_x = this.chromosome.posx;
+
+	//Get the chromosome y point
+	var chr_y = this.chromosome.posy;
+
+	//Get the chromosome width
+	var chr_width = this.chromosome.width;
+
+	//Get the chromosome height
+	var chr_height = this.chromosome.height;
+
+	//Get the chromosome radius
+	var chr_radius = this.chromosome.radius;
+
+	//Draw the chromosome rectangle
+	canvas.Rect({ x: chr_x, y: chr_y, width: chr_width, height: chr_height, radius: chr_radius });
+
+	//Chromosome rectangle fill
+	canvas.Fill({ color: this.fill.color, opacity: this.fill.opacity });
+
+	//Check for draw the centromere
+	if(typeof chr.centromere !== 'undefined')
+	{
+		//Calculate the centromere start point
+		var cent_start = Math.floor(chr.centromere[0]*this.chromosome.scale);
+
+		//Calculate the centromere end
+		var cent_end = Math.floor(chr.centromere[1]*this.chromosome.scale);
+
+		//Calculate the centromere width
+		var cent_width = Math.abs(cent_end - cent_start);
+
+		//Clear the centromere rectangle
+		canvas.Clear({ x: cent_start, y: chr_y, width: cent_width, height: chr_height });
+
+		//Create the centromere points
+		var p = [];
+
+		//Add the centromere top start
+		p.push([ cent_start, chr_y ]);
+
+		//Add the centromere top middle
+		p.push([ cent_start + cent_width/2, chr_y + chr_height/2 ]);
+
+		//Add the centromere top end
+		p.push([ cent_end, chr_y ]);
+
+		//Add the centromere bottom end
+		p.push([ cent_end, chr_y + chr_height ]);
+
+		//Add the centromere bottom middle
+		p.push([ cent_start + cent_width/2, chr_y + chr_height/2 ]);
+
+		//Add the centromere bottom start
+		p.push([ cent_start, chr_y + chr_height ]);
+
+		//Add the lines
+		canvas.Line(p);
+
+		//Add the fill
+		canvas.Fill({ color: this.fill.color, opacity: this.fill.opacity });
+	}
 
 };
