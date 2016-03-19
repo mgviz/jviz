@@ -59,8 +59,18 @@ CoverViewer.prototype.Draw = function(region)
   }
 };
 
-//CoreTool Check for draw
-CoverViewer.prototype.DrawReady = function()
+//CoverViewer draw karyotypes
+CoverViewer.prototype.DrawKaryotypes = function()
+{
+  //Check for karyotypes
+  if(this.data.karyotypes.busy === true){ return; }
+
+  //Draw the karyotypes
+  this.PreviewTrackKaryotypesDraw();
+};
+
+//CoverViewer draw cover
+CoverViewer.prototype.DrawCover = function()
 {
   //Show in console
   console.log('CoverViewer: check for draw...');
@@ -68,51 +78,35 @@ CoverViewer.prototype.DrawReady = function()
   //Show loading
   //this.LoadingShow();
 
-  //Check for error importing the cover data
-  if(this.data.cover.error === true) { return false; }
-
-  //Check for error importing the genes data
-  if(this.data.genes.error === true) { return false; }
-
-  //For check if all is ready
-  var ready = true;
-
   //Check if cover is ready
-  if(this.data.cover.busy === true) { ready = false; }
+  if(this.data.cover.busy === true){ return; }
 
   //Check if genes is ready
-  if(this.data.genes.busy === true) { ready = false; }
+  if(this.data.genes.busy === true){ return; }
 
-  //Check
-  if(ready === true)
-  {
-    //Show in console
-    console.log('CoverViewer: system ready for draw');
+  //Show in console
+  console.log('CoverViewer: system ready for draw');
 
-    //Draw cover track
-    this.CoverTrackDraw(0);
+  //Draw cover track
+  this.CoverTrackDraw(0);
 
-    //Draw preview track
-    this.PreviewTrackDraw();
+  //Draw preview track
+  this.PreviewTrackDraw();
 
-    //Check for draw genes track
-    if(this.genes.show === true) { this.GenesTrackDraw(); }
+  //Check for draw genes track
+  if(this.genes.show === true) { this.GenesTrackDraw(); }
 
-    //Check for show the labels track
-    //if(this.labels.show === true) { this.LabelsTrackDraw(); }
+  //Set core running as false
+  this.core.running = false;
 
-    //Set core running as false
-    this.core.running = false;
+  //Show in console
+  console.log('CoverViewer: draw complete!');
 
-    //Show in console
-    console.log('CoverViewer: draw complete!');
+  //Set resized as false
+  this.core.resized = false;
 
-    //Set resized as false
-    this.core.resized = false;
-
-    //Hide loading
-    //this.LoadingHide();
-  }
+  //Hide loading
+  //this.LoadingHide();
 };
 
 //Time out for draw the region
