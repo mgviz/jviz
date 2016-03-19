@@ -105,6 +105,9 @@ jvizToolKaryotypeTrack.prototype.KaryotypesMargin = function()
 //jvizToolKaryotypeTrack draw karyotypes
 jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 {
+	//Set the karyotypes status
+	this.status = 'karyotypes';
+
 	//Calculate the margin
 	this.KaryotypesMargin();
 
@@ -270,6 +273,27 @@ jvizToolKaryotypeTrack.prototype.KaryotypesCallback = function(index, chromosome
 //jvizToolKaryotypeTrack draw chromosome in detail
 jvizToolKaryotypeTrack.prototype.ChromosomeDraw = function(canvas, chr)
 {
+	//Set the status as chromosomes
+	this.status = 'chromosome';
+
+
+};
+
+//jvizToolKaryotypeTrack chromosome mouse down
+jvizToolKaryotypeTrack.prototype.ChromosomeMouseDown = function(x, y)
+{
+
+};
+
+//jvizToolKaryotypeTrack chromosome mouse move
+jvizToolKaryotypeTrack.prototype.ChromosomeMouseMove = function(x, y)
+{
+
+};
+
+//jvizToolKaryotypeTrack chromosome mouse up
+jvizToolKaryotypeTrack.prototype.ChromosomeMouseUp = function(x, y)
+{
 
 };
 
@@ -307,6 +331,33 @@ jvizToolKaryotypeTrack.prototype.EventsDo = function(action, event, x, y)
 		}
 
 	}
+
+	//Check for chromosome status
+	else if(this.status === 'chromosome')
+	{
+		//Check for move action
+		if(action === 'move')
+		{
+			//Call the move action
+			this.ChromosomeMouseMove(x, y);
+		}
+
+		//Check for up action
+		else if(action === 'up')
+		{
+			//Call the mouse up action
+			this.ChromosomeMouseUp(x, y);
+		}
+
+		//Check for the down action
+		else if(action === 'down')
+		{
+			//Call the mouse down action
+			this.ChromosomeMouseDown(x, y);
+		}
+	}
+
+	//Other status
 	else
 	{
 		//Call the other status event
