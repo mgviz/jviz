@@ -1,28 +1,79 @@
-//CoverViewer Preview Track
-CoverViewer.prototype.PreviewTrack = function(opt)
-{
-  //Check for stroke width
-  if(typeof opt.stroke !== 'undefined') { this.preview.stroke = opt.stroke; }
-};
-
-//CoverViewer preview track show full region info
-CoverViewer.prototype.PreviewTrackBarRegionInfo = function()
-{
-  //Add the chromosome
-  var reg = 'Chromosome ' + this.draw.chromosome;
-
-  //Add the start point
-  reg = reg + ', start: '+ this.preview.draw.start;
-
-  //Add the end point
-  reg = reg + ', end: ' + this.preview.draw.end;
-
-  //Show the region info
-  this.preview.SetTitle(this.preview.title, reg);
-};
-
-//CoverViewer Preview Draw
+//CoverViewer preview track draw
 CoverViewer.prototype.PreviewTrackDraw = function()
+{
+  //Check the status
+  if(this.preview.status === 'preview')
+  {
+    //Draw the preview region
+    this.PreviewTrackPreviewDraw();
+  }
+
+  //Check for draw the selected chromosome
+  else if(this.preview.status === 'chromosome')
+  {
+    //Draw the selected chromosome
+    this.PreviewTrackChromsomeDraw();
+  }
+
+  //Check for draw the karyotypes
+  else
+  {
+    //Draw the karyotypes
+    this.PreviewTrackKaryotypesDraw();
+  }
+};
+
+//CoverViewer Preview Track draw karyotypes
+CoverViewer.prototype.PreviewTrackKaryotypesDraw = function()
+{
+  //Set the karyotypes status
+  this.preview.status = 'karyotypes';
+
+  //Get the canvas
+  var canvas = this.preview.Layer(1);
+
+  //Clear
+  canvas.Clear();
+
+  //Draw the karyotypes
+  this.preview.KaryotypesDraw(canvas);
+
+};
+
+//CoverViewer Preview track karyotypes mouse up
+CoverViewer.prototype.PreviewTrackKaryotypesMouseUp = function(x, y)
+{
+  //Get the clicked chromosome
+  var index = this.preview.KaryotypesClick(x, y);
+
+  //Check for null chromosome
+  if(index < 0){ return; }
+
+  //Get the chromosome info
+  var chr = this.preview.GetChromosome(index);
+
+  //Show in console
+  console.log(chr);
+};
+
+//CoverViewer Preview track draw chromosome
+CoverViewer.prototype.PreviewTrackChromsomeDraw = function()
+{
+  //Set the chromosome status
+  this.preview.status = 'chromosome';
+
+  //Get the canvas
+  var canvas = this.preview.Layer(1);
+
+  //Clear the canvas
+  canvas.Clear();
+
+  //Draw the chromosome
+  this.preview.ChromosomeDraw(canvas);
+};
+
+//CoverViewer Preview Draw preview region
+CoverViewer.prototype.PreviewTrackPreviewDraw = function()
 {
   //Save the down canvas
   var canvas = this.preview.Layer(0);
@@ -114,14 +165,30 @@ CoverViewer.prototype.PreviewTrackDraw = function()
   this.preview.label.posy = this.preview.height - this.preview.draw.margin.bottom + this.preview.label.margin;
 
   //Draw the window
-  this.PreviewTrackDrawWindow();
+  this.PreviewTrackPreviewDrawWindow();
 
   //Show the region info
   this.PreviewTrackBarRegionInfo();
 };
 
+//CoverViewer preview track show full region info
+CoverViewer.prototype.PreviewTrackBarRegionInfo = function()
+{
+  //Add the chromosome
+  var reg = 'Chromosome ' + this.draw.chromosome;
+
+  //Add the start point
+  reg = reg + ', start: '+ this.preview.draw.start;
+
+  //Add the end point
+  reg = reg + ', end: ' + this.preview.draw.end;
+
+  //Show the region info
+  this.preview.SetTitle(this.preview.title, reg);
+};
+
 //CoverViewer Draw Preview Window
-CoverViewer.prototype.PreviewTrackDrawWindow = function()
+CoverViewer.prototype.PreviewTrackPreviewDrawWindow = function()
 {
   //Get the canvas layer up
   var canvas = this.preview.Layer(1);
@@ -171,11 +238,11 @@ CoverViewer.prototype.PreviewTrackDrawWindow = function()
   canvas.Fill(this.preview.window.fill);
 
   //Draw label
-  this.PreviewTrackDrawLabel();
+  this.PreviewTrackPreviewDrawLabel();
 };
 
 //CoverViewer Preview Track Draw label
-CoverViewer.prototype.PreviewTrackDrawLabel = function()
+CoverViewer.prototype.PreviewTrackPreviewDrawLabel = function()
 {
   //Get the canvas layer up
   var canvas = this.preview.Layer(1);
@@ -245,7 +312,7 @@ CoverViewer.prototype.PreviewTrackDrawLabel = function()
 };
 
 //CoverViewer Preview Track mouse down
-CoverViewer.prototype.PreviewTrackMouseDown = function(x)
+CoverViewer.prototype.PreviewTrackPreviewMouseDown = function(x)
 {
   //Activate the mouse
   this.preview.mouse = true;
@@ -264,7 +331,7 @@ CoverViewer.prototype.PreviewTrackMouseDown = function(x)
 };
 
 //CoverViewer Preview Track mouse move
-CoverViewer.prototype.PreviewTrackMouseMove = function(x)
+CoverViewer.prototype.PreviewTrackPreviewMouseMove = function(x)
 {
   //Check for draw
   if(this.preview.mouse === true)
@@ -278,7 +345,7 @@ CoverViewer.prototype.PreviewTrackMouseMove = function(x)
 };
 
 //CoverViewer Preview Track mouse Up
-CoverViewer.prototype.PreviewTrackMouseUp = function(x)
+CoverViewer.prototype.PreviewTrackPreviewMouseUp = function(x)
 {
   //Set mouse as false
   this.preview.mouse = false;
@@ -287,42 +354,51 @@ CoverViewer.prototype.PreviewTrackMouseUp = function(x)
   $('body').removeClass(this.cursor.move);
 };
 
+//CoverViewer Preview track mouse events
+CoverViewer.prototype.PreviewTrackEvents = function(action, event, x, y)
+{
+  //Prevent default
+	event.preventDefault();
+
+  //Check for preview status
+  if(this.preview.status === 'preview')
+  {
+    //Check for move action
+    if(action === 'move'){ this.PreviewTrackPreviewMouseMove(x, y); }
+
+    //Check for down action
+    else if(action === 'down'){ this.PreviewTrackPreviewMouseDown(x, y); }
+
+    //Check for up action
+    else if(action === 'up'){ this.PreviewTrackPreviewMouseUp(x, y); }
+  }
+
+  //Check for chromosome status
+  else if(this.preview.status === 'chromosome')
+  {
+
+  }
+
+  //Check for karyotype status
+  else if(this.preview.status === 'karyotypes')
+  {
+    //Check for up action
+    if(action === 'up'){ this.PreviewTrackKaryotypesMouseUp(x, y); }
+  }
+};
+
 //CoverViewer Preview Track mouse function event
 function CoverViewerPreviewTrackEvents(_this)
 {
-  //Save the ID
-  var _id = '#' + _this.preview.id;
+	//Save the ID
+  var _id = '#' + _this.id;
 
   //Mouse up
-  $(_id).mouseup(function(e){
-
-    //Prevent
-    e.preventDefault();
-
-    //Call the click handler
-    _this.PreviewTrackMouseUp(e.pageX - $(this).offset().left);
-
-  });
+  $(_id).mouseup(function(e){ _this.PreviewTrackEvents('up', e,  e.pageX - $(this).offset().left, e.pageY - $(this).offset().top); });
 
   //Mouse down
-  $(_id).mousedown(function(e){
-
-    //Prevent
-    e.preventDefault();
-
-    //Call the click handler
-    _this.PreviewTrackMouseDown(e.pageX - $(this).offset().left);
-
-  });
+  $(_id).mousedown(function(e){ _this.PreviewTrackEvents('down', e, e.pageX - $(this).offset().left, e.pageY - $(this).offset().top); });
 
   //Mouse move
-  $(_id).mousemove(function(e){
-
-    //Prevent
-    e.preventDefault();
-
-    //Call the click handler
-    _this.PreviewTrackMouseMove(e.pageX - $(this).offset().left);
-
-  });
+  $(_id).mousemove(function(e){ _this.PreviewTrackEvents('move', e, e.pageX - $(this).offset().left, e.pageY - $(this).offset().top); });
 }
