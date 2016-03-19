@@ -391,7 +391,7 @@ CoverViewer.prototype.PreviewTrackEvents = function(action, event, x, y)
 function CoverViewerPreviewTrackEvents(_this)
 {
 	//Save the ID
-  var _id = '#' + _this.id;
+  var _id = '#' + _this.preview.id;
 
   //Mouse up
   $(_id).mouseup(function(e){ _this.PreviewTrackEvents('up', e,  e.pageX - $(this).offset().left, e.pageY - $(this).offset().top); });
