@@ -50,7 +50,7 @@ CoverViewer.prototype.PreviewTrackKaryotypesMouseUp = function(x, y)
   if(index < 0){ return; }
 
   //Get the chromosome info
-  var chr = this.preview.GetChromosome(index);
+  var chr = this.preview.GetChromosomeByIndex(index);
 
   //Show in console
   console.log(chr);
