@@ -149,6 +149,15 @@ var CoverViewer = function(id)
   this.data.karyotypes.data = []; //Karyotypes data
   this.data.karyotypes.json = null; //Karyotypes from json object
 
+  //Data for regions
+  this.data.regions = {};
+  this.data.regions.url = ''; //Regions url
+  this.data.regions.busy = false; //Getting regions is busy
+  this.data.regions.error = false; //Regions import error
+  this.data.regions.parser = null; //Regions data parser
+  this.data.regions.data = []; //Regions data
+  this.data.regions.json = null; //Regions from json object
+
   //Data for genes
   this.data.genes = {};
   this.data.genes.url = ''; //Genes url for data
