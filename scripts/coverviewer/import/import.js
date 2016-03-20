@@ -32,3 +32,16 @@ CoverViewer.prototype.ImportGenes = function(opt)
   //Check Info Content
   if(typeof opt.infoContent !== 'undefined') { this.data.genes.info.content = opt.infoContent; }
 };
+
+//CoverViewer Import Karyotypes from
+CoverViewer.prototype.ImportKaryotypes = function(opt)
+{
+  //Check url
+  if(typeof opt.url !== 'undefined') { this.data.karyotypes.url = opt.url; }
+
+  //Check parser
+  if(typeof opt.parser !== 'undefined') { this.data.karyotypes.parser = opt.parser; }
+
+  //Check the json
+  if(typeof opt.json !== 'undefined') { this.data.karyotypes.json = opt.json; } 
+};
