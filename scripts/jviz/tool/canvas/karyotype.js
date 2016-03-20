@@ -71,7 +71,7 @@ function jvizToolKaryotypeTrack(obj)
 	this.chromosome.position.posx = 0; //Position x
 	this.chromosome.position.posy = 0; //Position y
 	this.chromosome.position.radius = 5; //Position radius
-	this.chromosome.position.margin = 30; //Position margin
+	this.chromosome.position.margin = 26; //Position margin
 	this.chromosome.position.fill = '#38b1eb'; //Position fill color
 
 	//Chromosome position text
@@ -80,7 +80,13 @@ function jvizToolKaryotypeTrack(obj)
 	this.chromosome.position.text.font = 'Quicksand'; //Position text font
 	this.chromosome.position.text.size = '11px'; //Position text size
 	this.chromosome.position.text.align = 'center'; //Position text align
-	this.chromosome.position.text.margin = 5; //Position text margin
+	this.chromosome.position.text.margin = 4; //Position text margin
+
+	//Chromosome regions
+	this.chromosome.regions = {};
+	this.chromosome.regions.preview = true; //Preview chromosome regions
+	this.chromosome.regions.list = [];
+	this.chromosome.regions.fill = '';
 }
 
 //Inherit the jvizToolTrack methods
@@ -127,6 +133,12 @@ jvizToolKaryotypeTrack.prototype.SetRegions = function(regions)
 			//Create the chromosome
 			this.regions.list[re.chromosome] = [];
 		}
+
+		//Check the region name or label
+		re.name = (typeof re.name === 'undefined') ? 'Region ' + i : re.name;
+
+		//Chekc the region label
+		re.name = (typeof re.label === 'undefined') ? re.name : re.label;
 
 		//Save the region
 		this.regions.list[re.chromosome].push({ start: re.start, end: re.end, name: re.name });
@@ -423,6 +435,29 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDraw = function()
 		canvas.Fill({ color: this.fill.color, opacity: this.fill.opacity });
 	}
 
+	//Get the regions for this chromosome
+	var regions = (typeof this.regions.list[chr.id] === 'undefined') ? [] : this.regions.list[chr.id];
+
+	//Initialize the chromosome regions positions list
+	this.chromosome.regions.list = [];
+
+	//Read all the regions
+	for(var i = 0; i < regions.length; i++)
+	{
+		//Get the region
+		var re = regions[i];
+
+		//Create the new object
+		var obj = [];
+
+		//Check for add the region preview label
+
+
+		//Save the region position
+		this.chromosome.regions.list.push(obj);
+	}
+
+
 	//Calculate the position coordinate y
 	this.chromosome.position.posy = this.chromosome.posy - this.chromosome.position.margin;
 
@@ -453,9 +488,6 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDrawPosition = function(x, y)
 	//Check the position
 	if(this.ChromosomeClick(x, y) === false){ return; }
 
-	//Get the real position
-	var pos = x - this.chromosome.posx;
-
 	//Rectangle position x
 	var rect_x = x - this.chromosome.position.width/2;
 
@@ -477,5 +509,55 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDrawPosition = function(x, y)
 	//Draw the fill color
 	canvas.Fill(this.chromosome.position.fill);
 
-	//
+	//Get the real position
+	var text_text = Math.floor((x - this.chromosome.posx)/this.chromosome.scale);
+
+	//Text position x
+	var text_x = x;
+
+	//Text position y
+	var text_y = this.chromosome.position.posy + this.chromosome.position.text.margin;
+
+	//Text align
+	var text_align = this.chromosome.position.text.align;
+
+	//Text color
+	var text_color = this.chromosome.position.text.color;
+
+	//Text font
+	var text_font = this.chromosome.position.text.font;
+
+	//Text size
+	var text_size = this.chromosome.position.text.size;
+
+	//Draw the text
+	canvas.Text({ text: text_text, x: text_x, y: text_y, align: text_align, color: text_color, font: text_font, size: text_size });
+
+	//Initialize the triangle array
+	var tri = [];
+
+	//Calculate the y position
+	var py = this.chromosome.position.posy + this.chromosome.position.height;
+
+	//Add the first point
+	tri.push([ x - 6, py ]);
+
+	//Add the middle point
+	tri.push([ x, py + 6 ]);
+
+	//Add the first point
+	tri.push([ x + 6, py ]);
+
+	//Add the line
+	canvas.Line(tri);
+
+	//Add the fill color
+	canvas.Fill(this.chromosome.position.fill);
+
+	//Create the position line
+	canvas.Line([[ x, py ], [ x, this.chromosome.posy + this.chromosome.height ]]);
+
+	//Add the line stroke
+	canvas.Stroke(this.chromosome.position.fill);
+
 };
