@@ -29,10 +29,10 @@ CoverViewer.prototype.ImportDataKaryotypesError = function(url)
   //Show error in console
   console.log('CoverViewer: Error reading karyotypes data from "' + url + '"');
 
-  //Set true the errror
+  //Set true the error
   this.data.karyotypes.error = true;
 
-  //Set cover busy as false
+  //Set karyotypes busy as false
   this.data.karyotypes.busy = false;
 
   //Continue
