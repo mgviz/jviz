@@ -467,7 +467,7 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDraw = function()
 		canvas.Rect({ x: rect_start, y: rect_y, width: rect_width, height: rect_height });
 
 		//Fill the region
-		canvas.Fill({ color: this.chromosome.region.fill, opacity: this.chromosome.region.opacity });
+		canvas.Fill({ color: this.chromosome.regions.fill, opacity: this.chromosome.regions.opacity });
 
 
 		//Save the region position
