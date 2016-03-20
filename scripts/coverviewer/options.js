@@ -43,3 +43,10 @@ CoverViewer.prototype.Options = function(opt)
   //Check for import genes
   if(typeof opt.importGenes !== 'undefined'){ this.ImportGenes(opt.importGenes); }
 };
+
+//CoverViewer update options
+CoverViewer.prototype.OptionsUpdate = function(opt)
+{
+  //Update the options
+  this.Options(opt);
+};
