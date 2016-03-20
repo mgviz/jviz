@@ -13,7 +13,7 @@ var CoverViewer = function(id)
   this.default.maxregion = 100000; //Max region size
   //this.default.region = '1:6527454-6529974'; //Test region
   this.default.region = '1:6500000-6600000'; //Test region
-  this.default.test = true; //Enable/disable test mode
+  this.default.test = false; //Enable/disable test mode
 
   //Parent div
   this.parent = id;
@@ -123,6 +123,8 @@ var CoverViewer = function(id)
   //Data
   this.data = {};
   this.data.nullvalues = 0; //Data null values
+  this.data.specie = 'hsapiens'; //Specie name
+  this.data.assembly = 'GRCh38'; //Specie assembly
 
   //Data for coverage
   this.data.cover = {};
@@ -137,6 +139,15 @@ var CoverViewer = function(id)
   this.data.cover.color = null; //Cover color function
   this.data.cover.label = null; //Cover label function
   this.data.cover.fixgaps = true; //Fix gaps on data
+
+  //Data for karyotypes
+  this.data.karyotypes = {};
+  this.data.karyotypes.url = ''; //Karyotypes url
+  this.data.karyotypes.busy = false; //Getting karyotypes is busy
+  this.data.karyotypes.error = false; //Karyotypes import error
+  this.data.karyotypes.parser = null; //Karyotypes parser
+  this.data.karyotypes.data = []; //Karyotypes data
+  this.data.karyotypes.json = null; //Karyotypes from json object
 
   //Data for genes
   this.data.genes = {};
@@ -163,10 +174,10 @@ var CoverViewer = function(id)
   this.data.exons.num = 0; //Exons number
 
   //Preview track
-  this.preview = new jvizToolCanvasTrack({ id: this.app.id + '-preview', class: this.app.class + '-track', layers: 2 });
+  this.preview = new jvizToolKaryotypeTrack({ id: this.app.id + '-preview', class: this.app.class + '-track', layers: 2 });
   this.preview.title = 'Full preview'; //Preview title
   this.preview.width = 0; //Preview width
-  this.preview.height = 120; //Preview height
+  //this.preview.height = 150; //Preview height
   this.preview.show = true; //Preview show
   this.preview.busy = false; //Preview is busy
   this.preview.data = null; //Preview data
@@ -178,7 +189,7 @@ var CoverViewer = function(id)
   this.preview.head.show = true;
 
   //Preview draw
-  this.preview.draw.margin = { top: 40, bottom: 40, left: 50, right: 50 }; //Preview margin
+  //this.preview.draw.margin = { top: 40, bottom: 40, left: 50, right: 50 }; //Preview margin
   this.preview.draw.width = 0; //Preview draw width
   this.preview.draw.height = 0; //Preview draw height
   this.preview.draw.start = 0; //Start position
@@ -400,5 +411,5 @@ var CoverViewer = function(id)
   this.tracks = [];
 
   //Build Time out
-  CoverViewerBuildTimeOut(this);
+  //CoverViewerBuildTimeOut(this);
 };
