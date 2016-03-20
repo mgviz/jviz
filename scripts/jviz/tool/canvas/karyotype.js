@@ -85,8 +85,9 @@ function jvizToolKaryotypeTrack(obj)
 	//Chromosome regions
 	this.chromosome.regions = {};
 	this.chromosome.regions.preview = true; //Preview chromosome regions
-	this.chromosome.regions.list = [];
-	this.chromosome.regions.fill = '';
+	this.chromosome.regions.list = []; //Regions list
+	this.chromosome.regions.fill = '#ea685a'; //Regions color
+	this.chromosome.regions.opacity = 0.8; //Regions opacity
 }
 
 //Inherit the jvizToolTrack methods
@@ -447,14 +448,30 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDraw = function()
 		//Get the region
 		var re = regions[i];
 
-		//Create the new object
-		var obj = [];
+		//Calculate the start position
+		var rect_start = this.chromosome.posx + re.start*this.chromosome.scale;
 
-		//Check for add the region preview label
+		//Calculate the end position
+		var rect_end = this.chromosome.posx + re.end*this.chromosome.scale;
+
+		//Calculate the width
+		var rect_width = Math.max(1, rect_end - rect_start);
+
+		//Save the rectangle height
+		var rect_height = this.chromosome.height;
+
+		//Save the Y position
+		var rect_y = this.chromosome.posy;
+
+		//Draw the region
+		canvas.Rect({ x: rect_start, y: rect_y, width: rect_width, height: rect_height });
+
+		//Fill the region
+		canvas.Fill({ color: this.chromosome.region.fill, opacity: this.chromosome.region.opacity });
 
 
 		//Save the region position
-		this.chromosome.regions.list.push(obj);
+		this.chromosome.regions.list.push([ rect_start, rect_end ]);
 	}
 
 
