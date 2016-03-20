@@ -3,7 +3,7 @@ CoverViewer.prototype.Options = function(opt)
 {
   //For check the specie
   if(typeof opt.specie !== 'undefined'){ this.data.specie = opt.specie; }
-  
+
   //For check the assembly
   if(typeof opt.assembly !== 'undefined'){ this.data.assembly = opt.assembly; }
 
@@ -33,6 +33,9 @@ CoverViewer.prototype.Options = function(opt)
 
   //Check for import karyotypes
   if(typeof opt.importKaryotypes !== 'undefined'){ this.ImportKaryotypes(opt.importKaryotypes); }
+
+  //Check for import regions
+  if(typeof opt.importRegions !== 'undefined'){ this.ImportRegions(opt.importRegions); }
 
   //Check for import cover
   if(typeof opt.importCover !== 'undefined'){ this.ImportCover(opt.importCover); }
