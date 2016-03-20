@@ -43,5 +43,18 @@ CoverViewer.prototype.ImportKaryotypes = function(opt)
   if(typeof opt.parser !== 'undefined') { this.data.karyotypes.parser = opt.parser; }
 
   //Check the json
-  if(typeof opt.json !== 'undefined') { this.data.karyotypes.json = opt.json; } 
+  if(typeof opt.json !== 'undefined') { this.data.karyotypes.json = opt.json; }
+};
+
+//CoverViewer Import Regions from
+CoverViewer.prototype.ImportRegions = function(opt)
+{
+  //Check url
+  if(typeof opt.url !== 'undefined') { this.data.regions.url = opt.url; }
+
+  //Check parser
+  if(typeof opt.parser !== 'undefined') { this.data.regions.parser = opt.parser; }
+
+  //Check the json
+  if(typeof opt.json !== 'undefined') { this.data.karyotypes.json = opt.json; }
 };
