@@ -4,11 +4,20 @@ function jvizToolKaryotypeTrack(obj)
 	//Check the track class
 	obj.class = (typeof obj.class !== 'undefined')? obj.class : 'jvizToolCanvasTrack';
 
+	//Check the track layers
+	obj.layers = (typeof obj.layers !== 'undefined') ? obj.layers : 5;
+
 	//Check the number of layers
-	obj.layers = (typeof obj.layers !== 'undefined')? obj.layers : 1;
+	if(obj.layers < 5){ obj.layers = 5; }
 
 	//Extend the jvizToolCanvasTrack
 	jvizToolCanvasTrack.call(this, obj);
+
+	//Track height
+	this.height = 160;
+
+	//Track draw margin
+	this.draw.margin = { top: 50, bottom: 40, left: 50, right: 50 };
 
 	//Actual status
 	this.status = '';
@@ -54,6 +63,24 @@ function jvizToolKaryotypeTrack(obj)
 	this.chromosome.now = -1; //Actual chromosome
 	this.chromosome.scale = 1; //Chromosome scale
 	this.chromosome.radius = 20; //Chromosome radius
+
+	//Chromosome position
+	this.chromosome.position = {};
+	this.chromosome.position.width = 90; //Position width
+	this.chromosome.position.height = 20; //Position height
+	this.chromosome.position.posx = 0; //Position x
+	this.chromosome.position.posy = 0; //Position y
+	this.chromosome.position.radius = 5; //Position radius
+	this.chromosome.position.margin = 30; //Position margin
+	this.chromosome.position.fill = '#38b1eb'; //Position fill color
+
+	//Chromosome position text
+	this.chromosome.position.text = {};
+	this.chromosome.position.text.color = '#ffffff'; //Position text color
+	this.chromosome.position.text.font = 'Quicksand'; //Position text font
+	this.chromosome.position.text.size = '11px'; //Position text size
+	this.chromosome.position.text.align = 'center'; //Position text align
+	this.chromosome.position.text.margin = 5; //Position text margin
 }
 
 //Inherit the jvizToolTrack methods
@@ -149,6 +176,12 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 {
 	//Calculate the margin
 	this.KaryotypesMargin();
+
+	//Get the middle layer
+	var canvas = this.Layer(2);
+
+	//Clear the canvas
+  canvas.Clear();
 
 	//Reset the karyotypes positions
 	this.karyotypes.positions = [];
@@ -300,10 +333,16 @@ jvizToolKaryotypeTrack.prototype.KaryotypesClick = function(x, y)
 };
 
 //jvizToolKaryotypeTrack draw chromosome in detail
-jvizToolKaryotypeTrack.prototype.ChromosomeDraw = function(canvas)
+jvizToolKaryotypeTrack.prototype.ChromosomeDraw = function()
 {
 	//Check the actual chromosome
 	if(this.chromosome.now < 0){ return; }
+
+	//Get the middle canvas
+  var canvas = this.Layer(2);
+
+  //Clear
+  canvas.Clear();
 
 	//Get the chromosome info
 	var chr = this.karyotypes.list[this.chromosome.now];
@@ -384,4 +423,59 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDraw = function(canvas)
 		canvas.Fill({ color: this.fill.color, opacity: this.fill.opacity });
 	}
 
+	//Calculate the position coordinate y
+	this.chromosome.position.posy = this.chromosome.posy - this.chromosome.position.margin;
+
+};
+
+//jvizToolKaryotypeTrack check chromosome click
+jvizToolKaryotypeTrack.prototype.ChromosomeClick = function(x, y)
+{
+	//Check the x coordinate
+	if(x < this.chromosome.posx || this.chromosome.posx + this.chromosome.width < x){ return false; }
+
+	//Check the y coordinate
+	//if(y < this.chromosome.posy || this.chromosome.posy + this.chromosome.height < y){ return false; }
+
+	//Return true
+	return true;
+};
+
+//jvizToolKaryotypeTrack Chromosome draw position
+jvizToolKaryotypeTrack.prototype.ChromosomeDrawPosition = function(x, y)
+{
+	//Get the second layer
+  var canvas = this.Layer(1);
+
+  //Clear
+  canvas.Clear();
+
+	//Check the position
+	if(this.ChromosomeClick(x, y) === false){ return; }
+
+	//Get the real position
+	var pos = x - this.chromosome.posx;
+
+	//Rectangle position x
+	var rect_x = x - this.chromosome.position.width/2;
+
+	//Rectangle position y
+	var rect_y = this.chromosome.position.posy;
+
+	//Rectangle width
+	var rect_widt = this.chromosome.position.width;
+
+	//Rectangle height
+	var rect_height = this.chromosome.position.height;
+
+	//Rectangle radius
+	var rect_radius = this.chromosome.position.radius;
+
+	//Draw the rectangle
+	canvas.Rect({ x: rect_x, y: rect_y, width: rect_widt, height: rect_height, radius: rect_radius });
+
+	//Draw the fill color
+	canvas.Fill(this.chromosome.position.fill);
+
+	//
 };
