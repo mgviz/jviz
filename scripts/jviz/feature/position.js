@@ -1,5 +1,5 @@
 //jviz Feature position
-function jvizFeaturePosition(feaature, draw)
+function jvizFeaturePosition(feature, draw)
 {
 	//Create the new object
 	var obj = {};
