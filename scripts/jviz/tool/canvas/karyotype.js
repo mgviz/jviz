@@ -103,14 +103,14 @@ function jvizToolKaryotypeTrack(obj)
 	this.chromosome.regions.list = []; //Regions list
 	this.chromosome.regions.fill = '#ea685a'; //Regions color
 	this.chromosome.regions.opacity = 0.8; //Regions opacity
-	this.chromosome.regions.click = 5; //Regions click margin
+	this.chromosome.regions.click = 3; //Regions click margin
 
 	//Chromosome regions label
 	this.chromosome.regions.label = {};
 	this.chromosome.regions.label.posx = 0; //Regions label position x
 	this.chromosome.regions.label.posy = 0; //Regions label position y
 	this.chromosome.regions.label.width = 70; //Regions label width
-	this.chromosome.regions.label.height = 20; //Regions label height
+	this.chromosome.regions.label.height = 18; //Regions label height
 	this.chromosome.regions.label.margin = 6; //Regions label margin
 	this.chromosome.regions.label.radius = 5; //Regions label radius
 	this.chromosome.regions.label.fill = '#ea685a'; //Regions label color
@@ -120,7 +120,7 @@ function jvizToolKaryotypeTrack(obj)
 	//Chromosome regions label text
 	this.chromosome.regions.label.text = {};
 	this.chromosome.regions.label.text.font = 'Quicksand'; //Label regions text font
-	this.chromosome.regions.label.text.size = '12px'; //Label regions text size
+	this.chromosome.regions.label.text.size = '10px'; //Label regions text size
 	this.chromosome.regions.label.text.align = 'center'; //Label regions text align
 	this.chromosome.regions.label.text.color = '#ffffff'; //Label regions text color
 	this.chromosome.regions.label.text.margin = 3; //Label regions text margin
