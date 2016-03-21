@@ -22,10 +22,18 @@ function jvizToolKaryotypeTrack(obj)
 	//Actual status
 	this.status = '';
 
-	//Chromosome fill
+	//Fill object
 	this.fill = {};
-	this.fill.color = '#38b1eb'; //Chromosome fill color
-	this.fill.opacity = 0.7; //Chromosome fill opacity
+
+	//Fill chromosome
+	this.fill.chromosome = {};
+	this.fill.chromosome.color = '#38b1eb'; //Chromosome fill color
+	this.fill.chromosome.opacity = 0.5; //Chromosome fill opacity
+
+	//Centromere
+	this.fill.centromere = {};
+	this.fill.centromere.color = '#38b1eb'; //Centromere fill color
+	this.fill.centromere.opacity = 0.8; //Centromere fill opacity
 
 	//Karyotypes
 	this.karyotypes = {};
@@ -224,7 +232,7 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 		canvas.Rect({ x: posx, y: posy, width: width, height: height, radius: radius });
 
 		//Set the chromsome fill color
-		canvas.Fill({ color: this.fill.color, opacity: this.fill.opacity });
+		canvas.Fill({ color: this.fill.chromosome.color, opacity: this.fill.chromosome.opacity });
 
 		//Save the position
 		this.karyotypes.positions.push({ x: posx, y: posy, width: width, height: height });
@@ -278,7 +286,7 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 			canvas.Line(cent);
 
 			//Add the fill color
-			canvas.Fill({ color: this.fill.color, opacity: this.fill.opacity });
+			canvas.Fill({ color: this.fill.centromere.color, opacity: this.fill.centromere.opacity });
 		}
 
 		//Get the chromosome name
@@ -391,7 +399,7 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDraw = function()
 	canvas.Rect({ x: chr_x, y: chr_y, width: chr_width, height: chr_height, radius: chr_radius });
 
 	//Chromosome rectangle fill
-	canvas.Fill({ color: this.fill.color, opacity: this.fill.opacity });
+	canvas.Fill({ color: this.fill.chromosome.color, opacity: this.fill.chromosome.opacity });
 
 	//Check for draw the centromere
 	if(typeof chr.centromere !== 'undefined')
@@ -433,7 +441,7 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDraw = function()
 		canvas.Line(p);
 
 		//Add the fill
-		canvas.Fill({ color: this.fill.color, opacity: this.fill.opacity });
+		canvas.Fill({ color: this.fill.centromere.color, opacity: this.fill.centromere.opacity });
 	}
 
 	//Get the regions for this chromosome
@@ -500,7 +508,7 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDrawPosition = function(x, y)
   var canvas = this.Layer(1);
 
   //Clear
-  canvas.Clear();
+  canvas.Clear({ x: 0, y: 0, width: this.width, height: this.chromosome.posy + this.chromosome.height });
 
 	//Check the position
 	if(this.ChromosomeClick(x, y) === false){ return; }
