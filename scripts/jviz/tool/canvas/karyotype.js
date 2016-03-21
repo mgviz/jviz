@@ -347,8 +347,39 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 		canvas.Text({ x: text_x, y: text_y, text: text_txt, color: text_color, size: text_size, font: text_font, align: text_align });
 
 		//Get the regions for this chromosome
-	}
+		var regions = (typeof this.regions.list[ch.id] === 'undefined') ? [] : this.regions.list[ch.id];
 
+		//Read all the regions
+		for(var j = 0; j < regions.length; j++)
+		{
+			//Get the region
+			var re = regions[j];
+
+			//Region start
+			var re_start = this.draw.height*(re.start/this.karyotypes.max);
+
+			//Region end
+			var re_end = this.draw.height*(re.end/this.karyotypes.max);
+
+			//Region width
+			var re_width = this.karyotypes.width;
+
+			//Region height
+			var re_height = Math.max(Math.abs(re_end - re_start), 1);
+
+			//Region position x
+			var re_x = posx;
+
+			//Region position y
+			var re_y = this.draw.margin.top + this.draw.height - re_start;
+
+			//Draw the region
+			canvas.Rect({ x: re_x, y: re_y, width: re_width, height: re_height });
+
+			//Region fill
+			canvas.Fill({ color: this.chromosome.regions.fill, opacity: this.chromosome.regions.opacity });
+		}
+	}
 };
 
 //jvizToolKaryotypeTrack Karyotypes find chromosome
