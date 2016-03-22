@@ -82,6 +82,9 @@
 
 			//Update the position
 			float: right;
+
+			//Hover style
+			&:hover { opacity: 0.8; }
 		}
 
 		//Track arrow for close
