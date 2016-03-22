@@ -155,7 +155,13 @@ jvizToolTrack.prototype.BuildHead = function()
 	if(this.head.action.show === true)
 	{
 		//Add the action button
-		div = div + '<div id="' + this.head.action.id + '" class="' + this.head.action.class + '">' + this.head.action.title + '</div>';
+		div = div + '<div id="' + this.head.action.id + '" class="' + this.head.action.class + '" style="display:none;">';
+
+		//Add the action button default title
+		div = div + this.head.action.title;
+
+		//Close the action button
+		div = div + '</div>';
 	}
 
 	//Close the track head
