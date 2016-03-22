@@ -19,9 +19,6 @@ function jvizToolKaryotypeTrack(obj)
 	//Track draw margin
 	this.draw.margin = { top: 50, bottom: 40, left: 50, right: 50 };
 
-	//Actual status
-	this.status = '';
-
 	//Fill object
 	this.fill = {};
 
@@ -183,7 +180,7 @@ jvizToolKaryotypeTrack.prototype.SetRegions = function(regions)
 		re.name = (typeof re.label === 'undefined') ? re.name : re.label;
 
 		//Save the region
-		this.regions.list[re.chromosome].push({ start: re.start, end: re.end, name: re.name });
+		this.regions.list[re.chromosome].push(re);
 	}
 };
 
@@ -209,10 +206,16 @@ jvizToolKaryotypeTrack.prototype.GetChromosomeByIndex = function(index)
 };
 
 //jvizToolKaryotypeTrack get region info
-jvizToolKaryotypeTrack.prototype.GetRegion = function(chr, index)
+jvizToolKaryotypeTrack.prototype.GetRegion = function(index)
 {
-	//Return the region info
-	return this.regions.list[chr][index];
+	//Get the actual chromosome
+	var chr = this.karyotypes.list[this.chromosome.now];
+
+	//Get the region info
+	var region = this.regions.list[chr.id][index];
+
+	//Return the region
+	return region;
 };
 
 //jvizToolKaryotypeTrack calculate the margin
@@ -618,11 +621,14 @@ jvizToolKaryotypeTrack.prototype.ChromosomeClickRegion = function(x, y)
 		//Get the region
 		var r = this.chromosome.regions.list[i];
 
-		//Check the x coordinate
-		if(r.pstart - m <= x && x <= r.pend + m){ return i; }
-
-		//Else check the position
+		//Check the left position
 		if(x < r.pstart - m){ return -1; }
+
+		//Check the right position
+		if(r.pend + m < x){ continue; }
+
+		//Return the region index
+		return i;
 	}
 
 	//Default, return -1
@@ -723,7 +729,7 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDrawRegionLabel = function(x, y)
 	//Clear the canvas
 	canvas.Clear({ x: 0, y: this.chromosome.utils.posy_end, width: this.width, height: this.chromosome.utils.down });
 
-	//Check the position
+	//Check the region
 	var index = this.ChromosomeClickRegion(x, y);
 
 	//Check the index
