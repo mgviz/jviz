@@ -269,7 +269,7 @@ jvizToolTrack.prototype.ActionShow = function()
 	this.head.action.active = true;
 
 	//Show the action button
-	$('#' + this.head.action.id).clss('display', 'inline-block');
+	$('#' + this.head.action.id).css('display', 'inline-block');
 };
 
 //jvizToolTrack Action button hide
@@ -279,7 +279,7 @@ jvizToolTrack.prototype.ActionHide = function()
 	this.head.action.active = false;
 
 	//Hide the action button
-	$('#' + this.head.action.id).clss('display', 'none');
+	$('#' + this.head.action.id).css('display', 'none');
 };
 
 //jvizToolTrack Action button set title
