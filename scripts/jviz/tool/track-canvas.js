@@ -175,59 +175,16 @@ jvizToolCanvasTrack.prototype.SetHeight = function(h)
 	this.height = h;
 };
 
-/*
-//jvizToolCanvasTrack canvas envents
-function jvizToolCanvasTrackEvents(_this)
+//jvizToolCanvasTrack Get the canvas ID
+jvizToolCanvasTrack.prototype.CanvasID = function(id)
 {
-	//Get the last canvas
-	var last = _this.canvas.num - 1;
+	//Return the ID for this canvas layer
+	return this.canvas.id + id;
+};
 
-	//Save the canvas ID
-  var _id = '#' + _this.canvas.id + last;
-
-  //Mouse up
-  $(_id).mouseup(function(e){
-
-    //Prevent
-    e.preventDefault();
-
-    //Call the click handler
-    _this.MouseUp(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top);
-
-	});
-
-  //Mouse down
-  $(_id).mousedown(function(e){
-
-    //Prevent
-    e.preventDefault();
-
-    //Call the click handler
-    _this.MouseDown(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top);
-
-  });
-
-  //Mouse move
-  $(_id).mousemove(function(e){
-
-    //Prevent
-    e.preventDefault();
-
-    //Call the click handler
-    _this.MouseMove(e.pageX - $(this).offset().left, e.pageY - $(this).offset().top);
-
-  });
-
-	//Mouse out
-	$(_id).mouseout(function(e){
-
-		//Prevent
-		e.preventDefault();
-
-		//Call the out handler
-		_this.MouseOut();
-
-	});
-}
-
-*/
+//jvizToolCanvasTrack Get the canvas ID for click
+jvizToolCanvasTrack.prototype.CanvasClickID = function()
+{
+	//Return the last canvas layer
+	return this.CanvasID(this.canvas.num - 1);
+};
