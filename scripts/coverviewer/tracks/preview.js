@@ -2,14 +2,14 @@
 CoverViewer.prototype.PreviewTrackDraw = function()
 {
   //Check the status
-  if(this.preview.status === 'preview')
+  if(this.draw.status === 'cover')
   {
     //Draw the preview region
     this.PreviewTrackPreviewDraw();
   }
 
   //Check for draw the selected chromosome
-  else if(this.preview.status === 'chromosome')
+  else if(this.draw.status === 'chromosome')
   {
     //Draw the selected chromosome
     this.PreviewTrackChromsomeDraw();
@@ -23,21 +23,33 @@ CoverViewer.prototype.PreviewTrackDraw = function()
   }
 };
 
+//CoverViewer preview track draw clear
+CoverViewer.prototype.PreviewTrackClear = function()
+{
+  //Clear the first layer
+  this.preview.Layer(0).Clear();
+
+  //Clear the second layer
+  this.preview.Layer(1).Clear();
+
+  //Clear the third layer
+  this.preview.Layer(2).Clear();
+
+  //Clear the fourth layer
+  this.preview.Layer(3).Clear();
+
+  //Clear the fifth layer
+  this.preview.Layer(4).Clear();
+};
+
 //CoverViewer Preview Track draw karyotypes
 CoverViewer.prototype.PreviewTrackKaryotypesDraw = function()
 {
-  //Set the karyotypes status
-  this.preview.status = 'karyotypes';
-
-  //Get the canvas
-  var canvas = this.preview.Layer(1);
-
-  //Clear
-  canvas.Clear();
+  //Clear all the canvas layers
+  this.PreviewTrackClear();
 
   //Draw the karyotypes
-  this.preview.KaryotypesDraw(canvas);
-
+  this.preview.KaryotypesDraw();
 };
 
 //CoverViewer Preview track karyotypes mouse up
@@ -52,34 +64,63 @@ CoverViewer.prototype.PreviewTrackKaryotypesMouseUp = function(x, y)
   //Get the chromosome info
   var chr = this.preview.GetChromosomeByIndex(index);
 
-  //Show in console
-  console.log(chr);
+  //Set the chromosome
+  this.preview.SetChromosomeNow(index);
+
+  //Set the chromosome status
+  this.draw.status = 'chromosome';
+
+  //Draw the chromosome
+  this.Draw();
 };
 
 //CoverViewer Preview track draw chromosome
 CoverViewer.prototype.PreviewTrackChromsomeDraw = function()
 {
-  //Set the chromosome status
-  this.preview.status = 'chromosome';
-
-  //Get the canvas
-  var canvas = this.preview.Layer(1);
-
-  //Clear the canvas
-  canvas.Clear();
+  //Clear all the canvas layers
+  this.PreviewTrackClear();
 
   //Draw the chromosome
-  this.preview.ChromosomeDraw(canvas);
+  this.preview.ChromosomeDraw();
+};
+
+//CoverViewer Preview track chromosome mouse move
+CoverViewer.prototype.PreviewTrackChromsomeMoseMove = function(x, y)
+{
+  //Draw the position label
+  this.preview.ChromosomeDrawPosition(x, y);
+
+  //Check for draw the region label
+  this.preview.ChromosomeDrawRegionLabel(x, y);
+};
+
+//CoverViewer Preview track chromosome mouse up
+CoverViewer.prototype.PreviewTrackChromsomeMoseUp = function(x, y)
+{
+  //Get the region index
+  var index = this.preview.ChromosomeClickRegion(x, y);
+
+  //Check the region index
+  if(index < 0){ return; }
+
+  //Get the region
+  var region = this.preview.GetRegion(index);
+
+  //Join the region
+  var r = jvizRegion.Join(region);
+
+  //Open the region
+  this.GoTo(r);
 };
 
 //CoverViewer Preview Draw preview region
 CoverViewer.prototype.PreviewTrackPreviewDraw = function()
 {
-  //Save the down canvas
-  var canvas = this.preview.Layer(0);
+  //Clear all the canvas layers
+  this.PreviewTrackClear();
 
-  //Clear the layer
-	canvas.Clear();
+  //Save the middle canvas
+  var canvas = this.preview.Layer(2);
 
   //Save the start position
   this.preview.draw.start = this.draw.start;
@@ -184,14 +225,17 @@ CoverViewer.prototype.PreviewTrackBarRegionInfo = function()
   reg = reg + ', end: ' + this.preview.draw.end;
 
   //Show the region info
-  this.preview.SetTitle(this.preview.title, reg);
+  this.preview.SetTitle(this.preview.title);
+
+  //Show the subtitle
+  this.preview.SetSubtitle(reg);
 };
 
 //CoverViewer Draw Preview Window
 CoverViewer.prototype.PreviewTrackPreviewDrawWindow = function()
 {
   //Get the canvas layer up
-  var canvas = this.preview.Layer(1);
+  var canvas = this.preview.Layer(3);
 
   //Clear the layer
 	canvas.Clear();
@@ -245,7 +289,7 @@ CoverViewer.prototype.PreviewTrackPreviewDrawWindow = function()
 CoverViewer.prototype.PreviewTrackPreviewDrawLabel = function()
 {
   //Get the canvas layer up
-  var canvas = this.preview.Layer(1);
+  var canvas = this.preview.Layer(3);
 
   //Save the position x
   var posx = this.preview.window.start + this.preview.window.width/2 + this.preview.draw.margin.left;
@@ -360,8 +404,8 @@ CoverViewer.prototype.PreviewTrackEvents = function(action, event, x, y)
   //Prevent default
 	event.preventDefault();
 
-  //Check for preview status
-  if(this.preview.status === 'preview')
+  //Check for cover status
+  if(this.draw.status === 'cover')
   {
     //Check for move action
     if(action === 'move'){ this.PreviewTrackPreviewMouseMove(x, y); }
@@ -374,13 +418,17 @@ CoverViewer.prototype.PreviewTrackEvents = function(action, event, x, y)
   }
 
   //Check for chromosome status
-  else if(this.preview.status === 'chromosome')
+  else if(this.draw.status === 'chromosome')
   {
+    //Check for move action
+    if(action === 'move'){ this.PreviewTrackChromsomeMoseMove(x, y); }
 
+    //Check for up action
+    else if(action === 'up'){ this.PreviewTrackChromsomeMoseUp(x, y); }
   }
 
   //Check for karyotype status
-  else if(this.preview.status === 'karyotypes')
+  else if(this.draw.status === 'karyotypes')
   {
     //Check for up action
     if(action === 'up'){ this.PreviewTrackKaryotypesMouseUp(x, y); }
