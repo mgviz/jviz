@@ -37,6 +37,13 @@ function jvizToolTrack(obj)
 	this.head.arrow.id = this.head.id + '-arrow'; //Track arrow ID
 	this.head.arrow.class = this.head.class + '-arrow'; //Track arrow Class
 
+	//Track head loading
+	this.head.loading = {};
+	this.head.loading.show = true; //Show track head loading
+	this.head.loading.id = this.head.id + '-loading'; //Track loading ID
+	this.head.loading.class = this.head.class + '-loading'; //Track loading Class
+	this.head.loading.active = false; //Track loading active
+
 	//Track body
 	this.body = {};
 	this.body.id = this.id + '-body'; //Body ID
@@ -99,6 +106,13 @@ jvizToolTrack.prototype.BuildHead = function()
 	{
 		//Add the track title
 		div = div + '<span id="' + this.head.title.id + '" class="' + this.head.title.class + '"></span>';
+	}
+
+	//Check for show the loading
+	if(this.head.loading.show === true)
+	{
+		//Add the loading
+		div = div + '<div id="' + this.head.loading.id + '" class="' + tgis.head.loading.class + '"></div>';
 	}
 
 	//Close the track head
@@ -166,6 +180,33 @@ jvizToolTrack.prototype.Hide = function()
 
 	//Set active as false
 	this.active = false;
+};
+
+//jvizToolTrack Show loading
+jvizToolTrack.prototype.LoadingShow = function()
+{
+	//Set as active
+	this.head.loading.active = true;
+
+	//Show
+	$('#' + this.head.loading.id).css('display', 'inline-block');
+};
+
+//jvizToolTrack Hide Loading
+jvizToolTrack.prototype.LoadingHide = function()
+{
+	//Set as inactive
+	this.head.loading.active = false;
+
+	//Hide
+	$('#' + this.head.loading.id).css('display', 'none');
+};
+
+//jvizToolTrack Loading status
+jvizToolTrack.prototype.LoadingStatus = function()
+{
+	//Return the loading status
+	return this.head.loading.status;
 };
 
 //jvizToolTrack Events caller
