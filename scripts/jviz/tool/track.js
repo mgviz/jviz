@@ -112,7 +112,7 @@ jvizToolTrack.prototype.BuildHead = function()
 	if(this.head.loading.show === true)
 	{
 		//Add the loading
-		div = div + '<div id="' + this.head.loading.id + '" class="' + tgis.head.loading.class + '"></div>';
+		div = div + '<div id="' + this.head.loading.id + '" class="' + this.head.loading.class + '"></div>';
 	}
 
 	//Close the track head
