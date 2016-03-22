@@ -27,9 +27,17 @@ function jvizToolTrack(obj)
 	this.head.title.id = this.head.id + '-title'; //Track title ID
 	this.head.title.class = this.head.class + '-title'; //Track title ID
 
+	//Track head title title container
+	this.head.title.title = {};
+	this.head.title.title.id = this.head.title.id + '-title'; //Title ID
+	this.head.title.title.class = this.head.title.class + '-title'; //Title class
+	this.head.title.title.text = ''; //Title text
+
 	//Track head subtitle
 	this.head.title.subtitle = {};
+	this.head.title.subtitle.id = this.head.title.id + '-subtitle'; //Track subtitle ID
 	this.head.title.subtitle.class = this.head.title.class + '-subtitle'; //Subtitle class
+	this.head.title.subtitle.text = ''; //Subtitle text
 
 	//Track head arrow
 	this.head.arrow = {};
@@ -118,7 +126,16 @@ jvizToolTrack.prototype.BuildHead = function()
 	if(this.head.title.show === true)
 	{
 		//Add the track title
-		div = div + '<span id="' + this.head.title.id + '" class="' + this.head.title.class + '"></span>';
+		div = div + '<div id="' + this.head.title.id + '" class="' + this.head.title.class + '">';
+
+		//Add the track title
+		div = div + '<span id="' + this.head.title.title.id + '" class="' + this.head.title.title.class + '">' + this.head.title.title.text + '</span>';
+
+		//Add the track subtitle
+		div = div + '<span id="' + this.head.title.subtitle.id + '" class="' + this.head.title.subtitle.class + '">' + this.head.title.subtitle.text + '</span>';
+
+		//Close the track title
+		div = div + '</div>';
 	}
 
 	//Check for show the loading
@@ -159,20 +176,24 @@ jvizToolTrack.prototype.Resize = function()
 };
 
 //jvizToolTrack set track title
-jvizToolTrack.prototype.SetTitle = function(title, subtitle)
+jvizToolTrack.prototype.SetTitle = function(t)
 {
-	//Add the title
-	var text = title;
-
-	//Check for the subtitle
-	if(typeof subtitle !== 'undefined')
-	{
-		text = text + ' <span class="' + this.head.title.subtitle.class + '">' + subtitle + '</span>';
-	}
+	//Save the title
+	this.head.title.title.text = t;
 
 	//Show the title
-	$('#' + this.head.title.id).html(text);
+	$('#' + this.head.title.title.id).html(t);
 };
+
+//jvizToolTrack set track subtitle
+jvizToolTrack.prototype.SetSubtitle = function(t)
+{
+	//Save the subtitle
+	this.head.title.subtitle.text = t;
+
+	//Show the subtitle
+	$('#' + this.head.title.subtitle.id).html(t);
+}
 
 //jvizToolTrack set body content
 jvizToolTrack.prototype.Content = function(div)
