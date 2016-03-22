@@ -450,18 +450,46 @@ CoverViewer.prototype.PreviewTrackEvents = function(action, event, x, y)
   }
 };
 
+//CoverViewer Preview Track Return
+CoverViewer.prototype.PreviewTrackReturn = function(event)
+{
+  //Prevent default
+	event.preventDefault();
+
+  //Check the actual status
+  if(this.draw.status === 'chromosome')
+  {
+    //Change the status
+    this.draw.status = 'karyotypes';
+  }
+  else if(this.draw.status === 'cover')
+  {
+    //Change the status
+    this.draw.status = 'chromosome';
+  }
+
+  //Draw
+  this.Draw();
+};
+
 //CoverViewer Preview Track mouse function event
 function CoverViewerPreviewTrackEvents(_this)
 {
-	//Save the ID
-  var _id = '#' + _this.preview.id;
+	//Save the canvas ID
+  var _cv = '#' + _this.preview.CanvasClickID();
+
+  //Get the action button ID
+  var _ac = '#' + _this.preview.ActionID();
 
   //Mouse up
-  $(_id).mouseup(function(e){ _this.PreviewTrackEvents('up', e,  e.pageX - $(this).offset().left, e.pageY - $(this).offset().top); });
+  $(_cv).mouseup(function(e){ _this.PreviewTrackEvents('up', e,  e.pageX - $(this).offset().left, e.pageY - $(this).offset().top); });
 
   //Mouse down
-  $(_id).mousedown(function(e){ _this.PreviewTrackEvents('down', e, e.pageX - $(this).offset().left, e.pageY - $(this).offset().top); });
+  $(_cv).mousedown(function(e){ _this.PreviewTrackEvents('down', e, e.pageX - $(this).offset().left, e.pageY - $(this).offset().top); });
 
   //Mouse move
-  $(_id).mousemove(function(e){ _this.PreviewTrackEvents('move', e, e.pageX - $(this).offset().left, e.pageY - $(this).offset().top); });
+  $(_cv).mousemove(function(e){ _this.PreviewTrackEvents('move', e, e.pageX - $(this).offset().left, e.pageY - $(this).offset().top); });
+
+  //Action button
+  $(_ac).mousedown(function(e){ _this.PreviewTrackReturn(e); });
 }
