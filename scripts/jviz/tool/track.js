@@ -44,6 +44,19 @@ function jvizToolTrack(obj)
 	this.head.loading.class = this.head.class + '-loading'; //Track loading Class
 	this.head.loading.active = false; //Track loading active
 
+	//Track head loading animation
+	this.head.loading.animation = {};
+	this.head.loading.animation.id = this.head.loading.id + '-animation'; //Loading animation ID
+	this.head.loading.animation.class = this.head.loading.class + '-animation'; //Loading animation class
+
+	//Track head action button
+	this.head.action = {};
+	this.head.action.show = true; //Show action button
+	this.head.action.id = this.head.id + '-action'; //Action button ID
+	this.head.action.class = this.head.class + '-action'; //Action button class
+	this.head.action.active = false; //Action button active
+	this.head.action.title = ''; //Action button title
+
 	//Track body
 	this.body = {};
 	this.body.id = this.id + '-body'; //Body ID
@@ -112,7 +125,20 @@ jvizToolTrack.prototype.BuildHead = function()
 	if(this.head.loading.show === true)
 	{
 		//Add the loading
-		div = div + '<div id="' + this.head.loading.id + '" class="' + this.head.loading.class + '"></div>';
+		div = div + '<div id="' + this.head.loading.id + '" class="' + this.head.loading.class + '">';
+
+		//Add the loading animation
+		div = div + '<div id="' + this.head.loading.animation.id + '" class="' + this.head.loading.animation.class + '"></div>';
+
+		//Close the loading div
+		div = div + '</div>';
+	}
+
+	//Check for show the action button
+	if(this.head.action.show === true)
+	{
+		//Add the action button
+		div = div + '<div id="' + this.head.action.id + '" class="' + this.head.action.class + '">' + this.head.action.title + '</div>';
 	}
 
 	//Close the track head
