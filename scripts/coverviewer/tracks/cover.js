@@ -7,11 +7,11 @@ CoverViewer.prototype.CoverTrack = function()
 //CoverViewer Cover Track Show region info
 CoverViewer.prototype.CoverTrackBarRegionInfo = function()
 {
-  //Generate the region
-  var reg = ' ' + this.cover.draw.start + '-' + this.cover.draw.end;
+  //Show the title
+  this.cover.SetTitle(this.cover.title);
 
-  //Show on the bar
-  this.cover.SetTitle(this.cover.title, reg);
+  //Show the subtitle
+  this.cover.SetSubtitle(' ' + this.cover.draw.start + '-' + this.cover.draw.end);
 };
 
 //CoverViewer Cover track draw
