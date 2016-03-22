@@ -68,6 +68,22 @@
 			width: 35px;
 		}
 
+		//Action button
+		&-action
+		{
+			//Include the head button
+			@include jvizToolTrackHeadBtn;
+
+			//Change the background color
+			background-color: $jvizRed;
+
+			//Update the font style
+			font-weight: bold;
+
+			//Update the position
+			float: right;
+		}
+
 		//Track arrow for close
 		&-arrow { @include jvizToolTrackHeadIcon; float: left; background-image: url('../img/arrows/up.svg'); }
 	}
