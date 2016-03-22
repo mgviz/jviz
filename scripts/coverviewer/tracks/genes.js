@@ -7,11 +7,11 @@ CoverViewer.prototype.GenesTrack = function(opt)
 //CoverViewer Genes Track Show specie info
 CoverViewer.prototype.GenesTrackBarSpecieInfo = function()
 {
-  //Generate the region
-  var spe = this.data.genes.specie + ' (' + this.data.genes.assembly + ')';
+  //Show the title
+  this.genes.SetTitle(this.genes.title);
 
-  //Show in the bar
-  this.genes.SetTitle(this.genes.title, spe);
+  //Show the subtitle
+  this.genes.SetSubtitle(this.data.genes.specie + ' (' + this.data.genes.assembly + ')');
 };
 
 //CoverViewer Genes Track height
