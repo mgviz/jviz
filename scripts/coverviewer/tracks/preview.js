@@ -50,6 +50,9 @@ CoverViewer.prototype.PreviewTrackKaryotypesDraw = function()
 
   //Draw the karyotypes
   this.preview.KaryotypesDraw();
+
+  //Hide the action button
+  this.preview.ActionHide();
 };
 
 //CoverViewer Preview track karyotypes mouse up
@@ -82,6 +85,12 @@ CoverViewer.prototype.PreviewTrackChromsomeDraw = function()
 
   //Draw the chromosome
   this.preview.ChromosomeDraw();
+
+  //Set the action button title
+  this.preview.ActionTitle(this.preview.head.action.karyotypes);
+
+  //Show the action button
+  this.preview.ActionShow();
 };
 
 //CoverViewer Preview track chromosome mouse move
@@ -116,6 +125,12 @@ CoverViewer.prototype.PreviewTrackChromsomeMoseUp = function(x, y)
 //CoverViewer Preview Draw preview region
 CoverViewer.prototype.PreviewTrackPreviewDraw = function()
 {
+  //Set the action button title
+  this.preview.ActionTitle(this.preview.head.action.chromosome);
+
+  //Show the action button
+  this.preview.ActionShow();
+
   //Clear all the canvas layers
   this.PreviewTrackClear();
 
