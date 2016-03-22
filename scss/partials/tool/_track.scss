@@ -1,3 +1,6 @@
+//Import partials
+@import "../animation";
+
 //Tool Track mixin
 @mixin jvizToolTrack
 {
@@ -34,6 +37,35 @@
 				//Subtitle margin
 				margin: { left: 10px; }
 			}
+		}
+
+		//Track loading
+		&-loading
+		{
+			//Animation div
+			&-animation
+			{
+				//Include the default animation
+				@include jvizAnimation;
+
+				//Update the middle circle width and height
+				width: 8px; height: 8px;
+
+				//Update the left circle width and height
+				&:before { width: 8px; height: 8px; left: -12px; }
+
+				//Update the right circle width and height
+				&:after { width: 8px; height: 8px; left: 12px;}
+
+				//Update the margin top
+				margin-top: 7px;
+			}
+
+			//Include the head button
+			@include jvizToolTrackHeadBtn;
+
+			//Update the loading width
+			width: 35px;
 		}
 
 		//Track arrow for close
