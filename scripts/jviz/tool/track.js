@@ -256,6 +256,43 @@ jvizToolTrack.prototype.LoadingStatus = function()
 	return this.head.loading.status;
 };
 
+//jvizToolTrack Action button show
+jvizToolTrack.prototype.ActionShow = function()
+{
+	//Set active as true
+	this.head.action.active = true;
+
+	//Show the action button
+	$('#' + this.head.action.id).clss('display', 'inline-block');
+};
+
+//jvizToolTrack Action button hide
+jvizToolTrack.prototype.ActionHide = function()
+{
+	//Set active as false
+	this.head.action.active = false;
+
+	//Hide the action button
+	$('#' + this.head.action.id).clss('display', 'none');
+};
+
+//jvizToolTrack Action button set title
+jvizToolTrack.prototype.ActionTitle = function(t)
+{
+	//Save the title
+	this.head.action.title = t;
+
+	//Show on the div
+	$('#' + this.head.action.id).html(t);
+};
+
+//jvizToolTrack Action button ID
+jvizToolTrack.prototype.ActionID = function()
+{
+	//Return the action button ID
+	return this.head.action.id;
+};
+
 //jvizToolTrack Events caller
 jvizToolTrack.prototype.Events = function(){ };
 
