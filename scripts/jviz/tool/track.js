@@ -142,7 +142,7 @@ jvizToolTrack.prototype.BuildHead = function()
 	if(this.head.loading.show === true)
 	{
 		//Add the loading
-		div = div + '<div id="' + this.head.loading.id + '" class="' + this.head.loading.class + '">';
+		div = div + '<div id="' + this.head.loading.id + '" class="' + this.head.loading.class + '" style="display:none;">';
 
 		//Add the loading animation
 		div = div + '<div id="' + this.head.loading.animation.id + '" class="' + this.head.loading.animation.class + '"></div>';
