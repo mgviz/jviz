@@ -65,7 +65,7 @@ CoverViewer.prototype.PreviewTrackKaryotypesDraw = function()
 CoverViewer.prototype.PreviewTrackKaryotypesTitle = function()
 {
   //Set the preview track title
-  this.preview.SetTitle('Karyotypes');
+  this.preview.SetTitle('Karyotype');
 
   //Set the Specie info
   this.preview.SetSubtitle(this.data.specie + ' (' + this.data.assembly + ')');
