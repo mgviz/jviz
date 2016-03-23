@@ -24,15 +24,8 @@ CoverViewer.prototype.Resize = function()
   this.Draw();
 };
 
-//Event Resize
-CoverViewer.prototype.ResizeEvntInit = function()
-{
-  //Call the event
-  CoverViewerResizeEvnt(this);
-};
-
 //Event for resize window
-function CoverViewerResizeEvnt(_this)
+function CoverViewerResizeEvents(_this)
 {
   //Add the resize event
   $(window).resize(function(){ _this.Resize(); });

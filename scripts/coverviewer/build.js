@@ -50,7 +50,7 @@ CoverViewer.prototype.Build = function()
   this.BamsParser();
 
   //Initialize the resize event
-  this.ResizeEvntInit();
+  CoverViewerResizeEvents(this);
 
   //Initialize the NAvbar events
   CoverViewerNavbarBtnEvents(this);
@@ -74,10 +74,3 @@ CoverViewer.prototype.BuildApp = function()
   //Build the app content div
   return '<div id="' + this.app.id + '" class="' + this.app.class + '"></div>';
 };
-
-//Function for build
-function CoverViewerBuildTimeOut(_this)
-{
-  //Set the build timeout
-  setTimeout(function(){ _this.Build(); }, _this.default.buildtime);
-}
