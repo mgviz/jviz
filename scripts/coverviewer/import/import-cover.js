@@ -1,12 +1,11 @@
 //CoverViewer Import coverage data
-CoverViewer.prototype.ImportDataCover = function(region)
+CoverViewer.prototype.ImportDataCover = function()
 {
   //Get the real url
   var url = this.data.cover.url;
 
   //Replace the region
-  url = url.replace(/{region}/gi, region); //Replace for region without spaces
-  url = url.replace(/{ region }/gi, region); //Replace for region with spaces
+  url = url.replace(/{region}/gi, this.draw.region);
 
   //Show in console
   console.log('CoverViewer: reading cover data from "' + url + '"');
@@ -34,7 +33,7 @@ CoverViewer.prototype.ImportDataCoverError = function(url)
   this.data.cover.busy = false;
 
   //Continue
-  this.DrawReady();
+  this.Draw();
 };
 
 //CoverViewer Track Import and parser
@@ -60,7 +59,7 @@ CoverViewer.prototype.ImportDataCoverParser = function(data)
   this.data.cover.busy = false;
 
   //Continue
-  this.DrawReady();
+  this.Draw();
 };
 
 //CoverViewer Find min and max values
