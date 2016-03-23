@@ -1,12 +1,11 @@
 //CoverViewer Import genes for region
-CoverViewer.prototype.ImportDataGenes = function(region)
+CoverViewer.prototype.ImportDataGenes = function()
 {
   //Get the real url
   var url = this.data.genes.url;
 
   //Replace the region
-  url = url.replace(/{region}/gi, region); //Replace for region without spaces
-  url = url.replace(/{ region }/gi, region); //Replace for region with spaces
+  url = url.replace(/{region}/gi, this.draw.region);
 
   //Show in console
   console.log('CoverViewer: reading genes from "' + url + '"');
@@ -34,7 +33,7 @@ CoverViewer.prototype.ImportDataGenesError = function(url)
   this.data.genes.busy = false;
 
   //Continue
-  this.DrawReady();
+  this.Draw();
 };
 
 //CoverViewer Genes Track Import and parser
@@ -57,13 +56,13 @@ CoverViewer.prototype.ImportDataGenesParser = function(data)
   this.GenesTrackHeight();
 
   //Show the specie info
-  this.GenesTrackBarSpecieInfo();
+  this.GenesTrackTitle();
 
   //Set genes busy as false
   this.data.genes.busy = false;
 
   //Continue
-  this.DrawReady();
+  this.Draw();
 };
 
 //Function for import the data with jquery
