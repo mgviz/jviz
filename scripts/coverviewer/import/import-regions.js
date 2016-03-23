@@ -30,7 +30,7 @@ CoverViewer.prototype.ImportDataRegionsError = function(url)
   this.data.regions.busy = false;
 
   //Continue
-  //this.DrawKaryotypes();
+  //this.Draw();
 };
 
 //CoverViewer regions import done
@@ -53,7 +53,7 @@ CoverViewer.prototype.ImportDataRegionsParser = function(data)
   this.data.regions.busy = false;
 
   //Continue
-  this.DrawKaryotypes();
+  this.Draw();
 };
 
 //Function for import the data with jquery
