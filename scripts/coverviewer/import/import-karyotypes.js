@@ -36,7 +36,7 @@ CoverViewer.prototype.ImportDataKaryotypesError = function(url)
   this.data.karyotypes.busy = false;
 
   //Continue
-  //this.DrawKaryotypes();
+  //this.Draw();
 };
 
 //CoverViewer karyotypes import done
@@ -59,7 +59,7 @@ CoverViewer.prototype.ImportDataKaryotypesParser = function(data)
   this.data.karyotypes.busy = false;
 
   //Continue
-  this.DrawKaryotypes();
+  this.Draw();
 };
 
 //Function for import the data with jquery
