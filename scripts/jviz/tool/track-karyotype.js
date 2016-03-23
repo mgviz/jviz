@@ -17,7 +17,7 @@ function jvizToolKaryotypeTrack(obj)
 	this.height = 160;
 
 	//Track draw margin
-	this.draw.margin = { top: 50, bottom: 40, left: 50, right: 50 };
+	this.draw.margin = { top: 50, bottom: 40, left: 70, right: 70 };
 
 	//Fill object
 	this.fill = {};
@@ -113,6 +113,7 @@ function jvizToolKaryotypeTrack(obj)
 	this.chromosome.regions.label.fill = '#ea685a'; //Regions label color
 	this.chromosome.regions.label.opacity = 1.0; //Regions label opacity
 	this.chromosome.regions.label.triangle = 6; //Regions label triangle
+	this.chromosome.regions.label.hover = -1; //Regions label hover now
 
 	//Chromosome regions label text
 	this.chromosome.regions.label.text = {};
@@ -427,6 +428,12 @@ jvizToolKaryotypeTrack.prototype.KaryotypesClick = function(x, y)
 	return -1;
 };
 
+//jvizToolKaryotypeTrack Karyotypes hover
+jvizToolKaryotypeTrack.prototype.KaryotypesHover = function(x, y)
+{
+	//Get the
+};
+
 //jvizToolKaryotypeTrack draw chromosome in detail
 jvizToolKaryotypeTrack.prototype.ChromosomeDraw = function()
 {
@@ -598,6 +605,8 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDraw = function()
 	//Calculate the position coordinate y
 	this.chromosome.position.posy = this.chromosome.posy - this.chromosome.position.margin;
 
+	//Reset the hover region
+	this.chromosome.regions.label.hover = -1;
 };
 
 //jvizToolKaryotypeTrack check chromosome click
@@ -733,21 +742,20 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDrawRegionLabel = function(x, y)
 	//Get the canvas
 	var canvas = this.Layer(3);
 
-	//Clear the canvas
-	canvas.Clear({ x: 0, y: this.chromosome.utils.posy_end, width: this.width, height: this.chromosome.utils.down });
-
 	//Check the region
 	var index = this.ChromosomeClickRegion(x, y);
 
-	//Check the index
-	if(index < 0)
-	{
-		//Remove the hand cursor
-		this.CursorRemove('hand');
+	//Check for different index
+	if(index === this.chromosome.regions.label.hover){ return; }
 
-		//Exit
-		return;
-	}
+	//Update the index
+	this.chromosome.regions.label.hover = index;
+
+	//Clear the canvas
+	canvas.Clear({ x: 0, y: this.chromosome.utils.posy_end, width: this.width, height: this.chromosome.utils.down });
+
+	//Check for null index
+	if(index < 0) { return this.CursorRemove('hand'); }
 
 	//Draw the region
 	this.ChromosomeDrawRegionLabelIndex(canvas, index, this.chromosome.regions.label.opacity);
