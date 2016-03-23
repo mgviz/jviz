@@ -61,7 +61,7 @@ function jvizToolKaryotypeTrack(obj)
 	this.karyotypes.hover.margin = { top: 10, bottom: 20, left: 10, right: 10 }; //Hover margin
 	this.karyotypes.hover.color = '#ffffff'; //Hover background color
 	this.karyotypes.hover.opacity = 1.0; //Hover background color opacity
-	this.karyotypes.hover.radius = 5; //Hover radius
+	this.karyotypes.hover.radius = 10; //Hover radius
 
 	//Regions
 	this.regions = {};
