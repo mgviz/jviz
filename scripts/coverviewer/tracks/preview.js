@@ -397,10 +397,10 @@ CoverViewer.prototype.PreviewTrackPreviewDrawLabel = function()
   canvas.Fill(this.preview.label.fill);
 
   //Get the start point
-  var text_start = this.preview.region.start;
+  var text_start = jvizMath.FormatNumber(this.preview.region.start, '.');
 
   //Get the end point
-  var text_end = this.preview.region.end;
+  var text_end = jvizMath.FormatNumber(this.preview.region.end, '.');
 
   //Get the text
   var text_txt = text_start + ' - ' + text_end;
