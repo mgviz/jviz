@@ -32,6 +32,10 @@
       opt.importKaryotypes.url = '/test/coverviewer/karyotypes.json'; //Karyotypes url
       opt.importKaryotypes.parser = function(r){ return r.chr; }; //Karyotypes parser
 
+      //Add the import regions option
+      opt.importRegions = {};
+      opt.importRegions.url = '/test/coverviewer/regions.json'; //Regions url
+
       //Add the import cover option
       opt.importCover = {};
       opt.importCover.url = '/test/coverviewer/test4.json'; //Cover url
@@ -39,11 +43,12 @@
 
       //Add the import genes option
       opt.importGenes = {};
-      opt.importGenes.url = 'http://nodebio.uv.es:4000/get/hsapiens/grch38/region/{region}'; //Genes url
+      opt.importGenes.url = 'http://bioinfolab005.uv.es:4000/get/hsapiens/grch38/region/{region}'; //Genes url
       opt.importGenes.parser = function(r){ return r; }; //Genes parser
 
       //Add the import names option
-      //opt.importNames = {};
+      opt.importNames = {};
+      opt.importNames.url = '/test/coverviewer/names.json'; //Names url
       //opt.importNames.json = ['CONTROL','BAM1','BAM2','BAM3','BAM4']; //Names object
 
       //Save the options
