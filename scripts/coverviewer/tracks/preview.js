@@ -128,8 +128,11 @@ CoverViewer.prototype.PreviewTrackChromsomeTitle = function()
   //Get the chromosome info
   var chr = this.preview.GetChromosomeNowInfo();
 
+  //Format the length
+  var l = jvizMath.FormatNumber(chr.length, '.');
+
   //Set the preview track title
-  this.preview.SetTitle('Chromosome ' + chr.id);
+  this.preview.SetTitle('Chromosome ' + chr.id + '&nbsp;&nbsp;(' + l + ' bp)');
 
   //Set the Specie info
   this.preview.SetSubtitle(this.data.specie + ' (' + this.data.assembly + ')');
@@ -284,20 +287,20 @@ CoverViewer.prototype.PreviewTrackPreviewDraw = function()
   this.PreviewTrackPreviewDrawWindow();
 
   //Show the region info
-  this.PreviewTrackBarRegionInfo();
+  this.PreviewTrackPreviewTitle();
 };
 
-//CoverViewer preview track show full region info
-CoverViewer.prototype.PreviewTrackBarRegionInfo = function()
+//CoverViewer preview track show preview title
+CoverViewer.prototype.PreviewTrackPreviewTitle = function()
 {
   //Add the chromosome
   var reg = 'Chromosome ' + this.draw.chromosome;
 
   //Add the start point
-  reg = reg + ', start: '+ this.preview.draw.start;
+  reg = reg + ', start: '+ jvizMath.FormatNumber(this.preview.draw.start, '.');
 
   //Add the end point
-  reg = reg + ', end: ' + this.preview.draw.end;
+  reg = reg + ', end: ' + jvizMath.FormatNumber(this.preview.draw.end, '.');
 
   //Show the region info
   this.preview.SetTitle(this.preview.title);
