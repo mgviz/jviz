@@ -738,6 +738,9 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDrawPosition = function(x, y)
 	//Get the real position
 	var text_text = Math.floor((x - this.chromosome.posx)/this.chromosome.scale);
 
+	//Format the real position
+	text_text = jvizMath.FormatNumber(text_text, '.');
+
 	//Text position x
 	var text_x = x;
 
