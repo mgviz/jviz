@@ -1,24 +1,96 @@
-//Use Genes Track
-CoverViewer.prototype.GenesTrack = function(opt)
+//CoverViewer Genes Track Clear
+CoverViewer.prototype.GenesTrackClear = function()
 {
+  //Clear the first layer
+  this.genes.Layer(0).Clear();
+};
 
+//CoverViewer Genes Track Draw no genes
+CoverViewer.prototype.GenesTrackDrawNoGenes = function()
+{
+  //Clean the track
+  this.GenesTrackClear();
+
+  //Get the new track size
+  this.genes.height = this.genes.draw.margin.top + this.genes.draw.margin.bottom + this.genes.nogenes.height;
+
+	//Resize the track
+	this.genes.Resize();
+
+  //Get the canvas
+  var canvas = this.genes.Layer(0);
+
+  //Get the rectangle position x
+  var rect_x = this.genes.width/2 - this.genes.nogenes.width/2;
+
+  //Get the rectangle position y
+  var rect_y = this.genes.height/2 - this.genes.nogenes.height/2;
+
+  //Get the rectangle width
+  var rect_width = this.genes.nogenes.width;
+
+  //Get the rectangle height
+  var rect_height = this.genes.nogenes.height;
+
+  //Get the rectangle radius
+  var rect_radius = this.genes.nogenes.radius;
+
+  //Draw the rectangle
+  canvas.Rect({ x: rect_x, y: rect_y, width: rect_width, height: rect_height, radius: rect_radius });
+
+  //Draw the rectangle fill color
+  canvas.Fill(this.genes.nogenes.color);
+
+  //Get the no cover title text
+  var tit_text = this.genes.nogenes.title.text;
+
+  //Calculate the no cover title position x
+  var tit_x = this.genes.width/2;
+
+  //Get the no cover title position y
+  var tit_y = this.genes.height/2 - this.genes.nogenes.height/2 + this.genes.nogenes.title.posy;
+
+  //Get the title color
+  var tit_color = this.genes.nogenes.title.color;
+
+  //Get the title font
+  var tit_font = this.genes.nogenes.title.font;
+
+  //Get the title size
+  var tit_size = this.genes.nogenes.title.size;
+
+  //Get the tittle align
+  var tit_align = this.genes.nogenes.title.align;
+
+  //Draw the title
+  canvas.Text({ x: tit_x, y: tit_y, text: tit_text, font: tit_font, size: tit_size, color: tit_color, align: tit_align });
 };
 
 //CoverViewer Genes Track Show specie info
-CoverViewer.prototype.GenesTrackBarSpecieInfo = function()
+CoverViewer.prototype.GenesTrackTitle = function()
 {
   //Show the title
   this.genes.SetTitle(this.genes.title);
 
   //Show the subtitle
-  this.genes.SetSubtitle(this.data.genes.specie + ' (' + this.data.genes.assembly + ')');
+  this.genes.SetSubtitle(this.data.specie + ' (' + this.data.assembly + ')');
+};
+
+//CoverViewer Genes Track Title Reset
+CoverViewer.prototype.GenesTrackTitleReset = function()
+{
+  //Show the title
+  this.genes.SetTitle(this.genes.title);
+
+  //Show the subtitle
+  this.genes.SetSubtitle('');
 };
 
 //CoverViewer Genes Track height
 CoverViewer.prototype.GenesTrackHeight = function()
 {
   //Number of genes in the sale block
-  var count = 0, countmax = 0;
+  var count = 0, countmax = 1;
 
   //For get the end point
   var endp = 0;
@@ -78,12 +150,6 @@ CoverViewer.prototype.GenesTrackDraw = function()
 
 	//Clear the canvas
 	canvas.Clear();
-
-  //Calculate the draw width
-  //this.genes.draw.width = this.genes.width - this.genes.draw.margin.left - this.genes.draw.margin.right;
-
-  //Calculate the draw height
-  //this.genes.draw.height = this.genes.height - this.genes.draw.margin.top - this.genes.draw.margin.bottom;
 
   //Save the position
   this.genes.SetPosition(this.cover.draw.start, this.cover.draw.end);
@@ -240,6 +306,9 @@ CoverViewer.prototype.GenesTrackMouseMove = function(x, y)
 //CoverViewer Genes Track mosue Down event
 CoverViewer.prototype.GenesTrackMouseDown = function(x, y)
 {
+  //Check the status
+  if(this.draw.status !== 'cover'){ return; }
+
   //Destroy the genes info
   this.GenesTrackInfoClear();
 
@@ -283,6 +352,9 @@ CoverViewer.prototype.GenesTrackMouseDown = function(x, y)
 //CoverViewer Genes track mouse up event
 CoverViewer.prototype.GenesTrackMouseUp = function(x, y)
 {
+  //Check the status
+  if(this.draw.status !== 'cover'){ return; }
+
   //Set mouse as false
   this.genes.mouse = false;
 
