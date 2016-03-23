@@ -14,6 +14,11 @@ function jvizToolTrack(obj)
 	this.height = 0; //Track height
 	this.active = true; //Track active
 
+	//Track cursor
+	this.cursor = {};
+	this.cursor.hand = this.class + '-cursor-hand';
+	this.cursor.move = this.class + '-cursor-move';
+
 	//Track head
 	this.head = {};
 	this.head.show = true; //Head show
@@ -199,7 +204,39 @@ jvizToolTrack.prototype.SetSubtitle = function(t)
 
 	//Show the subtitle
 	$('#' + this.head.title.subtitle.id).html(t);
-}
+};
+
+//jvizToolTrack set cursot
+jvizToolTrack.prototype.CursorSet = function(c)
+{
+	//Check for undefined
+	if(typeof c === 'undefined'){ return; }
+
+	//Set the cursor style
+	$('body').addClass(this.cursor[c]);
+};
+
+//Function for remove the cursor
+jvizToolTrack.prototype.CursorRemove = function(c)
+{
+	//Check for undefined
+	if(typeof c === 'undefined'){ var c = ''; }
+
+	//Check for null cursor
+	if(c === '')
+	{
+		//Get all the cursor styles
+		var cu = Object.keys(this.cursor);
+
+		//Remove all the cursors
+		for(var i = 0; i < cu.length; i++){ $('body').removeClass(this.cursor[cu[i]]); }
+	}
+	else
+	{
+		//Remove the cursor style
+		$('body').removeClass(this.cursor[c]);
+	}
+};
 
 //jvizToolTrack set body content
 jvizToolTrack.prototype.Content = function(div)
