@@ -740,16 +740,20 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDrawRegionLabel = function(x, y)
 	var index = this.ChromosomeClickRegion(x, y);
 
 	//Check the index
-	if(index < 0){ return; }
+	if(index < 0)
+	{
+		//Remove the hand cursor
+		this.CursorRemove('hand');
 
-	//Get the canvas
-	var canvas = this.Layer(3);
-
-	//Clear the canvas
-	canvas.Clear({ x: 0, y: this.chromosome.utils.posy_end, width: this.width, height: this.chromosome.utils.down });
+		//Exit
+		return;
+	}
 
 	//Draw the region
 	this.ChromosomeDrawRegionLabelIndex(canvas, index, this.chromosome.regions.label.opacity);
+
+	//Add the hand cursor
+	this.CursorSet('hand');
 };
 
 //jvizToolKaryotypeTrack Draw region label by index
