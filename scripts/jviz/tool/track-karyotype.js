@@ -408,16 +408,16 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 jvizToolKaryotypeTrack.prototype.KaryotypesClick = function(x, y)
 {
 	//Check for click on the margin left
-	if(x < this.draw.margin.left + this.karyotypes.margin){ return; }
+	if(x < this.draw.margin.left + this.karyotypes.margin){ return -1; }
 
 	//Check for click on the margin right
-	if(this.draw.margin.left + this.draw.width - this.karyotypes.margin < x){ return; }
+	if(this.draw.margin.left + this.draw.width - this.karyotypes.margin < x){ return -1; }
 
 	//Check for click on the margin top
-	if(y < this.draw.margin.top){ return; }
+	if(y < this.draw.margin.top){ return -1; }
 
 	//Check for click on the margin bottom
-	if(this.draw.margin.top + this.draw.height < y){ return; }
+	if(this.draw.margin.top + this.draw.height < y){ return -1; }
 
 	//Read all the chromosomes positions
 	for(var i = 0; i < this.karyotypes.positions.length; i++)
