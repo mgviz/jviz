@@ -34,8 +34,14 @@ CoverViewer.prototype.CoverTrackTitle = function()
   //Show the title
   this.cover.SetTitle(this.cover.title);
 
+  //Format the start point
+  var start = jvizMath.FormatNumber(this.cover.draw.start, '.');
+
+  //Format the end point
+  var end = jvizMath.FormatNumber(this.cover.draw.end, '.');
+
   //Show the subtitle
-  this.cover.SetSubtitle(' ' + this.cover.draw.start + '-' + this.cover.draw.end);
+  this.cover.SetSubtitle(' ' + start + '-' + end);
 };
 
 //CoverViewer Reset the cover title
@@ -45,7 +51,7 @@ CoverViewer.prototype.CoverTrackTitleReset = function()
   this.cover.SetTitle(this.cover.title);
 
   //Show the subtitle
-  this.cover.SetSubtitle('Select a region on a chromosome for visualize the coverage...');
+  this.cover.SetSubtitle('');
 };
 
 //CoverViewer Cover Track draw no cover
