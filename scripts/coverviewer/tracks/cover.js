@@ -274,7 +274,7 @@ CoverViewer.prototype.CoverTrackDrawLabel = function(px)
   canvas.Fill(this.cover.label.fill);
 
   //Save the text
-  var text_text = this.cover.hover.position.toString();
+  var text_text = jvizMath.FormatNumber(this.cover.hover.position, '.');
 
   //Save the text font
   var text_font = this.cover.label.text.font;
