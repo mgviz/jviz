@@ -470,7 +470,7 @@ jvizToolKaryotypeTrack.prototype.KaryotypesHover = function(x, y)
 	var rect_y = chr.y - this.karyotypes.hover.margin.top;
 
 	//Calculate the hover width
-	var rect_width = chr.width + this.karyotypes.hover.margin.left + this.karyotypes.hover.margin.rigth;
+	var rect_width = chr.width + this.karyotypes.hover.margin.left + this.karyotypes.hover.margin.right;
 
 	//Calculate the hover height
 	var rect_height = chr.height + this.karyotypes.hover.margin.top + this.karyotypes.hover.margin.bottom;
