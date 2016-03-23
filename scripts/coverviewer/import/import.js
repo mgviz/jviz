@@ -56,5 +56,18 @@ CoverViewer.prototype.ImportRegions = function(opt)
   if(typeof opt.parser !== 'undefined') { this.data.regions.parser = opt.parser; }
 
   //Check the json
-  if(typeof opt.json !== 'undefined') { this.data.karyotypes.json = opt.json; }
+  if(typeof opt.json !== 'undefined') { this.data.regions.json = opt.json; }
+};
+
+//CoverViewer Import Names from
+CoverViewer.prototype.ImportNames = function(opt)
+{
+  //Check url
+  if(typeof opt.url !== 'undefined') { this.data.names.url = opt.url; }
+
+  //Check parser
+  if(typeof opt.parser !== 'undefined') { this.data.names.parser = opt.parser; }
+
+  //Check the json
+  if(typeof opt.json !== 'undefined') { this.data.names.json = opt.json; }
 };
