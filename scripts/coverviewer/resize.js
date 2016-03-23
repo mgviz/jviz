@@ -20,17 +20,8 @@ CoverViewer.prototype.Resize = function()
   //Set resized as true
   this.core.resized = true;
 
-  //Check for region to draw
-  if(this.draw.region !== '')
-  {
-    //Draw the actual region
-    this.DrawReady(this.draw.region);
-  }
-  else if(this.default.test === true)
-  {
-    //Draw the test region
-    this.Draw(this.default.region);
-  }
+  //Draw
+  this.Draw();
 };
 
 //Event Resize
