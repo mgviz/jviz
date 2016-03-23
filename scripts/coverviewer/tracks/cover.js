@@ -1,17 +1,130 @@
-//Use Cover Track
-CoverViewer.prototype.CoverTrack = function()
+//CoverViewer Cover track clear
+CoverViewer.prototype.CoverTrackClear = function()
 {
+  //Clear the cover layer
+  this.CoverTrackDrawClear();
 
+  //Clear the Label layer
+  this.CoverTrackDrawLabelClear();
+};
+
+//CoverViewer Cover Track Draw Clear
+CoverViewer.prototype.CoverTrackDrawClear = function()
+{
+  //Get the cover layer
+  var canvas = this.cover.Layer(0);
+
+  //Clear
+  canvas.Clear();
+};
+
+//CoverViewer Cover Track Draw Label Clear
+CoverViewer.prototype.CoverTrackDrawLabelClear = function()
+{
+  //Get the label layer
+  var canvas = this.cover.Layer(1);
+
+  //Clear
+  canvas.Clear();
 };
 
 //CoverViewer Cover Track Show region info
-CoverViewer.prototype.CoverTrackBarRegionInfo = function()
+CoverViewer.prototype.CoverTrackTitle = function()
 {
   //Show the title
   this.cover.SetTitle(this.cover.title);
 
   //Show the subtitle
   this.cover.SetSubtitle(' ' + this.cover.draw.start + '-' + this.cover.draw.end);
+};
+
+//CoverViewer Reset the cover title
+CoverViewer.prototype.CoverTrackTitleReset = function()
+{
+  //Show the title
+  this.cover.SetTitle(this.cover.title);
+
+  //Show the subtitle
+  this.cover.SetSubtitle('Select a region on a chromosome for visualize the coverage...');
+};
+
+//CoverViewer Cover Track draw no cover
+CoverViewer.prototype.CoverTrackDrawNoCover = function()
+{
+  //Clear the track
+  this.CoverTrackClear();
+
+  //Get the canvas
+  var canvas = this.cover.Layer(0);
+
+  //Get the rectangle position x
+  var rect_x = this.cover.width/2 - this.cover.nocover.width/2;
+
+  //Get the rectangle position y
+  var rect_y = this.cover.height/2 - this.cover.nocover.height/2;
+
+  //Get the rectangle width
+  var rect_width = this.cover.nocover.width;
+
+  //Get the rectangle height
+  var rect_height = this.cover.nocover.height;
+
+  //Get the rectangle radius
+  var rect_radius = this.cover.nocover.radius;
+
+  //Draw the rectangle
+  canvas.Rect({ x: rect_x, y: rect_y, width: rect_width, height: rect_height, radius: rect_radius });
+
+  //Draw the rectangle fill color
+  canvas.Fill(this.cover.nocover.color);
+
+  //Get the no cover title text
+  var tit_text = this.cover.nocover.title.text;
+
+  //Calculate the no cover title position x
+  var tit_x = this.cover.width/2;
+
+  //Get the no cover title position y
+  var tit_y = this.cover.height/2 - this.cover.nocover.height/2 + this.cover.nocover.title.posy;
+
+  //Get the title color
+  var tit_color = this.cover.nocover.title.color;
+
+  //Get the title font
+  var tit_font = this.cover.nocover.title.font;
+
+  //Get the title size
+  var tit_size = this.cover.nocover.title.size;
+
+  //Get the tittle align
+  var tit_align = this.cover.nocover.title.align;
+
+  //Draw the title
+  canvas.Text({ x: tit_x, y: tit_y, text: tit_text, font: tit_font, size: tit_size, color: tit_color, align: tit_align });
+
+  //Get the no cover subtitle text
+  var sub_text = this.cover.nocover.subtitle.text;
+
+  //Calculate the no cover subtitle position x
+  var sub_x = this.cover.width/2;
+
+  //Get the no cover subtitle position y
+  var sub_y = this.cover.height/2 - this.cover.nocover.height/2 + this.cover.nocover.subtitle.posy;
+
+  //Get the subtitle color
+  var sub_color = this.cover.nocover.subtitle.color;
+
+  //Get the subtitle font
+  var sub_font = this.cover.nocover.subtitle.font;
+
+  //Get the subtitle size
+  var sub_size = this.cover.nocover.subtitle.size;
+
+  //Get the subtittle align
+  var sub_align = this.cover.nocover.subtitle.align;
+
+  //Draw the subtitle
+  canvas.Text({ x: sub_x, y: sub_y, text: sub_text, font: sub_font, size: sub_size, color: sub_color, align: sub_align });
 };
 
 //CoverViewer Cover track draw
@@ -118,7 +231,7 @@ CoverViewer.prototype.CoverTrackDraw = function(s)
   this.cover.hover.height = this.cover.draw.height;
 
   //Show the region info
-  this.CoverTrackBarRegionInfo();
+  this.CoverTrackTitle();
 };
 
 //CoverViewer draw label
@@ -322,6 +435,9 @@ CoverViewer.prototype.CoverTrackDrawValue = function(px, py)
 //CoverViewer Cover Track mouse move
 CoverViewer.prototype.CoverTrackMouseMove = function(x, y)
 {
+  //Check the status
+  if(this.draw.status !== 'cover'){ return; }
+
   //Check for move
   if(this.cover.mouse === true)
   {
@@ -352,6 +468,9 @@ CoverViewer.prototype.CoverTrackMouseMove = function(x, y)
 //CoverViewer Cover Track mosue Down event
 CoverViewer.prototype.CoverTrackMouseDown = function(x)
 {
+  //Check the status
+  if(this.draw.status !== 'cover'){ return; }
+
   //Activate the mouse
   this.cover.mouse = true;
 
@@ -374,6 +493,9 @@ CoverViewer.prototype.CoverTrackMouseDown = function(x)
 //CoverViewer Cover track mouse up event
 CoverViewer.prototype.CoverTrackMouseUp = function(x)
 {
+  //Check the status
+  if(this.draw.status !== 'cover'){ return; }
+
   //Set mouse as false
   this.cover.mouse = false;
 
