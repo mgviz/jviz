@@ -198,6 +198,13 @@ jvizToolKaryotypeTrack.prototype.GetChromosomeNow = function()
 	return this.chromosome.now;
 };
 
+//jvizToolKaryotypeTrack get chromosome now info
+jvizToolKaryotypeTrack.prototype.GetChromosomeNowInfo = function()
+{
+	//Return the chromosome info
+	return this.karyotypes.list[this.chromosome.now];
+}
+
 //jvizToolKaryotypeTrack get chromosome by index
 jvizToolKaryotypeTrack.prototype.GetChromosomeByIndex = function(index)
 {
