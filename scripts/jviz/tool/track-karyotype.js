@@ -55,6 +55,14 @@ function jvizToolKaryotypeTrack(obj)
 	this.karyotypes.text.align = 'center'; //Karyotypes text align
 	this.karyotypes.text.margin = 5; //Karyotypes text margin top
 
+	//Karyotypes hover
+	this.karyotypes.hover = {};
+	this.karyotypes.hover.hover = -1; //Hover karyotype index
+	this.karyotypes.hover.margin = { top: 10, bottom: 20, left: 10, right: 10 }; //Hover margin
+	this.karyotypes.hover.color = '#ffffff'; //Hover background color
+	this.karyotypes.hover.opacity = 1.0; //Hover background color opacity
+	this.karyotypes.hover.radius = 5; //Hover radius
+
 	//Regions
 	this.regions = {};
 	this.regions.list = {}; //Regions list
@@ -391,6 +399,9 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 			canvas.Fill({ color: this.chromosome.regions.fill, opacity: this.chromosome.regions.opacity });
 		}
 	}
+
+	//Reset the karyotypes hover
+	this.karyotypes.hover.hover = -1;
 };
 
 //jvizToolKaryotypeTrack Karyotypes find chromosome
@@ -431,7 +442,47 @@ jvizToolKaryotypeTrack.prototype.KaryotypesClick = function(x, y)
 //jvizToolKaryotypeTrack Karyotypes hover
 jvizToolKaryotypeTrack.prototype.KaryotypesHover = function(x, y)
 {
-	//Get the
+	//Get the hover chromosome
+	var index = this.KaryotypesClick(x, y);
+
+	//Check the index
+	if(index === this.karyotypes.hover.hover){ return; }
+
+	//Update the index
+	this.karyotypes.hover.hover = index;
+
+	//Get the canvas
+	var canvas = this.Layer(1);
+
+	//Clear the canvas
+	canvas.Clear();
+
+	//Check for no chromosome
+	if(index < 0){ return; }
+
+	//Get the chromosome position
+	var chr = this.karyotypes.positions[index];
+
+	//Calculate the hover position x
+	var rect_x = chr.posx - this.karyotypes.hover.margin.left;
+
+	//Calculate the hover position y
+	var rect_y = chr.posy - this.karyotypes.hover.margin.top;
+
+	//Calculate the hover width
+	var rect_width = chr.width + this.karyotypes.hover.margin.left + this.karyotypes.hover.margin.rigth;
+
+	//Calculate the hover height
+	var rect_height = chr.height + this.karyotypes.hover.margin.top + this.karyotypes.hover.margin.bottom;
+
+	//Get the hover radius
+	var rect_radius = this.karyotypes.hover.radius;
+
+	//Draw
+	canvas.Rect({ x: rect_x, y: rect_y, width: rect_width, height: rect_height, radius: rect_radius });
+
+	//Set the fill color
+	canvas.Fill({ color: this.karyotypes.hover.color, opacity: this.karyotypes.hover.opacity });
 };
 
 //jvizToolKaryotypeTrack draw chromosome in detail
@@ -739,9 +790,6 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDrawPosition = function(x, y)
 //jvizToolKaryotypeTrack Draw region label
 jvizToolKaryotypeTrack.prototype.ChromosomeDrawRegionLabel = function(x, y)
 {
-	//Get the canvas
-	var canvas = this.Layer(3);
-
 	//Check the region
 	var index = this.ChromosomeClickRegion(x, y);
 
@@ -750,6 +798,9 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDrawRegionLabel = function(x, y)
 
 	//Update the index
 	this.chromosome.regions.label.hover = index;
+
+	//Get the canvas
+	var canvas = this.Layer(3);
 
 	//Clear the canvas
 	canvas.Clear({ x: 0, y: this.chromosome.utils.posy_end, width: this.width, height: this.chromosome.utils.down });
