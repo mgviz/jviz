@@ -16,8 +16,11 @@ jvizMath.Zeros = function(num)
 
 //Format number
 //Found in http://stackoverflow.com/questions/2254185/regular-expression-for-formatting-numbers-in-javascript
-jvizMath.FormatNumber = function(num)
+jvizMath.FormatNumber = function(num, sep)
 {
+	//Check the separator
+	if(typeof sep === 'undefined'){ var sep = ','; }
+
 	//Return the formatted number
-	return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+	return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' + sep);
 };
