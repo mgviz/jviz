@@ -1,5 +1,6 @@
 //Import partials
 @import "../animation";
+@import "../cursor";
 
 //Tool Track mixin
 @mixin jvizToolTrack
@@ -9,6 +10,9 @@
 
 	//Track closed
 	&-closed > &-head &-head-arrow { transform: rotate(180deg); }
+
+	//Track cursor
+	&-cursor { @include jvizCursor; } 
 
 	//Tracks head
 	&-head
