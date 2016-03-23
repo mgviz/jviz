@@ -45,6 +45,9 @@ CoverViewer.prototype.PreviewTrackClear = function()
 //CoverViewer Preview Track draw karyotypes
 CoverViewer.prototype.PreviewTrackKaryotypesDraw = function()
 {
+  //Remove the hand cursor
+  this.preview.CursorRemove('hand');
+
   //Clear all the canvas layers
   this.PreviewTrackClear();
 
@@ -53,6 +56,19 @@ CoverViewer.prototype.PreviewTrackKaryotypesDraw = function()
 
   //Hide the action button
   this.preview.ActionHide();
+
+  //Show the title
+  this.PreviewTrackKaryotypesTitle();
+};
+
+//CoverViewer Preview Track Karyotypes title
+CoverViewer.prototype.PreviewTrackKaryotypesTitle = function()
+{
+  //Set the preview track title
+  this.preview.SetTitle('Karyotypes');
+
+  //Set the Specie info
+  this.preview.SetSubtitle(this.data.specie + ' (' + this.data.assembly + ')');
 };
 
 //CoverViewer Preview track karyotypes mouse up
@@ -73,24 +89,50 @@ CoverViewer.prototype.PreviewTrackKaryotypesMouseUp = function(x, y)
   //Set the chromosome status
   this.draw.status = 'chromosome';
 
-  //Draw the chromosome
-  this.Draw();
+  //Show loading
+  this.preview.LoadingShow();
+
+  //Draw
+  CoverViewerDraw(this);
+};
+
+//CoverViewer Preview Track karyotypes mouse move
+CoverViewer.prototype.PreviewTrackKaryotypesMouseMove = function(x, y)
+{
+  //Draw the karyotypes hover
+  this.preview.KaryotypesHover(x, y);
 };
 
 //CoverViewer Preview track draw chromosome
 CoverViewer.prototype.PreviewTrackChromsomeDraw = function()
 {
+  //Remove the hand cursor
+  this.preview.CursorRemove('hand');
+
   //Clear all the canvas layers
   this.PreviewTrackClear();
 
   //Draw the chromosome
   this.preview.ChromosomeDraw();
 
-  //Set the action button title
-  this.preview.ActionTitle(this.preview.head.action.karyotypes);
-
   //Show the action button
   this.preview.ActionShow();
+
+  //Show the title
+  this.PreviewTrackChromsomeTitle();
+};
+
+//Coverviewer Preview track chromosome title
+CoverViewer.prototype.PreviewTrackChromsomeTitle = function()
+{
+  //Get the chromosome info
+  var chr = this.preview.GetChromosomeNowInfo();
+
+  //Set the preview track title
+  this.preview.SetTitle('Chromosome ' + chr.id);
+
+  //Set the Specie info
+  this.preview.SetSubtitle(this.data.specie + ' (' + this.data.assembly + ')');
 };
 
 //CoverViewer Preview track chromosome mouse move
@@ -118,15 +160,24 @@ CoverViewer.prototype.PreviewTrackChromsomeMoseUp = function(x, y)
   //Join the region
   var r = jvizRegion.Join(region);
 
+  //Show preview loading
+	this.preview.LoadingShow();
+
+	//Show cover loading
+	this.cover.LoadingShow();
+
+	//Show genes loading
+	this.genes.LoadingShow();
+
   //Open the region
-  this.GoTo(r);
+  CoverViewerGoTo(this, r);
 };
 
 //CoverViewer Preview Draw preview region
 CoverViewer.prototype.PreviewTrackPreviewDraw = function()
 {
-  //Set the action button title
-  this.preview.ActionTitle(this.preview.head.action.chromosome);
+  //Remove the hand cursor
+  this.preview.CursorRemove('hand');
 
   //Show the action button
   this.preview.ActionShow();
@@ -149,11 +200,20 @@ CoverViewer.prototype.PreviewTrackPreviewDraw = function()
   //Calculate the scale
   this.preview.draw.scale = this.preview.draw.length/this.preview.draw.width;
 
+  //Get the preview zone position x
+  this.preview.zone.posx = this.preview.draw.margin.left;
+
+  //Get the preview zone position y
+  this.preview.zone.posy = this.preview.height/2 - this.preview.zone.height/2;
+
+  //Get the preview zone width
+  this.preview.zone.width = this.preview.draw.width;
+
   //Check for adjust the data
   if(this.core.resized === true || this.preview.data === null)
   {
     //Adjust the data
-    this.preview.data = this.DataGen(this.preview.draw.height);
+    this.preview.data = this.DataGen(this.preview.zone.height);
 
     //Apply the Gauss filter
     //this.preview.data = this.GaussFilter(this.preview.data);
@@ -173,10 +233,10 @@ CoverViewer.prototype.PreviewTrackPreviewDraw = function()
   }
 
   //Real position counter
-  var p = this.preview.draw.margin.left;
+  var p = this.preview.zone.posx;
 
   //Read all the positions
-  for(var i = 0; i < this.preview.draw.width; i++)
+  for(var i = 0; i < this.preview.zone.width; i++)
   {
     //Get the real index
     var index = Math.floor(this.preview.draw.start + i*this.preview.draw.scale);
@@ -188,7 +248,7 @@ CoverViewer.prototype.PreviewTrackPreviewDraw = function()
     for(var j = 0; j < this.bams.num; j++)
     {
       //Calculate the y position
-      var py = this.preview.height - this.preview.draw.margin.bottom - cover[j];
+      var py = this.preview.zone.posy + this.preview.zone.height - cover[j];
 
       //Push
       lines[j].push([p, py]);
@@ -212,13 +272,13 @@ CoverViewer.prototype.PreviewTrackPreviewDraw = function()
   this.preview.window.width = this.cover.draw.width/this.preview.draw.scale;
 
   //Calculate the window height
-  this.preview.window.height = this.preview.draw.height;
+  this.preview.window.height = this.preview.zone.height;
 
   //Reset the preview start point
   this.preview.window.start = 0;
 
   //Initialize the label position y
-  this.preview.label.posy = this.preview.height - this.preview.draw.margin.bottom + this.preview.label.margin;
+  this.preview.label.posy = this.preview.zone.posy + this.preview.zone.height + this.preview.label.margin;
 
   //Draw the window
   this.PreviewTrackPreviewDrawWindow();
@@ -282,7 +342,7 @@ CoverViewer.prototype.PreviewTrackPreviewDrawWindow = function()
   var rect_x = this.preview.window.start + this.preview.draw.margin.left;
 
   //Get the rectangle position y
-  var rect_y = this.preview.draw.margin.top;
+  var rect_y = this.preview.zone.posy;
 
   //Get the rectangle width
   var rect_width = this.preview.window.width;
@@ -445,8 +505,11 @@ CoverViewer.prototype.PreviewTrackEvents = function(action, event, x, y)
   //Check for karyotype status
   else if(this.draw.status === 'karyotypes')
   {
+    //Check for move action
+    if(action === 'move'){ this.PreviewTrackKaryotypesMouseMove(x, y); }
+
     //Check for up action
-    if(action === 'up'){ this.PreviewTrackKaryotypesMouseUp(x, y); }
+    else if(action === 'up'){ this.PreviewTrackKaryotypesMouseUp(x, y); }
   }
 };
 
@@ -468,8 +531,11 @@ CoverViewer.prototype.PreviewTrackReturn = function(event)
     this.draw.status = 'chromosome';
   }
 
+  //Show loading
+  this.preview.LoadingShow();
+
   //Draw
-  this.Draw();
+  CoverViewerDraw(this);
 };
 
 //CoverViewer Preview Track mouse function event
