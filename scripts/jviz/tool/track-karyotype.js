@@ -458,7 +458,7 @@ jvizToolKaryotypeTrack.prototype.KaryotypesHover = function(x, y)
 	canvas.Clear();
 
 	//Check for no chromosome
-	if(index < 0){ return; }
+	if(index < 0){ return this.CursorRemove('hand'); }
 
 	//Get the chromosome position
 	var chr = this.karyotypes.positions[index];
@@ -483,6 +483,9 @@ jvizToolKaryotypeTrack.prototype.KaryotypesHover = function(x, y)
 
 	//Set the fill color
 	canvas.Fill({ color: this.karyotypes.hover.color, opacity: this.karyotypes.hover.opacity });
+
+	//Add the hand cursor
+	this.CursorSet('hand');
 };
 
 //jvizToolKaryotypeTrack draw chromosome in detail
