@@ -49,7 +49,7 @@ function jvizToolKaryotypeTrack(obj)
 
 	//Karyotypes text
 	this.karyotypes.text = {};
-	this.karyotypes.text.font = 'Quicksand'; //Karyotypes Text font
+	this.karyotypes.text.font = 'Quicksand-Bold'; //Karyotypes Text font
 	this.karyotypes.text.size = '11px'; //Karyotypes text size
 	this.karyotypes.text.color = '#38b1eb'; //Karyotypes text color
 	this.karyotypes.text.align = 'center'; //Karyotypes text align
