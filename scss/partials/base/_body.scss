@@ -1,0 +1,12 @@
+//Base body
+@mixin jvizBaseBody
+{
+	//Default font
+	@include jvizFontNormal; font-size: 14px; color: $jvizNavy;
+	
+	//Default margin
+	margin: { top: 0px; bottom: 0px; left: 0px; right: 0px; }
+
+	//Default padding
+	padding: { top: 0px; bottom: 0px; left: 0px; right: 0px; }
+}
