@@ -1,5 +1,5 @@
 //Button mixin
-@mixin jvizBtn($bg, $bg_hover, $color: $jvizWhite)
+@mixin jvizFormBtn($bg, $bg_hover, $color: $jvizWhite)
 {
 	//Display
 	display: inline-block; height: 30px; transition: all 0.3s;
@@ -27,7 +27,7 @@
 }
 
 //Button icon mixin
-@mixin jvizBtnIcon($img, $color1, $color2)
+@mixin jvizFormBtnIcon($img, $color1, $color2)
 {
 	//Display
 	display: inline-block; height: 30px; width: 30px; transition: all 0.3s;
@@ -49,14 +49,14 @@
 }
 
 //Button icon light mixin
-@mixin jvizBtnIconLight($img)
+@mixin jvizFormBtnIconLight($img)
 {
 	//Include the icon button light
 	@include jvizBtnIcon($img, $jvizGrey8, $jvizGrey7);
 }
 
 //Button icon dark mixin
-@mixin jvizBtnIconDark($img)
+@mixin jvizFormBtnIconDark($img)
 {
 	//Include the icon button dark
 	@include jvizBtnIcon($img, $jvizGrey2, $jvizGrey1);
