@@ -1,5 +1,5 @@
 //Button mixin
-@mixin jvizFormBtn($bg, $bg_hover, $color: $jvizWhite)
+@mixin jvizFormBtn($bg, $color: $jvizWhite)
 {
 	//Display
 	display: inline-block; height: 30px; transition: all 0.3s;
@@ -23,8 +23,20 @@
 	margin: { top: 0px; bottom: 0px; left: 5px; right: 5px; }
 
 	//Hover
-	&:hover { cursor: hand; background-color: $bg_hover; }
+	&:hover { cursor: hand; opacity: 0.8; }
 }
+
+//Color buttons
+@mixin jvizFormBtnRed { @include jvizFormBtn($jvizRed); }
+@mixin jvizFormBtnBlue { @include jvizFormBtn($jvizBlue); }
+@mixin jvizFormBtnNavy { @include jvizFormBtn($jvizNavy); }
+@mixin jvizFormBtnGreen { @include jvizFormBtn($jvizGreen); }
+@mixin jvizFormBtnGrey { @include jvizFormBtn($jvizGrey, $jvizNavy); } 
+@mixin jvizFormBtnPink { @include jvizFormBtn($jvizPink); }
+@mixin jvizFormBtnWhite { @include jvizFormBtn($jvizWhite, $jvizNavy); }
+@mixin jvizFormBtnWater { @include jvizFormBtn($jvizWater); }
+@mixin jvizFormBtnPurple { @include jvizFormBtn($jvizPurple); }
+@mixin jvizFormBtnOrange { @include jvizFormBtn($jvizOrange); }
 
 //Button icon mixin
 @mixin jvizFormBtnIcon($img, $color1, $color2)
