@@ -1,0 +1,113 @@
+//Layout for dashboard
+@mixin jvizLayoutDashboard
+{
+	//Display
+	display: block; vertical-align: top;
+
+	//Font
+	@include jvizFontNormal; font-size: 14px;
+
+	//Size
+	width: 100%; height: 100%;
+
+	//Padding
+	padding: { left: 0px; right: 0px; top: 0px; bottom: 0px; }
+
+	//Margin
+	margin: { left: 0px; right: 0px; top: 0px; bottom: 0px; }
+
+	//Panel
+	&-panel
+	{
+		//Display
+		display: inline-block; overflow-y: auto; vertical-align: top;
+
+		//Size
+		width: 200px; height: calc(100% - 10px); line-height: 18px;
+
+		//Colors
+		background-color: $jvizGrey3; color: $jvizWhite;
+
+		//Padding
+		padding: { left: 10px; right: 10px; top: 10px; }
+
+		//Panel Logo
+		&-logo
+		{
+			//Display
+			display: block; cursor: hand; transition: all 0.3s;
+
+			//Font
+			@include jvizFontBold; font-size: 20px;
+
+			//Text decoration
+			text-decoration: none;
+
+			//Margin
+			margin: { top: 0px; bottom: 20px; }
+
+			//Logo hover
+			&:hover { text-decoration: none; opacity: 0.8; }
+		}
+
+		//Panel box
+		&-box
+		{
+			//Display
+			display: block; width: calc(100% - 20px); line-height: 18px;
+
+			//Background
+			background-color: $jvizGrey2;
+
+			//Font
+			font-size: 14px;
+
+			//Margin
+			margin: { left: auto; right: auto; top: 10px; bottom: 10px; }
+
+			//Padding
+			padding: { top: 10px; bottom: 10px; left: 10px; right: 10px; }
+
+			//Border
+			border: { radius: 5px; }
+		}
+
+		//Panel link
+		&-link
+		{
+			//Display
+			display: block; width: calc(100% - 15px); cursor: hand; transition: all 0.3s;
+
+			//Text
+			text-decoration: none; color: $jvizWhite;
+
+			//Padding
+			padding: { top: 5px; bottom: 5px; left: 10px; right: 5px; }
+
+			//Margin
+			margin: { top: 0px; bottom: 5px; left: auto; right: auto; }
+
+			//Border
+			border-radius: 5px;
+
+			//Link hover
+			&:hover { text-decoration: none; background-color: $jvizGrey2; }
+		}
+	}
+
+	//Main content
+	&-main
+	{
+		//Display
+		display: inline-block; overflow-y: auto; vertical-align: top;
+
+		//Size
+		width: calc(100% - 255px); height: calc(100% - 10px);
+
+		//Padding
+		padding: { left: 15px; right: 15px; top: 10px; }
+
+		//Background
+		background-color: $jvizWhite;
+	}
+}
