@@ -8,6 +8,10 @@
 @import "partials/cursor";
 @import "partials/dialog";
 
+//Import base partials
+@import "partials/base/body";
+@import "partials/base/typography";
+
 //Import form partials
 @import "partials/form/btn";
 @import "partials/form/checkbox";
