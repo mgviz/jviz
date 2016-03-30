@@ -1,2 +1,13 @@
-//Import the font
-@import "font";
+//Import all mixins
+@import "all";
+
+//jviz class
+.jviz
+{
+	//Layout
+	&Layout
+	{
+		//Dashboard
+		&Dashboard { @include jvizLayoutDashboard; }
+	}
+}
