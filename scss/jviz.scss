@@ -4,11 +4,14 @@
 //jviz class
 .jviz
 {
-	//Layout
-	&Layout
+	//Base
+	&Base
 	{
-		//Dashboard
-		&Dashboard { @include jvizLayoutDashboard; }
+		//Base body
+		&Body { @include jvizBaseBody; }
+
+		//Base typography
+		&Typography { @include jvizBaseTypography; }
 	}
 
 	//Form
@@ -17,20 +20,33 @@
 		//Form input
 		&Input { @include jvizFormInput; }
 
+		//Form checkbox
+		&Checkbox { @include jvizFormCheckbox; }
+
+		//Form Switch
+		&Switch { @include jvizFormSwitch; } 
+
 		//Form buttons
 		&Btn
 		{
 			//Button colors
-			&-red { @include jvizFormBtnRed; }
-			&-blue { @include jvizFormBtnBlue; }
-			&-grey { @include jvizFormBtnGrey; }
-			&-navy { @include jvizFormBtnNavy; }
-			&-green { @include jvizFormBtnGreen; }
-			&-orange { @include jvizFormBtnOrange; }
-			&-purple { @include jvizFormBtnPurple; }
-			&-pink { @include jvizFormBtnPink; }
-			&-white { @include jvizFormBtnWhite; }
-			&-water { @include jvizFormBtnWater; }
+			&Red { @include jvizFormBtnRed; }
+			&Blue { @include jvizFormBtnBlue; }
+			&Grey { @include jvizFormBtnGrey; }
+			&Navy { @include jvizFormBtnNavy; }
+			&Green { @include jvizFormBtnGreen; }
+			&Orange { @include jvizFormBtnOrange; }
+			&Purple { @include jvizFormBtnPurple; }
+			&Pink { @include jvizFormBtnPink; }
+			&White { @include jvizFormBtnWhite; }
+			&Water { @include jvizFormBtnWater; }
 		}
+	}
+
+	//Layout
+	&Layout
+	{
+		//Dashboard
+		&Dashboard { @include jvizLayoutDashboard; }
 	}
 }
