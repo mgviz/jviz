@@ -1,8 +1,8 @@
 //Mixin for checkbox with a switch style
-@mixin jvizSwitch
+@mixin jvizFormSwitch
 {
 	//Structure:
-	// <div class="jvizSwitch" id="checkboxDiv">
+	// <div class="jvizFormSwitch" id="checkboxDiv">
 	// <input type="checkbox" value="1" id="myCheckbox" name="" />
 	// <label for="myCheckbox2"></label>
 	// <div></div>
