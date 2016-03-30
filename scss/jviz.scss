@@ -4,6 +4,12 @@
 //jviz class
 .jviz
 {
+	//Cursor
+	&Cursor { @include jvizCursor; }
+
+	//Float
+	&Float { @include jvizFloat; }
+
 	//Base
 	&Base
 	{
@@ -23,8 +29,11 @@
 		//Form checkbox
 		&Checkbox { @include jvizFormCheckbox; }
 
+		//Form label
+		&Label { @include jvizFormLabel } 
+
 		//Form Switch
-		&Switch { @include jvizFormSwitch; } 
+		&Switch { @include jvizFormSwitch; }
 
 		//Form buttons
 		&Btn
