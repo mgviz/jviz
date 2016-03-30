@@ -23,7 +23,7 @@ var output = './build/' + tool + '/';
 var paths =
 {
 	'scripts': ['scripts/' + tool + '/' + tool + '.js', 'scripts/' + tool + '/**/*'],
-	'scss': ['scss/' + tool + '.scss'],
+	'scss': ['scss/' + tool + '.scss', 'scss/font.scss'],
 	'test': ['test/' + tool + '.html']
 };
 
