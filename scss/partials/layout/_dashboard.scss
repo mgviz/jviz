@@ -23,13 +23,13 @@
 		display: inline-block; overflow-y: auto; vertical-align: top;
 
 		//Size
-		width: 200px; height: calc(100% - 10px); line-height: 18px;
+		width: 220px; height: calc(100% - 0px); line-height: 20px;
 
 		//Colors
 		background-color: $jvizGrey3; color: $jvizWhite;
 
 		//Padding
-		padding: { left: 10px; right: 10px; top: 10px; }
+		padding: { left: 0px; right: 0px; top: 0px; }
 
 		//Panel Logo
 		&-logo
@@ -37,24 +37,40 @@
 			//Display
 			display: block; cursor: hand; transition: all 0.3s;
 
-			//Font
-			@include jvizFontBold; font-size: 20px;
+			//Size
+			height: 50px; width: 100%; line-height: 50px;
 
-			//Text decoration
-			text-decoration: none;
+			//Font
+			@include jvizFontBold; font-size: 22px; text: { decoration: none; align: center; }
+
+			//Background
+			background-color: $jvizGrey2;
 
 			//Margin
-			margin: { top: 0px; bottom: 20px; }
+			margin: { top: 0px; bottom: 15px; }
 
 			//Logo hover
-			&:hover { text-decoration: none; opacity: 0.8; }
+			&:hover { text-decoration: none; color: rgba($jvizWhite, 0.6); }
+		}
+
+		//Panel text
+		&-text
+		{
+			//Display
+			display: block; width: calc(100% - 20px); line-height: 20px;
+
+			//Padding
+			padding: { left: 10px; right: 10px; top: 0px; bottom: 0px; }
+
+			//Margin
+			margin: { left: auto; right: auto; top: 15px; bottom: 15px; }
 		}
 
 		//Panel box
 		&-box
 		{
 			//Display
-			display: block; width: calc(100% - 20px); line-height: 18px;
+			display: block; width: calc(100% - 40px); line-height: 20px;
 
 			//Background
 			background-color: $jvizGrey2;
@@ -63,7 +79,7 @@
 			font-size: 14px;
 
 			//Margin
-			margin: { left: auto; right: auto; top: 10px; bottom: 10px; }
+			margin: { left: auto; right: auto; top: 15px; bottom: 15px; }
 
 			//Padding
 			padding: { top: 10px; bottom: 10px; left: 10px; right: 10px; }
@@ -76,22 +92,28 @@
 		&-link
 		{
 			//Display
-			display: block; width: calc(100% - 15px); cursor: hand; transition: all 0.3s;
+			display: block; width: calc(100% - 35px); cursor: hand; transition: all 0.3s;
 
 			//Text
 			text-decoration: none; color: $jvizWhite;
 
 			//Padding
-			padding: { top: 5px; bottom: 5px; left: 10px; right: 5px; }
+			padding: { top: 6px; bottom: 6px; left: 10px; right: 5px; }
 
 			//Margin
 			margin: { top: 0px; bottom: 5px; left: auto; right: auto; }
 
 			//Border
-			border-radius: 5px;
+			border: { radius: 5px; }
+
+			//Background
+			background-color: rgba($jvizGrey2, 0.3);
 
 			//Link hover
-			&:hover { text-decoration: none; background-color: $jvizGrey2; }
+			&:hover { text-decoration: none; background-color: rgba($jvizGrey2, 0.7); }
+
+			//Last child
+			&:last-child { margin: { bottom: 15px; } }
 		}
 	}
 
@@ -99,15 +121,34 @@
 	&-main
 	{
 		//Display
-		display: inline-block; overflow-y: auto; vertical-align: top;
+		display: inline-block; vertical-align: top;
+
+		//Overflow
+		overflow-y: scroll; overflow-x: hidden;
 
 		//Size
-		width: calc(100% - 255px); height: calc(100% - 10px);
+		width: calc(100% - 255px); height: calc(100% - 30px);
 
 		//Padding
-		padding: { left: 15px; right: 15px; top: 10px; }
+		padding: { left: 15px; right: 15px; top: 10px; bottom: 20px; }
 
 		//Background
 		background-color: $jvizWhite;
+
+		//Main bar
+		&-bar
+		{
+			//Display
+			display: block; position: fixed; top: 0px; left: 220px;
+
+			//Size
+			width: calc(100% - 235px); height: 50px; line-height: 50px;
+
+			//Background
+			background-color: $jvizGrey4;
+		}
+
+		//Main bar space
+		&-bar-space { display: block; width: 100%; height: 50px; }
 	}
 }
