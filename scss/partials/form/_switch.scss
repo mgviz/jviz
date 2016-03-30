@@ -2,11 +2,11 @@
 @mixin jvizFormSwitch
 {
 	//Structure:
-	// <div class="jvizFormSwitch" id="checkboxDiv">
-	// <input type="checkbox" value="1" id="myCheckbox" name="" />
-	// <label for="myCheckbox"></label>
-	// <div></div>
-	// </div>
+	//<div class="jvizFormSwitch" id="switchDiv">
+	//	<input type="checkbox" value="1" id="mySwitch" name="" />
+	//	<label for="mySwitch"></label>
+	//	<div></div>
+	//</div>
 
 	//Display
 	display: inline-block;
@@ -15,10 +15,7 @@
 	width: 30px; height: 16px;
 
 	//Margin
-	margin: { right: 10px; top: 12px; }
-
-	//Float
-	float: left;
+	margin: { left: 10px; right: 10px; top: 7px; bottom: 7px; }
 
 	//Position
 	position: relative;
