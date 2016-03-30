@@ -10,4 +10,27 @@
 		//Dashboard
 		&Dashboard { @include jvizLayoutDashboard; }
 	}
+
+	//Form
+	&Form
+	{
+		//Form input
+		&Input { @include jvizFormInput; }
+
+		//Form buttons
+		&Btn
+		{
+			//Button colors
+			&-red { @include jvizFormBtnRed; }
+			&-blue { @include jvizFormBtnBlue; }
+			&-grey { @include jvizFormBtnGrey; }
+			&-navy { @include jvizFormBtnNavy; }
+			&-green { @include jvizFormBtnGreen; }
+			&-orange { @include jvizFormBtnOrange; }
+			&-purple { @include jvizFormBtnPurple; }
+			&-pink { @include jvizFormBtnPink; }
+			&-white { @include jvizFormBtnWhite; }
+			&-water { @include jvizFormBtnWater; }
+		}
+	}
 }
