@@ -36,13 +36,13 @@ $teal: #00BFA5 !default;
 		@include jvizToolBar;
 
 		//Navbar Left icon button
-		&-btn-left { @include jvizBtnIconLight('../img/arrows/left.svg'); float: left; }
+		&-btn-left { @include jvizFormBtnIconLight('../img/arrows/left.svg'); float: left; }
 
 		//Navbar Right icon button
-		&-btn-right { @include jvizBtnIconLight('../img/arrows/right.svg'); float: left; }
+		&-btn-right { @include jvizFormBtnIconLight('../img/arrows/right.svg'); float: left; }
 
 		//Navbar Labels icon button
-		&-btn-labels { @include jvizBtnIconLight('../img/labels.svg'); float: right; }
+		&-btn-labels { @include jvizFormBtnIconLight('../img/labels.svg'); float: right; }
 	}
 
 	//Panels
@@ -83,10 +83,10 @@ $teal: #00BFA5 !default;
 		&-names { @include jvizFontBold; font-size: 13px; }
 
 		//Switchers
-		&-switch { @include jvizSwitch; }
+		&-switch { @include jvizFormSwitch; }
 
 		//Done button
-		&-done { @include jvizBtn($jvizGreen, $jvizGreen); margin-top: 10px; }
+		&-done { @include jvizFormBtn($jvizGreen); margin-top: 10px; }
 	}
 
 	//Foot
