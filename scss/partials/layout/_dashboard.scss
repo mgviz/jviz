@@ -132,6 +132,9 @@
 		//Padding
 		padding: { left: 15px; right: 15px; top: 10px; bottom: 20px; }
 
+		//Margin
+		margin: { top: 0px; bottom: 0px; left: auto; right: auto; }
+
 		//Background
 		background-color: $jvizWhite;
 
@@ -146,6 +149,38 @@
 
 			//Background
 			background-color: $jvizGrey4;
+
+			//Bar link
+			&-link
+			{
+				//Display
+				display: inline-block; cursor: hand; border-radius: 5px;
+
+				//Size
+				height: 30px; line-height: 30px;
+
+				//Text
+				@include jvizFontBold; text: { decoration: none; align: center; } color: $jvizWhite !important;
+
+				//Background
+				background-color: rgba($jvizGrey2, 0.3);
+
+				//Padding
+				padding: { left: 15px; right: 15px; top: 0px; bottom: 0px; }
+
+				//Margin
+				margin: { top: 10px; bottom: 0px; left: 6px; right: 6px; }
+
+				//Hover
+				&:hover
+				{
+					//Hover color
+					color: $jvizWhite !important; background-color: rgba($jvizGrey2, 0.9);
+
+					//Text
+					text-decoration: none !important;
+				}
+			}
 		}
 
 		//Main bar space
