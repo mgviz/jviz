@@ -33,17 +33,17 @@ $teal: #00BFA5 !default;
 	&-navbar
 	{
 		//Include navbar
-		@include jvizToolBar;
-
-		//Navbar Left icon button
-		&-btn-left { @include jvizFormBtnIconLight('../img/arrows/left.svg'); float: left; }
-
-		//Navbar Right icon button
-		&-btn-right { @include jvizFormBtnIconLight('../img/arrows/right.svg'); float: left; }
+		@include jvizToolNavbar;
 
 		//Navbar Labels icon button
-		&-btn-labels { @include jvizFormBtnIconLight('../img/labels.svg'); float: right; }
+		&-btn-labels { @include jvizFormBtnNavy; float: right; }
+
+		//Navbar input
+		&-input { @include jvizFormInput; }
 	}
+
+	//Alert
+	&-alert { @include jvizAlert; } 
 
 	//Panels
 	&-panel { @include jvizToolPanel; }
