@@ -1,0 +1,9 @@
+//jviz float
+@mixin jvizFloat
+{
+	//Float left
+	&-left { float: left; }
+
+	//Float right
+	&-right { float: right; }
+}
