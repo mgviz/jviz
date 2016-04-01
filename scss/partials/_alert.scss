@@ -1,0 +1,30 @@
+//jviz Alert mixin
+@mixin jvizAlert
+{
+	//Display
+	display: block; width: 550px; height: 40px; line-height: 40px; transition: all 0.2s;
+
+	//Position
+	position: fixed; top: -50px; left: calc(50% - 300px); z-index: 9999;
+
+	//Border
+	border-radius: 5px;
+
+	//Padding
+	padding: { left: 50px; right: 0px; top: 0px; bottom: 0px; }
+
+	//Alert done
+	&-done { background-color: $jvizGreen; }
+
+	//Alert warning
+	&-warning { background-color: $jvizOrange; }
+
+	//Alert error
+	&-error { background-color: $jvizRed; }
+
+	//Open class
+	&-open { top: 20px; }
+
+	//Text
+	&-text { @include jvizFontBold; font-size: 14px; color: $jvizWhite; }
+}
