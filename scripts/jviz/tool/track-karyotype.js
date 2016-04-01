@@ -185,8 +185,8 @@ jvizToolKaryotypeTrack.prototype.SetRegions = function(regions)
 		//Check the region name or label
 		re.name = (typeof re.name === 'undefined') ? 'Region ' + i : re.name;
 
-		//Chekc the region label
-		re.name = (typeof re.label === 'undefined') ? re.name : re.label;
+		//Check the region label
+		re.label = (typeof re.label === 'undefined') ? re.name : re.label;
 
 		//Save the region
 		this.regions.list[re.chromosome].push(re);
@@ -219,6 +219,26 @@ jvizToolKaryotypeTrack.prototype.GetChromosomeByIndex = function(index)
 {
 	//Return the chromosome info
 	return this.karyotypes.list[index];
+};
+
+//jvizToolKaryotypeTrack find chromosome index
+jvizToolKaryotypeTrack.prototype.FindChromosomeIndex = function(id)
+{
+	//Convert the id to lower case
+	id = id.toLowerCase();
+
+	//Read all the chromosomes
+	for(var i = 0; i < this.karyotypes.list.length; i++)
+	{
+		//Get the karyotype
+		var k = this.karyotypes.list[i];
+
+		//Check
+		if(k.id.toLowerCase() === id){ return i; }
+	}
+
+	//Default, return -1
+	return -1;
 };
 
 //jvizToolKaryotypeTrack get region info
