@@ -4,6 +4,7 @@
 @import "modules/icons";
 
 //Import partials
+@import "partials/alert";
 @import "partials/animation";
 @import "partials/cursor";
 @import "partials/dialog";
@@ -24,8 +25,8 @@
 @import "partials/layout/dashboard";
 
 //Import tool partials
-@import "partials/tool/bar";
 @import "partials/tool/canvastrack";
+@import "partials/tool/navbar";
 @import "partials/tool/panel";
 @import "partials/tool/tool";
 @import "partials/tool/track";
