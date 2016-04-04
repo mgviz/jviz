@@ -1,0 +1,35 @@
+//jviz layout components jumbotron
+@mixin jvizLayoutComponentsJumbotron
+{
+	//Display
+	display: block; width: 100%;
+
+	//Padding
+	padding: { top: 200px; bottom: 200px; }
+
+	//jumbotron title
+	&-title
+	{
+		//Display
+		display: block; width: 960px; line-height: 60px;
+
+		//Font
+		@include jvizFontBold; font-size: 50px; color: $jvizWhite;
+
+		//Margin
+		margin: { left: auto; right: auto; top: 0px; bottom: 0px; }
+	}
+
+	//Jumbotron subtitle
+	&-subtitle
+	{
+		//Display
+		display: block; width: 960px; line-height: 30px;
+
+		//Font
+		@include jvizFontNormal; font-size: 20px; color: $jvizWhite;
+
+		//Margin
+		margin: { left: auto; right: auto; top: 10px; bottom: 10px; }
+	}
+}
