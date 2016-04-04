@@ -1,0 +1,70 @@
+//jviz layout components app dashboard
+@mixin jvizLayoutComponentsApp
+{
+	//Display
+	display: block; width: 1180px; vertical-align: top;
+
+	//App panel
+	&-panel
+	{
+		//Display
+		display: inline-block; width: 270px; float: left; vertical-align: top;
+
+		//Margin
+		margin: { top: 0px; bottom: 0px; }
+
+		//Panel placed left
+		&-left { margin: { right: 10px; left: 0px; } }
+
+		//Panel placed right
+		&-right { margin: { right: 0px; left: 10px; } }
+
+		//Panel box
+		&-box
+		{
+			//Display
+			display: block; width: calc(100% - 20px); vertical-align: top;
+
+			//Background
+			background-color: $jvizGrey8;
+
+			//Border
+			border-radius: 5px;
+
+			//Padding
+			padding: { top: 10px; bottom: 10px; left: 10px; right: 10px; }
+
+			//Margin
+			margin: { top: 0px; bottom: 15px; left: auto; right: auto; }
+		}
+	}
+
+	//Main
+	&-main
+	{
+		//Display
+		display: inline-block; width: 900px; float: left; vertical-align: top;
+
+		//Main box
+		&-box
+		{
+			//Display
+			display: block; width: calc(100% - 20px); vertical-align: top;
+
+			//Background
+			background-color: $jvizGrey8;
+
+			//Border
+			border-radius: 5px;
+
+			//Padding
+			padding: { top: 10px; bottom: 10px; left: 10px; right: 10px; }
+
+			//Margin
+			margin: { top: 0px; bottom: 15px; left: auto; right: auto; }
+		}
+	}
+
+	//App after
+	&:after { content: " "; clear: both; display: table; line-height: 0; }
+}
