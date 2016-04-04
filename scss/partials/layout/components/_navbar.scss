@@ -1,0 +1,18 @@
+//jviz layout components navbar
+@mixin jvizLayoutComponentsNavbar
+{
+	//Display
+	display: block; width: 100%; height: 90px;
+
+	//Position
+	position: absolute; top: 0px; left: 0px;
+
+	//Font
+	@include jvizFontBold;
+
+	//Navbar fixed
+	&-fixed { position: fixed; }
+
+	//Navbar space
+	&-space { display: block; width: 100%; height: 90px; }
+}
