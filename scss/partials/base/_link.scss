@@ -1,0 +1,12 @@
+//Base typography link
+@mixin jvizBaseLink($color: $jvizBlue)
+{
+	//Default link style
+	color: $color; transition: all 0.3s;
+
+	//Font
+	@include jvizFontBold; text-decoration: none;
+
+	//Link hover style
+	&:hover { text-decoration: underline; cursor: hand; }
+}
