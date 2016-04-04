@@ -1,0 +1,30 @@
+//jviz Background colors
+@mixin jvizBg
+{
+	//Background blue
+	&-blue { background-color: $jvizBlue; }
+
+	//Background red
+	&-red { background-color: $jvizRed; }
+
+	//Background green
+	&-green { background-color: $jvizGreen; }
+
+	//Background orange
+	&-orange { background-color: $jvizOrange; }
+
+	//Background pink
+	&-pink { background-color: $jvizPink; }
+
+	//Background purlpe
+	&-purple { background-color: $jvizPurple; }
+
+	//Background white
+	&-white { background-color: $jvizWhite; }
+
+	//Background grey
+	&-grey { background-color: $jvizGrey; }
+
+	//Background navy
+	&-navy { background-color: $jvizNavy; }
+}
