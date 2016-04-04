@@ -1,11 +1,11 @@
 //jviz Base Typography
 @mixin jvizBaseTypography
 {
-	//Links
-	a { @include jvizBaseTypographyLink; }
-
 	//List
 	ul, ol { @include jvizBaseTypographyList; }
+
+	//Bold
+	b { @include jvizBaseTypographyBold; }
 
 	//Paragraph
 	p { @include jvizBaseTypographyParagraph; }
@@ -32,16 +32,6 @@
 	h6 { @include jvizBaseTypographyHeader6; }
 }
 
-//Base typography link
-@mixin jvizBaseTypographyLink
-{
-	//Default link style
-	color: $jvizBlue; font-weight: normal; text-decoration: none; transition: all 0.3s;
-
-	//Link hover style
-	&:hover { text-decoration: underline; cursor: hand; }
-}
-
 //Base typography lists
 @mixin jvizBaseTypographyList
 {
@@ -58,6 +48,9 @@
 		line-height: 25px;
 	}
 }
+
+//Base typography bold
+@mixin jvizBaseTypographyBold { @include jvizFontBold; }
 
 //Base typography paragraph
 @mixin jvizBaseTypographyParagraph { line-height: 20px; margin: { bottom: 15px; top: 0px; } display: block; }
