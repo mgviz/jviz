@@ -1,0 +1,15 @@
+//jviz Foot layout component
+@mixin jvizLayoutComponentsFoot
+{
+	//Display
+	display: block; width: 960px;
+
+	//Text
+	text-align: center;
+
+	//Background
+	background-color: $jvizGrey8;
+
+	//Padding
+	padding: { left: calc(50% - 480px); right: calc(50% - 480px); top: 80px; bottom: 120px; }
+}
