@@ -1,0 +1,45 @@
+//jviz Text
+@mixin jvizText
+{
+	//Text center
+	&-center { text-align: center; }
+
+	//Text right
+	&-right { text-align: right; }
+
+	//Text left
+	&-left { text-align: left; }
+
+	//Text bold
+	&-bold { font-weight: bold; }
+
+	//Text light
+	&-light { font-weight: 300; }
+
+	//Text color blue
+	&-blue { color: $jvizBlue; }
+
+	//Text color green
+	&-green { color: $jvizGreen; }
+
+	//Text color red
+	&-red { color: $jvizRed; }
+
+	//Text color orange
+	&-orange { color: $jvizOrange; }
+
+	//Text color pink
+	&-pink { color: $jvizPink; }
+
+	//Text color purple
+	&-purple { color: $jvizPurple; }
+
+	//Text color white
+	&-white { color: $jvizWhite; }
+
+	//Text color grey
+	&-grey { color: $jvizGrey; }
+
+	//Text color navy
+	&-navy { color: $jvizNavy; }
+}
