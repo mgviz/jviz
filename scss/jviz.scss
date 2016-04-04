@@ -4,17 +4,32 @@
 //jviz class
 .jviz
 {
+	//Alert
+	&Alert { @include jvizAlert; }
+
+	//Background
+	&Bg { @include jvizBg; }
+
 	//Cursor
 	&Cursor { @include jvizCursor; }
 
 	//Float
 	&Float { @include jvizFloat; }
 
+	//Grid
+	&Grid { @include jvizGrid; }
+
+	//Text
+	&Text { @include jvizText; }
+
 	//Base
 	&Base
 	{
 		//Base body
 		&Body { @include jvizBaseBody; }
+
+		//Base link
+		&Link { @include jvizBaseLink; } 
 
 		//Base typography
 		&Typography { @include jvizBaseTypography; }
@@ -30,7 +45,7 @@
 		&Checkbox { @include jvizFormCheckbox; }
 
 		//Form label
-		&Label { @include jvizFormLabel } 
+		&Label { @include jvizFormLabel }
 
 		//Form Switch
 		&Switch { @include jvizFormSwitch; }
@@ -57,5 +72,8 @@
 	{
 		//Dashboard
 		&Dashboard { @include jvizLayoutDashboard; }
+
+		//One page
+		&Onepage { @include jvizLayoutOnepage; }
 	}
 }
