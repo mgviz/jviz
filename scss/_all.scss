@@ -6,9 +6,12 @@
 //Import partials
 @import "partials/alert";
 @import "partials/animation";
+@import "partials/bg";
 @import "partials/cursor";
 @import "partials/dialog";
 @import "partials/float";
+@import "partials/grid";
+@import "partials/text";
 
 //Import base partials
 @import "partials/base/body";
@@ -21,8 +24,15 @@
 @import "partials/form/label";
 @import "partials/form/switch";
 
+//Import layouts components partials
+@import "partials/layout/components/app";
+@import "partials/layout/components/jumbotron";
+@import "partials/layout/components/main";
+@import "partials/layout/components/navbar";
+
 //Import layouts partials
 @import "partials/layout/dashboard";
+@import "partials/layout/onepage";
 
 //Import tool partials
 @import "partials/tool/canvastrack";
