@@ -13,6 +13,9 @@
 	//Cursor
 	&Cursor { @include jvizCursor; }
 
+	//Dialog
+	&Dialog { @include jvizDialog; }
+
 	//Float
 	&Float { @include jvizFloat; }
 
@@ -22,6 +25,9 @@
 	//Text
 	&Text { @include jvizText; }
 
+	//Tool tip
+	&ToolTip { @include jvizToolTip; } 
+
 	//Base
 	&Base
 	{
@@ -29,7 +35,7 @@
 		&Body { @include jvizBaseBody; }
 
 		//Base link
-		&Link { @include jvizBaseLink; } 
+		&Link { @include jvizBaseLink; }
 
 		//Base typography
 		&Typography { @include jvizBaseTypography; }
