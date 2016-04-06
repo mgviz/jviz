@@ -74,6 +74,9 @@ jvizToolNavbar.prototype.Build = function(parent)
 
 		//Check for input
 		else if(item.type === 'input'){ div = div + this.BuildInput(item); }
+
+		//Check for label
+		else if(item.type === 'label'){ div = div + this.BuildLabel(item); }
 	}
 
 	//Close the navbar div
@@ -102,6 +105,13 @@ jvizToolNavbar.prototype.BuildInput = function(obj)
 {
 	//Return the input
 	return '<input type="text" id="' + obj.id + '" class="' + obj.class + '" placeholder="' + obj.placeholder + '">';
+};
+
+//jvizToolNavbar build label
+jvizToolNavbar.prototype.BuildLabel = function(obj)
+{
+	//Return the label
+	return '<div id="' + obj.id + '" class="' + obj.class + '">' + obj.text + '</div>';
 };
 
 //jvizTool navbar button  class
@@ -176,5 +186,30 @@ function jvizToolNavbarInput(obj)
 	this.type = 'input';
 
 	//Return the input
+	return this;
+}
+
+//jvizTool navbar label class
+function jvizToolNavbarLabel(obj)
+{
+	//Check for undefined object
+	if(typeof obj === 'undefined'){ var obj = {}; }
+
+	//Label ID
+	this.id = (typeof obj.id !== 'undefined')? obj.id : '';
+
+	//Label class
+	this.class = (typeof obj.class !== 'undefined')? obj.class : 'jvizFormLabel';
+
+	//Label text
+	this.text = (typeof obj.text === 'undefined') ? '' : obj.text;
+
+	//Show label
+	this.show = true;
+
+	//Element type
+	this.type = 'label';
+
+	//Return the label
 	return this;
 }
