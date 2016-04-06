@@ -1,3 +1,6 @@
+//Import utils
+@import "utils/str-replace";
+
 //Import modules
 @import "modules/colors";
 @import "modules/font";
@@ -12,6 +15,7 @@
 @import "partials/float";
 @import "partials/grid";
 @import "partials/text";
+@import "partials/tooltip";
 
 //Import base partials
 @import "partials/base/body";
