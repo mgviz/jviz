@@ -12,7 +12,7 @@
 	&-closed > &-head &-head-arrow { transform: rotate(180deg); }
 
 	//Track cursor
-	&-cursor { @include jvizCursor; } 
+	&-cursor { @include jvizCursor; }
 
 	//Tracks head
 	&-head
@@ -95,7 +95,7 @@
 		}
 
 		//Track arrow for close
-		&-arrow { @include jvizToolTrackHeadIcon; float: left; background-image: url('../img/arrows/up.svg'); }
+		&-arrow { @include jvizToolTrackHeadIcon; float: left; background-image: url(jvizIcon('chevron_up')); }
 	}
 
 	//Track body
