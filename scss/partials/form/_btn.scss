@@ -64,12 +64,12 @@
 @mixin jvizFormBtnIconLight($img)
 {
 	//Include the icon button light
-	@include jvizFormBtnIcon($img, $jvizGrey8, $jvizGrey7);
+	@include jvizFormBtnIcon($img, $jvizGrey4, $jvizGrey3);
 }
 
 //Button icon dark mixin
 @mixin jvizFormBtnIconDark($img)
 {
 	//Include the icon button dark
-	@include jvizFormBtnIcon($img, $jvizGrey2, $jvizGrey1);
+	@include jvizFormBtnIcon($img, $jvizNavy2, $jvizNavy1);
 }
