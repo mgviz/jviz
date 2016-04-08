@@ -7,6 +7,12 @@ CoverViewer.prototype.ImportDataGenes = function()
   //Replace the region
   url = url.replace(/{region}/gi, this.draw.region);
 
+  //Replace the specie
+  url = url.replace(/{specie}/gi, this.data.specie.toLowerCase());
+
+  //Replace the assembly
+  url = url.replace(/{assembly}/gi, this.data.assembly.toLowerCase());
+
   //Show in console
   console.log('CoverViewer: reading genes from "' + url + '"');
 
