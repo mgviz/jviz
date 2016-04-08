@@ -4,11 +4,11 @@ CoverViewer.prototype.Build = function()
   //Add app div
   $('#' + this.parent).append(this.BuildApp());
 
-  //Create the Navbar
-  $('#' + this.app.id).append(this.NavbarBuild());
+  //Create the alert
+  this.alert.Build(this.app.id);
 
-  //Create the settings panel
-  //$('#' + this.app.id).append(this.SettingsBuild());
+  //Create the Navbar
+  this.navbar.Build(this.app.id);
 
   //Create the preview panel
   this.panel.preview.Build(this.app.id);
@@ -43,8 +43,8 @@ CoverViewer.prototype.Build = function()
   //Set the labels dialog title
   this.labels.SetTitle(this.labels.title);
 
-  //Build the genes box div
-  $('#' + this.panel.tracks.id).append(this.GenesTrackInfoBuild());
+  //Build the genes tool tip
+  this.genes.tooltip.Build(this.app.id);
 
   //Parse the bams
   this.BamsParser();
