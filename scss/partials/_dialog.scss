@@ -63,7 +63,7 @@
 				background: { position: center center; size: 26px 26px; repeat: no-repeat; }
 
 				//Background image
-				background-image: url('../img/white/navigation/close.svg');
+				background-image: url(jvizIcon('close', 'white'));
 
 				//Background color
 				background-color: $jvizGrey2;
