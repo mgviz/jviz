@@ -22,6 +22,15 @@ CoverViewer.prototype.GoTo = function(region)
 	//Save the full region
 	this.draw.region = jvizRegion.Join(r);
 
+	//Find the chromosome index
+	var index = this.preview.FindChromosomeIndex(this.draw.chromosome);
+
+	//Check the chromosome index
+	if(index < 0){ return console.error('Unknow chromosome ' + this.draw.chromosome ); }
+
+	//Set the chromosome now
+	this.preview.SetChromosomeNow(index);
+
 	//Set the draw status as cover
 	this.draw.status = 'cover';
 
