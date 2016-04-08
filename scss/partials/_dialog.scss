@@ -11,7 +11,7 @@
 	position: fixed; top: 0px; left: 0px; z-index: 9999999;
 
 	//Background
-	background-color: rgba(96, 108, 137, 0.7);
+	background-color: rgba($jvizNavy2, 0.7);
 
 	//Panel
 	&-panel
@@ -35,7 +35,7 @@
 			margin: { left: auto; right: auto; }
 
 			//Background
-			background-color: $jvizGrey1;
+			background-color: $jvizNavy1;
 
 			//Text
 			@include jvizFontBold; color: $jvizWhite; font-size: 14px;
@@ -59,14 +59,14 @@
 				//Display
 				display: inline-block; width: 30px; height: 30px; cursor: hand; float: right;
 
-				//Background
-				background: { position: center center; size: 26px 26px; repeat: no-repeat; }
-
 				//Background image
 				background-image: url(jvizIcon('close', 'white'));
 
+				//Background
+				background: { position: center center; size: 26px 26px; repeat: no-repeat; }
+
 				//Background color
-				background-color: $jvizGrey2;
+				background-color: $jvizNavy2;
 
 				//Border
 				border-radius: 5px;
@@ -75,7 +75,7 @@
 				transition: all 0.3s;
 
 				//Close hover
-				&:hover { background-color: $jvizGrey3; }
+				&:hover { background-color: $jvizNavy3; }
 			}
 		}
 
@@ -95,7 +95,7 @@
 			border: { bottom-left-radius: 5px; bottom-right-radius: 5px; }
 
 			//Background
-			background-color: $jvizGrey8;
+			background-color: $jvizGrey4;
 		}
 	}
 }
