@@ -135,6 +135,15 @@ function jvizToolKaryotypeTrack(obj)
 	this.chromosome.regions.preview = {};
 	this.chromosome.regions.preview.active = true; //Preview chromosome regions active
 	this.chromosome.regions.preview.opacity = 0.3; //Preview chromosome regions opacity
+
+	//Marks
+	this.marks = {};
+	this.marks.list = {}; //Marks list
+	this.marks.fill = '#b490f5'; //Marks fill color
+	this.marks.triangle = 6; //Triangle width
+
+	//Return the track
+	return this;
 }
 
 //Inherit the jvizToolTrack methods
@@ -193,6 +202,49 @@ jvizToolKaryotypeTrack.prototype.SetRegions = function(regions)
 	}
 };
 
+//jvizToolKaryotypeTrack set marks
+jvizToolKaryotypeTrack.prototype.SetMarks = function(marks)
+{
+	//Restart the marks list
+	this.marks.list = {};
+
+	//Read all the marks
+	for(var i = 0; i < marks.length; i++)
+	{
+		//Get the mark
+		var m = marks[i];
+
+		//Check the chromosome
+		if(typeof this.marks.list[m.chromosome] === 'undefined')
+		{
+			//Create the chromosome
+			this.marks.list[m.chromosome] = [];
+		}
+
+		//Create the new object
+		var obj = {};
+
+		//Save the start point
+		obj.start = parseInt(m.start);
+
+		//Save the end point
+		obj.end = parseInt(m.end);
+
+		//Save the mark
+		this.marks.list[m.chromosome].push(obj);
+	}
+
+	//Get all the chromosome marks
+	var chrs = Object.keys(this.marks.list);
+
+	//Read all the chromosomes
+	for(var i = 0; i < chrs.length; i++)
+	{
+		//Shor the marks by start position
+		this.marks.list[chrs[i]] = ObjectSort(this.marks.list[chrs[i]], 'start');
+	}
+};
+
 //jvizToolKaryotypeTrack set chromosome now
 jvizToolKaryotypeTrack.prototype.SetChromosomeNow = function(index)
 {
@@ -219,6 +271,16 @@ jvizToolKaryotypeTrack.prototype.GetChromosomeByIndex = function(index)
 {
 	//Return the chromosome info
 	return this.karyotypes.list[index];
+};
+
+//jvizToolKaryotypeTrack get marks by chromosome ID
+jvizToolKaryotypeTrack.prototype.GetMarks = function(chr)
+{
+	//Check for undefined
+	if(typeof this.marks.list[chr] === 'undefined'){ return []; }
+
+	//Default, return the marks
+	return this.marks.list[chr];
 };
 
 //jvizToolKaryotypeTrack find chromosome index
@@ -284,6 +346,9 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 	{
 		//Get the chromosome
 		var ch = this.karyotypes.list[i];
+
+		//Get the mark for this chromosome
+		var marks = this.GetMarks(ch.id);
 
 		//Get the chromosome width
 		var width = this.karyotypes.width;
@@ -417,7 +482,49 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 
 			//Region fill
 			canvas.Fill({ color: this.chromosome.regions.fill, opacity: this.chromosome.regions.opacity });
+
+			//Read all the marks and find one on this chromosome
+			for(var j = 0; j < marks.length; j++)
+			{
+				//Get the mark
+				var m = marks[j];
+
+				//Check if mark is on the region
+				if(re.end < m.start || m.end < re.start){ continue; }
+
+				//Get the mark position x
+				var mark_x = posx + this.karyotypes.width;
+
+				//Get the mark middle point
+				var mark_middle = (m.start + m.end)/2;
+
+				//Get the mark position y
+				var mark_y = this.draw.margin.top + this.draw.height - this.draw.height*(mark_middle/this.karyotypes.max);
+
+				//Initialize the triangle array
+				var tri = [];
+
+				//Add the first point
+				tri.push([ mark_x + this.marks.triangle, mark_y - this.marks.triangle ]);
+
+				//Add the middle point
+				tri.push([ mark_x, mark_y ]);
+
+				//Add the first point
+				tri.push([ mark_x + this.marks.triangle, mark_y + this.marks.triangle ]);
+
+				//Add the line
+				canvas.Line(tri);
+
+				//Add the fill color
+				canvas.Fill(this.marks.fill);
+
+				//Done, exit loop
+				break;
+			}
 		}
+
+		//Next chromosome
 	}
 
 	//Reset the karyotypes hover
@@ -528,6 +635,9 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDraw = function()
 
 	//Get the chromosome info
 	var chr = this.karyotypes.list[this.chromosome.now];
+
+	//Get the mark for this chromosome
+	var marks = this.GetMarks(chr.id);
 
 	//Save the chromosome scale
 	this.chromosome.scale = this.draw.width/chr.length;
@@ -661,6 +771,46 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDraw = function()
 
 			//Add the preview label
 			this.ChromosomeDrawRegionLabelIndex(canvas1, index, this.chromosome.regions.preview.opacity);
+		}
+
+		//Read all the marks and find one on this chromosome
+		for(var j = 0; j < marks.length; j++)
+		{
+			//Get the mark
+			var m = marks[j];
+
+			//Check if mark is on the region
+			if(re.end < m.start || m.end < re.start){ continue; }
+
+			//Get the mark middle point
+			var mark_middle = (m.start + m.end)/2;
+
+			//Get the mark position x
+			var mark_x = this.chromosome.posx + mark_middle*this.chromosome.scale;
+
+			//Get the mark position y
+			var mark_y = this.chromosome.posy;
+
+			//Initialize the triangle array
+			var tri = [];
+
+			//Add the first point
+			tri.push([ mark_x - this.marks.triangle, mark_y  - this.marks.triangle ]);
+
+			//Add the middle point
+			tri.push([ mark_x, mark_y]);
+
+			//Add the first point
+			tri.push([ mark_x + this.marks.triangle, mark_y  - this.marks.triangle ]);
+
+			//Add the line
+			canvas.Line(tri);
+
+			//Add the fill color
+			canvas.Fill(this.marks.fill);
+
+			//Done, exit loop
+			break;
 		}
 	}
 
