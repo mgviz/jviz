@@ -172,7 +172,7 @@ CoverViewer.prototype.GenesTrackDraw = function()
     //Get the color
     var color = (jvizFeatureStrand(g.strand) === '<') ? this.strand.reverse.color : this.strand.forward.color;
 
-    //Draw the gene
+    //Draw the gene and get the positions
     this.genes.DrawFeature(canvas, g, color);
   }
 
@@ -192,98 +192,90 @@ CoverViewer.prototype.GenesTrackDraw = function()
   canvas.Clear({ x: clear_x, y: clear_y, width: clear_width, height: clear_height });
 };
 
-//CoverViewer Genes track info build
-CoverViewer.prototype.GenesTrackInfoBuild = function()
-{
-	//Build the genes box div
-  return '<div id="' + this.genes.box.id + '"></div>';
-};
-
 //CoverViewer Genes Track Create Info
 CoverViewer.prototype.GenesTrackInfo = function(index, px, py)
 {
   //Get the gene
-  var g = this.genes.list[index];
+  var g = this.data.genes.list[index];
 
-  //Restart the position x
-  px = px - this.genes.info.width/2 - this.genes.info.padding;
+  //Get the track position
+  var pos = $('#' + this.genes.id).offset();
 
-  //Restart the position y
-  //py = py + 10;
-  py = g.posy + 2*this.genes.el.rect;
+  //Set the tooltip position
+  this.genes.tooltip.SetPosition(pos.left + px, pos.top + py);
 
-  //Create the new label
-  var div = '<div class="' + this.genes.info.class + '" style="';
+  //Get the tool tip content
+  var content = this.GenesTackInfoContent(g);
 
-  //Add the style
-  div = div + 'width:' + this.genes.info.width + ';left:' + px + ';top:' + py + ';';
-  div = div + 'padding:' + this.genes.info.padding + 'px;';
+  //Show the content
+  this.genes.tooltip.SetContent(content);
 
-  //Close the div
-  div = div + '">';
-
-  //Add the content
-  div = div + this.GenesTackInfoContent(this.data.genes.data.genes[g.index]);
-
-  //Finish the div
-  div = div + '</div>';
-
-  //Show
-  $('#' + this.genes.box.id).html(div);
+  //Show the tooltip
+  this.genes.tooltip.Show();
 };
 
 //CoverViewer Genes Track Info Content
 CoverViewer.prototype.GenesTackInfoContent = function(g)
 {
   //Output content
-  var content = '<b>';
+  var content = '';
 
-  //Check the title
-  if(this.data.genes.info.title)
+  //Generate the default title
+  content = content + '<b>' + g.name + '</b><hr>';
+
+  //Check for the ensembl
+  if(typeof g.id !== 'undefined')
   {
-    //Generate the custom title
-    content = content + this.data.genes.info.title(g);
-  }
-  else
-  {
-    //Generate the default title
-    content = content + g.name;
+    //Show the ensembl info
+    content = content + '<b>EnsemblID:</b> ' + EnsemblAdapter.LinkTo(g.id) + '<br>';
   }
 
-  //End the title
-  content = content + '</b><hr>';
+  //Show the gene start and end
+  content = content + '<b>Start-End:</b> ' + g.start + '-' + g.end + '<br>';
 
-  //Add the content
-  if(this.data.genes.info.content)
-  {
-    //Generate the custom title
-    content = content + this.data.genes.info.content(g);
-  }
-  else
-  {
-    //Check for the ensembl
-    if(typeof g.ensemblId !== 'undefined')
-    {
-      //Show the ensembl info
-      content = content + 'EnsemblID: ' + EnsemblAdapter.LinkTo(g.ensemblId) + '<br>';
-    }
-
-    //Show the gene start and end
-    content = content + 'Start-End: ' + g.start + '-' + g.end + '<br>';
-
-    //Show the strand
-    content = content + 'Strand: ' + g.strand;
-  }
+  //Show the strand
+  content = content + '<b>Strand:</b> ' + g.strand;
 
   //Return the content
   return content;
 };
 
-//CoverViewer Genes Track Info Clear
-CoverViewer.prototype.GenesTrackInfoClear = function()
+//CoverViewer Genes Track return clicked gene
+CoverViewer.prototype.GenesTrackFindClickGene = function(x, y)
 {
-  //Destroy the labek
-  $('#' + this.genes.box.id).html('');
+  //Find for genes
+  for(var i = 0; i < this.data.genes.list.length; i++)
+  {
+    //Get the gene
+    var g = this.data.genes.list[i];
+
+    //Check the region
+    if(this.genes.draw.end <= g.start || g.end < this.genes.draw.start){ continue; }
+
+    //Calculate the position y start
+    var py1 = this.genes.draw.margin.top + this.genes.feature.height*g.chunk;
+
+    //Calculate the position y end
+    var py2 = this.genes.draw.margin.top + this.genes.feature.height*(g.chunk + 1);
+
+    //Checkthe position y
+    if( y < py1 || py2 < y) { continue; }
+
+    //Calculate the position x start
+    var px1 = this.genes.draw.margin.left + Math.max(g.start - this.genes.draw.start, 0)*this.genes.draw.scale;
+
+    //Calculate the position x end
+    var px2 = this.genes.draw.margin.left + (Math.min(g.end, this.genes.draw.end) - this.genes.draw.start)*this.genes.draw.scale;
+
+    //Check position x
+    if(x < px1 || px2 < x){ continue; }
+
+    //Default, return the index
+    return i;
+  }
+
+  //Return -1
+  return -1;
 };
 
 //CoverViewer Genes Track mouse move
@@ -300,6 +292,9 @@ CoverViewer.prototype.GenesTrackMouseMove = function(x, y)
 
     //Draw the region
     this.Move();
+
+    //Set moved as true
+    this.genes.moved = true;
   }
 };
 
@@ -309,8 +304,8 @@ CoverViewer.prototype.GenesTrackMouseDown = function(x, y)
   //Check the status
   if(this.draw.status !== 'cover'){ return; }
 
-  //Destroy the genes info
-  this.GenesTrackInfoClear();
+  //Hide the genes tooltip
+  this.genes.tooltip.Hide();
 
   //Activate the mouse
   this.genes.mouse = true;
@@ -327,26 +322,8 @@ CoverViewer.prototype.GenesTrackMouseDown = function(x, y)
   //Save the start position
   this.genes.clickstart = this.preview.window.start;
 
-  //Find for genes
-  for(var i = 0; i < this.genes.list.length; i++)
-  {
-    //Save the gene
-    var g = this.genes.list[i];
-
-    //Checkthe position y
-    if( g.posy <= y && y <= g.posy + this.genes.el.rect)
-    {
-      //Check position x
-      if(g.posx1 <= x && x <= g.posx2)
-      {
-        //Show the info
-        this.GenesTrackInfo(i, x, y);
-
-        //Exit Loop
-        break;
-      }
-    }
-  }
+  //Set moved as false
+  this.genes.moved = false;
 };
 
 //CoverViewer Genes track mouse up event
@@ -360,6 +337,16 @@ CoverViewer.prototype.GenesTrackMouseUp = function(x, y)
 
   //Set default cursor
   $('body').removeClass(this.cursor.move);
+
+  //Check for moved
+  if(this.genes.moved === false)
+  {
+    //Get the clicked gene
+    var index = this.GenesTrackFindClickGene(x, y);
+
+    //Check the index
+    if(index > -1){ this.GenesTrackInfo(index, x, y); }
+  }
 };
 
 //CoverViewer Genes Track mouse function event
