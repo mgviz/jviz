@@ -42,6 +42,9 @@ CoverViewer.prototype.Options = function(opt)
 
   //Check for import genes
   if(typeof opt.importGenes !== 'undefined'){ this.ImportGenes(opt.importGenes); }
+
+  //Check for mark label
+  if(typeof opt.markLabel !== 'undeifned'){ this.marks.label = opt.markLabel; }
 };
 
 //CoverViewer update options
