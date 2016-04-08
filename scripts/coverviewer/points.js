@@ -17,29 +17,40 @@ CoverViewer.prototype.PointsDraw = function(canvas, start, end, height, margin)
     //Get the value
     var value = i*this.points.gap;
 
-    //Create the new line
-    var obj = {};
+    //Line position x
+    var line_x = margin.left + (value - start);
 
-    //Posx
-    obj.posx = margin.left + (value - start);
+    //Line position y start
+    var line_y_start = margin.top;
 
-    //Posy
-    obj.posy = height - this.points.margin;
+    //Line position y end
+    var line_y_end = height - this.points.margin;
 
     //Generate the line
-    canvas.Line([[obj.posx, margin.top], [obj.posx, obj.posy]]);
+    canvas.Line([[line_x, line_y_start], [line_x, line_y_end]]);
 
     //Add the line style
     canvas.Stroke(this.points.stroke);
 
-    //Add the text position
-    this.points.text.x = obj.posx + this.points.textmargin.left;
-    this.points.text.y = obj.posy - this.points.textmargin.top;
+    //Get the point x position
+    var lt_x = line_x + this.points.textmargin.left;
+
+    //Get the point y position
+    var lt_y = line_y_end - this.points.textmargin.top;
 
     //Add the text value
-    this.points.text.text = value + this.points.letter;
+    var lt_text = jvizMath.FormatNumber(i, '.') + this.points.letter;
+
+    //Add the text size
+    var lt_size = this.points.text.size;
+
+    //Add the text font
+    var lt_font = this.points.text.font;
+
+    //Add the text color
+    var lt_color = this.points.text.color;
 
     //Add the text
-    canvas.Text(this.points.text);
+    canvas.Text({ x: lt_x, y: lt_y, text: lt_text, color: lt_color, font: lt_font, size: lt_size });
   }
 };
