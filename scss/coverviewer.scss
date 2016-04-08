@@ -22,7 +22,7 @@ $teal: #00BFA5 !default;
 		&-screen
 		{
 			display: block; position: relative; transition: all 0.5s;
-			top: 0px; background-color: rgba(255, 255, 255, 0.9); z-index: 99999;
+			top: 0px; background-color: rgba($jvizWhite, 0.9); z-index: 99999;
 		}
 
 		//Animation
@@ -80,7 +80,7 @@ $teal: #00BFA5 !default;
 			border-radius: 5px;
 
 			//Background color
-			background-color: $jvizGrey7;
+			background-color: $jvizGrey3;
 
 			//Padding
 			padding: { left: 5px; right: 5px; }
@@ -89,7 +89,7 @@ $teal: #00BFA5 !default;
 			margin: 5px;
 
 			//Hover
-			&:hover { background-color: $jvizGrey6; }
+			&:hover { background-color: $jvizGrey2; }
 		}
 
 		//Names
@@ -112,7 +112,7 @@ $teal: #00BFA5 !default;
 		display: block; width: calc(100% - 20px); padding: 10px;
 
 		//Background
-		background-color: $jvizGrey8;
+		background-color: $jvizGrey4;
 
 		//Border
 		border: { radius: 5px; }
