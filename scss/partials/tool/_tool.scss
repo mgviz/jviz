@@ -2,7 +2,7 @@
 @mixin jvizTool
 {
 	//App style
-	display: block;  overflow: hidden; color: $jvizGrey1;
+	display: block;  overflow: hidden; color: $jvizNavy1;
 
 	//Padding
 	padding: { top: 5px; left: 5px; bottom: 5px; right: 5px; }
@@ -11,5 +11,5 @@
 	@include jvizFontNormal; font-size: 14px;
 
 	//Border
-	&-border { border: 1px solid $jvizGrey1; border-radius: 5px; }
+	&-border { border: 1px solid $jvizNavy1; border-radius: 5px; }
 }
