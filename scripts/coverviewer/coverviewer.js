@@ -51,38 +51,65 @@ var CoverViewer = function(id)
   this.loading.screen.padding = {"top": 100}; //Padding
 
   //Navbar
-  this.navbar = {};
+  this.navbar = new jvizToolNavbar({});
   this.navbar.id = this.app.id + '-navbar'; //Navbar ID
   this.navbar.width = 0; //Navbar width
   this.navbar.height = 0; //Navbar height
   this.navbar.show = true; //Show navbar
   this.navbar.class = this.app.class + '-navbar'; //Navbar css class
 
-  //Navbar button
+  //Navbar buttons
   this.navbar.btn = {};
   this.navbar.btn.id = this.navbar.id + '-btn'; //Navbar button
   this.navbar.btn.class = this.navbar.class + '-btn'; //Navbar class
 
+  //Navbar button karyotypes
+  this.navbar.btn.karyotypes = new jvizToolNavbarBtnIcon({});
+  this.navbar.btn.karyotypes.id = this.navbar.btn.id + '-karyotypes'; //Navbar karyotypes button ID
+  this.navbar.btn.karyotypes.class = this.navbar.btn.class + '-karyotypes'; //Navbar karyotypes button class
+  this.navbar.btn.karyotypes.show = true; //Navbar karyotypes button show
+  this.navbar.btn.karyotypes.title = 'Open karyotype'; //Navbar karyotypes button title
+
+  //Navbar button search
+  this.navbar.btn.search = new jvizToolNavbarBtnIcon({});
+  this.navbar.btn.search.id = this.navbar.btn.id + '-search'; //Navbar search button ID
+  this.navbar.btn.search.class = this.navbar.btn.class + '-search'; //Navbar search button class
+  this.navbar.btn.search.show = true; //Navbar search button show
+  this.navbar.btn.search.title = 'Find region'; //Navbar search button title
+
   //Navbar button labels
-  this.navbar.btn.labels = {};
+  this.navbar.btn.labels = new jvizToolNavbarBtn({});
   this.navbar.btn.labels.id = this.navbar.btn.id + '-labels'; //Navbar labels button id
   this.navbar.btn.labels.class = this.navbar.btn.class + '-labels'; //Navbar labels button class
   this.navbar.btn.labels.show = true; //Navbar show labels button
   this.navbar.btn.labels.title = 'Labels'; //Navbar labels button title
 
-  //Left button
-  this.navbar.btn.left = {};
-  this.navbar.btn.left.id = this.navbar.btn.id + '-left'; //Navbar left button id
-  this.navbar.btn.left.class = this.navbar.btn.class + '-left'; //Navbar left button class
-  this.navbar.btn.left.show = true; //Navbar show left button
-  this.navbar.btn.left.title = 'Go left'; //Navbar left button title
+  //Navbar label
+  this.navbar.label = new jvizToolNavbarLabel({});
+  this.navbar.label.id = this.navbar.id + '-label'; //Label ID
+  this.navbar.label.class = this.navbar.class + '-label'; //Label class
+  this.navbar.label.text = 'Find region: '; //Label text
 
-  //Right button
-  this.navbar.btn.right = {};
-  this.navbar.btn.right.id = this.navbar.btn.id + '-right'; //Navbar right button id
-  this.navbar.btn.right.class = this.navbar.btn.class + '-right'; //Navbar right button class
-  this.navbar.btn.right.show = true; //Navbar show right button
-  this.navbar.btn.right.title = 'Go right'; //Navbar right button title
+  //Navbar Input
+  this.navbar.input = new jvizToolNavbarInput({});
+  this.navbar.input.id = this.navbar.id + '-input'; //Input ID
+  this.navbar.input.class = this.navbar.class + '-input'; //Navbar input class
+  this.navbar.input.show = true; //Navbar input show
+  this.navbar.input.placeholder = 'Region name'; //Navbar input placeholder
+
+  //Navbar Input alert
+  this.navbar.input.alert = {};
+  this.navbar.input.alert.text = 'Region not found'; //Alert text
+  this.navbar.input.alert.time = 3000; //Alert time
+
+  //Register the navbar elements
+  this.navbar.AddItem(this.navbar.btn.karyotypes);
+  this.navbar.AddItem(this.navbar.input);
+  this.navbar.AddItem(this.navbar.btn.search);
+  this.navbar.AddItem(this.navbar.btn.labels);
+
+  //Alert
+  this.alert = new jvizAlert({ id: this.app.id + '-alert', class: this.app.class + '-alert' });
 
   //Panels
   this.panel = {};
@@ -109,9 +136,11 @@ var CoverViewer = function(id)
   this.draw = {};
   this.draw.delay = 500; //Draw delay time
   this.draw.region = ''; //Full region for draw
-  this.draw.chr = ''; //Chromosome draw
+  this.draw.chromosome = ''; //Chromosome draw
   this.draw.start = 0; //Start position
   this.draw.end = 0; //End position
+  this.draw.status = ''; //Draw status
+  this.draw.delay = 100; //Draw delay time
 
   //Core
   this.core = {};
@@ -124,7 +153,7 @@ var CoverViewer = function(id)
   this.data = {};
   this.data.nullvalues = 0; //Data null values
   this.data.specie = 'hsapiens'; //Specie name
-  this.data.assembly = 'GRCh38'; //Specie assembly
+  this.data.assembly = 'grch37'; //Specie assembly
 
   //Data for coverage
   this.data.cover = {};
@@ -158,6 +187,15 @@ var CoverViewer = function(id)
   this.data.regions.data = []; //Regions data
   this.data.regions.json = null; //Regions from json object
 
+  //Data for names
+  this.data.names = {};
+  this.data.names.url = ''; //Names url
+  this.data.names.busy = false; //Names busy
+  this.data.names.error = false; //Names error
+  this.data.names.parser = null; //Names data parser
+  this.data.names.data = []; //Names data
+  this.data.names.json = null; //Names from json object
+
   //Data for genes
   this.data.genes = {};
   this.data.genes.url = ''; //Genes url for data
@@ -170,7 +208,7 @@ var CoverViewer = function(id)
   this.data.genes.info.content = null; //Genes info content function
   this.data.genes.list = []; //Genes list
   this.data.genes.specie = 'hsapiens'; //Specie name
-  this.data.genes.assembly = 'GRCh38'; //Specie assembly
+  this.data.genes.assembly = 'grch37'; //Specie assembly
 
   //Data for exons
   this.data.exons = {};
@@ -197,6 +235,9 @@ var CoverViewer = function(id)
   //Preview head
   this.preview.head.show = true;
 
+  //Preview head action button
+  this.preview.head.action.title = 'Return'; //Return title
+
   //Preview draw
   //this.preview.draw.margin = { top: 40, bottom: 40, left: 50, right: 50 }; //Preview margin
   this.preview.draw.width = 0; //Preview draw width
@@ -205,13 +246,20 @@ var CoverViewer = function(id)
   this.preview.draw.end = 0; //End position
   this.preview.draw.scale = 0; //Scale
 
+  //Preview draw zone
+  this.preview.zone = {};
+  this.preview.zone.posx = 0; //Preview zone position x
+  this.preview.zone.posy = 0; //Preview zone position y
+  this.preview.zone.width = 0; //Preview zone width
+  this.preview.zone.height = 40; //Preview zone height
+
   //Preview window
   this.preview.window = {};
   this.preview.window.start = 0; //Window start
   this.preview.window.end = 0; //Window end
   this.preview.window.width = 0; //Window width
   this.preview.window.height = 0; //Window height
-  this.preview.window.fill = { color: '#FF9100', opacity: 0.2 }; //Window fill
+  this.preview.window.fill = { color: '#ed9e48', opacity: 0.2 }; //Window fill
 
   //Preview click
   this.preview.click = {};
@@ -229,8 +277,8 @@ var CoverViewer = function(id)
   this.preview.label.height = 22; //Label height
   this.preview.label.posx = 0; //Label position x
   this.preview.label.posy = 0; //Label position y
-  this.preview.label.fill = '#FF9100'; //Label fill color
-  this.preview.label.text = { font: 'Quicksand', size: '12px', align: 'center', color: '#ffffff'}; //Font
+  this.preview.label.fill = '#ed9e48'; //Label fill color
+  this.preview.label.text = { font: 'Quicksand', size: '11px', align: 'center', color: '#ffffff'}; //Font
   this.preview.label.margin = 8; //Margin top
   this.preview.label.radius = 5; //Label rectangle radius
 
@@ -244,6 +292,15 @@ var CoverViewer = function(id)
   this.cover.stroke = 2; //Stroke width
   this.cover.mouse = false; //Mouse active
 
+  //Cover default values
+  this.cover.default = {};
+
+  //Default height
+  this.cover.default.height = {};
+  this.cover.default.height.karyotypes = 150; //Default cover height for karyotypes view
+  this.cover.default.height.chromosome = 150; //Default cover height for chromsome view
+  this.cover.default.height.cover = 250; //Default cover height for cover view
+
   //Cover click
   this.cover.click = {};
   this.cover.click.point = 0//Click point
@@ -252,7 +309,7 @@ var CoverViewer = function(id)
   this.cover.click.value = 0; //Click value
 
   //Cover draw
-  this.cover.draw.margin = { top: 35, bottom: 40, right: 50, left: 50 }; //Cover draw margin
+  this.cover.draw.margin = { top: 65, bottom: 40, right: 50, left: 50 }; //Cover draw margin
   this.cover.draw.width = 0; //Cover draw width
   this.cover.draw.height = 0; //Cover draw height
   this.cover.draw.start = 0; //Cover draw start
@@ -265,7 +322,7 @@ var CoverViewer = function(id)
 
   //Cover hover line
   this.cover.hover = {};
-  this.cover.hover.stroke = { color: '#00B0FF', opacity: 0.4 }; //Line class
+  this.cover.hover.stroke = { color: '#38b1eb', opacity: 0.4 }; //Line class
   this.cover.hover.width = 1; //Line width
   this.cover.hover.height = 0; //Line height
   this.cover.hover.circle = []; //Circle list
@@ -283,7 +340,7 @@ var CoverViewer = function(id)
 
   //Cover label
   this.cover.label = {};
-  this.cover.label.fill = { color: '#00B0FF' }; //Label fill
+  this.cover.label.fill = { color: '#38b1eb' }; //Label fill
   this.cover.label.width = 90; //Label width
   this.cover.label.height = 22; //Label height
   this.cover.label.posx = 0; //Position x
@@ -291,6 +348,24 @@ var CoverViewer = function(id)
   this.cover.label.text = { font: 'Quicksand', size: '12px', align: 'center', color: '#ffffff' }; //Label text
   this.cover.label.margin = 8; //Margin top
   this.cover.label.radius = 5; //Label rectangle radius
+
+  //No cover
+  this.cover.nocover = {};
+  this.cover.nocover.width = 650; //No cover width
+  this.cover.nocover.height = 70; //No cover height
+  this.cover.nocover.posx = 0; //No cover position x
+  this.cover.nocover.posy = 0; //No cover position y
+  this.cover.nocover.radius = 5; //No cover radius
+  this.cover.nocover.color = '#e2ebf4'; //No cover background color
+
+  //No cover title
+  this.cover.nocover.title = {};
+  this.cover.nocover.title.posy = 28; //No cover title position y
+  this.cover.nocover.title.font = 'Quicksand-Bold'; //No cover title font
+  this.cover.nocover.title.size = '15px'; //No cover title size
+  this.cover.nocover.title.text = 'Use the upper panel to select a chromosome. Then, select the region of interest.'; //Title text
+  this.cover.nocover.title.color = '#4a526c'; //No cover title color
+  this.cover.nocover.title.align = 'center'; //No cover title align
 
   //Bam labels dialog
   this.labels = new jvizDialog({ id: this.app.id + '-labels', class: this.app.class + '-labels' });
@@ -323,6 +398,7 @@ var CoverViewer = function(id)
   this.genes.busy = false; //Genes is busy
   this.genes.length = 0; //Genes length
   this.genes.mouse = false; //Genes mouse event
+  this.genes.moved = false; //Genes moved
   this.genes.click = 0; //Click point
   this.genes.clickfirst = false; //For prevent errors
   this.genes.clickstart = 0; //Click orginal position
@@ -333,6 +409,14 @@ var CoverViewer = function(id)
   this.genes.draw.height = 0; //Genes draw height
   this.genes.draw.margin = { top: 50, bottom: 40, left: 50, right: 50 }; //Genes div margin
 
+  //Genes default values
+  this.genes.default = {};
+
+  //Genes default height values
+  this.genes.default.height = {};
+  this.genes.default.height.karyotypes = 30; //Default karyotypes height
+  this.genes.default.height.chromosome = 30; //Default chromosome height
+
   //Genes strand
   this.strand = {};
   this.strand.text = { font: 'Quicksand', size: '11px' }; //Strand text font
@@ -342,7 +426,7 @@ var CoverViewer = function(id)
   this.strand.forward.index = 0; //Positive strand index for styles
   this.strand.forward.id = '1'; //Positive strand id
   this.strand.forward.text = ' (Forward strand)'; //Positive strand text
-  this.strand.forward.color = '#2196F3'; //Forward strand color
+  this.strand.forward.color = '#38b1eb'; //Forward strand color
   this.strand.forward.title = '> '; //Forward strand title
 
   //Reverse strand
@@ -350,7 +434,7 @@ var CoverViewer = function(id)
   this.strand.reverse.index = 1; //Negative strand index for styles
   this.strand.reverse.id = '-1'; //Negative strand id
   this.strand.reverse.text = ' (Reverse strand)'; //Negative strand text
-  this.strand.reverse.color = '#F44336'; //Reverse strand color
+  this.strand.reverse.color = '#ea685a'; //Reverse strand color
   this.strand.reverse.title = '< '; //Reverse strand title
 
   //Genes element
@@ -378,6 +462,27 @@ var CoverViewer = function(id)
   this.genes.info.posx = 0; //Genes Info posx
   this.genes.info.posy = 0; //Genes Info posy
 
+  //Genes tooltip
+  this.genes.tooltip = new jvizToolTip({ id: this.genes.id + '-tooltip', class: this.app.class + '-genes-tooltip' });
+  this.genes.tooltip.width = 200; //Genes tooltip width
+
+  //No genes
+  this.genes.nogenes = {};
+  this.genes.nogenes.width = 650; //No genes width
+  this.genes.nogenes.height = 50; //No genes height
+  this.genes.nogenes.margin = 10; //No genes margin
+  this.genes.nogenes.radius = 5; //No genes radius
+  this.genes.nogenes.color = '#e2ebf4'; //No genes background color
+
+  //No genes title
+  this.genes.nogenes.title = {};
+  this.genes.nogenes.title.posy = 16; //No genes title position y
+  this.genes.nogenes.title.font = 'Quicksand-Bold'; //No genes title font
+  this.genes.nogenes.title.size = '16px'; //No genes title size
+  this.genes.nogenes.title.text = 'Select a region on a chromosome to visualize the genes'; //Title text
+  this.genes.nogenes.title.color = '#4a526c'; //No genes title color
+  this.genes.nogenes.title.align = 'center'; //No genes title align
+
   //Control points
   this.points = {};
   this.points.gap = 1000; //Control points nucleotides gap
@@ -386,6 +491,30 @@ var CoverViewer = function(id)
   this.points.letter = 'K'; //Control points letter
   this.points.margin = 20; //Points margin
   this.points.textmargin = {'top': 15, 'left': 4}; //Points text margin
+
+  //Marks
+  this.marks = {};
+  this.marks.fill = '#b490f5'; //Marks fill color
+  this.marks.opacity = {}; //Marks opacity
+  this.marks.opacity.preview = 0.2; //Marks opacity preview
+  this.marks.opacity.cover = 0.2; //Marks opacity cover
+  this.marks.label = ''; //Marks label
+
+  //Marks position
+  this.marks.position = {};
+  this.marks.position.width = 150; //Marks position width
+  this.marks.position.height = 20; //Marks position height
+  this.marks.position.fill = '#b490f5'; //Marks position fill color
+  this.marks.position.triangle = 6; //Marks position triangle
+  this.marks.position.radius = 5; //Marks position radius
+
+  //Marks position text
+  this.marks.position.text = {};
+  this.marks.position.text.color = '#ffffff'; //Marks position text color
+  this.marks.position.text.font = 'Quicksand'; //Marks position text font
+  this.marks.position.text.align = 'center'; //Marks position text align
+  this.marks.position.text.size = '11px'; //Marks position text size
+  this.marks.position.text.margin = 3; //Marks position text margin
 
   //Colors
   this.colors = [];
