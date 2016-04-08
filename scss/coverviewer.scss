@@ -35,15 +35,28 @@ $teal: #00BFA5 !default;
 		//Include navbar
 		@include jvizToolNavbar;
 
-		//Navbar Labels icon button
-		&-btn-labels { @include jvizFormBtnNavy; float: right; }
+		//Navbar buttons
+		&-btn
+		{
+			//Labels button
+			&-labels { @include jvizFormBtnNavy; float: right; }
+
+			//Search button
+			&-search { @include jvizFormBtnIconLight(jvizIcon('search')); float: left; }
+
+			//Karyotypes button
+			&-karyotypes { @include jvizFormBtnIconLight(''); float: left; margin-left: 0px; }
+		}
+
+		//Navbar input label
+		&-label { @include jvizFormLabel; float: left; }
 
 		//Navbar input
-		&-input { @include jvizFormInput; }
+		&-input { @include jvizFormInput; float: left; margin-right: 0px; }
 	}
 
 	//Alert
-	&-alert { @include jvizAlert; } 
+	&-alert { @include jvizAlert; }
 
 	//Panels
 	&-panel { @include jvizToolPanel; }
@@ -88,6 +101,9 @@ $teal: #00BFA5 !default;
 		//Done button
 		&-done { @include jvizFormBtn($jvizGreen); margin-top: 10px; }
 	}
+
+	//Genes tooltip
+	&-genes-tooltip { @include jvizToolTip; }
 
 	//Foot
 	&-foot
