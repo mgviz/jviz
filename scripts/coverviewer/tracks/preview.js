@@ -271,6 +271,46 @@ CoverViewer.prototype.PreviewTrackPreviewDraw = function()
     canvas.Stroke({ width: this.preview.stroke, color: this.bams.color[j], opacity: this.preview.opacity });
   }
 
+  //Get the marks for this chromosome
+  var marks = this.MarksChromosome();
+
+  //Read all the marks
+  for(var i = 0; i < marks.length; i++)
+  {
+    //Get the mark
+    var m = marks[i];
+
+    //Check the start position
+    if(m.end < this.preview.draw.start){ continue; }
+
+    //Check the end position
+    if(this.preview.draw.end < m.start){ break; }
+
+    //Get the start position
+    var mark_start = Math.max(0, (m.start - this.preview.draw.start)/this.preview.draw.scale);
+
+    //Get the end point
+    var mark_end = Math.min(this.preview.draw.width, (m.end - this.preview.draw.start)/this.preview.draw.scale);
+
+    //Get the mark length
+    var mark_length = Math.max(1, mark_end - mark_start);
+
+    //Get the start position x
+    var mark_x = this.preview.zone.posx + mark_start;
+
+    //Get the mark position y
+    var mark_y = this.preview.zone.posy;
+
+    //Get the mark height
+    var mark_height = this.preview.zone.height;
+
+    //Draw the mark rectangle
+    canvas.Rect({ x: mark_x, y: mark_y, width: mark_length, height: mark_height });
+
+    //Draw the color
+    canvas.Fill({ color: this.marks.fill, opacity: this.marks.opacity.preview });
+  }
+
   //Calculate the window width
   this.preview.window.width = this.cover.draw.width/this.preview.draw.scale;
 
@@ -449,7 +489,7 @@ CoverViewer.prototype.PreviewTrackPreviewMouseDown = function(x)
   this.preview.click.start = this.preview.window.start;
 
   //Destroy the genes info
-  this.GenesTrackInfoClear();
+  this.genes.tooltip.Hide();
 };
 
 //CoverViewer Preview Track mouse move
