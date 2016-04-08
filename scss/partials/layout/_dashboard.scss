@@ -26,7 +26,7 @@
 		width: 220px; height: calc(100% - 0px); line-height: 20px;
 
 		//Colors
-		background-color: $jvizGrey3; color: $jvizWhite;
+		background-color: $jvizNavy3; color: $jvizWhite;
 
 		//Padding
 		padding: { left: 0px; right: 0px; top: 0px; }
@@ -44,7 +44,7 @@
 			@include jvizFontBold; font-size: 22px; text: { decoration: none; align: center; }
 
 			//Background
-			background-color: $jvizGrey2;
+			background-color: $jvizNavy2;
 
 			//Margin
 			margin: { top: 0px; bottom: 15px; }
@@ -73,7 +73,7 @@
 			display: block; width: calc(100% - 40px); line-height: 20px;
 
 			//Background
-			background-color: $jvizGrey2;
+			background-color: $jvizNavy2;
 
 			//Font
 			font-size: 14px;
@@ -107,10 +107,10 @@
 			border: { radius: 5px; }
 
 			//Background
-			background-color: rgba($jvizGrey2, 0.3);
+			background-color: rgba($jvizNavy2, 0.3);
 
 			//Link hover
-			&:hover { text-decoration: none; background-color: rgba($jvizGrey2, 0.7); }
+			&:hover { text-decoration: none; background-color: rgba($jvizNavy2, 0.7); }
 
 			//Last child
 			&:last-child { margin: { bottom: 15px; } }
@@ -148,7 +148,7 @@
 			width: calc(100% - 235px); height: 50px; line-height: 50px;
 
 			//Background
-			background-color: $jvizGrey4;
+			background-color: $jvizNavy4;
 
 			//Bar link
 			&-link
@@ -163,7 +163,7 @@
 				@include jvizFontBold; text: { decoration: none; align: center; } color: $jvizWhite !important;
 
 				//Background
-				background-color: rgba($jvizGrey2, 0.3);
+				background-color: rgba($jvizNavy2, 0.3);
 
 				//Padding
 				padding: { left: 15px; right: 15px; top: 0px; bottom: 0px; }
@@ -175,7 +175,7 @@
 				&:hover
 				{
 					//Hover color
-					color: $jvizWhite !important; background-color: rgba($jvizGrey2, 0.9);
+					color: $jvizWhite !important; background-color: rgba($jvizNavy2, 0.9);
 
 					//Text
 					text-decoration: none !important;
