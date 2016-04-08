@@ -1,0 +1,23 @@
+//Function for replace a string in other string
+//Created originally by Hugo Giraudel
+@function str-replace($string, $search, $replace: '')
+{
+	//Find the search string
+	$index: str-index($string, $search);
+
+	//Check if string exists
+	@if $index
+	{
+		//Get the string before the search string
+		$before: str-slice($string, 1, $index - 1);
+
+		//Get the string after the search string
+		$after: str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+
+		//Return the replaced string
+		@return $before + $replace + $after;
+	}
+
+	//Return the string
+	@return $string;
+}
