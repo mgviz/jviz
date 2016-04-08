@@ -107,30 +107,6 @@ CoverViewer.prototype.CoverTrackDrawNoCover = function()
 
   //Draw the title
   canvas.Text({ x: tit_x, y: tit_y, text: tit_text, font: tit_font, size: tit_size, color: tit_color, align: tit_align });
-
-  //Get the no cover subtitle text
-  var sub_text = this.cover.nocover.subtitle.text;
-
-  //Calculate the no cover subtitle position x
-  var sub_x = this.cover.width/2;
-
-  //Get the no cover subtitle position y
-  var sub_y = this.cover.height/2 - this.cover.nocover.height/2 + this.cover.nocover.subtitle.posy;
-
-  //Get the subtitle color
-  var sub_color = this.cover.nocover.subtitle.color;
-
-  //Get the subtitle font
-  var sub_font = this.cover.nocover.subtitle.font;
-
-  //Get the subtitle size
-  var sub_size = this.cover.nocover.subtitle.size;
-
-  //Get the subtittle align
-  var sub_align = this.cover.nocover.subtitle.align;
-
-  //Draw the subtitle
-  canvas.Text({ x: sub_x, y: sub_y, text: sub_text, font: sub_font, size: sub_size, color: sub_color, align: sub_align });
 };
 
 //CoverViewer Cover track draw
@@ -183,6 +159,115 @@ CoverViewer.prototype.CoverTrackDraw = function(s)
 
   //Draw the control points
 	this.PointsDraw(canvas, this.cover.draw.start, this.cover.draw.end, this.cover.height, this.cover.draw.margin);
+
+  //Get the marks
+  var marks = this.MarksChromosome();
+
+  //Read all the marks
+  for(var i = 0; i < marks.length; i++)
+  {
+    //Get the mark
+    var m = marks[i];
+
+    //Check the start position
+    if(m.end < this.cover.draw.start){ continue; }
+
+    //Check the end position
+    if(this.cover.draw.end < m.start){ break; }
+
+    //Get the start position
+    var mark_start = Math.max(0, (m.start - this.cover.draw.start)/this.cover.draw.scale);
+
+    //Get the end point
+    var mark_end = Math.min(this.cover.draw.width, (m.end - this.cover.draw.start)/this.cover.draw.scale);
+
+    //Get the mark length
+    var mark_length = Math.max(1, mark_end - mark_start);
+
+    //Get the start position x
+    var mark_x = this.cover.draw.margin.left + mark_start;
+
+    //Get the mark position y
+    var mark_y = this.cover.draw.margin.top;
+
+    //Get the mark height
+    var mark_height = this.cover.draw.height;
+
+    //Draw the mark rectangle
+    canvas.Rect({ x: mark_x, y: mark_y, width: mark_length, height: mark_height });
+
+    //Draw the color
+    canvas.Fill({ color: this.marks.fill, opacity: this.marks.opacity.cover });
+
+    //Get the mark position label x
+    var markp_x = this.cover.draw.margin.left + (mark_end + mark_start)/2 - this.marks.position.width/2;
+
+    //Get the mark position label y
+    var markp_y = this.cover.draw.margin.top - this.marks.position.height - this.marks.position.triangle;
+
+    //Get the mark position label width
+    var markp_width = this.marks.position.width;
+
+    //Get the mark position label height
+    var markp_height = this.marks.position.height;
+
+    //Get the mark position label radius
+    var markp_radius = this.marks.position.radius;
+
+    //Draw the mark position rectangle
+    canvas.Rect({ x: markp_x, y: markp_y, width: markp_width, height: markp_height, radius: markp_radius });
+
+    //Fill color
+    canvas.Fill(this.marks.position.fill);
+
+    //Create the triangle
+    var mtri = [];
+
+    //Get the triangle position x
+    var mtri_x = markp_x + this.marks.position.width/2;
+
+    //Get the triangle position y
+    var mtri_y = markp_y + this.marks.position.height;
+
+    //Add the first point
+    mtri.push([ mtri_x - this.marks.position.triangle, mtri_y ]);
+
+    //Add the middle point
+    mtri.push([ mtri_x, mtri_y + this.marks.position.triangle ]);
+
+    //Add the last point
+    mtri.push([ mtri_x + this.marks.position.triangle, mtri_y ]);
+
+    //Draw the triangle
+    canvas.Line(mtri);
+
+    //Fill color
+    canvas.Fill(this.marks.position.fill);
+
+    //Get the text
+    var mtext = jvizMath.FormatNumber(m.start) + ' - ' + jvizMath.FormatNumber(m.end);
+
+    //Get the text position x
+    var mtext_x = markp_x + this.marks.position.width/2;
+
+    //Get the text position y
+    var mtext_y = markp_y + this.marks.position.text.margin;
+
+    //Get the text font
+    var mtext_font = this.marks.position.text.font;
+
+    //Get the text size
+    var mtext_size = this.marks.position.text.size;
+
+    //Get the text color
+    var mtext_color = this.marks.position.text.color;
+
+    //Get the text align
+    var mtext_align = this.marks.position.text.align;
+
+    //Draw the text
+    canvas.Text({ text: mtext, x: mtext_x, y: mtext_y, color: mtext_color, font: mtext_font, size: mtext_size, align: mtext_align });
+  }
 
   //Lines array
   var lines = [];
@@ -493,7 +578,7 @@ CoverViewer.prototype.CoverTrackMouseDown = function(x)
   this.cover.click.start = this.preview.window.start;
 
   //Destroy the genes info
-  this.GenesTrackInfoClear();
+  this.genes.tooltip.Hide();
 };
 
 //CoverViewer Cover track mouse up event
