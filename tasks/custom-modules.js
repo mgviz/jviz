@@ -22,19 +22,18 @@ module.exports = function(gulp, name){
 	//Save the scss files
 	.pipe(gulp.dest(dest));
 
-
 	//Get the scripts files
-  gulp.src([ src + '/scripts/' + name + '.js', src + '/scripts/**/*.js' ])
+	gulp.src([ src + '/scripts/' + name + '.js', src + '/scripts/**/*.js' ])
 
-  //Concat all script files
-  .pipe(concat(name + '.js'))
+	//Concat all script files
+	.pipe(concat(name + '.js'))
 
-  //Save in css/ folder
-  .pipe(gulp.dest(dest));
+	//Save in css/ folder
+	.pipe(gulp.dest(dest));
 
 
 	//Select the html file
-  gulp.src([ src + name + '.html' ])
+	gulp.src([ src + name + '.html' ])
 
 	//Rename as index.html
 	.pipe(rename('index.html'))
