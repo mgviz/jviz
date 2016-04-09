@@ -21,6 +21,7 @@ module.exports = function(gulp, name){
 
 	//Save the scss files
 	.pipe(gulp.dest(dest));
+	
 
 	//Get the scripts files
 	gulp.src([ src + '/scripts/' + name + '.js', src + '/scripts/**/*.js' ])
@@ -40,5 +41,5 @@ module.exports = function(gulp, name){
 
 	//Save to the build folder
 	.pipe(gulp.dest(dest));
-	
+
 };
