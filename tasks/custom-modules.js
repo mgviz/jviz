@@ -1,45 +1,45 @@
 //Import dependencies
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var rename = require('gulp-rename');
-var sass = require('gulp-sass');
+var path = require('path');
+var fs = require('fs');
 
-//Build module
-module.exports = function(gulp, name){
+//Import tasks
+var taskConcat = require('./task-concat.js');
+var taskRename = require('./task-rename.js');
+var taskScss = require('./task-scss.js');
+
+//Build jviz module
+module.exports = function(gulp, name, opt)
+{
+	//Check for undefined options
+	if(typeof opt === 'undefined'){ var opt = {}; }
+
+	//Check for undefined source base
+	if(typeof opt.base === 'undefined'){ opt.base = './'; }
+
+	//Check for undefined dest path
+	if(typeof opt.dest === 'undefined'){ opt.dest = './build/'; }
 
 	//Destination folder
 	var dest = './build/' + name + '/';
 
-	//Input folder
-	var src = './' + name + '/';
+	//Source folder
+	var src = path.join(opt.base, name, './');
 
-	//Get the scss files
-	gulp.src([ src + 'scss/*.scss' ])
+	//Input folder for javascript files
+	var srcJS = [ src + 'scripts/' + name + '.js', src + 'scripts/' + '**/*.js' ];
+
+	//Input folder for test files
+	var srcTest = [ src + name + '.html' ];
+
+	//Input folder for scss files
+	var srcScss = [ src + 'scss/' + name + '.scss' ];
+
+	//Concat all js files
+	taskConcat(gulp, srcJS, dest, name + '.js');
+
+	//Rename the test file
+	taskRename(gulp, srcTest, dest, 'index.html');
 
 	//Build the scss files
-	.pipe(sass().on('error', sass.logError))
-
-	//Save the scss files
-	.pipe(gulp.dest(dest));
-	
-
-	//Get the scripts files
-	gulp.src([ src + '/scripts/' + name + '.js', src + '/scripts/**/*.js' ])
-
-	//Concat all script files
-	.pipe(concat(name + '.js'))
-
-	//Save in css/ folder
-	.pipe(gulp.dest(dest));
-
-
-	//Select the html file
-	gulp.src([ src + name + '.html' ])
-
-	//Rename as index.html
-	.pipe(rename('index.html'))
-
-	//Save to the build folder
-	.pipe(gulp.dest(dest));
-
+	taskScss(gulp, srcScss, dest);
 };
