@@ -25,7 +25,7 @@ module.exports = function(gulp, name, opt)
 	var src = path.join(opt.base, './');
 
 	//Input folder for javascript files
-	var srcJS = [ src 'srcipts/' + name + '.js', src + 'srcipts/' + '**/*.js' ];
+	var srcJS = [ src + 'scripts/' + name + '/' + name + '.js', src + 'scripts/' + name + '/**/*.js' ];
 
 	//Input folder for test files
 	var srcTest = [ src + 'test/' + name + '.html' ];
