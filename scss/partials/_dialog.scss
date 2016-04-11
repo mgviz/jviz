@@ -101,7 +101,10 @@
 			&-row
 			{
 				//Display
-				display: block; width: 100%;
+				display: block; width: 100%; min-height: 30px;
+
+				//Padding
+				padding: { top: 5px; bottom: 5px; }
 
 				//Row after
 			  &:after { content: " "; clear: both; display: table; line-height: 0; }
@@ -138,8 +141,8 @@
 				//Margin
 				margin: { right: 10px; }
 
-				//Last child
-				&:last-child { margin: { right: 0px; } }
+				//Third child
+				&:nth-child(3) { margin: { right: 0px; } }
 			}
 
 			//Column 2
@@ -152,7 +155,7 @@
 				margin: { right: 10px; }
 
 				//Last child
-				&:last-child { margin: { right: 0px; } }
+				&:nth-child(2) { margin: { right: 0px; } }
 			}
 
 			//Column 1
