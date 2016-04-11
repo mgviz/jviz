@@ -41,6 +41,16 @@ function jvizDialog(obj)
 	this.panel.body.id = this.panel.id + '-body'; //Panel body ID
 	this.panel.body.class = this.panel.class + '-body'; //Panel body class
 
+	//Panel body Row
+	this.panel.body.row = {};
+	this.panel.body.row.class = this.panel.body.class + '-row'; //Panel body row class
+
+	//Panel body column
+	this.panel.body.col = {};
+	this.panel.body.col.class = this.panel.body.class + '-col'; //Panel body column base class
+	this.panel.body.col.c1 = this.panel.body.col.class + '-1'; //Panel body column one column class
+	this.panel.body.col.c2 = this.panel.body.col.class + '-2'; //Panel body column two columns class
+	this.panel.body.col.c3 = this.panel.body.col.class + '-3'; //Panel body column three columns class
 
 	//Return the new element
 	return this;
@@ -95,6 +105,59 @@ jvizDialog.prototype.Content = function(div)
 {
 	//Show the content div
 	$('#' + this.panel.body.id).html(div);
+};
+
+//jvizDialog Create Row
+jvizDialog.prototype.CreateRow = function(content)
+{
+	//Create the row div
+	var div = '<div class="' + this.panel.body.row.class + '">';
+
+	//Add the content
+	div = div + content;
+
+	//Close the row
+	div = div + '</div>';
+
+	//Return the row
+	return div;
+};
+
+//jvizDialog Create column
+jvizDialog.prototype.CreateCol = function(content, number)
+{
+	//Create the column div
+	var div = '<div class="' + this.panel.body.col[number] + '">';
+
+	//Add the content
+	div = div + content;
+
+	//Close the column
+	div = div + '</div>';
+
+	//Return the column code
+	return div;
+};
+
+//jvizDialog Create column 1
+jvizDialog.prototype.CreateCol1 = function(content)
+{
+	//Create the column
+	return this.CreateCol(content, 'c1');
+};
+
+//jvizDialog Create column 2
+jvizDialog.prototype.CreateCol2 = function(content)
+{
+	//Create the column
+	return this.CreateCol(content, 'c2');
+};
+
+//jvizDialog Create column
+jvizDialog.prototype.CreateCol3 = function(content)
+{
+	//Create the column 3
+	return this.CreateCol(content, 'c3');
 };
 
 //jvizDialog show/hide
