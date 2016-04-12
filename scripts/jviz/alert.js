@@ -84,6 +84,9 @@ jvizAlert.prototype.Create = function(type, obj)
 	//Check the obj
 	if(typeof obj === 'undefined'){ return; }
 
+	//Check for string
+	if(typeof obj === 'string'){ obj = { text: obj }; }
+
 	//Check for empty text
 	if(typeof obj.text === 'undefined'){ return; }
 
