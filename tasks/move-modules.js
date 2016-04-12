@@ -17,7 +17,7 @@ module.exports = function(gulp, tool, dest)
 		var src = './build/' +  tool[i] + '/**/*';
 
 		//Destination
-		var desti = path.join(dest, tool[i], './');
+		var desti = path.join(dest, 'jviz_modules/', tool[i], './');
 
 		//Move
 		taskMove(gulp, src, desti);
