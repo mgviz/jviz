@@ -19,6 +19,9 @@ function jvizSendPOST(url, args)
 		{
 			//Convert to string
 			value = JSON.stringify(value);
+
+			//Encode the string
+			value = encodeURIComponent(value);
 		}
 
 		//Create a new input value
