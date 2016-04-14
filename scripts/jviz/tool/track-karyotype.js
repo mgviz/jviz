@@ -484,10 +484,10 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 			canvas.Fill({ color: this.chromosome.regions.fill, opacity: this.chromosome.regions.opacity });
 
 			//Read all the marks and find one on this chromosome
-			for(var j = 0; j < marks.length; j++)
+			for(var k = 0; k < marks.length; k++)
 			{
 				//Get the mark
-				var m = marks[j];
+				var m = marks[k];
 
 				//Check if mark is on the region
 				if(re.end < m.start || m.end < re.start){ continue; }
