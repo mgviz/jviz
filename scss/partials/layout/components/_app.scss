@@ -4,11 +4,14 @@
 	//Display
 	display: block; width: 1180px; vertical-align: top;
 
+	//Margin
+	margin: { top: 20px; bottom: 30px; left: auto; right: auto; }
+
 	//App panel
 	&-panel
 	{
 		//Display
-		display: inline-block; width: 270px; float: left; vertical-align: top;
+		display: inline-block; width: 210px; float: left; vertical-align: top;
 
 		//Margin
 		margin: { top: 0px; bottom: 0px; }
@@ -43,7 +46,10 @@
 	&-main
 	{
 		//Display
-		display: inline-block; width: 900px; float: left; vertical-align: top;
+		display: inline-block; width: 960px; float: left; vertical-align: top;
+
+		//Margin
+		margin: { top: 0px; bottom: 0px; left: 5px; right: 5px; }
 
 		//Main box
 		&-box
