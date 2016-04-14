@@ -19,7 +19,7 @@ module.exports = function(gulp, name, opt)
 	if(typeof opt.dest === 'undefined'){ opt.dest = './build/'; }
 
 	//Destination folder
-	var dest = './build/' + name + '/';
+	var dest = path.join(opt.dest, name, './');
 
 	//Source path
 	var src = path.join(opt.base, './');
