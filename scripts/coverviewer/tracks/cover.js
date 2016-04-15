@@ -446,7 +446,7 @@ CoverViewer.prototype.CoverTrackDrawValue = function(px, py)
 	var canvas = this.cover.Layer(1);
 
   //Get the cover for this position
-  var cover = (typeof this.cover.data[this.cover.hover.position] === 'undefined') ? this.bams.empty : this.cover.data[this.cover.hover.position];
+  var cover = (typeof this.cover.data[this.cover.hover.position] === 'undefined') ? this.bams.empty : this.data.cover.data[this.cover.hover.position];
 
   //Check the circles
   for(var i = this.cover.hover.circle.length - 1; i >= 0; i--)
