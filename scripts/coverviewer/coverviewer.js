@@ -331,7 +331,7 @@ var CoverViewer = function(id)
 
   //Cover label for value
   this.cover.value = {};
-  this.cover.value.width = 40; //Label width
+  this.cover.value.width = 50; //Label width
   this.cover.value.height = 15; //Label height
   this.cover.value.margin = 15; //Margin right
   this.cover.value.text = { font: 'Quicksand', size: '11px', align: 'center', color: '#ffffff' }; //Font
