@@ -142,6 +142,25 @@ function jvizToolKaryotypeTrack(obj)
 	this.marks.fill = '#b490f5'; //Marks fill color
 	this.marks.triangle = 6; //Triangle width
 
+	//Marks for karyotypes
+	this.marks.karyotypes = {};
+	this.marks.karyotypes.width = 16; //Mark for karyotypes width
+	this.marks.karyotypes.height = 17; //Mark for karyotypes height
+	this.marks.karyotypes.margin = 24; //Mark for karyotypes margin
+	this.marks.karyotypes.radius = 5; //Mark for karyotypes radius
+	this.marks.karyotypes.triangle = 1; //Mark for karyotyopes triangle margin
+
+	//Marks for karyotypes text
+	this.marks.karyotypes.text = {};
+	this.marks.karyotypes.text.x = 0; //Marks karyotypes text position x
+	this.marks.karyotypes.text.y = 0; //Marks karyotypes text position y
+	this.marks.karyotypes.text.text = '!'; //Marks karyotypes text text
+	this.marks.karyotypes.text.font = 'Quicksand-Bold'; //Marks for karyotypes text font
+	this.marks.karyotypes.text.size = '14px'; //Marks for karyotypes text size
+	this.marks.karyotypes.text.color = '#ffffff'; //Marks for karyotypes text color
+	this.marks.karyotypes.text.align = 'center'; //Marks for karyotypes text align
+	this.marks.karyotypes.text.margin = 1; //Marks for karyotypes text margin
+
 	//Return the track
 	return this;
 }
@@ -453,6 +472,9 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 		//Get the regions for this chromosome
 		var regions = (typeof this.regions.list[ch.id] === 'undefined') ? [] : this.regions.list[ch.id];
 
+		//Set mark added
+		var mark_added = false;
+
 		//Read all the regions
 		for(var j = 0; j < regions.length; j++)
 		{
@@ -483,6 +505,9 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 			//Region fill
 			canvas.Fill({ color: this.chromosome.regions.fill, opacity: this.chromosome.regions.opacity });
 
+			//Check for mark added
+			if(mark_added === true){ continue; }
+
 			//Read all the marks and find one on this chromosome
 			for(var k = 0; k < marks.length; k++)
 			{
@@ -492,32 +517,62 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 				//Check if mark is on the region
 				if(re.end < m.start || m.end < re.start){ continue; }
 
-				//Get the mark position x
-				var mark_x = posx + this.karyotypes.width;
+				//Get the mark rectangle position x
+				var mark_x = posx + this.karyotypes.width/2 - this.marks.karyotypes.width/2;
 
-				//Get the mark middle point
-				var mark_middle = (m.start + m.end)/2;
+				//Get the mark rectange position y
+				var mark_y = posy - this.marks.karyotypes.margin;
 
-				//Get the mark position y
-				var mark_y = this.draw.margin.top + this.draw.height - this.draw.height*(mark_middle/this.karyotypes.max);
+				//Get the mark rectange radius
+				var mark_radius = this.marks.karyotypes.radius;
+
+				//Get the mark width
+				var mark_width = this.marks.karyotypes.width;
+
+				//Get the mark rectangle height
+				var mark_height = this.marks.karyotypes.height;
+
+				//Draw the rectangle
+				canvas.Rect({ x: mark_x, y: mark_y, width: mark_width, height: mark_height, radius: mark_radius });
+
+				//Set the rectangle color
+				canvas.Fill({ color: this.marks.fill });
+
+				//Update the text position x
+				this.marks.karyotypes.text.x = posx + this.karyotypes.width/2;
+
+				//Update the text position y
+				this.marks.karyotypes.text.y = mark_y + this.marks.karyotypes.text.margin;
+
+				//Draw the text
+				canvas.Text(this.marks.karyotypes.text);
+
+				//Update the mark position x
+				mark_x = posx + this.karyotypes.width/2;
+
+				//Update the mark position y
+				mark_y = mark_y + this.marks.karyotypes.height - this.marks.karyotypes.triangle;
 
 				//Initialize the triangle array
 				var tri = [];
 
 				//Add the first point
-				tri.push([ mark_x + this.marks.triangle, mark_y - this.marks.triangle ]);
+				tri.push([ mark_x - this.marks.triangle, mark_y ]);
 
 				//Add the middle point
-				tri.push([ mark_x, mark_y ]);
+				tri.push([ mark_x, mark_y + this.marks.triangle ]);
 
 				//Add the first point
-				tri.push([ mark_x + this.marks.triangle, mark_y + this.marks.triangle ]);
+				tri.push([ mark_x + this.marks.triangle, mark_y ]);
 
 				//Add the line
 				canvas.Line(tri);
 
 				//Add the fill color
 				canvas.Fill(this.marks.fill);
+
+				//Set mark added for this chromosome
+				mark_added = true;
 
 				//Done, exit loop
 				break;
