@@ -94,9 +94,19 @@ function jvizGetID(opt)
 	return id;
 }
 
+//Alias for GetID
+function jvizGenID(opt)
+{
+	//Generate an ID
+	return jvizGetID(opt);
+}
+
 //Check for exports
 if(typeof exports !== 'undefined')
 {
-	//Export module
+	//Export module GetID
 	exports.GetID = jvizGetID;
+
+	//Exports module GenID
+	exports.GenID = jvizGetID;
 }
