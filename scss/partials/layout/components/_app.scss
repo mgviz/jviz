@@ -2,10 +2,16 @@
 @mixin jvizLayoutComponentsApp
 {
 	//Display
-	display: block; width: 1180px; vertical-align: top;
+	display: block; width: 960px; vertical-align: top;
 
 	//Margin
 	margin: { top: 20px; bottom: 30px; left: auto; right: auto; }
+
+	//App full width
+	&-full { width: 1180; }
+
+	//Full width main width
+	&-full > &-main { width: 960px; }
 
 	//App panel
 	&-panel
@@ -46,7 +52,7 @@
 	&-main
 	{
 		//Display
-		display: inline-block; width: 960px; float: left; vertical-align: top;
+		display: inline-block; width: 740px; float: left; vertical-align: top;
 
 		//Margin
 		margin: { top: 0px; bottom: 0px; left: 5px; right: 5px; }
