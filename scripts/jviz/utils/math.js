@@ -17,25 +17,30 @@ jvizMath.Zeros = function(num)
 //Get a random number
 jvizMath.Rand = function(min, max)
 {
-	//Check for undefined
-	if(typeof min === 'undefined' || typeof max === 'undefined')
-	{
-		//Create the new min
-		var min = 0;
+	//Check for undefined min
+	if(typeof min === 'undefined'){ var min = 0; }
 
-		//Create the new max
-		var max = 1;
-	}
+	//Check for undefined max
+	if(typeof max === 'undefined'){ var max = 1; } 
+
+	//Get a random number
+	var r = Math.random()*(max - min);
 
 	//Return the random number
-	return Math.random()*(max - min);
+	return r + min;
 };
 
 //Get a random integer
 jvizMath.RandInt = function(min, max)
 {
+	//Check for undefined min
+	if(typeof min === 'undefined'){ var min = 0; }
+
+	//Check for undefined max
+	if(typeof max === 'undefined'){ var max = 1; }
+
 	//Get a random number
-	var r = jvizMath.Rand(min, max);
+	var r = Math.random()*(max - min);
 
 	//Convert to integer
   r = Math.floor(r) + min;
