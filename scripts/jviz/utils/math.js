@@ -44,7 +44,19 @@ jvizMath.RandInt = function(min, max)
 	return r;
 };
 
+//Rand alias
+jvizMath.Random = function(min, max)
+{
+	//Return the random number
+	return jvizMath.Rand(min, max);
+};
 
+//Rand Int alias
+jvizMath.RandomInt = function(min, max)
+{
+	//Return the random integer
+	return jvizMath.RandInt(min, max);
+};
 
 //Format number
 //Found in http://stackoverflow.com/questions/2254185/regular-expression-for-formatting-numbers-in-javascript
