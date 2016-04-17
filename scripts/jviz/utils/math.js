@@ -70,7 +70,7 @@ jvizMath.FormatNumber = function(num, sep)
 };
 
 //Check for exports to node
-if(typeof exports !== undefined && exports)
+if(typeof exports !== 'undefined')
 {
 	//Export module
 	exports.Math = jvizMath;
