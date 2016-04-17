@@ -8,7 +8,7 @@ $jvizNavy3: #8793b3 !default;
 $jvizNavy4: #b7c5d8 !default;
 
 //Navy colors list
-$jvizNavyList: #4a526c, #606c89, #8793b3, #b7c5d8;
+$jvizNavyList: #4a526c, #606c89, #8793b3, #b7c5d8 !default;
 
 //Grey base color
 $jvizGrey: #dbe6f0 !default;
@@ -20,28 +20,91 @@ $jvizGrey3: #e8edf5 !default;
 $jvizGrey4: #f0f5fb !default;
 
 //Grey color list
-$jvizGreyList: #dbe6f0, #e2ebf4, #e8edf5, #f0f5fb;
+$jvizGreyList: #dbe6f0, #e2ebf4, #e8edf5, #f0f5fb !default;
 
-//Red colors
+//Red base color
 $jvizRed: #ea685a !default;
 
-//Blue colors
+//Red colors
+$jvizRed1: #e54634 !default;
+$jvizRed2: #ea685a !default;
+$jvizRed3: #ed8378 !default;
+$jvizRed4: #f0988e !default;
+
+//Red colors list
+$jvizRedList: #e54634, #ea685a, #ed8378, #f0988e !default;
+
+//Blue base color
 $jvizBlue: #38b1eb !default;
 
-//Pink colors
+//Blue colors
+$jvizBlue1: #1595d1 !default;
+$jvizBlue2: #38b1eb !default;
+$jvizBlue3: #45b8ed !default;
+$jvizBlue4: #5dc1ef !default;
+
+//BLue colors list
+$jvizBlueList: #1595d1, #38b1eb, #45b8ed, #5dc1ef !default;
+
+//Pink base color
 $jvizPink: #f45b93 !default;
 
-//Water colors
+//Pink colors
+$jvizPink1: #f02872 !default;
+$jvizPink2: #f45b93 !default;
+$jvizPink3: #f570a1 !default;
+$jvizPink4: #f788b0 !default;
+
+//Pink colors list
+$jvizPinkList: #f02872, #f45b93, #f570a1, #f788b0 !default;
+
+//Water base color
 $jvizWater: #18d2ba !default;
 
-//Green colors
+//Water colors
+$jvizWater1: #15b7a1 !default;
+$jvizWater2: #18d2ba !default;
+$jvizWater3: #1be4c9 !default;
+$jvizWater4: #48ead4 !default;
+
+//Water colors list
+$jvizWaterList: #15b7a1, #18d2ba, #1be4c9, #48ead4 !default;
+
+//Green base color
 $jvizGreen: #67ba2f !default;
 
-//Purple colors
+//Green colors
+$jvizGreen1: #4f8f24 !default;
+$jvizGreen2: #67ba2f !default;
+$jvizGreen3: #70cc33 !default;
+$jvizGreen4: #8dd65c !default;
+
+//Green colors list
+$jvizGreenList: #4f8f24, #67ba2f, #70cc33, #8dd65c !default;
+
+//Purple base color
 $jvizPurple: #b490f5 !default;
 
-//Orange colors
+//Purple colors
+$jvizPurple1: #905cf0 !default;
+$jvizPurple2: #b490f5 !default;
+$jvizPurple3: #bfa2f6 !default;
+$jvizPurple4: #cfb9f8 !default;
+
+//Purple list colors
+$jvizPurpleList: #905cf0, #b490f5, #bfa2f6, #cfb9f8 !default;
+
+//Orange base color
 $jvizOrange: #ed9e48 !default;
+
+//Orange colors
+$jvizOrange1: #e88317 !default;
+$jvizOrange2: #ed9e48 !default;
+$jvizOrange3: #efa85d !default;
+$jvizOrange4: #f1b574 !default;
+
+//Orange colors list
+$jvizOrangeList: #e88317, #ed9e48, #efa85d, #f1b574 !default;
 
 //White color
 $jvizWhite: #ffffff !default;
