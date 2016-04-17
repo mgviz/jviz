@@ -14,6 +14,38 @@ jvizMath.Zeros = function(num)
 	return a;
 };
 
+//Get a random number
+jvizMath.Rand = function(min, max)
+{
+	//Check for undefined
+	if(typeof min === 'undefined' || typeof max === 'undefined')
+	{
+		//Create the new min
+		var min = 0;
+
+		//Create the new max
+		var max = 1;
+	}
+
+	//Return the random number
+	return Math.random()*(max - min);
+};
+
+//Get a random integer
+jvizMath.RandInt = function(min, max)
+{
+	//Get a random number
+	var r = jvizMath.Rand(min, max);
+
+	//Convert to integer
+  r = Math.floor(r) + min;
+
+	//Return the random int
+	return r;
+};
+
+
+
 //Format number
 //Found in http://stackoverflow.com/questions/2254185/regular-expression-for-formatting-numbers-in-javascript
 jvizMath.FormatNumber = function(num, sep)
