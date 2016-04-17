@@ -24,3 +24,10 @@ jvizMath.FormatNumber = function(num, sep)
 	//Return the formatted number
 	return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' + sep);
 };
+
+//Check for exports to node
+if(typeof exports !== undefined && exports)
+{
+	//Export module
+	exports.Math = jvizMath;
+}
