@@ -1,5 +1,5 @@
 //jviz layout components navbar
-@mixin jvizLayoutComponentsNavbar
+@mixin jvizLayoutComponentsNavbar($list: $jvizNavyList, $text: $jvizWhite)
 {
 	//Display
 	display: block; width: 960px; height: 60px;
@@ -8,7 +8,7 @@
 	position: absolute; top: 0px; left: 0px;
 
 	//Background
-	background-color: $jvizNavy;
+	background-color: nth($list, 1);
 
 	//Font
 	@include jvizFontBold; font-size: 14px;
@@ -22,6 +22,16 @@
 	//Navbar fixed
 	&-fixed { position: fixed; }
 
+	//Navbar full
+	&-full
+	{
+		//Display
+		width: 1180px;
+
+		//Padding
+		padding: { top: 0px; bottom: 0px; left: calc(50% - 590px); right: calc(50% - 590px); }
+	}
+
 	//Navbar logo
 	&-logo
 	{
@@ -29,7 +39,7 @@
 		display: inline-block; height: 60px; line-height: 60px; float: left; transition: all 0.3s;
 
 		//Text
-		@include jvizFontBold; font-size: 22px; color: $jvizWhite; text-decoration: none;
+		@include jvizFontBold; font-size: 22px; color: $text; text-decoration: none;
 
 		//Padding
 		padding: { top: 0px; bottom: 0px; left: 0px; right: 0px; }
@@ -45,13 +55,13 @@
 		display: inline-block; height: 30px; line-height: 30px; float: right; transition: all 0.3s;
 
 		//Text
-		@include jvizFontBold; font-size: 14px; color: $jvizWhite; text-decoration: none;
+		@include jvizFontBold; font-size: 14px; color: $text; text-decoration: none;
 
 		//Border
 		border-radius: 5px;
 
 		//Background color
-		background-color: $jvizNavy2;
+		background-color: nth($list, 2);
 
 		//Padding
 		padding: { top: 0px; bottom: 0px; left: 10px; right: 10px; }
