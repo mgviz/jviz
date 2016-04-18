@@ -14,6 +14,9 @@ function jvizToolTrack(obj)
 	this.height = 0; //Track height
 	this.active = true; //Track active
 
+	//Track closed class
+	this.closed = this.class + '-closed';
+
 	//Track cursor
 	this.cursor = {};
 	this.cursor.hand = this.class + '-cursor-hand';
@@ -258,6 +261,9 @@ jvizToolTrack.prototype.Show = function()
 	//Set visible
 	$('#' + this.body.id).css('display', 'block');
 
+	//Remove the closed class
+	$('#' + this.id).removeClass(this.closed);
+
 	//Set active as true
 	this.active = true;
 };
@@ -267,6 +273,9 @@ jvizToolTrack.prototype.Hide = function()
 {
 	//Set hidden
 	$('#' + this.body.id).css('display', 'none');
+
+	//Add the closed class
+	$('#' + this.id).addClass(this.closed);
 
 	//Set active as false
 	this.active = false;
@@ -337,7 +346,11 @@ jvizToolTrack.prototype.ActionID = function()
 };
 
 //jvizToolTrack Events caller
-jvizToolTrack.prototype.Events = function(){ };
+jvizToolTrack.prototype.Events = function()
+{
+	//Add the open/close event
+	jvizToolTrackEventsHead(this);
+};
 
 //jvizToolTrack Events
 function jvizToolTrackEventsHead(_this)
