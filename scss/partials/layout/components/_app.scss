@@ -45,6 +45,37 @@
 
 			//Margin
 			margin: { top: 0px; bottom: 15px; left: auto; right: auto; }
+
+			//Space
+			&-space { display: block; width: 100%; height: 15px; }
+
+			//Title
+			&-title { @include jvizFontBold; font-size: 18px; margin: { bottom: 8px; } }
+
+			//Subtitle
+			&-subtitle { @include jvizFontBold; font-size: 15px; margin: { bottom: 8px; } }
+
+			//Panel description
+			&-description { margin: { bottom: 8px; } }
+
+			//Input
+			&-input
+			{
+				//Include the form default style
+				@include jvizFormInput;
+
+				//Update the background color
+				background-color: $jvizWhite;
+
+				//Update the width
+				width: 100%;
+
+				//Update the margin
+				margin: { top: 0px; bottom: 10px; left: 0px; right: 0px; }
+			}
+
+			//Button
+			&-btn { @include jvizFormBtnBlue; margin: { left: 0px; right: auto; bottom: 10px; top: 0px; } }
 		}
 	}
 
@@ -74,6 +105,12 @@
 
 			//Margin
 			margin: { top: 0px; bottom: 15px; left: auto; right: auto; }
+
+			//Title
+			&-title { @include jvizFontBold; font-size: 15px; margin: { bottom: 8px; } }
+
+			//Panel description
+			&-description { margin: { bottom: 8px; } }
 		}
 	}
 
