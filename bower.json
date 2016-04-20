@@ -1,6 +1,6 @@
 {
 	"name": "jviz",
-	"description": "JavaScript and SASS/SCSS library for build genomic visualization tools.",
+	"description": "Base library to build genomic visualization tools.",
 	"ignore": [ "**/.*", "node_modules", "bower_components", "build" ],
 	"dependencies": { "jquery": "2.2.3", "cvjs": "1.0.0", "objectsort": "1.0.0" },
 	"license": "MIT",
