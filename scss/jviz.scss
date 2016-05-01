@@ -26,7 +26,7 @@
 	&Text { @include jvizText; }
 
 	//Tool tip
-	&ToolTip { @include jvizToolTip; } 
+	&ToolTip { @include jvizToolTip; }
 
 	//Base
 	&Base
@@ -71,15 +71,5 @@
 			&White { @include jvizFormBtnWhite; }
 			&Water { @include jvizFormBtnWater; }
 		}
-	}
-
-	//Layout
-	&Layout
-	{
-		//Dashboard
-		&Dashboard { @include jvizLayoutDashboard; }
-
-		//One page
-		&Onepage { @include jvizLayoutOnepage; }
 	}
 }
