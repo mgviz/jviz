@@ -1,6 +1,6 @@
 {
 	"name": "jviz",
-	"version": "0.1.0.alpha.5",
 	"description": "The jviz base module",
-	"buildPath": "./build/"
+	"buildPath": "./build/",
+	"dependencies": {}
 }
