@@ -6,7 +6,7 @@ var jvizEnsemblAdapter = function()
 };
 
 //jvizEnsemblAdapter generate a link for find an element
-jvizEnsemblAdapter.prototype.Search = function(id)
+jvizEnsemblAdapter.prototype.SearchLink = function(id)
 {
   //Generate the link
   var link = '<a target="_blank" ';
