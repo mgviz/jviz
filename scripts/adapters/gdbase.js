@@ -53,14 +53,11 @@ jvizGDBaseAdapter.prototype.Url = function(find, opt)
 	return url;
 };
 
-//jvizGDBaseAdapter Parse object
-jvizGDBaseAdapter.prototype.Parse = function(data, getonly)
+//jvizGDBaseAdapter Parse the result
+jvizGDBaseAdapter.prototype.Parse = function(data)
 {
 	//Check the error
 	if(data.error){ return []; }
-
-	//Check the get only argument
-	if(typeof getonly === 'undefined'){ var getonly = -1; }
 
 	//Output
 	var out = [];
@@ -71,11 +68,31 @@ jvizGDBaseAdapter.prototype.Parse = function(data, getonly)
 		//Get the results
 		var results = (typeof data.response[i].results === 'undefined') ? [] : data.response[i].results;
 
-		//Check the getonly
-		if(getonly === i){ return [ results ]; }
-
 		//Save and continue
 		out.push(results);
+	}
+
+	//Return the results
+	return out;
+};
+
+//jvizGDBaseAdapter Parse and concat the result
+jvizGDBaseAdapter.prototype.ParseConcat = function(data)
+{
+	//Check the error
+	if(data.error){ return []; }
+
+	//Output
+	var out = [];
+
+	//Read all the response
+	for(var i = 0; i < data.response.length; i++)
+	{
+		//Get the results
+		var results = (typeof data.response[i].results === 'undefined') ? [] : data.response[i].results;
+
+		//Concatenate
+		out = out.concat(results);
 	}
 
 	//Return the results
