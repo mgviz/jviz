@@ -1,19 +1,22 @@
-//Ensembl Main class
-var EnsemblAdapter = new function()
+//jvizEnsemblAdapter
+var jvizEnsemblAdapter = function()
 {
-  //Function for create a link to a ensembl ID
-  this.LinkTo = function(id)
-  {
-    //Generate the link
-    var link = '<a target="_blank" ';
+  //Return the element
+  return this;
+};
 
-    //Add thelink for view the ensembl id
-    link = link + 'href="http://www.ensembl.org/Multi/Search/Results?q=' + id + '">';
+//jvizEnsemblAdapter generate a link for find an element
+jvizEnsemblAdapter.prototype.Search = function(id)
+{
+  //Generate the link
+  var link = '<a target="_blank" ';
 
-    //Add the text
-    link = link + id + '</a>';
+  //Add thelink for view the ensembl id
+  link = link + 'href="http://www.ensembl.org/Multi/Search/Results?q=' + id + '">';
 
-    //Return the link
-    return link;
-  };
+  //Add the text
+  link = link + id + '</a>';
+
+  //Return the link
+  return link;
 };
