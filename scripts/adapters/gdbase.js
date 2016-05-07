@@ -66,7 +66,7 @@ jvizGDBaseAdapter.prototype.Parse = function(data)
 	for(var i = 0; i < data.response.length; i++)
 	{
 		//Get the results
-		var results = (typeof data.response[i].results === 'undefined') ? [] : data.response[i].results;
+		var results = (typeof data.response[i].result === 'undefined') ? [] : data.response[i].result;
 
 		//Save and continue
 		out.push(results);
@@ -89,7 +89,7 @@ jvizGDBaseAdapter.prototype.ParseConcat = function(data)
 	for(var i = 0; i < data.response.length; i++)
 	{
 		//Get the results
-		var results = (typeof data.response[i].results === 'undefined') ? [] : data.response[i].results;
+		var results = (typeof data.response[i].result === 'undefined') ? [] : data.response[i].result;
 
 		//Concatenate
 		out = out.concat(results);
