@@ -1,0 +1,5 @@
+//jvizKaryoDBAdapter
+var jvizKaryoDBAdapter = function()
+{
+
+};
