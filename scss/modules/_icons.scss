@@ -1,5 +1,5 @@
 //jviz icons url
-$jviz_icons_url: 'https://nodebio.github.io/jviz-icons/svg/{color}/{icon}.svg' !default;
+$jviz_icons_url: 'https://cdn.juanes.xyz/images/jviz-icons/svg/{COLOR}/{ICON}.svg' !default;
 
 //Icon function
 @function jvizIcon($icon, $color: 'navy')
@@ -11,10 +11,10 @@ $jviz_icons_url: 'https://nodebio.github.io/jviz-icons/svg/{color}/{icon}.svg' !
 	$color: to-lower-case($color);
 
 	//Replace the color
-	$url: str-replace($jviz_icons_url, '{color}', $color);
+	$url: str-replace($jviz_icons_url, '{COLOR}', $color);
 
 	//Replace the icon
-	$url: str-replace($url, '{icon}', $icon);
+	$url: str-replace($url, '{ICON}', $icon);
 
 	//Return the icon source
 	@return $url;
