@@ -1,5 +1,5 @@
 //jviz icons url
-$jviz_icons_url: 'https://cdn.juanes.xyz/images/jviz-icons/svg/{COLOR}/{ICON}.svg' !default;
+$jviz_icons_url: 'https://cdn.juanes.xyz/images/jviz-icons/{COLOR}/{ICON}.svg' !default;
 
 //Icon function
 @function jvizIcon($icon, $color: 'navy')
