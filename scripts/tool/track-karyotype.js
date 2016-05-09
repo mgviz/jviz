@@ -382,7 +382,7 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 		var ch = this.karyotypes.list[i];
 
 		//Get the mark for this chromosome
-		var marks = this.GetMarks(ch.id);
+		var marks = this.GetMarks(ch.id).length;
 
 		//Get the chromosome width
 		var width = this.karyotypes.width;
@@ -487,9 +487,6 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 		//Get the regions for this chromosome
 		var regions = (typeof this.regions.list[ch.id] === 'undefined') ? [] : this.regions.list[ch.id];
 
-		//Number of marks
-		var marks_count = 0;
-
 		//Read all the regions
 		for(var j = 0; j < regions.length; j++)
 		{
@@ -519,23 +516,10 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 
 			//Region fill
 			canvas.Fill({ color: this.chromosome.regions.fill, opacity: this.chromosome.regions.opacity });
-
-			//Read all the marks and find one on this chromosome
-			for(var k = 0; k < marks.length; k++)
-			{
-				//Get the mark
-				var m = marks[k];
-
-				//Check if mark is on the region
-				if(re.end < m.start || m.end < re.start){ continue; }
-
-				//Increment the counter
-				marks_count = marks_count + 1;
-			}
 		}
 
 		//Check the number of marks
-		if(marks_count === 0){ continue; }
+		if(marks === 0){ continue; }
 
 		//Get the mark rectangle position x
 		var mark_x = posx + this.karyotypes.width/2 - this.marks.karyotypes.width/2;
