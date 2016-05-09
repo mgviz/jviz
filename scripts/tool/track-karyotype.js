@@ -17,7 +17,7 @@ function jvizToolKaryotypeTrack(obj)
 	this.height = 160;
 
 	//Track draw margin
-	this.draw.margin = { top: 50, bottom: 40, left: 70, right: 70 };
+	this.draw.margin = { top: 50, bottom: 40, left: 30, right: 30 };
 
 	//Fill object
 	this.fill = {};
@@ -1036,7 +1036,7 @@ jvizToolKaryotypeTrack.prototype.ChromosomeDrawRegionLabel = function(x, y)
 	//Clear the canvas
 	//canvas.Clear({ x: 0, y: this.chromosome.utils.posy_end, width: this.width, height: this.chromosome.utils.down });
 	canvas.Clear();
-	
+
 	//Check for null index
 	if(index < 0) { return this.CursorRemove('hand'); }
 
