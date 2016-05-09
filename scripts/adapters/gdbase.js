@@ -1,8 +1,11 @@
 //jviz GDBase adapter
 var jvizGDBaseAdapter = function(mirror)
 {
+	//Check the mirror
+	if(typeof mirror === 'undefined'){ var mirror = ''; }
+
 	//Save the mirror
-	this.mirror = (typeof mirror === 'undefined') ? 'http://bioinfolab005.uv.es:3000' : mirror;
+	this.mirror = (mirror === '') ? 'http://bioinfolab005.uv.es:3000' : mirror;
 
 	//Parse the mirror
 	if(this.mirror.charAt(this.mirror.length - 1) === '/')
