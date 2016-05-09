@@ -1,11 +1,11 @@
 //jvizKaryoDBAdapter
 var jvizKaryoDBAdapter = function(mirror)
 {
-	//Default link
-	var url = 'https://' + 'raw.githubusercontent.com/biowt/karyojs-species/v1';
+	//Check the mirror
+	if(typeof mirror === 'undefined'){ var mirror = ''; }
 
 	//Save the mirror
-	this.mirror = (typeof mirror === 'undefined') ? url : mirror;
+	this.mirror = (mirror === '') ? 'https://' + 'raw.githubusercontent.com/biowt/karyojs-species/v1' : mirror;
 
 	//Parse the mirror
 	if(this.mirror.charAt(this.mirror.length - 1) === '/')
