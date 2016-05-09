@@ -17,7 +17,7 @@ function jvizToolKaryotypeTrack(obj)
 	this.height = 160;
 
 	//Track draw margin
-	this.draw.margin = { top: 50, bottom: 40, left: 30, right: 30 };
+	this.draw.margin = { top: 50, bottom: 40, left: 40, right: 40 };
 
 	//Fill object
 	this.fill = {};
