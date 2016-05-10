@@ -29,6 +29,9 @@
 @import "partials/form/label";
 @import "partials/form/switch";
 
+//Import screen partials
+@import "partials/screen/loading";
+
 //Import tool partials
 @import "partials/tool/canvastrack";
 @import "partials/tool/navbar";
