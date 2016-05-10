@@ -31,7 +31,7 @@ function jvizScreenLoading(opt)
 jvizScreenLoading.prototype.Build = function(parent)
 {
 	//Initialize the loading div
-	var div = '<div id="' + this.id + '" class="' + this.class + '">';
+	var div = '<div id="' + this.id + '" class="' + this.class + '" style="display:none;">';
 
 	//Add the screen
 	div = div + '<div id="' + this.screen.id + '" class="' + this.screen.class + '">';
