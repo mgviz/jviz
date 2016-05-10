@@ -23,6 +23,12 @@ function jvizScreenLoading(opt)
 	this.animation.id = this.id + '-animation'; //Animation ID
 	this.animation.class = this.class + '-animation'; //Animation class
 
+	//Text
+	this.text = {};
+	this.text.id = this.id + '-text'; //Text ID
+	this.text.class = this.class + '-text'; //Text class
+	this.text.text = ''; //Text
+
 	//Return the element
 	return this;
 }
@@ -39,6 +45,9 @@ jvizScreenLoading.prototype.Build = function(parent)
 	//Add the animation
 	div = div + '<div id="' + this.animation.id + '" class="' + this.animation.class + '"></div>';
 
+	//Add the text div
+	div = div + '<div id="' + this.text.id + '" class="' + this.text.class + '" align="center"></div>';
+
 	//Close the screen
 	div = div + '</div>';
 
@@ -53,7 +62,7 @@ jvizScreenLoading.prototype.Build = function(parent)
 jvizScreenLoading.prototype.SetText = function(text)
 {
 	//Save the text
-
+	this.text.text = text;
 };
 
 //jvizScreenLoading Open
@@ -64,6 +73,9 @@ jvizScreenLoading.prototype.Open = function()
 
 	//Show the screen
 	$('#' + this.id).css('display', 'block');
+
+	//Add the text
+	$('#' + this.text.id).html(this.text.text);
 
 	//Set active as true
 	this.active = true;
