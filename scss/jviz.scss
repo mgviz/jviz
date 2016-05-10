@@ -41,6 +41,13 @@
 		&Typography { @include jvizBaseTypography; }
 	}
 
+	//Screen
+	&Screen
+	{
+		//Loading screen
+		&Loading { @include jvizScreenLoading; } 
+	}
+
 	//Form
 	&Form
 	{
