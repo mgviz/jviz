@@ -76,7 +76,7 @@ jvizScreenLoading.prototype.Close = function()
 	if(this.active === false){ return; }
 
 	//Hide the screen
-	$('#' + this.id).css('display', 'block');
+	$('#' + this.id).css('display', 'none');
 
 	//Set active as false
 	this.active = false;
