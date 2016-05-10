@@ -549,7 +549,7 @@ jvizToolKaryotypeTrack.prototype.KaryotypesDraw = function(canvas)
 		this.marks.text.y = mark_y + this.marks.karyotypes.text;
 
 		//Update the text
-		this.marks.text.text = marks_count.toString();
+		this.marks.text.text = marks.toString();
 
 		//Draw the text
 		canvas.Text(this.marks.text);
