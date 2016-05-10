@@ -1,9 +1,15 @@
 //Animation mixin
 @mixin jvizAnimation($color: $jvizBlue)
 {
+	//Get a random string
+	$rand: str-rand(10);
+
+	//Animation load
+	$aload: 'animation_' + $rand + '_load';
+
 	//Keyframes for load animation
-	@keyframes animation_load { 0%, 80%, 100% { background-color: $color; } }
-	@keyframes animation_load { 40% { background-color: $color; } }
+	@keyframes #{$aload} { 0%, 80%, 100% { background-color: $color; } }
+	@keyframes #{$aload} { 40% { background-color: $color; } }
 
 	//Loading animation mixin
 	@mixin animation_default
@@ -12,7 +18,7 @@
 		border-radius: 100px; width: 10px; height: 10px;
 
 		//Animation style
-		animation: animation_load 1.2s infinite ease-in-out; animation-fill-mode: both;
+		animation: #{$aload} 1.2s infinite ease-in-out; animation-fill-mode: both;
 
 		//Content
 		content: '';
