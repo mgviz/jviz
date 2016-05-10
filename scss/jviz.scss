@@ -7,6 +7,9 @@
 	//Alert
 	&Alert { @include jvizAlert; }
 
+	//Animation example
+	&Animation { @include jvizAnimation; }
+
 	//Background
 	&Bg { @include jvizBg; }
 
@@ -45,7 +48,7 @@
 	&Screen
 	{
 		//Loading screen
-		&Loading { @include jvizScreenLoading; } 
+		&Loading { @include jvizScreenLoading; }
 	}
 
 	//Form
