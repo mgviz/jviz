@@ -73,3 +73,19 @@
 	//Include the icon button dark
 	@include jvizFormBtnIcon($img, $jvizNavy2, $jvizNavy1);
 }
+
+//Button icon with text
+@mixin jvizFormBtnIconText($img, $bg, $color: $jvizWhite)
+{
+	//Include the base icon
+	@include jvizFormBtn($bg, $color);
+
+	//Background
+	background-repeat: no-repeat; background-position: 2px 2px; background-size: 26px 26px;
+
+	//Background image
+	background-image: url($img);
+
+	//Padding
+	padding: { left: 32px; }
+}
