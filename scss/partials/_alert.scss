@@ -10,17 +10,20 @@
 	//Border
 	border-radius: 5px;
 
+	//Background
+	background-repeat: no-repeat; background-position: 5px 5px; background-size: 30px 30px;
+
 	//Padding
 	padding: { left: 50px; right: 0px; top: 0px; bottom: 0px; }
 
 	//Alert done
-	&-done { background-color: $jvizGreen; }
+	&-done { background-color: $jvizGreen; background-image: url(jvizIcon('completed', 'white')); }
 
 	//Alert warning
-	&-warning { background-color: $jvizOrange; }
+	&-warning { background-color: $jvizOrange; background-image: url(jvizIcon('warning', 'white')); }
 
 	//Alert error
-	&-error { background-color: $jvizRed; }
+	&-error { background-color: $jvizRed; background-image: url(jvizIcon('error', 'white')); }
 
 	//Open class
 	&-open { top: 20px; }
