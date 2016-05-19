@@ -19,3 +19,13 @@
 	//Input background
 	background-color: $bg;
 }
+
+//Input full mixin
+@mixin jvizFormInputFull($bg: $jvizGrey4)
+{
+	//Calculate the full width
+	width: calc(100% - 40px);
+
+	//include the input mixin
+	@include jvizFormInput($bg);
+}
