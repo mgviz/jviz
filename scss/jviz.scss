@@ -54,18 +54,6 @@
 	//Form
 	&Form
 	{
-		//Form input
-		&Input { @include jvizFormInput; }
-
-		//Form checkbox
-		&Checkbox { @include jvizFormCheckbox; }
-
-		//Form label
-		&Label { @include jvizFormLabel }
-
-		//Form Switch
-		&Switch { @include jvizFormSwitch; }
-
 		//Form buttons
 		&Btn
 		{
@@ -81,5 +69,26 @@
 			&White { @include jvizFormBtnWhite; }
 			&Water { @include jvizFormBtnWater; }
 		}
+
+		//Form input
+		&Input { @include jvizFormInput; }
+
+		//Form input full
+		&InputFull { @include jvizFormInputFull; }
+
+		//Form checkbox
+		&Checkbox { @include jvizFormCheckbox; }
+
+		//Form label
+		&Label { @include jvizFormLabel }
+
+		//Form Switch
+		&Switch { @include jvizFormSwitch; }
+
+		//Textarea
+		&Textarea { @include jvizFormTextarea; }
+
+		//Textarea full
+		&TextareaFull { @include jvizFormTextareaFull; }
 	}
 }
