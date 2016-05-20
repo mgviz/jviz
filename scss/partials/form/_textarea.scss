@@ -24,7 +24,7 @@
 @mixin jvizFormTextareaFull($bg: $jvizGrey4)
 {
 	//Set the width
-	width: calc(100% - 40px);
+	width: calc(100% - 20px);
 
 	//Include the default textarea
 	@include jvizFormTextarea($bg);
