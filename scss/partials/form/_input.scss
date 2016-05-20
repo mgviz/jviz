@@ -24,7 +24,7 @@
 @mixin jvizFormInputFull($bg: $jvizGrey4)
 {
 	//Calculate the full width
-	width: calc(100% - 40px);
+	width: calc(100% - 20px);
 
 	//include the input mixin
 	@include jvizFormInput($bg);
