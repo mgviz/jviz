@@ -80,7 +80,7 @@
 		&Checkbox { @include jvizFormCheckbox; }
 
 		//Form label
-		&Label { @include jvizFormLabel }
+		&Label { @include jvizFormLabel; }
 
 		//Form Switch
 		&Switch { @include jvizFormSwitch; }
