@@ -3,5 +3,6 @@
 	"description": "The jviz base module",
 	"authors": [ { "name": "Josemi Juanes", "email": "josemijuanes@gmail.com" } ],
 	"buildPath": "./build/",
+	"buildMain": true,
 	"dependencies": {}
 }
