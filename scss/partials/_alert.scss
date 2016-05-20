@@ -26,7 +26,7 @@
 	&-error { background-color: $jvizRed3; background-image: url(jvizIcon('error', 'white')); }
 
 	//Open class
-	&-open { top: 20px; }
+	&-open { top: 40px; }
 
 	//Text
 	&-text { @include jvizFontBold; font-size: 14px; color: $jvizWhite; }
