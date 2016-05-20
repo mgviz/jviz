@@ -4,6 +4,7 @@
 //jviz class
 .jviz
 {
+
 	//Alert
 	&Alert { @include jvizAlert; }
 
@@ -89,6 +90,6 @@
 		&Textarea { @include jvizFormTextarea; }
 
 		//Textarea full
-		&TextareaFull { @include jvizFormTextareaFull; }
+		&TextareaFull { @include jvizFormTextareaFull; } 
 	}
 }
