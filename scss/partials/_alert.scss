@@ -17,13 +17,13 @@
 	padding: { left: 45px; right: 0px; top: 0px; bottom: 0px; }
 
 	//Alert done
-	&-done { background-color: $jvizGreen; background-image: url(jvizIcon('completed', 'white')); }
+	&-done { background-color: $jvizGreen3; background-image: url(jvizIcon('completed', 'white')); }
 
 	//Alert warning
-	&-warning { background-color: $jvizOrange; background-image: url(jvizIcon('warning', 'white')); }
+	&-warning { background-color: $jvizOrange3; background-image: url(jvizIcon('warning', 'white')); }
 
 	//Alert error
-	&-error { background-color: $jvizRed; background-image: url(jvizIcon('error', 'white')); }
+	&-error { background-color: $jvizRed3; background-image: url(jvizIcon('error', 'white')); }
 
 	//Open class
 	&-open { top: 20px; }
