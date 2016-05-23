@@ -186,25 +186,25 @@ jviz.prototype.Parse = function(element)
 };
 
 //Create div
-jviz.prototype.NewDiv = function(opt, p){ return this.Add('div', opt, p); };
+jviz.prototype.AddDiv = function(opt, p){ return this.Add('div', opt, p); };
 
 //Create paragraph
-jviz.prototype.NewParagraph = function(opt, p){ return this.Add('p', opt, p); };
+jviz.prototype.AddParagraph = function(opt, p){ return this.Add('p', opt, p); };
 
 //Create paragraph alias
-jviz.prototype.NewP = function(opt, p){ return this.Add('p', opt, p); };
+jviz.prototype.AddP = function(opt, p){ return this.Add('p', opt, p); };
 
 //Create line break
-jviz.prototype.NewLineBreak = function(opt, p){ return this.Add('br', opt, p); };
+jviz.prototype.AddLineBreak = function(opt, p){ return this.Add('br', opt, p); };
 
 //Create line break alias
-jviz.prototype.NewBR = function(opt, p){ return this.Add('br', opt, p); };
+jviz.prototype.AddBR = function(opt, p){ return this.Add('br', opt, p); };
 
 //Create a canvas element
-jviz.prototype.NewCanvas = function(opt, p){ return this.Add('canvas', opt, p); };
+jviz.prototype.AddCanvas = function(opt, p){ return this.Add('canvas', opt, p); };
 
 //Create a switch
-jviz.prototype.NewSwitch = function(opt, p)
+jviz.prototype.AddSwitch = function(opt, p)
 {
 	//Create the main object
 	var main = { id: opt.id + '-parent', class: opt.class, html: [], _parent: opt._parent };
@@ -223,7 +223,7 @@ jviz.prototype.NewSwitch = function(opt, p)
 };
 
 //Create a checkbox
-jviz.prototype.NewCheckbox = function(opt, p)
+jviz.prototype.AddCheckbox = function(opt, p)
 {
 	//Create the main object
 	var main = { id: opt.id + '-parent', class: opt.class, html: [], _parent: opt._parent };
@@ -239,16 +239,16 @@ jviz.prototype.NewCheckbox = function(opt, p)
 };
 
 //Create an input
-jviz.prototype.NewInput = function(opt, p){ return this.Add('input', opt, p); };
+jviz.prototype.AddInput = function(opt, p){ return this.Add('input', opt, p); };
 
 //Create a select
-jviz.prototype.NewSelect = function(opt, p){ return this.Add('select', opt, p); };
+jviz.prototype.AddSelect = function(opt, p){ return this.Add('select', opt, p); };
 
 //Create a select's option
-jviz.prototype.NewOption = function(opt, p){ return this.Add('option', opt, p); };
+jviz.prototype.AddOption = function(opt, p){ return this.Add('option', opt, p); };
 
 //Create a new panel
-jviz.prototype.NewPanel = function(opt, p)
+jviz.prototype.AddPanel = function(opt, p)
 {
 	//Add the html object
 	opt.html = [];
