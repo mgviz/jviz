@@ -26,6 +26,9 @@
 	//Grid
 	&Grid { @include jvizGrid; }
 
+	//Panel
+	&Panel { @include jvizPanel; }
+
 	//Text
 	&Text { @include jvizText; }
 
@@ -90,6 +93,6 @@
 		&Textarea { @include jvizFormTextarea; }
 
 		//Textarea full
-		&TextareaFull { @include jvizFormTextareaFull; } 
+		&TextareaFull { @include jvizFormTextareaFull; }
 	}
 }
