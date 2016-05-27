@@ -36,6 +36,13 @@ jviz.prototype.Build = function()
 	$(p + this.parent)[this.mode](div);
 };
 
+//Export the full list
+jviz.prototype.Export = function()
+{
+	//Build the list recursive and return the html content
+	return this.BuildRecursive(this.el);
+};
+
 //Build the elements recursive
 jviz.prototype.BuildRecursive = function(list)
 {
