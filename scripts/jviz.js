@@ -237,7 +237,7 @@ jviz.prototype.AddItalic = function(opt, p){ return this.Add('i', opt, p); };
 jviz.prototype.AddUnderline = function(opt, p){ return this.Add('u', opt, p); };
 
 //Create small text
-jviz.prototype.AddSmallText = function(opt, p)
+jviz.prototype.AddSmall = function(opt, p){ return this.Add('small', opt, p); };
 
 //Create heading 1
 jviz.prototype.AddH1 = function(opt, p){ return this.Add('h1', opt, p); };
