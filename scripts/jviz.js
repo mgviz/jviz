@@ -51,6 +51,26 @@ jviz.prototype.BuildRecursive = function(list)
 		//Get the element
 		var el = list[i];
 
+		//Check the element type
+		if(typeof el === 'string')
+		{
+			//Add the string
+			div = div + el;
+
+			//Next element
+			continue;
+		}
+
+		//Check for text
+		if(el._type === 'text')
+		{
+			//Add the text
+			div = div + el.text;
+
+			//Continue
+			continue;
+		}
+
 		//Initialize the tag
 		var d = '<' + el._type;
 
@@ -194,6 +214,42 @@ jviz.prototype.AddParagraph = function(opt, p){ return this.Add('p', opt, p); };
 //Create paragraph alias
 jviz.prototype.AddP = function(opt, p){ return this.Add('p', opt, p); };
 
+//Create span
+jviz.prototype.AddSpan = function(opt, p){ return this.Add('span', opt, p); };
+
+//Create text
+jviz.prototype.AddText = function(opt, p){ return this.Add('text', { text: opt }, p); };
+
+//Create bold text
+jviz.prototype.AddBold = function(opt, p){ return this.Add('b', opt, p); };
+
+//Create italic text
+jviz.prototype.AddItalic = function(opt, p){ return this.Add('i', opt, p); };
+
+//Create underline text
+jviz.prototype.AddUnderline = function(opt, p){ return this.Add('u', opt, p); };
+
+//Create small text
+jviz.prototype.AddSmallText = function(opt, p)
+
+//Create heading 1
+jviz.prototype.AddH1 = function(opt, p){ return this.Add('h1', opt, p); };
+
+//Create heading 2
+jviz.prototype.AddH2 = function(opt, p){ return this.Add('h2', opt, p); };
+
+//Create heading 3
+jviz.prototype.AddH3 = function(opt, p){ return this.Add('h3', opt, p); };
+
+//Create heading 4
+jviz.prototype.AddH4 = function(opt, p){ return this.Add('h4', opt, p); };
+
+//Create heading 5
+jviz.prototype.AddH5 = function(opt, p){ return this.Add('h5', opt, p); };
+
+//Create heading 6
+jviz.prototype.AddH6 = function(opt, p){ return this.Add('h6', opt, p); };
+
 //Create line break
 jviz.prototype.AddLineBreak = function(opt, p){ return this.Add('br', opt, p); };
 
@@ -240,6 +296,12 @@ jviz.prototype.AddCheckbox = function(opt, p)
 
 //Create an input
 jviz.prototype.AddInput = function(opt, p){ return this.Add('input', opt, p); };
+
+//Create a textare
+jviz.prototype.AddTextarea = function(opt, p){ return this.Add('textarea', opt, p); };
+
+//Create a label
+jviz.prototype.AddLabel = function(opt, p){ return this.Add('label', opt, p); };
 
 //Create a select
 jviz.prototype.AddSelect = function(opt, p){ return this.Add('select', opt, p); };
