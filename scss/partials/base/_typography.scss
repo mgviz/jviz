@@ -50,16 +50,16 @@
 }
 
 //Base typography bold
-@mixin jvizBaseTypographyBold { @include jvizFontBold; }
+@mixin jvizBaseTypographyBold { @include jvizFont; font-weight: bold; }
 
 //Base typography paragraph
-@mixin jvizBaseTypographyParagraph { line-height: 20px; margin: { bottom: 15px; top: 0px; } display: block; }
+@mixin jvizBaseTypographyParagraph { @include jvizFont; line-height: 20px; margin: { bottom: 15px; top: 0px; } display: block; }
 
 //Base typography small text
-@mixin jvizBaseTypographySmall { font-size: 12px; }
+@mixin jvizBaseTypographySmall { @include jvizFont; font-size: 12px; }
 
 //Base typography header
-@mixin jvizBaseTypographyHeader { @include jvizFontBold; display: block; margin: { bottom: 15px; } }
+@mixin jvizBaseTypographyHeader { @include jvizFont; font-weight: bold; display: block; margin: { bottom: 15px; } }
 
 //Base typography header 1
 @mixin jvizBaseTypographyHeader1 { @include jvizBaseTypographyHeader; font-size: 36px; line-height: 42px; }
@@ -71,10 +71,10 @@
 @mixin jvizBaseTypographyHeader3 { @include jvizBaseTypographyHeader; font-size: 24px; line-height: 30px; }
 
 //Base typography header 4
-@mixin jvizBaseTypographyHeader4 { @include jvizBaseTypographyHeader; font-size: 20px; line-height: 24px; }
+@mixin jvizBaseTypographyHeader4 { @include jvizBaseTypographyHeader; font-size: 22px; line-height: 24px; }
 
 //Base typography header 5
-@mixin jvizBaseTypographyHeader5 { @include jvizBaseTypographyHeader; font-size: 18px; line-height: 20px; }
+@mixin jvizBaseTypographyHeader5 { @include jvizBaseTypographyHeader; font-size: 20px; line-height: 22px; }
 
 //Base typography header 6
-@mixin jvizBaseTypographyHeader6 { @include jvizBaseTypographyHeader; font-size: 16px; line-height: 18px; }
+@mixin jvizBaseTypographyHeader6 { @include jvizBaseTypographyHeader; font-size: 18px; line-height: 20px; }
