@@ -2,8 +2,8 @@
 @mixin jvizBaseBody
 {
 	//Default font
-	@include jvizFontNormal; font-size: 14px; color: $jvizNavy;
-	
+	@include jvizFont; font-size: 16px; color: $jvizNavy; font-weight: normal;
+
 	//Default margin
 	margin: { top: 0px; bottom: 0px; left: 0px; right: 0px; }
 
