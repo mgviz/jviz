@@ -5,7 +5,7 @@
 	color: $color; transition: all 0.3s;
 
 	//Font
-	@include jvizFontBold; text-decoration: none;
+	@include jvizFont; text-decoration: none; font-weight: bold; 
 
 	//Link hover style
 	&:hover { text-decoration: underline; cursor: hand; }
