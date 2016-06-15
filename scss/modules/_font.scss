@@ -1,8 +1,12 @@
+//Include font
+@mixin jvizFont { font-family: 'Asap', sans-serif; }
+
+//[DEPRECATED]
 //Mixin for light font
-@mixin jvizFontLight { font-family: 'Quicksand-Light'; font-weight: 300; }
+@mixin jvizFontLight { font-family: 'Asap'; font-weight: 300; }
 
 //Mixin for regular/normal font
-@mixin jvizFontNormal { font-family: 'Quicksand'; font-weight: normal; }
+@mixin jvizFontNormal { font-family: 'Asap'; font-weight: normal; }
 
 //Mixin for bold font
-@mixin jvizFontBold { font-family: 'Quicksand-Bold'; font-weight: bold; }
+@mixin jvizFontBold { font-family: 'Asap'; font-weight: bold; }
