@@ -62,6 +62,9 @@ jviz.extend('each', function(obj, cb)
     //Do the callback and get the result
     var result = cb.call(value, i, obj);
 
+    //Check for undefined
+    if(typeof result === 'undefined'){ continue; } 
+
     //Check for break the loop
     if(result === false){ break; }
   }
