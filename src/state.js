@@ -15,7 +15,7 @@ jviz.state = function(opt)
 jviz.state.prototype.status = function()
 {
 	//Get the current hash
-	var h = jviz.hash.get();
+	var h = jviz.utils.hash.get();
 
 	//Get the object
 	var obj = (h === '') ? {} : jviz.base64.decodeJSON(h);
@@ -50,5 +50,5 @@ jviz.state.prototype.set = function(value)
 	var h = jviz.base64.encodeJSON(obj);
 
 	//Update the hash
-	jviz.hash.set(h);
+	jviz.utils.hash.set(h);
 };
