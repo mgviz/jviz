@@ -1,8 +1,8 @@
-//jvizHash
-var jvizHash = {};
+//Extend jviz
+jviz.extend('hash');
 
 //Get hash
-jvizHash.Get = function()
+jviz.hash.get = function()
 {
 	//Get the hash
 	var h = window.location.hash.substr(1);
@@ -12,7 +12,7 @@ jvizHash.Get = function()
 };
 
 //Set hash
-jvizHash.Set = function(h)
+jviz.hash.set = function(h)
 {
 	//Encode the hash value
 	h = encodeURIComponent(h);
