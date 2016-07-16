@@ -1,5 +1,5 @@
-//jvizState object
-function jvizState(opt)
+//jviz.state object
+jviz.state = function(opt)
 {
 	//Check for empty options
 	if(typeof opt === 'undefined'){ var opt = {}; }
@@ -9,26 +9,26 @@ function jvizState(opt)
 
 	//Return this object
 	return this;
-}
+};
 
 //jvizState Get actual status
-jvizState.prototype.Status = function()
+jviz.state.prototype.status = function()
 {
 	//Get the current hash
-	var h = jvizHash.Get();
+	var h = jviz.hash.get();
 
 	//Get the object
-	var obj = (h === '') ? {} : jvizB64.DecodeObject(h);
+	var obj = (h === '') ? {} : jviz.base64.decodeJSON(h);
 
 	//Return the object
 	return obj;
 };
 
 //jvizState Get key status
-jvizState.prototype.Get = function()
+jviz.state.prototype.get = function()
 {
 	//Get the actual object
-	var obj = this.Status();
+	var obj = this.status();
 
 	//Get the value
 	var value = (typeof obj[this.key] === 'undefined') ? {} : obj[this.key];
@@ -38,17 +38,17 @@ jvizState.prototype.Get = function()
 };
 
 //jvizState Set status
-jvizState.prototype.Set = function(value)
+jviz.state.prototype.set = function(value)
 {
 	//Get the actual object
-	var obj = this.Status();
+	var obj = this.status();
 
 	//Replace the key
 	obj[this.key] = value;
 
 	//Encode
-	var h = jvizB64.EncodeObject(obj);
+	var h = jviz.base64.encodeJSON(obj);
 
 	//Update the hash
-	jvizHash.Set(h);
+	jviz.hash.set(h);
 };
