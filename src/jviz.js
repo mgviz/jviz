@@ -20,7 +20,7 @@ jviz.extend = function(el, cb)
 //Extend the http library
 jviz.extend('http');
 
-//Extend the math lybrary
+//Extend the math library
 jviz.extend('math');
 
 //Extend the ui library
