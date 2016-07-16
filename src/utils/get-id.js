@@ -1,6 +1,6 @@
 //jviz Generate an ID
 //Extracted from https://github.com/jmjuanes/getid/
-function jvizGetID(opt)
+jviz.utils.getID = function(opt)
 {
 	//Characters available
 	var _chars = 'abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -43,7 +43,7 @@ function jvizGetID(opt)
 		id = Date.now().toString();
 
 		//Get a random number of insertions
-		var ins = jvizMath.RandInt(4, 10);
+		var ins = jviz.math.randInt(4, 10);
 
 		//Check the length
 		if(_length > 0)
@@ -55,7 +55,7 @@ function jvizGetID(opt)
 				ins = (_length > 4)? 2 : 1;
 
 				//Get a new random integer
-				var p = jvizMath.RandInt(0, id.length - _length - 1);
+				var p = jviz.math.randInt(0, id.length - _length - 1);
 
 				//Slice the actual ID
 				id = id.slice(p, p + _length - ins);
@@ -76,10 +76,10 @@ function jvizGetID(opt)
 		for(var i = 0; i < ins; i++)
 		{
 			//Get a random character
-			var ch = _chars[jvizMath.RandInt(0, _chars.length - 1)];
+			var ch = _chars[jviz.math.randInt(0, _chars.length - 1)];
 
 			//Get the new position for insert
-			var po = jvizMath.RandInt(0, id.length - 1);
+			var po = jviz.math.randInt(0, id.length - 1);
 
 			//Insert
 			id = id.slice(0, po) + ch + id.slice(po);
@@ -95,18 +95,8 @@ function jvizGetID(opt)
 }
 
 //Alias for GetID
-function jvizGenID(opt)
+jviz.utils.genID = function(opt)
 {
 	//Generate an ID
-	return jvizGetID(opt);
-}
-
-//Check for exports
-if(typeof exports !== 'undefined')
-{
-	//Export module GetID
-	exports.GetID = jvizGetID;
-
-	//Exports module GenID
-	exports.GenID = jvizGetID;
-}
+	return jviz.utils.getID(opt);
+};
