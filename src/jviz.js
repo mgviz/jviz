@@ -42,7 +42,7 @@ jviz.extend('each', function(obj, cb)
   if(typeof obj !== 'object'){ return console.error('ERROR: invalid object'); }
 
   //Save if object is an array
-  var is_array = jviz.isArray(obj);
+  var is_array = jviz.array.is(obj);
 
   //Check if is array
   if(is_array === true)
