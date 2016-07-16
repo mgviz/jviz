@@ -1,35 +1,35 @@
 //jviz Base 64 Encoder/Decoder
-var jvizB64 = {};
+jviz.extend('base64');
 
-//jvizB64 Encode
-jvizB64.Encode = function(str)
+//jviz base64 encode
+jviz.base64.encode = function(str)
 {
 	//Return the encoded string
 	return btoa(str);
 };
 
-//jvizB64 Encode Object
-jvizB64.EncodeObject = function(obj)
+//jviz base64 encode a json object
+jviz.base64.encodeJSON = function(obj)
 {
 	//Convert to string
 	var str = JSON.stringify(obj);
 
 	//Encode the string object
-	return jvizB64.Encode(str);
+	return jviz.base64.encode(str);
 };
 
-//jvizB64 Decode
-jvizB64.Decode = function(str)
+//jviz base64 decode
+jviz.base64.decode = function(str)
 {
 	//Return the decoded string
 	return atob(str);
 };
 
 //jvizB64 Decode Object
-jvizB64.DecodeObject = function(str)
+jviz.base64.decodeJSON = function(str)
 {
 	//Decode the string
-	var obj = jvizB64.Decode(str);
+	var obj = jviz.base64.decode(str);
 
 	//Covert to object
 	return JSON.parse(obj);
