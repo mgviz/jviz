@@ -1,7 +1,15 @@
 {
 	"name": "jviz",
 	"description": "The jviz base module",
-	"authors": [ { "name": "Josemi Juanes", "email": "josemijuanes@gmail.com" } ],
-	"build": { "path": "./build/", "only_modules": false },
+  "version": "0.0.1",
+	"contributors": { "id": "jmjuanes", "name": "Josemi Juanes", "email": "josemijuanes@gmail.com" },
+  "directory": "./build",
+  "tasks":
+  {
+    "build:js:main": { "task": "concat", "src": [ "./src/jviz.js", "./src/**.js" ], "dest": "jviz.js" },
+    "build:sass": { "task": "compile:sass", "src": "./scss/**.scss", "dest": "jviz.css" }
+  },
+	"build": [ "build:js:main", "build:sass" ],
+  "install": [],
 	"dependencies": {}
 }
