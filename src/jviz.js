@@ -23,6 +23,9 @@ jviz.extend('http');
 //Extend the math library
 jviz.extend('math');
 
+//Extend the tool library
+jviz.extend('tool');
+
 //Extend the ui library
 jviz.extend('ui');
 
