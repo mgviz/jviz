@@ -29,6 +29,9 @@ jviz.extend('ui');
 //Extend the utils library
 jviz.extend('utils');
 
+//Extend the jquery
+jviz.extend('dom', function(el){ return $('#' + el); });
+
 //Extend the keys method
 jviz.extend('keys', function(obj){ return Object.keys(obj); });
 
@@ -63,7 +66,7 @@ jviz.extend('each', function(obj, cb)
     var result = cb.call(value, i, obj);
 
     //Check for undefined
-    if(typeof result === 'undefined'){ continue; } 
+    if(typeof result === 'undefined'){ continue; }
 
     //Check for break the loop
     if(result === false){ break; }
