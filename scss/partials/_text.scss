@@ -1,48 +1,48 @@
 //jviz Text
 @mixin jvizText
 {
-	//Text center
-	&-center { text-align: center; }
+  //Text center
+  &-center { text-align: center; }
 
-	//Text right
-	&-right { text-align: right; }
+  //Text right
+  &-right { text-align: right; }
 
-	//Text left
-	&-left { text-align: left; }
+  //Text left
+  &-left { text-align: left; }
 
-	//Text bold
-	&-bold { font-weight: bold; }
+  //Text bold
+  &-bold { font-weight: bold; }
 
-	//Text light
-	&-light { font-weight: 300; }
+  //Text light
+  &-light { font-weight: 300; }
 
-	//Text color blue
-	&-blue { color: $jvizBlue; }
+  //Text color blue
+  &-blue { color: $jvizBlue; }
 
-	//Text color green
-	&-green { color: $jvizGreen; }
+  //Text color green
+  &-green { color: $jvizGreen; }
 
-	//Text color red
-	&-red { color: $jvizRed; }
+  //Text color red
+  &-red { color: $jvizRed; }
 
-	//Text color orange
-	&-orange { color: $jvizOrange; }
+  //Text color orange
+  &-orange { color: $jvizOrange; }
 
-	//Text color pink
-	&-pink { color: $jvizPink; }
+  //Text color pink
+  &-pink { color: $jvizPink; }
 
-	//Text color water
-	&-water { color: $jvizWater; }
+  //Text color water
+  &-water { color: $jvizWater; }
 
-	//Text color purple
-	&-purple { color: $jvizPurple; }
+  //Text color purple
+  &-purple { color: $jvizPurple; }
 
-	//Text color white
-	&-white { color: $jvizWhite; }
+  //Text color white
+  &-white { color: $jvizWhite; }
 
-	//Text color grey
-	&-grey { color: $jvizGrey; }
+  //Text color grey
+  &-grey { color: $jvizGrey; }
 
-	//Text color navy
-	&-navy { color: $jvizNavy; }
+  //Text color navy
+  &-navy { color: $jvizNavy; }
 }
