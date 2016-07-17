@@ -17,11 +17,17 @@ jviz.extend = function(el, cb)
   jviz[el] = cb;
 };
 
+//Extend the dom library
+jviz.extend('dom');
+
 //Extend the http library
 jviz.extend('http');
 
 //Extend the math library
 jviz.extend('math');
+
+//Extend the modules
+jviz.extend('modules');
 
 //Extend the tool library
 jviz.extend('tool');
@@ -31,9 +37,6 @@ jviz.extend('ui');
 
 //Extend the utils library
 jviz.extend('utils');
-
-//Extend the jquery
-jviz.extend('dom', function(el){ return $('#' + el); });
 
 //Extend the keys method
 jviz.extend('keys', function(obj){ return Object.keys(obj); });
