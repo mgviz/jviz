@@ -1,0 +1,16 @@
+//jviz list
+@mixin jvizList
+{
+  //line height
+  line-height: 20px;
+
+  //Margin
+  margin: { bottom: 16px; top: 0px; }
+
+  //Element
+  & li
+  {
+    //Line Height
+    line-height: 25px;
+  }
+}
