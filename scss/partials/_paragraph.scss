@@ -1,0 +1,15 @@
+//Paragraph
+@mixin jvizParagraph
+{
+  //Include the default font
+  @include jvizFont;
+
+  //Line height
+  line-height: 20px;
+
+  //Margin
+  margin: { bottom: 15px; top: 0px; }
+
+  //Display
+  display: block;
+}
