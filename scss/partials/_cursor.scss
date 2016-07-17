@@ -1,18 +1,18 @@
 //jviz Cursor styles
 @mixin jvizCursor
 {
-	//Cursor move
-	&-move { cursor: move; }
+  //Cursor move
+  &-move { cursor: move; }
 
-	//Cursor hand
-	&-hand { cursor: pointer; }
+  //Cursor hand
+  &-hand { cursor: pointer; }
 
   //Cursor pointer
   &-pointer { cursor: pointer }
 
-	//Cursor col resize
-	&-col-resize { cursor: col-resize; }
+  //Cursor col resize
+  &-col-resize { cursor: col-resize; }
 
-	//Cursor row resize
-	&-row-resize { cursor: row-resize; }
+  //Cursor row resize
+  &-row-resize { cursor: row-resize; }
 }
