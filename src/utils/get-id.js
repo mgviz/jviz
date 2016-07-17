@@ -2,36 +2,23 @@
 //Extracted from https://github.com/jmjuanes/getid/
 jviz.utils.getID = function(opt)
 {
+  //Check the options
+  if(typeof opt === 'undefined'){ var opt = {}; }
+  
   //Characters available
   var _chars = 'abcdefghijklmnopqrstuvwxyz1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
   //Initialize the exists array
-  var _exists = [];
+  var _exists = (typeof opt.exists !== 'undefined') ? opt.exists : [];
 
   //Initialize the ID length
-  var _length = 22;
+  var _length = (typeof opt.length !== 'undefined') ? parseInt(opt.length) : 22;
 
   //Initialize the prefix
-  var _prefix = '';
+  var _prefix = (typeof opt.prefix !== 'undefined') ? opt.prefix : '';
 
   //Initialize the suffix
-  var _suffix = '';
-
-  //Check the user options
-  if(typeof opt !== 'undefined')
-  {
-  //Check the existen IDs
-  if(typeof opt.exists !== 'undefined'){ _exists = opt.exists; }
-
-  //Check the ID length
-  if(typeof opt.length !== 'undefined'){ _length = parseInt(opt.length); }
-
-  //Check the prefix option
-  if(typeof opt.prefix !== 'undefined'){ _prefix = opt.prefix; }
-
-  //Check the suffix option
-  if(typeof opt.suffix !== 'undefined'){ _suffix = opt.suffix ; }
-  }
+  var _suffix = (typeof opt.suffix !== 'undefined') ? opt.suffix : '';
 
   //Generated id
   var id = '';
