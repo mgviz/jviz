@@ -5,7 +5,10 @@
 	&-move { cursor: move; }
 
 	//Cursor hand
-	&-hand { cursor: hand; }
+	&-hand { cursor: pointer; }
+
+  //Cursor pointer
+  &-pointer { cursor: pointer }
 
 	//Cursor col resize
 	&-col-resize { cursor: col-resize; }
