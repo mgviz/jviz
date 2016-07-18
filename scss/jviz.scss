@@ -74,9 +74,6 @@
     //Dialog
     &-dialog { @include jvizUiDialog; }
 
-    //ToolTip
-    &-tooltip { @include jvizUiToolTip; }
-
     //Screen
     &-screen
     {
@@ -84,79 +81,100 @@
       &-loading
       {
         //Default screen loading
-        @include jvizScreenLoading;
+        @include jvizUiScreenLoading;
 
         //Navy
-        &-navy { @include jvizScreenLoading($jvizNavy); }
+        &-navy { @include jvizUiScreenLoading($jvizNavy); }
 
         //Grey
-        &-grey { @include jvizScreenLoading($jvizGrey, $jvizNavy); }
+        &-grey { @include jvizUiScreenLoading($jvizGrey, $jvizNavy); }
 
         //Red
-        &-red { @include jvizScreenLoading($jvizRed); }
+        &-red { @include jvizUiScreenLoading($jvizRed); }
 
         //Blue
-        &-blue { @include jvizScreenLoading($jvizBlue); }
+        &-blue { @include jvizUiScreenLoading($jvizBlue); }
 
         //Pink
-        &-pink { @include jvizScreenLoading($jvizPink); }
+        &-pink { @include jvizUiScreenLoading($jvizPink); }
 
         //Water
-        &-water { @include jvizScreenLoading($jvizWater); }
+        &-water { @include jvizUiScreenLoading($jvizWater); }
 
         //Green
-        &-green { @include jvizScreenLoading($jvizGreen); }
+        &-green { @include jvizUiScreenLoading($jvizGreen); }
 
         //Purple
-        &-purple { @include jvizScreenLoading($jvizPurple); }
+        &-purple { @include jvizUiScreenLoading($jvizPurple); }
 
         //Orange
-        &-orange { @include jvizScreenLoading($jvizOrange); }
+        &-orange { @include jvizUiScreenLoading($jvizOrange); }
 
         //White
-        &-white { @include jvizScreenLoading($jvizWhite); }
+        &-white { @include jvizUiScreenLoading($jvizWhite); }
       }
     }
+
+    //ToolTip
+    &-tooltip { @include jvizUiToolTip; }
   }
 
   //Form
-  &Form
+  &-form
   {
     //Form buttons
-    &Btn
+    &-btn
     {
-      //Button colors
-      &Red { @include jvizFormBtnRed; }
-      &Blue { @include jvizFormBtnBlue; }
-      &Grey { @include jvizFormBtnGrey; }
-      &Navy { @include jvizFormBtnNavy; }
-      &Green { @include jvizFormBtnGreen; }
-      &Orange { @include jvizFormBtnOrange; }
-      &Purple { @include jvizFormBtnPurple; }
-      &Pink { @include jvizFormBtnPink; }
-      &White { @include jvizFormBtnWhite; }
-      &Water { @include jvizFormBtnWater; }
+      //Red button
+      &-red { @include jvizFormBtnRed; }
+
+      //Blue button
+      &-blue { @include jvizFormBtnBlue; }
+
+      //Grey button
+      &-grey { @include jvizFormBtnGrey; }
+
+      //Navy button
+      &-navy { @include jvizFormBtnNavy; }
+
+      //Green button
+      &-green { @include jvizFormBtnGreen; }
+
+      //Orange button
+      &-orange { @include jvizFormBtnOrange; }
+
+      //Purple button
+      &-purple { @include jvizFormBtnPurple; }
+
+      //Pink button
+      &-pink { @include jvizFormBtnPink; }
+
+      //White button
+      &-white { @include jvizFormBtnWhite; }
+
+      //Water button
+      &-water { @include jvizFormBtnWater; }
     }
 
     //Form input
-    &Input { @include jvizFormInput; }
+    &-input { @include jvizFormInput; }
 
     //Form input full
-    &InputFull { @include jvizFormInputFull; }
+    &-input-full { @include jvizFormInputFull; }
 
     //Form checkbox
-    &Checkbox { @include jvizFormCheckbox; }
+    &-checkbox { @include jvizFormCheckbox; }
 
     //Form label
-    &Label { @include jvizFormLabel; }
+    &-label { @include jvizFormLabel; }
 
     //Form Switch
-    &Switch { @include jvizFormSwitch; }
+    &-switch { @include jvizFormSwitch; }
 
     //Textarea
-    &Textarea { @include jvizFormTextarea; }
+    &-textarea { @include jvizFormTextarea; }
 
     //Textarea full
-    &TextareaFull { @include jvizFormTextareaFull; }
+    &-textarea-full { @include jvizFormTextareaFull; }
   }
 }
