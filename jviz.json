@@ -6,8 +6,8 @@
   "directory": "./build",
   "tasks":
   {
-    "build:js:main": { "task": "concat", "src": [ "./src/jviz.js", "./src/**.js" ], "dest": "jviz.js" },
-    "build:sass": { "task": "compile:sass", "src": "./scss/**.scss", "dest": "jviz.css" }
+    "build:js:main": { "task": "concat", "src": [ "./src/jviz.js", "./src/**.js" ], "dest": "./jviz.js" },
+    "build:sass": { "task": "compile:sass", "src": "./scss/**.scss", "dest": "./" }
   },
 	"build": [ "build:js:main", "build:sass" ],
   "install": [],
