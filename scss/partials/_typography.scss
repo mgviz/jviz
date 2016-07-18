@@ -7,8 +7,35 @@
   //Text small
   &-small { @include jvizTypographySmall; }
 
-  //Link
-  &-link, &-a { @include jvizTypographyLink; }
+  //Default Link
+  &-link, &-link-navy, &-a, &-a-navy { @include jvizTypographyLink($jvizNavy1); }
+
+  //Grey link
+  &-link-grey, &-a-grey { @include jvizTypographyLink($jvizGrey1); }
+
+  //Red link
+  &-link-red, &-a-red { @include jvizTypographyLink($jvizRed1); }
+
+  //Blue link
+  &-link-blue, &-a-blue { @include jvizTypographyLink($jvizBlue1); }
+
+  //Pink link
+  &-link-pink, &-a-pink { @include jvizTypographyLink($jvizPink1); }
+
+  //Water link
+  &-link-water, &-a-water { @include jvizTypographyLink($jvizWater1); }
+
+  //Green link
+  &-link-green, &-a-green { @include jvizTypographyLink($jvizGreen1); }
+
+  //Purple link
+  &-link-purple, &-a-purple { @include jvizTypographyLink($jvizPurple1); }
+
+  //Orange link
+  &-link-orange, &-a-orange { @include jvizTypographyLink($jvizOrange1); }
+
+  //White link
+  &-link-white, &-a-white { @include jvizTypographyLink($jvizWhite); }
 
   //Header 1
   &-header1, &-header-1, &-h1 { @include jvizTypographyHeader1; }
@@ -26,14 +53,14 @@
   &-header5, &-header-5, &-h5 { @include jvizTypographyHeader5; }
 
   //Header 6
-  &-header6, &-header-6, &-h6 { @include jvizTypographyHeader6; } 
+  &-header6, &-header-6, &-h6 { @include jvizTypographyHeader6; }
 }
 
 //Base typography link
-@mixin jvizTypographyLink
+@mixin jvizTypographyLink($color: $jvizBlue2)
 {
   //Default link style
-  transition: all 0.3s;
+  color: $color; transition: all 0.3s;
 
   //Font
   @include jvizFont; text-decoration: none; font-weight: bold;
