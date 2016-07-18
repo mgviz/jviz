@@ -33,7 +33,7 @@ jviz.extend('modules');
 jviz.extend('tool');
 
 //Extend the ui library
-jviz.extend('ui');
+jviz.extend('ui', { screen: {} });
 
 //Extend the utils library
 jviz.extend('utils');
