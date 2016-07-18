@@ -28,5 +28,5 @@
   }
 
   //Animation
-  &-animation { @include jvizAnimation($color); margin: { top: 100px; } }
+  &-animation { @include jvizUiAnimation($color); margin: { top: 100px; } }
 }
