@@ -36,7 +36,7 @@ jviz.ui.alert = function(opt)
 
   //Return
   return this;
-}
+};
 
 //jviz alert build
 jviz.ui.alert.prototype.build = function(parent)
