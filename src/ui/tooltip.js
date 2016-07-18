@@ -41,13 +41,13 @@ jviz.ui.toolTip = function(opt)
 jviz.ui.toolTip.prototype.build = function(parent)
 {
   //Create the new div
-  jviz.dom.append({ id: this.id, class: this.class }, parent);
+  jviz.dom.append({ type: 'div', id: this.id, class: this.class }, parent);
 
   //Add the triangle div
-  jviz.dom.append({ id: this.triangle.id, class: this.triangle.class }, this.id);
+  jviz.dom.append({ type: 'div', id: this.triangle.id, class: this.triangle.class }, this.id);
 
   //Add the content div
-  jviz.dom.append({ id: this.content.id, class: this.content.class }, this.id);
+  jviz.dom.append({ type: 'div', id: this.content.id, class: this.content.class }, this.id);
 
   //Set display as none
   $('#' + this.id).css('display', 'none');
