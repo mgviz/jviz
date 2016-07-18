@@ -38,7 +38,7 @@
       background-color: $jvizNavy1;
 
       //Text
-      @include jvizFontBold; color: $jvizWhite; font-size: 14px;
+      @include jvizFont; font-weight: bold; color: $jvizWhite; font-size: 14px;
 
       //Border
       border: { top-left-radius: 5px; top-right-radius: 5px; }
@@ -50,7 +50,7 @@
         display: inline-block; height: 30px; line-height: 30px;
 
         //Title font
-        @include jvizFontBold; font-size: 14px;
+        @include jvizFont; font-weight: bold; font-size: 14px;
       }
 
       //Close button
@@ -60,7 +60,7 @@
         display: inline-block; width: 30px; height: 30px; cursor: hand; float: right;
 
         //Background image
-        //background-image: url(jvizIcon('close', 'white'));
+        background-image: url('./img/close.svg');
 
         //Background
         background: { position: center center; size: 26px 26px; repeat: no-repeat; }
