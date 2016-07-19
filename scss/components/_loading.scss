@@ -52,6 +52,9 @@
   //Pink loading
   &-pink { @include jvizComponentsLoading($jvizPink, $jvizWhite); }
 
+  //Water loading
+  &-water { @include jvizComponentsLoading($jvizWater, $jvizWhite); } 
+
   //Green loading
   &-green { @include jvizComponentsLoading($jvizGreen, $jvizWhite); }
 
