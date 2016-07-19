@@ -1,14 +1,14 @@
 //jviz Screen loading
-jviz.ui.screen.loading = function(opt)
+jviz.components.loading = function(opt)
 {
   //Check the optons
   if(typeof opt === 'undefined'){ var opt = {}; }
 
   //Save the new object ID
-  this.id = (typeof opt.id === 'undefined') ? jviz.utils.getID({ prefix: 'jviz-ui-screen-loading-', length: 5 }) : opt.id;
+  this.id = (typeof opt.id === 'undefined') ? jviz.utils.getID({ prefix: 'jviz-loading-', length: 5 }) : opt.id;
 
   //Save the object class
-  this.class = (typeof opt.class === 'undefined') ? 'jviz-ui-screen-loading' : opt.class;
+  this.class = (typeof opt.class === 'undefined') ? 'jviz-components-loading' : opt.class;
 
   //Active
   this.active = false;
@@ -34,7 +34,7 @@ jviz.ui.screen.loading = function(opt)
 }
 
 //jviz screen loading build
-jviz.ui.screen.loading.prototype.build = function(parent)
+jviz.components.screen.loading.prototype.build = function(parent)
 {
   //Initialize the loading div
   jviz.dom.append({ type: 'div', id: this.id, class: this.class, style: 'display:none;' }, parent);
@@ -50,14 +50,14 @@ jviz.ui.screen.loading.prototype.build = function(parent)
 };
 
 //jviz screen loading set text
-jviz.ui.screen.loading.prototype.setText = function(text)
+jviz.components.screen.loading.prototype.setText = function(text)
 {
   //Save the text
   this.text.text = text;
 };
 
 //jviz screen loading open
-jviz.ui.screen.loading.prototype.open = function()
+jviz.components.screen.loading.prototype.open = function()
 {
   //Check for active
   if(this.active === true){ return; }
@@ -73,7 +73,7 @@ jviz.ui.screen.loading.prototype.open = function()
 };
 
 //jviz screen loading close
-jviz.ui.screen.loading.prototype.close = function()
+jviz.components.screen.loading.prototype.close = function()
 {
   //Check for active
   if(this.active === false){ return; }
@@ -86,7 +86,7 @@ jviz.ui.screen.loading.prototype.close = function()
 };
 
 //jviz screen loading show alias
-jviz.ui.screen.loading.prototype.show = function(){ this.open(); };
+jviz.components.screen.loading.prototype.show = function(){ this.open(); };
 
 //jviz screen loading hide alias
-jviz.ui.screen.loading.prototype.hide = function(){ this.close(); };
+jviz.components.screen.loading.prototype.hide = function(){ this.close(); };
