@@ -1,5 +1,5 @@
 //Animation mixin
-@mixin jvizUiAnimation($color: $jvizBlue)
+@mixin jvizComponentsAnimation($color: $jvizBlue)
 {
   //Get a random string
   $rand: str-rand(10);

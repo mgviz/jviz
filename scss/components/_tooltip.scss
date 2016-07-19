@@ -1,5 +1,5 @@
-//jviz ToolTip mixin
-@mixin jvizUiToolTip
+//jviz Tooltip mixin
+@mixin jvizComponentsTooltip
 {
   //Position
   position: absolute; z-index: 2000;

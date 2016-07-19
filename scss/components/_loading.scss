@@ -1,5 +1,5 @@
-//Screen loading mixin
-@mixin jvizUiScreenLoading($bg: $jvizNavy, $color: $jvizWhite)
+//Loading mixin
+@mixin jvizComponentsLoading($bg: $jvizNavy, $color: $jvizWhite)
 {
   //Screen
   &-screen
@@ -28,5 +28,5 @@
   }
 
   //Animation
-  &-animation { @include jvizUiAnimation($color); margin: { top: 100px; } }
+  &-animation { @include jvizComponentsAnimation($color); margin: { top: 100px; } }
 }
