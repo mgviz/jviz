@@ -2,34 +2,34 @@
 @mixin jvizLink
 {
   //Default Link
-  &, &-navy { @include jvizTypographyLink($jvizNavy1); }
+  &, &-navy { @include jvizLinkBase($jvizNavy1); }
 
   //Grey link
-  &-grey { @include jvizTypographyLink($jvizGrey1); }
+  &-grey { @include jvizLinkBase($jvizGrey1); }
 
   //Red link
-  &-red { @include jvizTypographyLink($jvizRed1); }
+  &-red { @include jvizLinkBase($jvizRed1); }
 
   //Blue link
-  &-blue { @include jvizTypographyLink($jvizBlue1); }
+  &-blue { @include jvizLinkBase($jvizBlue1); }
 
   //Pink link
-  &-pink { @include jvizTypographyLink($jvizPink1); }
+  &-pink { @include jvizLinkBase($jvizPink1); }
 
   //Water link
-  &-water { @include jvizTypographyLink($jvizWater1); }
+  &-water { @include jvizLinkBase($jvizWater1); }
 
   //Green link
-  &-green { @include jvizTypographyLink($jvizGreen1); }
+  &-green { @include jvizLinkBase($jvizGreen1); }
 
   //Purple link
-  &-purple { @include jvizTypographyLink($jvizPurple1); }
+  &-purple { @include jvizLinkBase($jvizPurple1); }
 
   //Orange link
-  &-orange { @include jvizTypographyLink($jvizOrange1); }
+  &-orange { @include jvizLinkBase($jvizOrange1); }
 
   //White link
-  &-white { @include jvizTypographyLink($jvizWhite); }
+  &-white { @include jvizLinkBase($jvizWhite); }
 }
 
 //Base link
