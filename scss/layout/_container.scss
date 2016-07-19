@@ -1,0 +1,60 @@
+//jviz layout website main
+@mixin jvizLayoutContainer
+{
+  //Display
+  display: block; width: 960px;
+
+  //Padding
+  padding: { top: 50px; bottom: 50px; left: 0px; right: 0px; }
+
+  //Margin
+  margin: { left: auto; right: auto; top: 0px; bottom: 0px; }
+
+  //Main xxl
+  &-xxl { width: 1180px; }
+
+  //Main fluid
+  &-fluid
+  {
+    //Width
+    width: calc(100% - 30px);
+
+    //Padding
+    padding: { left: 15px; right: 15px; }
+  }
+
+  //Main row
+  &-row
+  {
+    //Display
+    display: inline-block; width: 100%;
+
+    //Margin
+    margin: { left: 0px; right: 0px; top: 0px; bottom: 0px; }
+
+    //Padding
+    padding: { top: 0px; bottom: 0px; left: 0px; right: 0px; }
+
+    //Row after
+    &:after { content: " "; clear: both; display: table; line-height: 0; }
+  }
+
+  //Main cols
+  &-col
+  {
+    //Col 4
+    &-4 { width: 23%; display: inline-block; vertical-align: top; float: left; padding: 1%; }
+
+    //Col 3
+    &-3 { width: 31.33%; display: inline-block; vertical-align: top; float: left; padding: 1%; }
+
+    //Col 2
+    &-2 { width: 48%; display: inline-block; vertical-align: top; float: left; padding: 1%; }
+
+    //Col 1
+    &-1 { width: 98%; display: inline-block; vertical-align: top; float: left; padding: 1%; }
+
+    //Media style
+    @media(max-width: 500px){ &-4, &-3, &-2, &-1 { width: 98%; } }
+  }
+}
