@@ -67,9 +67,6 @@
     //Dialog
     &-dialog { @include jvizComponentsDialog; }
 
-    //Loading screen
-    &-loading { @include jvizComponentsLoadingDefault; }
-
     //Switch
     &-switch { @include jvizComponentsSwitch; }
 
@@ -84,10 +81,13 @@
     &-container { @include jvizLayoutContainer; }
 
     //Jumbotron
-    &-jumbotron { @include jvizLayoutJumbotronDefault; }
+    &-jumbotron { @include jvizLayoutJumbotron; }
+
+    //Loading screen
+    &-loading { @include jvizLayoutLoading; }
 
     //Navbar
-    &-navbar { @include jvizLayoutNavbarDefault; }
+    &-navbar { @include jvizLayoutNavbar; }
 
     //Panel
     &-panel { @include jvizLayoutPanel; }
