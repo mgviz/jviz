@@ -1,0 +1,92 @@
+//Loading base
+@mixin jvizLayoutLoadingBase
+{
+  //Display
+  display: block; width: 100%; height: 100%;
+
+  //Position
+  position: fixed; top: 0px; left: 0px; z-index: 5000;
+}
+
+//Loading text
+@mixin jvizLayoutLoadingText()
+{
+  //Style
+  display: inline-block; width: 100%;
+
+  //Text
+  text-align: center; @include jvizFont; font-weight: bold; font-size: 14px;
+
+  //Margin
+  margin: { top: 20px; }
+}
+
+//Loading animation
+@mixin jvizLayoutLoadingAnimation($color: $jvizWhite)
+{
+  //Include the animation
+  @include jvizComponentsAnimation($color); margin: { top: 100px; }
+}
+
+//Loading mixin
+@mixin jvizLayoutLoading()
+{
+  //Include the loading base
+  @include jvizLayoutLoadingBase;
+
+  //Loading text
+  &-text
+  {
+    //Default text
+    @include jvizLayoutLoadingText;
+
+    //White text
+    &-white { @include jvizLayoutLoadingText; color: $jvizWhite; }
+
+    //Navy text
+    &-navy { @include jvizLayoutLoadingText; color: $jvizNavy; }
+  }
+
+  //Animation
+  &-animation
+  {
+    //Default animation
+    @include jvizLayoutLoadingAnimation;
+
+    //White animation
+    &-white { @include jvizLayoutLoadingAnimation($jvizWhite); }
+
+    //Navy animation
+    &-navy { @include jvizLayoutLoadingAnimation($jvizNavy); }
+  }
+
+  //Navy loading
+  &-navy { background-color: rgba($jvizNavy, 0.7); }
+
+  //Grey loading
+  &-grey { background-color: rgba($jvizGrey, 0.7); }
+
+  //Red loading
+  &-red { background-color: rgba($jvizRed, 0.7); }
+
+  //Blue loading
+  &-blue { background-color: rgba($jvizBlue, 0.7); }
+
+  //Pink loading
+  &-pink { background-color: rgba($jvizPink, 0.7); }
+
+  //Water loading
+  &-water { background-color: rgba($jvizWater, 0.7); }
+
+  //Green loading
+  &-green { background-color: rgba($jvizGreen, 0.7); }
+
+  //Orange loading
+  &-orange { background-color: rgba($jvizOrange, 0.7); }
+
+  //Purple loading
+  &-purple { background-color: rgba($jvizPurple, 0.7); }
+
+  //White loading
+  &-white { background-color: rgba($jvizWhite, 0.7); }
+}
