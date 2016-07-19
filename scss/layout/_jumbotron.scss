@@ -1,0 +1,71 @@
+//jviz layout jumbotron
+@mixin jvizLayoutJumbotron($bg: $jvizNavy, $text: $jvizWhite)
+{
+  //Display
+  display: block; width: 960px;
+
+  //Padding
+  padding: { top: 120px; bottom: 160px; left: calc(50% - 480px); right: calc(50% - 480px); }
+
+  //Background
+  background-color: $bg;
+
+  //Jumbotron xxl
+  &-xxl
+  {
+    //Display
+    width: 1180px;
+
+    //Update the padding
+    padding: { left: calc(50% - 590px); right: calc(50% - 590px); }
+  }
+
+  //Jumbotron fluid
+  &-fluid
+  {
+    //Width
+    width: calc(100% - 30px);
+
+    //Padding
+    padding: { left: 15px; right: 15px; } 
+  }
+
+  //jumbotron title
+  &-title
+  {
+    //Display
+    display: block; line-height: 60px;
+
+    //Font
+    @include jvizFont; font-weight: bold; font-size: 50px; color: $text;
+
+    //Margin
+    margin: { top: 0px; bottom: 0px; }
+  }
+
+  //Jumbotron subtitle
+  &-subtitle
+  {
+    //Display
+    display: block; line-height: 40px;
+
+    //Font
+    @include jvizFont; font-size: 30px; color: $text;
+
+    //Margin
+    margin: { top: 10px; bottom: 10px; }
+  }
+
+  //Jumbotron description
+  &-description
+  {
+    //Display
+    display: block; line-height: 30px;
+
+    //Font
+    @include jvizFont; font-size: 20px; color: $text;
+
+    //Margin
+    margin: { top: 10px; bottom: 10px; }
+  }
+}
