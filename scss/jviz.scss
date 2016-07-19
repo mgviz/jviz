@@ -77,6 +77,16 @@
   //Layout
   &-layout
   {
+    //Containuer
+    &-container { @include jvizLayoutContainer; }
 
+    //Jumbotron
+    &-jumbotron { @include jvizLayoutJumbotronDefault; }
+
+    //Navbar
+    &-navbar { @include jvizLayoutNavbarDefault; }
+
+    //Panel
+    &-panel { @include jvizLayoutPanel; } 
   }
 }
