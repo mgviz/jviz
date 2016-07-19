@@ -1,0 +1,24 @@
+//Heading Base
+@mixin jvizHeadingBase { @include jvizFont; font-weight: bold; display: block; margin: { bottom: 15px; } }
+
+//Heading styles
+@mixin jvizHeading
+{
+  //Heading 1
+  &1 { @include jvizHeadingBase; font-size: 36px; line-height: 42px; }
+
+  //Heading 2
+  &2 { @include jvizHeadingBase; font-size: 30px; line-height: 36px; }
+
+  //Heading 3
+  &3 { @include jvizHeadingBase; font-size: 24px; line-height: 30px; }
+
+  //Heading 4
+  &4 { @include jvizHeadingBase; font-size: 22px; line-height: 24px; }
+
+  //Heading 5
+  &5 { @include jvizHeadingBase; font-size: 20px; line-height: 22px; }
+
+  //Heading 6
+  &6 { @include jvizHeadingBase; font-size: 18px; line-height: 20px; }
+}
