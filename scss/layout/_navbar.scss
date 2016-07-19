@@ -1,14 +1,11 @@
-//jviz layout navbar mixin
-@mixin jvizLayoutNavbar($bg: $jvizNavyList, $color: $jvizWhite)
+//Navbar base
+@mixin jvizLayoutNavbarBase()
 {
   //Display
   display: block; width: 960px; height: 60px;
 
   //Position
   position: absolute; top: 0px; left: 0px;
-
-  //Background
-  background-color: nth($bg, 2);
 
   //Font
   @include jvizFont; font-weight: bold; font-size: 14px;
@@ -42,82 +39,139 @@
     padding: { top: 0px; bottom: 0px; left: 15px; right: 15px; }
   }
 
-  //Navbar logo
-  &-logo
-  {
-    //Display
-    display: inline-block; height: 60px; line-height: 60px; float: left; transition: all 0.3s;
-
-    //Text
-    @include jvizFont; font-weight: bold; font-size: 22px; color: $color; text-decoration: none;
-
-    //Padding
-    padding: { top: 0px; bottom: 0px; left: 0px; right: 0px; }
-
-    //Logo hover
-    &:hover { opacity: 0.7; cursor: hand; text-decoration: none; }
-  }
-
-  //Navbar menu
-  &-menu
-  {
-    //Display
-    display: inline-block; height: 60px;
-  }
-
-  //Navbar link
-  &-link
-  {
-    //Display
-    display: inline-block; height: 30px; line-height: 30px; float: right; transition: all 0.3s;
-
-    //Text
-    @include jvizFont; font-weight: bold; font-size: 14px; color: $color; text-decoration: none;
-
-    //Border
-    border-radius: 5px;
-
-    //Background color
-    background-color: nth($bg, 1);
-
-    //Padding
-    padding: { top: 0px; bottom: 0px; left: 10px; right: 10px; }
-
-    //Margin
-    margin: { top: 15px; bottom: 15px; left: 10px; right: 0px; }
-
-    //Hover
-    &:hover { text-decoration: none; cursor: hand; background-color: nth($bg, 3);}
-  }
-
   //Navbar space
   &-space { display: block; width: 100%; height: 60px; }
 }
 
-//Navbar colors
-@mixin jvizLayoutNavbarDefault
+//Logo navbar
+@mixin jvizLayoutNavbarLogo($color: $jvizWhite)
 {
+  //Display
+  display: inline-block; height: 60px; line-height: 60px; float: left; transition: all 0.3s;
+
+  //Text
+  @include jvizFont; font-weight: bold; font-size: 22px; color: $color; text-decoration: none;
+
+  //Padding
+  padding: { top: 0px; bottom: 0px; left: 0px; right: 0px; }
+
+  //Logo hover
+  &:hover { opacity: 0.7; cursor: hand; text-decoration: none; }
+}
+
+//Menu navbar
+@mixin jvizLayoutNavbarMenu($color: $jvizWhite)
+{
+  //Display
+  display: inline-block; height: 60px;
+}
+
+//Link navbar
+@mixin jvizLayoutNavbarLink($bg: $jvizBlueList, $color: $jvizWhite)
+{
+  //Display
+  display: inline-block; height: 30px; line-height: 30px; float: right; transition: all 0.3s;
+
+  //Text
+  @include jvizFont; font-weight: bold; font-size: 14px; color: $color; text-decoration: none;
+
+  //Border
+  border-radius: 5px;
+
+  //Background color
+  background-color: nth($bg, 1);
+
+  //Padding
+  padding: { top: 0px; bottom: 0px; left: 10px; right: 10px; }
+
+  //Margin
+  margin: { top: 15px; bottom: 15px; left: 10px; right: 0px; }
+
+  //Hover
+  &:hover { text-decoration: none; cursor: hand; background-color: nth($bg, 3);}
+}
+
+//Navbar
+@mixin jvizLayoutNavbar
+{
+  //Default navbar style
+  @include jvizLayoutNavbarBase;
+
+  //Logo navbar
+  &-logo
+  {
+    //Default logo style
+    @include jvizLayoutNavbarLogo;
+
+    //White logo
+    &-white { @include jvizLayoutNavbarLogo; }
+
+    //Navy logo
+    &-navy { @include jvizLayoutNavbarLogo($jvizNavy); }
+  }
+
+  //Menu
+  &-menu
+  {
+    //Default menu style
+    @include jvizLayoutNavbarMenu;
+  }
+
+  //Link
+  &-link
+  {
+    //Navy link
+    &-navy { @include jvizLayoutNavbarLink($jvizNavyList); }
+
+    //Grey link
+    &-grey { @include jvizLayoutNavbarLink($jvizGreyList, $jvizNavy); }
+
+    //Red link
+    &-red { @include jvizLayoutNavbarLink($jvizRedList); }
+
+    //Blue link
+    &-blue { @include jvizLayoutNavbarLink($jvizBlueList); }
+
+    //Pink link
+    &-pink { @include jvizLayoutNavbarLink($jvizPinkList); }
+
+    //Green link
+    &-green { @include jvizLayoutNavbarLink($jvizGreenList); }
+
+    //Water link
+    &-water { @include jvizLayoutNavbarLink($jvizWaterList); }
+
+    //Orange link
+    &-orange { @include jvizLayoutNavbarLink($jvizOrangeList); }
+
+    //Purple link
+    &-purple { @include jvizLayoutNavbarLink($jvizPurpleList); } 
+  }
+
   //Navy navbar
-  &-navy { @include jvizLayoutNavbar($jvizNavyList, $jvizWhite); }
+  &-navy { background-color: $jvizNavy; }
 
   //Grey navbar
-  &-grey { @include jvizLayoutNavbar($jvizGreyList, $jvizWhite); }
+  &-grey { background-color: $jvizGrey; }
 
   //Red navbar
-  &-red { @include jvizLayoutNavbar($jvizRedList, $jvizWhite); }
+  &-red { background-color: $jvizRed; }
 
   //Blue navbar
-  &-blue { @include jvizLayoutNavbar($jvizBlueList, $jvizWhite); }
+  &-blue { background-color: $jvizBlue; }
 
   //Pink navbar
-  &-pink { @include jvizLayoutNavbar($jvizPinkList, $jvizWhite); }
+  &-pink { background-color: $jvizPink; }
 
   //Green navbar
-  &-green { @include jvizLayoutNavbar($jvizGreenList, $jvizWhite); }
+  &-green { background-color: $jvizGreen; }
+
+  //Water navbar
+  &-water { background-color: $jvizWater; }
 
   //Orange navbar
-  &-orange { @include jvizLayoutNavbar($jvizOrangeList, $jvizWhite); }
+  &-orange { background-color: $jvizOrange; }
 
   //Purple navbar
-  &-purple { @include jvizLayoutNavbar($jvizPurpleList, $jvizWhite); }
+  &-purple { background-color: $jvizPurple; }
 }
