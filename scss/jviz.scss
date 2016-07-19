@@ -22,6 +22,9 @@
   //Grid
   &-grid { @include jvizGrid; }
 
+  //Heading
+  &-heading, &-h { @include jvizHeading; }
+
   //Input
   &-input { @include jvizInput; }
 
@@ -30,6 +33,9 @@
 
   //Label
   &-label { @include jvizLabel; }
+
+  //Links
+  &-a, &-link { @include jvizLink; }
 
   //List
   &-list { @include jvizList; }
@@ -45,9 +51,6 @@
 
   //Textarea fluid
   &-textarea-fluid { @include jvizTextareaFluid; }
-
-  //jviz typography
-  &-typography { @include jvizTypography; }
 
   //Components
   &-components
@@ -87,6 +90,6 @@
     &-navbar { @include jvizLayoutNavbarDefault; }
 
     //Panel
-    &-panel { @include jvizLayoutPanel; } 
+    &-panel { @include jvizLayoutPanel; }
   }
 }
