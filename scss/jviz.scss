@@ -71,12 +71,12 @@
     &-switch { @include jvizComponentsSwitch; }
 
     //ToolTip
-    &-tooltip { @include jvizUiToolTip; }
+    &-tooltip { @include jvizComponentsTooltip; }
   }
 
   //Layout
   &-layout
   {
-    
+
   }
 }
