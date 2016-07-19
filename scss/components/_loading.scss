@@ -30,3 +30,37 @@
   //Animation
   &-animation { @include jvizComponentsAnimation($color); margin: { top: 100px; } }
 }
+
+//Loading default style
+@mixin jvizComponentsLoadingDefault
+{
+  //Default loading component
+  @include jvizComponentsLoading;
+
+  //Navy loading
+  &-navy { @include jvizComponentsLoading($jvizNavy, $jvizWhite); }
+
+  //Grey loading
+  &-grey { @include jvizComponentsLoading($jvizGrey, $jvizNavy); }
+
+  //Red loading
+  &-red { @include jvizComponentsLoading($jvizRed, $jvizWhite); }
+
+  //Blue loading
+  &-blue { @include jvizComponentsLoading($jvizBlue, $jvizWhite); }
+
+  //Pink loading
+  &-pink { @include jvizComponentsLoading($jvizPink, $jvizWhite); }
+
+  //Green loading
+  &-green { @include jvizComponentsLoading($jvizGreen, $jvizWhite); }
+
+  //Orange loading
+  &-orange { @include jvizComponentsLoading($jvizOrange, $jvizWhite); }
+
+  //Purple loading
+  &-purple { @include jvizComponentsLoading($jvizPurple, $jvizWhite); }
+
+  //White loading
+  &-white { @include jvizComponentsLoading($jvizWhite, $jvizNavy); }
+}
