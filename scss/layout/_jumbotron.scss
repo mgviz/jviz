@@ -27,7 +27,7 @@
     width: calc(100% - 30px);
 
     //Padding
-    padding: { left: 15px; right: 15px; } 
+    padding: { left: 15px; right: 15px; }
   }
 
   //jumbotron title
@@ -68,4 +68,38 @@
     //Margin
     margin: { top: 10px; bottom: 10px; }
   }
+}
+
+//Jumbotron colors
+@mixin jvizLayoutJumbotronDefault
+{
+  //Navy jumbotron
+  &-navy { @include jvizLayoutJumbotron($jvizNavy); }
+
+  //Grey jumbotron
+  &-grey { @include jvizLayoutJumbotron($jvizGrey, $jvizNavy); }
+
+  //Red jumbotron
+  &-red { @include jvizLayoutJumbotron($jvizRed); }
+
+  //Blue jumbotron
+  &-blue { @include jvizLayoutJumbotron($jvizBlue); }
+
+  //Pink jumbotron
+  &-pink { @include jvizLayoutJumbotron($jvizPink); }
+
+  //Green jumbotron
+  &-green { @include jvizLayoutJumbotron($jvizGreen); }
+
+  //Water jumbotron
+  &-water { @include jvizLayoutJumbotron($jvizWater); }
+
+  //Orange jumbotron
+  &-orange { @include jvizLayoutJumbotron($jvizOrange); }
+
+  //Purple jumbotron
+  &-purple { @include jvizLayoutJumbotron($jvizPurple); }
+
+  //White jumbotron
+  &-white { @include jvizLayoutJumbotron($jvizWhite, $jvizNavy); } 
 }
