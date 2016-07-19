@@ -1,5 +1,5 @@
 //jvizAlert main class
-jviz.ui.alert = function(opt)
+jviz.components.alert = function(opt)
 {
   //Check the options
   if(typeof opt === 'undefined'){ var opt = {}; }
@@ -8,7 +8,7 @@ jviz.ui.alert = function(opt)
   this.id = (typeof opt.id === 'undefined') ? jviz.utils.getID({ preffix: 'jviz-ui-alert-', length: 5 }) : opt.id;
 
   //Save the alert class
-  this.class = (typeof opt.class === 'undefined') ? 'jviz-ui-alert' : opt.class;
+  this.class = (typeof opt.class === 'undefined') ? 'jviz-components-alert' : opt.class;
 
   //Open class
   this.open = this.class + '-open';
@@ -39,7 +39,7 @@ jviz.ui.alert = function(opt)
 };
 
 //jviz alert build
-jviz.ui.alert.prototype.build = function(parent)
+jviz.components.alert.prototype.build = function(parent)
 {
   //Create the alert div
   jviz.dom.append({ type: 'div', id: this.id, class: this.class, style: '' }, parent);
@@ -49,28 +49,28 @@ jviz.ui.alert.prototype.build = function(parent)
 };
 
 //jviz alert done alert
-jviz.ui.alert.prototype.done = function(obj)
+jviz.components.alert.prototype.done = function(obj)
 {
   //Create the alert
   this.create('done', obj);
 };
 
 //jviz alert error alert
-jviz.ui.alert.prototype.error = function(obj)
+jviz.components.alert.prototype.error = function(obj)
 {
   //Create the alert
   this.create('error', obj);
 };
 
 //jviz alert warning alert
-jviz.ui.alert.prototype.warning = function(obj)
+jviz.components.alert.prototype.warning = function(obj)
 {
   //Create the alert
   this.create('warning', obj);
 };
 
 //jviz alert create
-jviz.ui.alert.prototype.create = function(type, obj)
+jviz.components.alert.prototype.create = function(type, obj)
 {
   //Check the obj
   if(typeof obj === 'undefined'){ return; }
@@ -100,14 +100,14 @@ jviz.ui.alert.prototype.create = function(type, obj)
   $('#' + this.id).addClass(this.open);
 
   //Set the time out
-  jvizUiAlertTimeOut(this, obj.time);
+  jvizComponentsAlertTimeOut(this, obj.time);
 
   //Set active as true
   this.active = true;
 };
 
 //jviz alert Reset
-jviz.ui.alert.prototype.reset = function()
+jviz.components.alert.prototype.reset = function()
 {
   //Remove the done class
   $('#' + this.id).removeClass(this.type.done);
@@ -120,7 +120,7 @@ jviz.ui.alert.prototype.reset = function()
 };
 
 //jviz alert clear
-jviz.ui.alert.prototype.hide = function()
+jviz.components.alert.prototype.hide = function()
 {
   //Set active as false
   this.active = false;
@@ -133,7 +133,7 @@ jviz.ui.alert.prototype.hide = function()
 };
 
 //jvizAlert time out
-function jvizUiAlertTimeOut(_main, _time)
+function jvizComponentsAlertTimeOut(_main, _time)
 {
   //Set the time out
   _main.timeOut = setTimeout(function(){ _main.timeOut = null; _main.hide(); }, _time);

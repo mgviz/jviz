@@ -1,5 +1,5 @@
 //jvizDialog
-jviz.ui.dialog = function(opt)
+jviz.components.dialog = function(opt)
 {
   //Check the options
   if(typeof opt === 'undefined'){ var opt = {}; }
@@ -8,7 +8,7 @@ jviz.ui.dialog = function(opt)
   this.id = (typeof opt.id === 'undefined') ? jviz.utils.getID({ prefix: 'jviz-dialog-', length: 5 }) : opt.id;
 
   //Dialog class
-  this.class = (typeog opt.class === 'undefined') ? 'jviz-ui-dialog' : obj.class;
+  this.class = (typeog opt.class === 'undefined') ? 'jviz-components-dialog' : obj.class;
 
   //Check for active
   this.active = false;
@@ -54,7 +54,7 @@ jviz.ui.dialog = function(opt)
 };
 
 //jvizDialog build
-jviz.ui.dialog.prototype.build = function(parent)
+jviz.components.dialog.prototype.build = function(parent)
 {
   //Initialize the div
   jviz.dom.append({ type: 'div', id: this.id, class: this.class, align: 'center' }, parent);
@@ -75,25 +75,25 @@ jviz.ui.dialog.prototype.build = function(parent)
   jviz.dom.append({ type: 'div', id: this.panel.body.id, class: this.panel.body.class, align: 'left' }, this.panel.id);
 
   //Add the events
-  jvizDialogEvent(this);
+  jvizComponentsDialogEvent(this);
 };
 
 //jvizDialog set title
-jviz.ui.dialog.prototype.setTitle = function(title)
+jviz.components.dialog.prototype.setTitle = function(title)
 {
   //Add the title
   $('#' + this.panel.head.title.id).html(title);
 };
 
 //jvizDialog content
-jviz.ui.dialog.prototype.content = function(div)
+jviz.components.dialog.prototype.content = function(div)
 {
   //Show the content div
   $('#' + this.panel.body.id).html(div);
 };
 
 //jvizDialog Show
-jviz.ui.dialog.prototype.show = function()
+jviz.components.dialog.prototype.show = function()
 {
   //Show the dialog
   $('#' + this.id).css('display', 'block');
@@ -103,7 +103,7 @@ jviz.ui.dialog.prototype.show = function()
 };
 
 //jvizDialog hide
-jviz.ui.dialog.prototype.hide = function()
+jviz.components.dialog.prototype.hide = function()
 {
   //Hide the dialog
   $('#' + this.id).css('display', 'none');
@@ -113,7 +113,7 @@ jviz.ui.dialog.prototype.hide = function()
 };
 
 //Function for add the dialog event
-function jvizUiDialogEvent(_main)
+function jvizComponentsDialogEvent(_main)
 {
   $('#' + _main.panel.head.close.id).on('click', function()
   {

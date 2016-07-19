@@ -1,5 +1,5 @@
 //jvizToolTip class
-jviz.ui.toolTip = function(opt)
+jviz.components.toolTip = function(opt)
 {
   //Check the options
   if(typeof opt === 'undefined'){ var opt = {}; }
@@ -8,7 +8,7 @@ jviz.ui.toolTip = function(opt)
   this.id = (typeof opt.id === 'undefined') ? jviz.utils.getID({ prefix: 'jviz-tooltip-', length: 5 }) : opt.id;
 
   //Save the class
-  this.class = (typeof opt.class === 'undefined') ? 'jviz-ui-tooltip' : opt.class;
+  this.class = (typeof opt.class === 'undefined') ? 'jviz-components-tooltip' : opt.class;
 
   //Save the width
   this.width = (typeof opt.width === 'undefined') ? 200 : opt.width;
@@ -38,7 +38,7 @@ jviz.ui.toolTip = function(opt)
 };
 
 //jvizToolTip Build
-jviz.ui.toolTip.prototype.build = function(parent)
+jviz.components.toolTip.prototype.build = function(parent)
 {
   //Create the new div
   jviz.dom.append({ type: 'div', id: this.id, class: this.class }, parent);
@@ -54,14 +54,14 @@ jviz.ui.toolTip.prototype.build = function(parent)
 };
 
 //jvizToolTip Set content
-jviz.ui.toolTip.prototype.setContent = function(content)
+jviz.components.toolTip.prototype.setContent = function(content)
 {
   //Set the content
   $('#' + this.content.id).html(content);
 };
 
 //jvizToolTip set position
-jviz.ui.toolTip.prototype.setPosition = function(posx, posy)
+jviz.components.toolTip.prototype.setPosition = function(posx, posy)
 {
   //Save the position x
   this.posx = posx;
@@ -71,14 +71,14 @@ jviz.ui.toolTip.prototype.setPosition = function(posx, posy)
 };
 
 //jvizToolTip set width
-jviz.ui.toolTip.prototype.setWidth = function(w)
+jviz.components.toolTip.prototype.setWidth = function(w)
 {
   //Save the width
   this.width = parseInt(w);
 };
 
 //jvizToolTip Show
-jviz.ui.toolTip.prototype.show = function()
+jviz.components.toolTip.prototype.show = function()
 {
   //Set the position x
   $('#' + this.id).css('top', this.posy + this.margin.top);
@@ -97,7 +97,7 @@ jviz.ui.toolTip.prototype.show = function()
 };
 
 //jvizToolTip Hide
-jviz.ui.toolTip.prototype.hide = function()
+jviz.components.toolTip.prototype.hide = function()
 {
   //Hide the tooltip
   $('#' + this.id).css('display', 'none');
