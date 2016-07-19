@@ -23,6 +23,9 @@ jviz.extend('dom');
 //Extend the http library
 jviz.extend('http');
 
+//Extend the layout library
+jviz.extend('layout', {});
+
 //Extend the math library
 jviz.extend('math');
 
@@ -32,8 +35,8 @@ jviz.extend('modules');
 //Extend the tool library
 jviz.extend('tool');
 
-//Extend the ui library
-jviz.extend('ui', { screen: {} });
+//Extend the components library
+jviz.extend('components', {});
 
 //Extend the utils library
 jviz.extend('utils');
