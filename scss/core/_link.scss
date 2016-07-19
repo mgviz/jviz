@@ -1,0 +1,46 @@
+//Include default link style
+@mixin jvizLink
+{
+  //Default Link
+  &, &-navy { @include jvizTypographyLink($jvizNavy1); }
+
+  //Grey link
+  &-grey { @include jvizTypographyLink($jvizGrey1); }
+
+  //Red link
+  &-red { @include jvizTypographyLink($jvizRed1); }
+
+  //Blue link
+  &-blue { @include jvizTypographyLink($jvizBlue1); }
+
+  //Pink link
+  &-pink { @include jvizTypographyLink($jvizPink1); }
+
+  //Water link
+  &-water { @include jvizTypographyLink($jvizWater1); }
+
+  //Green link
+  &-green { @include jvizTypographyLink($jvizGreen1); }
+
+  //Purple link
+  &-purple { @include jvizTypographyLink($jvizPurple1); }
+
+  //Orange link
+  &-orange { @include jvizTypographyLink($jvizOrange1); }
+
+  //White link
+  &-white { @include jvizTypographyLink($jvizWhite); }
+}
+
+//Base link
+@mixin jvizLinkBase($color: $jvizBlue2)
+{
+  //Default link style
+  color: $color; transition: all 0.3s;
+
+  //Font
+  @include jvizFont; text-decoration: none; font-weight: bold;
+
+  //Link hover style
+  &:hover { text-decoration: underline; cursor: pointer; }
+}
