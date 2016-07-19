@@ -45,4 +45,10 @@
 
   //Text color navy
   &-navy { color: $jvizNavy; }
+
+  //Text bold
+  &-bold, &-strong, &-b { @include jvizFont; font-weight: bold; }
+
+  //Text small
+  &-small { @include jvizFont; font-size: 12px; color: $jvizNavy2; }
 }
