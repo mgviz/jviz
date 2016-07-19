@@ -1,14 +1,50 @@
+//jviz jumbotron title
+@mixin jvizLayoutJumbotronTitle($color: $jvizWhite)
+{
+  //Display
+  display: block; line-height: 60px;
+
+  //Font
+  @include jvizFont; font-weight: bold; font-size: 50px; color: $color;
+
+  //Margin
+  margin: { top: 0px; bottom: 0px; }
+}
+
+//jviz Jumbotron subtitle
+@mixin jvizLayoutJumbotronSubtitle($color: $jvizWhite)
+{
+  //Display
+  display: block; line-height: 40px;
+
+  //Font
+  @include jvizFont; font-size: 30px; color: $color;
+
+  //Margin
+  margin: { top: 10px; bottom: 10px; }
+}
+
+//jviz Jumbotron description
+@mixin jvizLayoutJumbotronDescription($color: $jvizWhite)
+{
+  //Display
+  display: block; line-height: 30px;
+
+  //Font
+  @include jvizFont; font-size: 20px; color: $color;
+
+  //Margin
+  margin: { top: 10px; bottom: 10px; }
+}
+
 //jviz layout jumbotron
-@mixin jvizLayoutJumbotron($bg: $jvizNavy, $text: $jvizWhite)
+@mixin jvizLayoutJumbotronBase()
 {
   //Display
   display: block; width: 960px;
 
   //Padding
   padding: { top: 120px; bottom: 160px; left: calc(50% - 480px); right: calc(50% - 480px); }
-
-  //Background
-  background-color: $bg;
 
   //Jumbotron xxl
   &-xxl
@@ -29,77 +65,80 @@
     //Padding
     padding: { left: 15px; right: 15px; }
   }
-
-  //jumbotron title
-  &-title
-  {
-    //Display
-    display: block; line-height: 60px;
-
-    //Font
-    @include jvizFont; font-weight: bold; font-size: 50px; color: $text;
-
-    //Margin
-    margin: { top: 0px; bottom: 0px; }
-  }
-
-  //Jumbotron subtitle
-  &-subtitle
-  {
-    //Display
-    display: block; line-height: 40px;
-
-    //Font
-    @include jvizFont; font-size: 30px; color: $text;
-
-    //Margin
-    margin: { top: 10px; bottom: 10px; }
-  }
-
-  //Jumbotron description
-  &-description
-  {
-    //Display
-    display: block; line-height: 30px;
-
-    //Font
-    @include jvizFont; font-size: 20px; color: $text;
-
-    //Margin
-    margin: { top: 10px; bottom: 10px; }
-  }
 }
 
-//Jumbotron colors
-@mixin jvizLayoutJumbotronDefault
+//Jumbotron basic style
+@mixin jvizLayoutJumbotron
 {
+  //Default jumbotron style
+  @include jvizLayoutJumbotronBase;
+
+  //Title
+  &-title
+  {
+    //Default title style
+    @include jvizLayoutJumbotronTitle;
+
+    //White title
+    &-white { @include jvizLayoutJumbotronTitle; }
+
+    //Navy title
+    &-navy { @include jvizLayoutJumbotronTitle($jvizNavy); }
+  }
+
+  //Subtitle
+  &-subtitle
+  {
+    //Default subtitle style
+    @include jvizLayoutJumbotronSubtitle;
+
+    //White subtitle
+    &-white { @include jvizLayoutJumbotronSubtitle; }
+
+    //Navy subtitle
+    &-navy { @include jvizLayoutJumbotronSubtitle($jvizNavy); }
+  }
+
+  //Description
+  &-description
+  {
+    //Default description style
+    @include jvizLayoutJumbotronDescription;
+
+    //White description
+    &-white { @include jvizLayoutJumbotronDescription; }
+
+    //Navy description
+    &-navy { @include jvizLayoutJumbotronDescription($jvizNavy); }
+  }
+
   //Navy jumbotron
-  &-navy { @include jvizLayoutJumbotron($jvizNavy); }
+  &-navy { background-color: $jvizNavy; }
 
   //Grey jumbotron
-  &-grey { @include jvizLayoutJumbotron($jvizGrey, $jvizNavy); }
+  &-grey { background-color: $jvizGrey; }
 
   //Red jumbotron
-  &-red { @include jvizLayoutJumbotron($jvizRed); }
+  &-red { background-color: $jvizRed; }
 
   //Blue jumbotron
-  &-blue { @include jvizLayoutJumbotron($jvizBlue); }
+  &-blue { background-color: $jvizBlue; }
 
   //Pink jumbotron
-  &-pink { @include jvizLayoutJumbotron($jvizPink); }
+  &-pink { background-color: $jvizPink; }
 
   //Green jumbotron
-  &-green { @include jvizLayoutJumbotron($jvizGreen); }
+  &-green { background-color: $jvizGreen; }
 
   //Water jumbotron
-  &-water { @include jvizLayoutJumbotron($jvizWater); }
+  &-water { background-color: $jvizWater; }
 
   //Orange jumbotron
-  &-orange { @include jvizLayoutJumbotron($jvizOrange); }
+  &-orange { background-color: $jvizOrange; }
 
   //Purple jumbotron
-  &-purple { @include jvizLayoutJumbotron($jvizPurple); }
+  &-purple { background-color: $jvizPurple; }
 
   //White jumbotron
-  &-white { @include jvizLayoutJumbotron($jvizWhite, $jvizNavy); } 
+  &-white { background-color: $jvizWhite; }
 }
