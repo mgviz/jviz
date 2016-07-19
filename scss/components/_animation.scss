@@ -45,3 +45,37 @@
   //Content
   content: '';
 }
+
+//Animation default styles
+@mixin jvizComponentsAnimationDefault
+{
+  //Navy animation
+  &-navy { @include jvizComponentsAnimation($jvizNavy); }
+
+  //Grey animation
+  &-grey { @include jvizComponentsAnimation($jvizGrey); }
+
+  //Red animation
+  &-red { @include jvizComponentsAnimation($jvizRed); }
+
+  //Blue animation
+  &-blue { @include jvizComponentsAnimation($jvizBlue); }
+
+  //Pink animation
+  &-pink { @include jvizComponentsAnimation($jvizPink); }
+
+  //Water animation
+  &-water { @include jvizComponentsAnimation($jvizWater); }
+
+  //Green animation
+  &-green { @include jvizComponentsAnimation($jvizGreen); }
+
+  //Purple animation
+  &-purple { @include jvizComponentsAnimation($jvizPurple); }
+
+  //Orange animation
+  &-orange { @include jvizComponentsAnimation($jvizOrange); }
+
+  //White animation
+  &-white { @include jvizComponentsAnimation($jvizWhite); }
+}
