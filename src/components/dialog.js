@@ -8,7 +8,7 @@ jviz.components.dialog = function(opt)
   this.id = (typeof opt.id === 'undefined') ? jviz.utils.getID({ prefix: 'jviz-dialog-', length: 5 }) : opt.id;
 
   //Dialog class
-  this.class = (typeog opt.class === 'undefined') ? 'jviz-components-dialog' : obj.class;
+  this.class = (typeof opt.class === 'undefined') ? 'jviz-components-dialog' : obj.class;
 
   //Check for active
   this.active = false;
