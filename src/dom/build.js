@@ -66,7 +66,7 @@ jviz.dom.build = function(obj)
     html = html + '>';
 
     //Check the html content
-    if(typeof el.html !== 'undefined'){ html = html + jviz.html(el.html); }
+    if(typeof el.html !== 'undefined'){ html = html + jviz.dom.build(el.html); }
 
     //Check for closing the tag
     if(el.type !== 'input' && el.type !== 'br' && el.type !== 'hr'){ continue; }
