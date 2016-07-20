@@ -34,7 +34,7 @@ jviz.components.loading = function(opt)
 }
 
 //jviz screen loading build
-jviz.components.screen.loading.prototype.build = function(parent)
+jviz.components.loading.prototype.build = function(parent)
 {
   //Initialize the loading div
   jviz.dom.append({ type: 'div', id: this.id, class: this.class, style: 'display:none;' }, parent);
@@ -50,14 +50,14 @@ jviz.components.screen.loading.prototype.build = function(parent)
 };
 
 //jviz screen loading set text
-jviz.components.screen.loading.prototype.setText = function(text)
+jviz.components.loading.prototype.setText = function(text)
 {
   //Save the text
   this.text.text = text;
 };
 
 //jviz screen loading open
-jviz.components.screen.loading.prototype.open = function()
+jviz.components.loading.prototype.open = function()
 {
   //Check for active
   if(this.active === true){ return; }
@@ -73,7 +73,7 @@ jviz.components.screen.loading.prototype.open = function()
 };
 
 //jviz screen loading close
-jviz.components.screen.loading.prototype.close = function()
+jviz.components.loading.prototype.close = function()
 {
   //Check for active
   if(this.active === false){ return; }
@@ -86,7 +86,7 @@ jviz.components.screen.loading.prototype.close = function()
 };
 
 //jviz screen loading show alias
-jviz.components.screen.loading.prototype.show = function(){ this.open(); };
+jviz.components.loading.prototype.show = function(){ this.open(); };
 
 //jviz screen loading hide alias
-jviz.components.screen.loading.prototype.hide = function(){ this.close(); };
+jviz.components.loading.prototype.hide = function(){ this.close(); };
