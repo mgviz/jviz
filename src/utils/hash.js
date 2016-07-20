@@ -1,5 +1,5 @@
 //jviz.utils.hash object
-var jviz.utils.hash = {};
+jviz.utils.hash = {};
 
 //Get hash
 jviz.utils.hash.get = function()
