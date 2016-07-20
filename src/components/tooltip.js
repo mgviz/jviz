@@ -1,5 +1,5 @@
 //jvizToolTip class
-jviz.components.toolTip = function(opt)
+jviz.components.tooltip = function(opt)
 {
   //Check the options
   if(typeof opt === 'undefined'){ var opt = {}; }
@@ -38,7 +38,7 @@ jviz.components.toolTip = function(opt)
 };
 
 //jvizToolTip Build
-jviz.components.toolTip.prototype.build = function(parent)
+jviz.components.tooltip.prototype.build = function(parent)
 {
   //Create the new div
   jviz.dom.append({ type: 'div', id: this.id, class: this.class }, parent);
@@ -54,14 +54,14 @@ jviz.components.toolTip.prototype.build = function(parent)
 };
 
 //jvizToolTip Set content
-jviz.components.toolTip.prototype.setContent = function(content)
+jviz.components.tooltip.prototype.setContent = function(content)
 {
   //Set the content
   $('#' + this.content.id).html(content);
 };
 
 //jvizToolTip set position
-jviz.components.toolTip.prototype.setPosition = function(posx, posy)
+jviz.components.tooltip.prototype.setPosition = function(posx, posy)
 {
   //Save the position x
   this.posx = posx;
@@ -71,14 +71,14 @@ jviz.components.toolTip.prototype.setPosition = function(posx, posy)
 };
 
 //jvizToolTip set width
-jviz.components.toolTip.prototype.setWidth = function(w)
+jviz.components.tooltip.prototype.setWidth = function(w)
 {
   //Save the width
   this.width = parseInt(w);
 };
 
 //jvizToolTip Show
-jviz.components.toolTip.prototype.show = function()
+jviz.components.tooltip.prototype.show = function()
 {
   //Set the position x
   $('#' + this.id).css('top', this.posy + this.margin.top);
@@ -97,7 +97,7 @@ jviz.components.toolTip.prototype.show = function()
 };
 
 //jvizToolTip Hide
-jviz.components.toolTip.prototype.hide = function()
+jviz.components.tooltip.prototype.hide = function()
 {
   //Hide the tooltip
   $('#' + this.id).css('display', 'none');
