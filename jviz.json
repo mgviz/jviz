@@ -7,9 +7,21 @@
   "tasks":
   {
     "build:js:main": { "task": "concat", "src": [ "./src/jviz.js", "./src/**.js" ], "dest": "./jviz.js" },
+    "build:js:components": { "task": "concat", "src": [ "./src/components/**.js" ], "dest": "./jviz.js" },
+    "build:js:dom": { "task": "concat", "src": [ "./src/dom/**.js" ], "dest": "./jviz.js" },
+    "build:js:math": { "task": "concat", "src": [ "./src/math/**.js" ], "dest": "./jviz.js" },
+    "build:js:utils": { "task": "concat", "src": [ "./src/utils/**.js" ], "dest": "./jviz.js" },
     "build:sass": { "task": "compile:sass", "src": "./scss/**.scss", "dest": "./" }
   },
-	"build": [ "build:js:main", "build:sass" ],
+	"build":
+  [
+    "build:js:main",
+    "build:js:components",
+    "build:js:dom",
+    "build:js:math",
+    "build:js:utils", 
+    "build:sass"
+  ],
   "install": [],
 	"dependencies": {}
 }
