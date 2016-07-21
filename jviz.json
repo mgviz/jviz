@@ -6,12 +6,17 @@
   "directory": "./build",
   "tasks":
   {
+    "install:bower": { "task": "exec", "cmd": "bower install" },
     "build:js:main": { "task": "concat", "src": [ "./src/jviz.js", "./src/**.js" ], "dest": "./jviz.js" },
     "build:js:components": { "task": "concat", "src": [ "./src/components/**.js" ], "dest": "./jviz.js" },
     "build:js:dom": { "task": "concat", "src": [ "./src/dom/**.js" ], "dest": "./jviz.js" },
     "build:js:math": { "task": "concat", "src": [ "./src/math/**.js" ], "dest": "./jviz.js" },
     "build:js:utils": { "task": "concat", "src": [ "./src/utils/**.js" ], "dest": "./jviz.js" },
-    "build:sass": { "task": "compile:sass", "src": "./scss/**.scss", "dest": "./" }
+    "build:sass": { "task": "compile:sass", "src": "./scss/**.scss", "dest": "./" },
+    "build:vendor:cvjs":  { "task": "copy", "src": "./bower_components/cvjs/dist/cv.min.js", "dest": "./vendor/" },
+    "build:vendor:handlebars": { "task": "copy", "src": "./bower_components/handlebars/handlebars.min.js", "dest": "./vendor/" },
+    "build:vendor:jquery": { "task": "copy", "src": "./bower_components/jquery/dist/jquery.min.js", "dest": "./vendor/" },
+    "build:vendor:objectsort": { "task": "copy", "src": "./bower_components/objectsort/dist/objectsort.min.js", "dest": "./vendor/" }
   },
 	"build":
   [
@@ -19,9 +24,13 @@
     "build:js:components",
     "build:js:dom",
     "build:js:math",
-    "build:js:utils", 
-    "build:sass"
+    "build:js:utils",
+    "build:sass",
+    "build:vendor:cvjs",
+    "build:vendor:handlebars",
+    "build:vendor:jquery",
+    "build:vendor:objectsort"
   ],
-  "install": [],
+  "install": [ "install:bower" ],
 	"dependencies": {}
 }
