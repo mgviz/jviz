@@ -10,7 +10,7 @@ jviz.extend('storage', function(opt)
   //Parse the type
   if(['local', 'session'].indexOf(this.type) === -1){ this.type = 'local'; }
 
-  //Set the storage preffix
+  //Set the storage prefix
   this.id = (typeof opt.id === 'undefined') ? '' : opt.id;
 
   //Return this
