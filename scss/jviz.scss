@@ -19,6 +19,9 @@
   //Float
   &-float { @include jvizFloat; }
 
+  //Font sizes
+  &-font { @include jvizFontSizes; }
+
   //Grid
   &-grid { @include jvizGrid; }
 
