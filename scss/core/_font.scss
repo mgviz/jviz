@@ -1,6 +1,20 @@
 //Include font
 @mixin jvizFont { font-family: 'Asap', sans-serif; }
 
+//Font sizes
+@mixin jvizFontSizes
+{
+  //Sizes
+  $sizes: 8,10,11,12,13,14,15,16,18,20,22,24,26,28,30,32,36,40,45,50,55,60,65,70,75,80,85,90,95,100;
+
+  //Read all sizes
+  @each $i in $sizes
+  {
+    //Set the font size
+    &-#{$i}px { font-size: #{$i}px; }
+  }
+}
+
 //[DEPRECATED]
 //Mixin for light font
 @mixin jvizFontLight { font-family: 'Asap'; font-weight: 300; }
