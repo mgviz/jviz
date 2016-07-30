@@ -17,18 +17,21 @@
   &-description
   {
     //Description style
-    display: inline-block; width: 270px; float: left; vertical-align: top;
+    display: inline-block; width: 320px; float: left; vertical-align: top;
   }
 
   //Panel content
   &-content
   {
     //Content style
-    display: inline-block; width: calc(100% - 300px); float: right; vertical-align: top;
+    display: inline-block; width: calc(100% - 350px); float: right; vertical-align: top;
   }
 
   //Panel title
   &-title { display: block; @include jvizFont; font-weight: bold; font-size: 15px; margin: { bottom: 5px; } }
+
+  //Panel small text
+  &-small { display: block; @include jvizFont; font-size: 13px; margin: { bottom: 5px; } } 
 
   //Panel input
   &-input { @include jvizInput; width: calc(100% - 10px); margin: { left: 0px; bottom: 15px; } }
