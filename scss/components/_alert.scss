@@ -16,14 +16,17 @@
   //Padding
   padding: { left: 45px; right: 0px; top: 0px; bottom: 0px; }
 
-  //Alert done
+  //Done alert
   &-done { background-color: $jvizGreen3; background-image: url('./img/completed.svg'); }
 
-  //Alert warning
+  //Warning alert
   &-warning { background-color: $jvizOrange3; background-image: url('./img/warning.svg'); }
 
-  //Alert error
+  //Error alert
   &-error { background-color: $jvizRed3; background-image: url('./img/error.svg'); }
+
+  //Tip alert
+  &-tip { background-color: $jvizBlue3; background-image: url('./img/tip.svg'); }
 
   //Open class
   &-open { top: 40px; }
