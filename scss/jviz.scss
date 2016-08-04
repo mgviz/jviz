@@ -70,6 +70,9 @@
     //Dialog
     &-dialog { @include jvizComponentsDialog; }
 
+    //Message
+    &-msg, &-message { @include jvizComponentsMessage; } 
+
     //Switch
     &-switch { @include jvizComponentsSwitch; }
 
