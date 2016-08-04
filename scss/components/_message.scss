@@ -1,0 +1,33 @@
+//jviz Component Message mixin
+@mixin jvizComponentsMessage
+{
+  //Display
+  display: inline-block; width: calc(100% - 55px); height: 40px; transition: all 0.2s;
+
+  //Text
+  line-height: 20px; @include jvizFont; font-size: 14px; color: $jvizWhite; text-decoration: none;
+
+  //Border
+  border-radius: 5px;
+
+  //Background
+  background-repeat: no-repeat; background-position: 5px 5px; background-size: 30px 30px;
+
+  //Padding
+  padding: { left: 45px; right: 10px; top: 10px; bottom: 10px; }
+
+  //Done message
+  &-done { background-color: $jvizGreen3; background-image: url('./img/completed.svg'); }
+
+  //Warning message
+  &-warning { background-color: $jvizOrange3; background-image: url('./img/warning.svg'); }
+
+  //Error message
+  &-error { background-color: $jvizRed3; background-image: url('./img/error.svg'); }
+
+  //Tip message
+  &-tip { background-color: $jvizBlue3; background-image: url('./img/tip.svg'); }
+
+  //Text
+  &-text { @include jvizFont; font-weight: bold; font-size: 14px; color: $jvizWhite; }
+}
