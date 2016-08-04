@@ -28,6 +28,6 @@
   //Tip message
   &-tip { background-color: $jvizBlue3; background-image: url('./img/tip.svg'); }
 
-  //Text
-  &-text { @include jvizFont; font-weight: bold; font-size: 14px; color: $jvizWhite; }
+  //Hide
+  &-hide { display: none !important; }
 }
