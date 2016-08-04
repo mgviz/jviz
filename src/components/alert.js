@@ -128,6 +128,9 @@ jviz.components.alert.prototype.reset = function()
 
   //Remove the error class
   $('#' + this.id).removeClass(this.type.error);
+  
+  //Remove the tip class
+  $('#' + this.id).removeClass(this.type.tip);
 };
 
 //jviz alert clear
