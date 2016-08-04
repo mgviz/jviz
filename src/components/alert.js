@@ -4,8 +4,11 @@ jviz.components.alert = function(opt)
   //Check the options
   if(typeof opt === 'undefined'){ var opt = {}; }
 
+  //Generate a new id
+  var id = jviz.utils.getID({ preffix: 'jviz-components-alert-', length: 5 });
+
   //Save the alert ID
-  this.id = (typeof opt.id === 'undefined') ? jviz.utils.getID({ preffix: 'jviz-ui-alert-', length: 5 }) : opt.id;
+  this.id = (typeof opt.id === 'undefined') ? id : opt.id;
 
   //Save the alert class
   this.class = (typeof opt.class === 'undefined') ? 'jviz-components-alert' : opt.class;
@@ -18,6 +21,7 @@ jviz.components.alert = function(opt)
   this.type.done = this.class + '-done'; //Done alert
   this.type.error = this.class + '-error'; //Error alert
   this.type.warning = this.class + '-warning'; //Warning alert
+  this.type.tip = this.class + '-tip'; //Tip alert
 
   //Text
   this.text = {};
@@ -67,6 +71,13 @@ jviz.components.alert.prototype.warning = function(obj)
 {
   //Create the alert
   this.create('warning', obj);
+};
+
+//jviz alert tip alert
+jviz.components.alert.prototype.tip = function(obj)
+{
+  //Create the alert
+  this.create('tip', obj);
 };
 
 //jviz alert create
