@@ -20,7 +20,7 @@
   border-radius: 5px;
 
   //Margin
-  margin: { top: 0px; bottom: 0px; left: 5px; right: 5px; }
+  margin: { top: 5px; bottom: 5px; left: 5px; right: 5px; }
 
   //Hover
   &:hover { cursor: hand; opacity: 0.8; text-decoration: none; }
@@ -76,7 +76,7 @@
     //Dark icon button
     &-dark { @include jvizBtnIconDark; }
   }
-  
+
   //Red button
   &-red { @include jvizBtn($jvizRed); }
 
