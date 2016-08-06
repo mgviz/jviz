@@ -34,7 +34,7 @@
   &-small { display: block; @include jvizFont; font-size: 13px; margin: { bottom: 5px; } }
 
   //Panel input
-  &-input { @include jvizInput; width: calc(100% - 10px); margin: { left: 5px; bottom: 15px; top: 5px; } }
+  &-input { @include jvizInput; width: calc(100% - 10px); }
 
   //Panel box
   &-box
@@ -46,7 +46,7 @@
     border: 1px solid $jvizGrey; border-radius: 5px;
 
     //Text
-    color: $jvizNavy3; font-size: 14px; 
+    color: $jvizNavy3; font-size: 14px;
 
     //Padding
     padding: { top: 15px; bottom: 15px; left: 15px; right: 15px; }
