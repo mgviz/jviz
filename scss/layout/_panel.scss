@@ -40,13 +40,13 @@
   &-box
   {
     //Style
-    display: block; width: calc(100% - 34px);
+    display: block; width: calc(100% - 42px);
 
     //Border
-    border: 2px solid $jvizGrey; border-radius: 5px;
+    border: 1px solid $jvizGrey; border-radius: 5px;
 
     //Padding
-    padding: { top: 10px; bottom: 10px; left: 10px; right: 10px; }
+    padding: { top: 15px; bottom: 15px; left: 15px; right: 15px; }
 
     //Margin
     margin: { left: 5px; right: 5px; top: 15px; bottom: 15px; }
