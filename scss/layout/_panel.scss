@@ -31,8 +31,24 @@
   &-title { display: block; @include jvizFont; font-weight: bold; font-size: 15px; margin: { bottom: 5px; } }
 
   //Panel small text
-  &-small { display: block; @include jvizFont; font-size: 13px; margin: { bottom: 5px; } } 
+  &-small { display: block; @include jvizFont; font-size: 13px; margin: { bottom: 5px; } }
 
   //Panel input
-  &-input { @include jvizInput; width: calc(100% - 10px); margin: { left: 0px; bottom: 15px; } }
+  &-input { @include jvizInput; width: calc(100% - 10px); margin: { left: 5px; bottom: 15px; top: 5px; } }
+
+  //Panel box
+  &-box
+  {
+    //Style
+    display: block; width: calc(100% - 34px);
+
+    //Border
+    border: 2px solid $jvizGrey; border-radius: 5px;
+
+    //Padding
+    padding: { top: 10px; bottom: 10px; left: 10px; right: 10px; }
+
+    //Margin
+    margin: { left: 5px; right: 5px; top: 15px; bottom: 15px; }
+  }
 }
