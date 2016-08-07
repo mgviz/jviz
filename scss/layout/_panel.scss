@@ -13,28 +13,49 @@
   //Margin
   margin: { top: 10px; bottom: 10px; left: auto; right: auto; }
 
+  //Panel before
+  &:before { content: ""; display: table; }
+
+  //Panel after .
+  &:after { content: ""; display: table; clear: both; }
+
   //Panel description
   &-description
   {
-    //Description style
-    display: inline-block; width: 320px; float: left; vertical-align: top;
+    //Style
+    display: block; width: 25%; vertical-align: top;
+
+    //Position
+    position: relative; float: left;
   }
 
   //Panel content
   &-content
   {
-    //Content style
-    display: inline-block; width: calc(100% - 350px); float: right; vertical-align: top;
+    //Style
+    display: block; width: calc(66.66667% - 15px); vertical-align: top;
+
+    //Position
+    position: relative; float: left;
+
+    //Margin
+    margin: { left: 8.33333%; }
+
+    //Padding
+    padding: { left: 15px; right: 0px; }
   }
 
   //Panel title
-  &-title { display: block; @include jvizFont; font-weight: bold; font-size: 15px; margin: { bottom: 5px; } }
+  &-title { display: block; @include jvizFont; font-weight: bold; font-size: 16px; margin: { bottom: 10px; } }
+
+  //Panel detail
+  &-detail { display: block; @include jvizFont; font-size: 14px; line-height: 20px; margin: { bottom: 10px; } }
 
   //Panel small text
-  &-small { display: block; @include jvizFont; font-size: 13px; margin: { bottom: 5px; } }
+  &-small { display: block; @include jvizFont; font-size: 12px; margin: { bottom: 5px; } }
 
-  //Panel input
-  &-input { @include jvizInput; width: calc(100% - 10px); }
+  //Panel group
+  &-group { @include jvizGroup; }
 
   //Panel box
   &-box
