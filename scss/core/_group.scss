@@ -1,0 +1,24 @@
+//Group mixin
+@mixin jvizGroup
+{
+  //Style
+  display: block; position: relative; vertical-align: top; line-height: 20px;
+
+  //Margin
+  margin: { bottom: 15px; }
+
+  //Group margin 10px
+  &-10px { margin-bottom: 10px !important; }
+
+  //Group margin 20px
+  &-20px { margin-bottom: 20px !important; }
+
+  //Title
+  &-title { @include jvizFont; font-size: 14px; font-weight: bold; display: block; margin-bottom: 5px; }
+
+  //Detail
+  &-detail { @include jvizFont; font-size: 14px; display: block; margin-bottom: 5px; }
+
+  //Helper
+  &-helper { @include jvizFont; font-size: 12px; display: block; margin: { top: 5px; bottom: 5px; } }
+}
