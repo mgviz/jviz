@@ -25,6 +25,9 @@
   //Grid
   &-grid { @include jvizGrid; }
 
+  //Group
+  &-group { @include jvizGroup; } 
+
   //Heading
   &-heading, &-h { @include jvizHeading; }
 
@@ -71,7 +74,7 @@
     &-dialog { @include jvizComponentsDialog; }
 
     //Message
-    &-msg, &-message { @include jvizComponentsMessage; } 
+    &-msg, &-message { @include jvizComponentsMessage; }
 
     //Switch
     &-switch { @include jvizComponentsSwitch; }
