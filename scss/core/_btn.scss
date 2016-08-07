@@ -23,6 +23,31 @@
   &:hover { cursor: hand; opacity: 0.8; text-decoration: none; }
 }
 
+//Disabled button mixin
+@mixin jvizBtnDisabled
+{
+  //Display
+  display: inline-block; height: 30px; transition: all 0.3s;
+
+  //Background color
+  background-color: $jvizNavy4 !important;
+
+  //Text
+  color: $jvizNavy2 !important; line-height: 30px; text: { align: center; decoration: none; }
+
+  //Text font
+  @include jvizFont; font-weight: bold; font-size: 14px;
+
+  //Padding
+  padding: { left: 10px; right: 10px; }
+
+  //Border
+  border-radius: 5px;
+
+  //Hover
+  &:hover { cursor: not-allowed !important; text-decoration: none; opacity: 1.0 !important; }
+}
+
 //Button icon mixin
 @mixin jvizBtnIcon($color1, $color2)
 {
@@ -61,6 +86,9 @@
 //Default buttons
 @mixin jvizBtnDefault
 {
+  //Disabled button
+  &-disabled { @include jvizBtnDisabled; }
+
   //Icon buttons
   &-icon
   {
