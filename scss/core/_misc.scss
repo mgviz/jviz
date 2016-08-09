@@ -1,0 +1,6 @@
+//Miscellaneous style
+@mixin jvizMisc
+{
+  //Rule
+  &-rule, &-hr { display: block; width: 100%; border-bottom: 1px solid $jvizGrey4; height: 0px; }
+}
