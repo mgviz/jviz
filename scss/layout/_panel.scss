@@ -4,9 +4,6 @@
   //Display
   display: inline-block; width: calc(100% - 20px);
 
-  //Border
-  border: { bottom: 1px solid $jvizGrey4; }
-
   //Padding
   padding: { top: 25px; bottom: 25px; left: 10px; right: 10px; }
 
@@ -75,4 +72,7 @@
     //Margin
     margin: { left: 5px; right: 5px; top: 15px; bottom: 15px; }
   }
+
+  //Rule
+  &-hr, &-rule { display: block; width: 100%; border-bottom: 1px solid $jvizGrey4; height: 0px; }
 }
