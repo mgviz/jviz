@@ -1,0 +1,39 @@
+//Table mixin
+@mixin jvizTable
+{
+  //Style
+  display: table; width: 100%; @include jvizFont;
+
+  //Border
+  border: { width: 0px; collapse: collapse; }
+
+  //Table margin
+  margin: { top: 0px; bottom: 20px; }
+
+  //Table head
+  & thead tr td
+  {
+    //Font
+    font-weight: bold;
+
+    //Border
+    border-bottom: 2px solid $jvizGrey;
+
+    //Padding
+    padding: { top: 10px; bottom: 10px; left: 10px; } 
+  }
+
+  //Table row
+  & tbody tr td { padding: { top: 10px; bottom: 10px; left: 10px; } }
+
+  //Border property
+  &-border
+  {
+    //All borders
+    &-all tbody tr td { border-bottom: 1px solid $jvizGrey; }
+
+    //Except the last row
+    &-no-last tbody tr td { border-bottom: 1px solid $jvizGrey; }
+    &-no-last tbody tr:last-child td { border-bottom: 0px; }
+  }
+}
