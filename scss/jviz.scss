@@ -4,6 +4,9 @@
 //jviz class
 .jviz
 {
+  //Include the miscellaneous style
+  @include jvizMisc;
+  
   //Background
   &-bg { @include jvizBg; }
 
@@ -50,7 +53,7 @@
   &-paragraph, &-p { @include jvizParagraph; }
 
   //Table style
-  &-table { @include jvizTable; } 
+  &-table { @include jvizTable; }
 
   //Text
   &-text { @include jvizText; }
