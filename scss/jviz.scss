@@ -26,7 +26,7 @@
   &-grid { @include jvizGrid; }
 
   //Group
-  &-group { @include jvizGroup; } 
+  &-group { @include jvizGroup; }
 
   //Heading
   &-heading, &-h { @include jvizHeading; }
@@ -48,6 +48,9 @@
 
   //Paragraph
   &-paragraph, &-p { @include jvizParagraph; }
+
+  //Table style
+  &-table { @include jvizTable; } 
 
   //Text
   &-text { @include jvizText; }
