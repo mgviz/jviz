@@ -5,31 +5,31 @@
   display: inline-block; width: calc(100% - 55px); transition: all 0.2s;
 
   //Text
-  line-height: 20px; @include jvizFont; font-size: 14px; color: $jvizWhite; text-decoration: none;
+  line-height: 20px; @include jvizFont; font-size: 14px; color: $jvizNavy; text-decoration: none;
 
   //Border
   border-radius: 5px;
 
   //Background
-  background-repeat: no-repeat; background-position: 5px 5px; background-size: 30px 30px;
+  background-repeat: no-repeat; background-position: 5px 5px; background-size: 30px 30px; background-color: $jvizGrey4;
 
   //Padding
   padding: { left: 45px; right: 10px; top: 10px; bottom: 10px; }
 
   //Margins
-  margin: { top: 10px; bottom: 10px; }
+  margin: { top: 0px; bottom: 10px; }
 
   //Done message
-  &-done { background-color: $jvizGreen3; background-image: url('./img/completed.svg'); }
+  &-done { background-image: url('./img/completed.svg'); }
 
   //Warning message
-  &-warning { background-color: $jvizOrange3; background-image: url('./img/warning.svg'); }
+  &-warning { background-image: url('./img/warning.svg'); }
 
   //Error message
-  &-error { background-color: $jvizRed3; background-image: url('./img/error.svg'); }
+  &-error { background-image: url('./img/error.svg'); }
 
   //Tip message
-  &-tip { background-color: $jvizBlue3; background-image: url('./img/tip.svg'); }
+  &-tip { background-image: url('./img/tip.svg'); }
 
   //Hide
   &-hide { display: none !important; }
