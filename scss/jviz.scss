@@ -6,7 +6,7 @@
 {
   //Include the miscellaneous style
   @include jvizMisc;
-  
+
   //Background
   &-bg { @include jvizBg; }
 
@@ -27,9 +27,6 @@
 
   //Grid
   &-grid { @include jvizGrid; }
-
-  //Group
-  &-group { @include jvizGroup; }
 
   //Heading
   &-heading, &-h { @include jvizHeading; }
@@ -78,6 +75,9 @@
 
     //Dialog
     &-dialog { @include jvizComponentsDialog; }
+
+    //Group
+    &-group { @include jvizComponentsGroup; }
 
     //Message
     &-msg, &-message { @include jvizComponentsMessage; }
