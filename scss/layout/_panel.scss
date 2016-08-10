@@ -52,7 +52,7 @@
   &-small { display: block; @include jvizFont; font-size: 12px; margin: { bottom: 5px; } }
 
   //Panel group
-  &-group { @include jvizGroup; }
+  &-group { @include jvizComponentsGroup; }
 
   //Panel box
   &-box
