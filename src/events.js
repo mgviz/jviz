@@ -23,6 +23,35 @@ jviz.events.add = function(id, callback, scope)
   this.list[id].push({ id: id, scope: scope, callback: callback });
 };
 
+//Remove an event
+jviz.events.remove = function(id, callback, scope)
+{
+  //Check for undefined event id
+  if(typeof id !== 'string'){ return; }
+
+  //Check for empty events
+  if(typeof this.list[id] === 'undefined'){ return; }
+
+  //Initialize the new events array
+  var events = [];
+
+  //Read all the events
+  for(var i = 0; i < this.list[id].length; i++)
+  {
+    //Get the event
+    var e = this.list[id][i];
+
+    //Check for remove the event
+    if(e.id === id && e.callback === callback && e.scope === scope){ continue; }
+
+    //Add to the list
+    events.push(e);
+  }
+
+  //Save the events
+  this.list[id] = events;
+},
+
 //Send the events
 jviz.events.send = function(id)
 {
