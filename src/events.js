@@ -24,7 +24,7 @@ jviz.events.add = function(id, callback, scope)
 };
 
 //Send the events
-jviz.extend.send = function(id)
+jviz.events.send = function(id)
 {
   //Check the id
   if(typeof id !== 'string')
