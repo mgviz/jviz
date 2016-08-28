@@ -79,6 +79,9 @@
     //Group
     &-group { @include jvizComponentsGroup; }
 
+    //Loading screen
+    &-loading { @include jvizComponentsLoading; }
+
     //Message
     &-msg, &-message { @include jvizComponentsMessage; }
 
@@ -97,9 +100,6 @@
 
     //Jumbotron
     &-jumbotron { @include jvizLayoutJumbotron; }
-
-    //Loading screen
-    &-loading { @include jvizLayoutLoading; }
 
     //Navbar
     &-navbar { @include jvizLayoutNavbar; }
