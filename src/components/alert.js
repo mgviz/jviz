@@ -4,14 +4,14 @@ jviz.components.alert = function(opt)
   //Check the options
   if(typeof opt === 'undefined'){ var opt = {}; }
 
-  //Generate a new id
-  var id = jviz.utils.getID({ preffix: 'jviz-components-alert-', length: 5 });
-
   //Save the alert ID
-  this.id = (typeof opt.id === 'undefined') ? id : opt.id;
+  this.id = (typeof opt.id === 'undefined') ? jviz.utils.getID({ preffix: 'alert-', length: 5 }) : opt.id;
 
   //Save the alert class
   this.class = (typeof opt.class === 'undefined') ? 'jviz-components-alert' : opt.class;
+
+  //Save the parent
+  this.parent = opt.parent;
 
   //Open class
   this.open = this.class + '-open';
@@ -38,18 +38,21 @@ jviz.components.alert = function(opt)
   this.default = {};
   this.default.time = 3000; //Default active time
 
+  //Build the alert
+  this.build();
+
   //Return
   return this;
 };
 
 //jviz alert build
-jviz.components.alert.prototype.build = function(parent)
+jviz.components.alert.prototype.build = function()
 {
   //Create the alert div
-  jviz.dom.append({ type: 'div', id: this.id, class: this.class, style: '' }, parent);
+  jviz.dom.append({ _tag: 'div', id: this.id, class: this.class, style: '' }, this.parent);
 
   //Add the text div
-  jviz.dom.append({ type: 'div', id: this.text.id, class: this.text.class }, this.id);
+  jviz.dom.append({ _tag: 'div', id: this.text.id, class: this.text.class }, this.id);
 };
 
 //jviz alert done alert
@@ -110,8 +113,11 @@ jviz.components.alert.prototype.create = function(type, obj)
   //Add the open class
   $('#' + this.id).addClass(this.open);
 
-  //Set the time out
-  jvizComponentsAlertTimeOut(this, obj.time);
+  //Save this
+  var self = this;
+
+  //Save the time out
+  self.timeOut = setTimeout(function(){ self.timeOut = null; self.hide(); }, obj.time);
 
   //Set active as true
   this.active = true;
@@ -128,7 +134,7 @@ jviz.components.alert.prototype.reset = function()
 
   //Remove the error class
   $('#' + this.id).removeClass(this.type.error);
-  
+
   //Remove the tip class
   $('#' + this.id).removeClass(this.type.tip);
 };
@@ -145,10 +151,3 @@ jviz.components.alert.prototype.hide = function()
   //Remove the open class
   $('#' + this.id).removeClass(this.open);
 };
-
-//jvizAlert time out
-function jvizComponentsAlertTimeOut(_main, _time)
-{
-  //Set the time out
-  _main.timeOut = setTimeout(function(){ _main.timeOut = null; _main.hide(); }, _time);
-}
