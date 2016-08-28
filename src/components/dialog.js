@@ -88,14 +88,14 @@ jviz.components.dialog.prototype.build = function()
 };
 
 //jvizDialog set title
-jviz.components.dialog.prototype.title = function(title)
+jviz.components.dialog.prototype.setTitle = function(title)
 {
   //Add the title
   $('#' + this.panel.head.title.id).html(title);
 };
 
 //jvizDialog content
-jviz.components.dialog.prototype.content = function(div)
+jviz.components.dialog.prototype.setContent = function(div)
 {
   //Show the content div
   $('#' + this.panel.body.id).html(div);
