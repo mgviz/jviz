@@ -1,5 +1,5 @@
 //Loading base
-@mixin jvizLayoutLoadingBase
+@mixin jvizComponentsLoadingBase
 {
   //Display
   display: block; width: 100%; height: 100%;
@@ -9,7 +9,7 @@
 }
 
 //Loading text
-@mixin jvizLayoutLoadingText()
+@mixin jvizComponentsLoadingTitle
 {
   //Style
   display: inline-block; width: 100%;
@@ -22,42 +22,42 @@
 }
 
 //Loading animation
-@mixin jvizLayoutLoadingAnimation($color: $jvizWhite)
+@mixin jvizComponentsLoadingAnimation($color: $jvizWhite)
 {
   //Include the animation
   @include jvizComponentsAnimation($color); margin: { top: 100px; }
 }
 
 //Loading mixin
-@mixin jvizLayoutLoading()
+@mixin jvizComponentsLoading()
 {
   //Include the loading base
-  @include jvizLayoutLoadingBase;
+  @include jvizComponentsLoadingBase;
 
-  //Loading text
-  &-text
+  //Loading title
+  &-title
   {
     //Default text
-    @include jvizLayoutLoadingText;
+    @include jvizComponentsLoadingTitle;
 
     //White text
-    &-white { @include jvizLayoutLoadingText; color: $jvizWhite; }
+    &-white { @include jvizComponentsLoadingTitle; color: $jvizWhite; }
 
     //Navy text
-    &-navy { @include jvizLayoutLoadingText; color: $jvizNavy; }
+    &-navy { @include jvizComponentsLoadingTitle; color: $jvizNavy; }
   }
 
   //Animation
   &-animation
   {
     //Default animation
-    @include jvizLayoutLoadingAnimation;
+    @include jvizComponentsLoadingAnimation;
 
     //White animation
-    &-white { @include jvizLayoutLoadingAnimation($jvizWhite); }
+    &-white { @include jvizComponentsLoadingAnimation($jvizWhite); }
 
     //Navy animation
-    &-navy { @include jvizLayoutLoadingAnimation($jvizNavy); }
+    &-navy { @include jvizComponentsLoadingAnimation($jvizNavy); }
   }
 
   //Navy loading
