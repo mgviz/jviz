@@ -8,17 +8,30 @@
   position: fixed; top: 0px; left: 0px; z-index: 5000;
 }
 
-//Loading text
+//Loading title
 @mixin jvizComponentsLoadingTitle
 {
   //Style
   display: inline-block; width: 100%;
 
   //Text
-  text-align: center; @include jvizFont; font-weight: bold; font-size: 14px;
+  text-align: center; @include jvizFont; font-weight: bold; font-size: 22px;
 
   //Margin
   margin: { top: 20px; }
+}
+
+//Loading description
+@mixin jvizComponentsLoadingDescription
+{
+  //Style
+  display: inline-block; width: 100%; line-height: 22px; 
+
+  //Text
+  text-align: center; @include jvizFont; font-size: 16px;
+
+  //Margin
+  margin: { top: 8px; }
 }
 
 //Loading animation
@@ -35,30 +48,26 @@
   @include jvizComponentsLoadingBase;
 
   //Loading title
-  &-title
+  &-title { @include jvizComponentsLoadingTitle; }
+
+  //Loading description
+  &-description { @include jvizComponentsLoadingDescription; }
+
+  //Colors
+  &-color
   {
-    //Default text
-    @include jvizComponentsLoadingTitle;
+    //White color
+    &-white { color: $jvizWhite; }
 
-    //White text
-    &-white { @include jvizComponentsLoadingTitle; color: $jvizWhite; }
-
-    //Navy text
-    &-navy { @include jvizComponentsLoadingTitle; color: $jvizNavy; }
+    //Navy color
+    &-navy { color: $jvizNavy; }
   }
 
-  //Animation
-  &-animation
-  {
-    //Default animation
-    @include jvizComponentsLoadingAnimation;
+  //White animation
+  &-color-white &-animation { @include jvizComponentsLoadingAnimation($jvizWhite); }
 
-    //White animation
-    &-white { @include jvizComponentsLoadingAnimation($jvizWhite); }
-
-    //Navy animation
-    &-navy { @include jvizComponentsLoadingAnimation($jvizNavy); }
-  }
+  //Navy animation
+  &-color-navy &-animation { @include jvizComponentsLoadingAnimation($jvizNavy); }
 
   //Navy loading
   &-navy { background-color: rgba($jvizNavy, 0.7); }
