@@ -24,23 +24,28 @@ jviz.components.loading = function(opt)
   this.title.class = this.class + '-title'; //Title class
   this.title.text = (typeof opt.title !== 'undefined') ? opt.title : '';
 
+  //Description
+  this.description = {};
+  this.description.id = this.id + '-description'; //Description ID
+  this.description.class = this.class + '-description'; //Description class
+  this.description.text = (typeof opt.description !== 'undefined') ? opt.description : '';
+
+  //Color
+  this.color = {};
+  this.color.white = this.class + '-color-white'; //White color
+  this.color.navy = this.class + '-color-navy'; //Navy color
+
+  //Background colors
+  this.bg = [ 'navy', 'red', 'blue', 'green', 'purple', 'pink', 'orange', 'white', 'grey' ];
+
   //Build the loading
   this.build();
 
-  //Initialize the color object
-  var color = { };
+  //Set the color
+  this.setColor(opt.color);
 
-  //Add the background color
-  color.bg = (typeof opt.bgColor !== 'undefined') ? 'navy' : opt.bgColor;
-
-  //Add the animation color
-  color.animation = (typeof opt.animationColor !== 'undefined') ? 'white' : opt.animationColor;
-
-  //Add the title color
-  color.title = (typeof opt.titleColor !== 'undefined') ? 'white' : opt.titleColor;
-
-  //Add the colors
-  this.setColor(color);
+  //Set the background
+  this.setBg(opt.bg);
 
   //Return the element
   return this;
@@ -56,54 +61,62 @@ jviz.components.loading.prototype.build = function()
   jviz.dom.append({ _tag: 'div', id: this.animation.id, class: this.animation.class }, this.id);
 
   //Add the title div
-  jviz.dom.append({ _tag: 'div', id: this.title.id, class: this.title.class, align: 'center', _html: this.title.text }, this.id);
+  jviz.dom.append({ _tag: 'div', id: this.title.id, class: this.title.class, align: 'center' }, this.id);
+
+  //Add the description div
+  jviz.dom.append({ _tag: 'div', id: this.description.id, class: this.description.class, align: 'center' }, this.id);
+
+  //Add the title
+  jviz.dom.html(this.title.text, this.title.id);
+
+  //Add the description
+  jviz.dom.html(this.description.text, this.description.id);
 };
 
 //jviz screen loading set text
 jviz.components.loading.prototype.setTitle = function(text)
 {
-  //Add the text
-  $('#' + this.title.id).html(text);
+  //Update the title text
+  jviz.dom.html(text, this.title.id);
 };
+
+//jviz loading set description
+jviz.components.loading.prototype.setDescription = function(text)
+{
+  //Update the description text
+  jviz.dom.html(text, this.description.id);
+}
 
 //Set the color
-jviz.components.loading.prototype.setColor = function(obj)
+jviz.components.loading.prototype.setColor = function(color)
 {
-  //Check for undefined color object
-  if(typeof obj === 'undefined'){ return; }
+  //Check the color
+  if(typeof color === 'undefined'){ var color = 'white'; }
 
-  //Check for string
-  if(typeof obj === 'string'){ obj = { bg: obj }; }
+  //Check the color
+  if(typeof this.color[color] === 'undefined'){ return; }
+
+  //Remove the colors
+  $('#' + this.id).removeClass(this.color.white).removeClass(this.color.navy);
+
+  //Add the new color
+  $('#' + this.id).addClass(this.color[color]);
+};
+
+//Set the background color
+jviz.components.loading.prototype.setBg = function(color)
+{
+  //Check the color
+  if(typeof color === 'undefined'){ var color = 'navy'; }
 
   //Check the background color
-  if(typeof obj.bg !== 'undefined'){ this.bgColor(obj.bg); }
+  if(this.bg.indexOf(color) === -1){ return; }
 
-  //Check the animation color
-  if(typeof obj.animation !== 'undefined'){ this.animationColor(obj.animation); }
+  //Remove all the colors
+  this.bg.forEach(function(el){ $('#' + this.id).removeClass(this.class + '-' + el); });
 
-  //Check the title color
-  if(typeof obj.title !== 'undefined'){ this.titleColor(obj.title); }
-};
-
-//Update the background color
-jviz.components.loading.prototype.bgColor = function(color)
-{
-  //Update the background color
-  $('#' + this.id).removeClass().addClass(this.class + ' ' + this.class + '-' + color);
-};
-
-//Update the animation color
-jviz.components.loading.prototype.animationColor = function(color)
-{
-  //Remove all classes and add the new classes
-  $('#' + this.animation.id).removeClass().addClass(this.animation.class + ' ' + this.animation.class + '-' + color);
-};
-
-//Update the title color
-jviz.components.loading.prototype.titleColor = function(color)
-{
-  //Remove all classes and add the new classes
-  $('#' + this.title.id).removeClass().addClass(this.title.class + ' ' + this.title.class + '-' + color);
+  //Add the new color
+  $('#' + this.id).addClass(this.class + '-' + color);
 };
 
 //jviz screen loading open
