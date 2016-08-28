@@ -4,14 +4,14 @@ jviz.components.message = function(opt)
   //Check the options
   if(typeof opt === 'undefined'){ var opt = {}; }
 
-  //Generate a new id
-  var id = jviz.utils.getID({ preffix: 'jviz-components-message-', length: 5 });
-
   //Save the message ID
-  this.id = (typeof opt.id === 'undefined') ? id : opt.id;
+  this.id = (typeof opt.id === 'undefined') ? jviz.utils.getID({ preffix: 'message-', length: 5 }) : opt.id;
 
   //Save the message class
   this.class = (typeof opt.class === 'undefined') ? 'jviz-components-message' : opt.class;
+
+  //Save the parent
+  this.parent = opt.parent;
 
   //Hide class
   this.hide_class = this.class + '-hide';
@@ -23,15 +23,18 @@ jviz.components.message = function(opt)
   this.type.warning = this.class + '-warning'; //Warning message
   this.type.tip = this.class + '-tip'; //Tip message
 
+  //Build the message
+  this.build();
+
   //Return
   return this;
 };
 
 //jviz message build
-jviz.components.message.prototype.build = function(parent)
+jviz.components.message.prototype.build = function()
 {
   //Create the message div
-  jviz.dom.append({ type: 'div', id: this.id, class: this.class, style: '' }, parent);
+  jviz.dom.append({ _tag: 'div', id: this.id, class: this.class, style: '' }, this.parent);
 };
 
 //jviz message done alert
