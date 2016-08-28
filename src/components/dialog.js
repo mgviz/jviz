@@ -5,10 +5,13 @@ jviz.components.dialog = function(opt)
   if(typeof opt === 'undefined'){ var opt = {}; }
 
   //Dialog id
-  this.id = (typeof opt.id === 'undefined') ? jviz.utils.getID({ prefix: 'jviz-dialog-', length: 5 }) : opt.id;
+  this.id = (typeof opt.id === 'undefined') ? jviz.utils.getID({ prefix: 'dialog-', length: 5 }) : opt.id;
 
   //Dialog class
   this.class = (typeof opt.class === 'undefined') ? 'jviz-components-dialog' : obj.class;
+
+  //Save the parent
+  this.parent = opt.parent;
 
   //Check for active
   this.active = false;
@@ -49,37 +52,43 @@ jviz.components.dialog = function(opt)
   this.panel.body.col.c2 = this.panel.body.col.class + '-2'; //Panel body column two columns class
   this.panel.body.col.c3 = this.panel.body.col.class + '-3'; //Panel body column three columns class
 
+  //Build the dialog
+  this.build();
+
   //Return the new element
   return this;
 };
 
 //jvizDialog build
-jviz.components.dialog.prototype.build = function(parent)
+jviz.components.dialog.prototype.build = function()
 {
   //Initialize the div
-  jviz.dom.append({ type: 'div', id: this.id, class: this.class, align: 'center' }, parent);
+  jviz.dom.append({ _tag: 'div', id: this.id, class: this.class, align: 'center' }, this.parent);
 
   //Add the panel
-  jviz.dom.append({ type: 'div', id: this.panel.id, class: this.panel.class }, this.id);
+  jviz.dom.append({ _tag: 'div', id: this.panel.id, class: this.panel.class }, this.id);
 
   //Add the panel head
-  jviz.dom.append({ type: 'div', id: this.panel.head.id, class: this.panel.head.class, align: 'left' }, this.panel.id);
+  jviz.dom.append({ _tag: 'div', id: this.panel.head.id, class: this.panel.head.class, align: 'left' }, this.panel.id);
 
   //Add the panel title
-  jviz.dom.append({ type: 'div', id: this.panel.head.title.id, class: this.panel.head.title.class }, this.panel.head.id);
+  jviz.dom.append({ _tag: 'div', id: this.panel.head.title.id, class: this.panel.head.title.class }, this.panel.head.id);
 
   //Add the panel close button
-  jviz.dom.append({ type: 'div', id: this.panel.head.close.id, class: this.panel.head.close.class }, this.panel.head.id);
+  jviz.dom.append({ _tag: 'div', id: this.panel.head.close.id, class: this.panel.head.close.class }, this.panel.head.id);
 
   //Add the body panel
-  jviz.dom.append({ type: 'div', id: this.panel.body.id, class: this.panel.body.class, align: 'left' }, this.panel.id);
+  jviz.dom.append({ _tag: 'div', id: this.panel.body.id, class: this.panel.body.class, align: 'left' }, this.panel.id);
+
+  //Save this
+  var self = this;
 
   //Add the events
-  jvizComponentsDialogEvent(this);
+  $('#' + this.panel.head.close.id).on('click', function(){ self.hide(); });
 };
 
 //jvizDialog set title
-jviz.components.dialog.prototype.setTitle = function(title)
+jviz.components.dialog.prototype.title = function(title)
 {
   //Add the title
   $('#' + this.panel.head.title.id).html(title);
@@ -111,13 +120,3 @@ jviz.components.dialog.prototype.hide = function()
   //Set as inactive
   this.active = false;
 };
-
-//Function for add the dialog event
-function jvizComponentsDialogEvent(_main)
-{
-  $('#' + _main.panel.head.close.id).on('click', function()
-  {
-    //Check if is active
-    (_main.active === true) ? _main.show() : _main.hide();
-  });
-}
