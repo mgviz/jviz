@@ -30,23 +30,23 @@ jviz.dom.build = function(obj)
     }
 
     //Check for text
-    if(el.type === 'text')
+    if(el._tag === 'text')
     {
       //Print the text
-      html = (typeof el.html !== 'undefined') ? html + el.html : html + el.text;
+      html = (typeof el._html !== 'undefined') ? html + el._html : html + el.text;
 
       //Continue with the next element of the list
       continue;
     }
 
     //Initialize the tag
-    html = html + '<' + el.type;
+    html = html + '<' + el._tag;
 
     //Read all the object attributes
     for(var key in el)
     {
       //Check for type OR html
-      if(key === 'type' || key === 'html'){ continue; }
+      if(key === '_tag' || key === '_html'){ continue; }
 
       //Check for boolean
       if(typeof el[key] === 'boolean')
@@ -66,13 +66,13 @@ jviz.dom.build = function(obj)
     html = html + '>';
 
     //Check the html content
-    if(typeof el.html !== 'undefined'){ html = html + jviz.dom.build(el.html); }
+    if(typeof el._html !== 'undefined'){ html = html + jviz.dom.build(el._html); }
 
     //Check for closing the tag
-    if(el.type !== 'input' && el.type !== 'br' && el.type !== 'hr'){ continue; }
+    if(el._tag !== 'input' && el._tag !== 'br' && el._tag !== 'hr'){ continue; }
 
     //Close the tag
-    html = html + '</' + el.type + '>';
+    html = html + '</' + el._tag + '>';
   }
 
   //Return the html
