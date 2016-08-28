@@ -89,21 +89,21 @@ jviz.components.loading.prototype.setColor = function(obj)
 jviz.components.loading.prototype.bgColor = function(color)
 {
   //Update the background color
-  $('#' + this.id).removeClass().addClass(this.class + ' ' this.class + '-' + color);
+  $('#' + this.id).removeClass().addClass(this.class + ' ' + this.class + '-' + color);
 };
 
 //Update the animation color
 jviz.components.loading.prototype.animationColor = function(color)
 {
   //Remove all classes and add the new classes
-  $('#' + this.animation.id).removeClass().addClass(this.animation.class + ' ' this.animation.class + '-' + color);
+  $('#' + this.animation.id).removeClass().addClass(this.animation.class + ' ' + this.animation.class + '-' + color);
 };
 
 //Update the title color
 jviz.components.loading.prototype.titleColor = function(color)
 {
   //Remove all classes and add the new classes
-  $('#' + this.title.id).removeClass().addClass(this.title.class + ' ' this.title.class + '-' + color);
+  $('#' + this.title.id).removeClass().addClass(this.title.class + ' ' + this.title.class + '-' + color);
 };
 
 //jviz screen loading open
