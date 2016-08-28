@@ -85,6 +85,9 @@
       //Display
       display: inline-block; width: $panelWidth;
 
+      //Text
+      @include jvizFont;
+
       //Padding
       padding: { top: 10px; bottom: 10px; left: 10px; right: 10px; }
 
