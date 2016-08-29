@@ -36,7 +36,7 @@ jviz.components.loading = function(opt)
   this.color.navy = this.class + '-color-navy'; //Navy color
 
   //Background colors
-  this.bg = [ 'navy', 'red', 'blue', 'green', 'purple', 'pink', 'orange', 'white', 'grey' ];
+  this.bg = jviz.colors.list;
 
   //Build the loading
   this.build();
