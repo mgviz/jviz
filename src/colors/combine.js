@@ -1,17 +1,31 @@
-//Combine two colors
-jviz.colors.combine = function(color1, color2)
+//Combine two HEX colors
+jviz.colors.combine = function()
 {
   //Initialize the colors array
   var colors = [];
 
-  //Check the color1
-  if(Array.isArray(color1) === true) { colors = color1; }
+  //Read all the arguments
+  for(var i = 0; i < arguments.length; i++)
+  {
+    //Get the color
+    var c = arguments[i];
 
-  //Check the color2
-  else if(typeof color2 === 'undefined'){ return jviz.colors.hex.toRGBA(color1); }
+    //Check for array
+    if(Array.isArray(c) === true)
+    {
+      //Concatenate the two arrays
+      colors = colors.concat(c);
 
-  //If the two colors exists
-  else { colors = [ color1, color2 ]; }
+      //Next argument
+      continue;
+    }
+
+    //Default, add the color
+    colors.push(c);
+  }
+
+  //Check for empty colors
+  if(colors.length === 0){ return; }
 
   //Combined color
   var combined = jviz.colors.hex.toRGBA(colors[0]);
