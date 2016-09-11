@@ -23,11 +23,14 @@ pkg.name = 'jviz';
 //Description
 pkg.description = 'The jviz base module';
 
-//Authod
+//Author
 pkg.author = { id: 'jmjuanes', name: 'Josemi Juanes', email: 'josemijuanes@gmail.com' };
 
 //Build directory
 pkg.directory = './build';
+
+//Repository
+pkg.repository = 'https://github.com/jviz/jviz';
 
 //Build tasks
 pkg.build = [ 'build:js', 'build:scss', 'build:vendor:cv', 'build:vendor:handlebars', 'build:vendor:jquery', 'build:vendor:objectsort' ];
