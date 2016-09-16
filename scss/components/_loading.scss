@@ -70,32 +70,32 @@
   &-color-navy &-animation { @include jvizComponentsLoadingAnimation($jvizNavy); }
 
   //Navy loading
-  &-navy { background-color: rgba($jvizNavy, 0.7); }
+  &-navy { background-color: rgba($jvizNavy, 0.9); }
 
   //Grey loading
-  &-grey { background-color: rgba($jvizGrey, 0.7); }
+  &-grey { background-color: rgba($jvizGrey, 0.9); }
 
   //Red loading
-  &-red { background-color: rgba($jvizRed, 0.7); }
+  &-red { background-color: rgba($jvizRed, 0.9); }
 
   //Blue loading
-  &-blue { background-color: rgba($jvizBlue, 0.7); }
+  &-blue { background-color: rgba($jvizBlue, 0.9); }
 
   //Pink loading
-  &-pink { background-color: rgba($jvizPink, 0.7); }
+  &-pink { background-color: rgba($jvizPink, 0.9); }
 
   //Water loading
-  &-water { background-color: rgba($jvizWater, 0.7); }
+  &-water { background-color: rgba($jvizWater, 0.9); }
 
   //Green loading
-  &-green { background-color: rgba($jvizGreen, 0.7); }
+  &-green { background-color: rgba($jvizGreen, 0.9); }
 
   //Orange loading
-  &-orange { background-color: rgba($jvizOrange, 0.7); }
+  &-orange { background-color: rgba($jvizOrange, 0.9); }
 
   //Purple loading
-  &-purple { background-color: rgba($jvizPurple, 0.7); }
+  &-purple { background-color: rgba($jvizPurple, 0.9); }
 
   //White loading
-  &-white { background-color: rgba($jvizWhite, 0.7); }
+  &-white { background-color: rgba($jvizWhite, 0.9); }
 }
