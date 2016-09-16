@@ -23,6 +23,9 @@ jviz.extend('dom');
 //Extend the http library
 jviz.extend('http');
 
+//Extend the factory library
+jviz.extend('factory');
+
 //Extend the layout library
 jviz.extend('layout', {});
 
