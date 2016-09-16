@@ -78,6 +78,9 @@ jviz.components.loading.prototype.setTitle = function(text)
 {
   //Update the title text
   jviz.dom.html(text, this.title.id);
+
+  //Return this
+  return this;
 };
 
 //jviz loading set description
@@ -85,6 +88,9 @@ jviz.components.loading.prototype.setDescription = function(text)
 {
   //Update the description text
   jviz.dom.html(text, this.description.id);
+
+  //Return this
+  return this;
 }
 
 //Set the color
@@ -94,13 +100,16 @@ jviz.components.loading.prototype.setColor = function(color)
   if(typeof color === 'undefined'){ var color = 'white'; }
 
   //Check the color
-  if(typeof this.color[color] === 'undefined'){ return; }
+  if(typeof this.color[color] === 'undefined'){ return this; }
 
   //Remove the colors
   $('#' + this.id).removeClass(this.color.white).removeClass(this.color.navy);
 
   //Add the new color
   $('#' + this.id).addClass(this.color[color]);
+
+  //Return this
+  return this;
 };
 
 //Set the background color
@@ -110,13 +119,16 @@ jviz.components.loading.prototype.setBg = function(color)
   if(typeof color === 'undefined'){ var color = 'navy'; }
 
   //Check the background color
-  if(this.bg.indexOf(color) === -1){ return; }
+  if(this.bg.indexOf(color) === -1){ return this; }
 
   //Remove all the colors
   this.bg.forEach(function(el){ $('#' + this.id).removeClass(this.class + '-' + el); });
 
   //Add the new color
   $('#' + this.id).addClass(this.class + '-' + color);
+
+  //Return this
+  return this;
 };
 
 //jviz screen loading open
