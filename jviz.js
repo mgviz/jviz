@@ -11,7 +11,7 @@ var src_js =
   './src/colors/colors.js', './src/colors/**.js',
 
   //Others
-  './src/components/**.js', './src/dom/**.js', './src/math/**.js', './src/utils/**.js'
+  './src/components/**.js', './src/dom/**.js', './src/factory/**.js', './src/math/**.js', './src/utils/**.js'
 ];
 
 //Source scss files
