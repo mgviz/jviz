@@ -4,6 +4,9 @@ jviz.components.tooltip = function(opt)
   //Check the options
   if(typeof opt === 'undefined'){ var opt = {}; }
 
+  //Save the parent
+  this.parent = opt.parent;
+
   //Save the ID
   this.id = (typeof opt.id === 'undefined') ? jviz.utils.getID({ prefix: 'jviz-tooltip-', length: 5 }) : opt.id;
 
@@ -33,21 +36,24 @@ jviz.components.tooltip = function(opt)
   this.content.id = this.id + '-content'; //Content ID
   this.content.class = this.class + '-content'; //Content class
 
+  //Build the tooltip
+  this.build();
+
   //Return
   return this;
 };
 
 //jvizToolTip Build
-jviz.components.tooltip.prototype.build = function(parent)
+jviz.components.tooltip.prototype.build = function()
 {
   //Create the new div
-  jviz.dom.append({ type: 'div', id: this.id, class: this.class }, parent);
+  jviz.dom.append(this.parent, { type: 'div', id: this.id, class: this.class });
 
   //Add the triangle div
-  jviz.dom.append({ type: 'div', id: this.triangle.id, class: this.triangle.class }, this.id);
+  jviz.dom.append(this.id, { type: 'div', id: this.triangle.id, class: this.triangle.class });
 
   //Add the content div
-  jviz.dom.append({ type: 'div', id: this.content.id, class: this.content.class }, this.id);
+  jviz.dom.append(this.id, { type: 'div', id: this.content.id, class: this.content.class });
 
   //Set display as none
   $('#' + this.id).css('display', 'none');
