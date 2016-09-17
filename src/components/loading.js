@@ -55,29 +55,29 @@ jviz.components.loading = function(opt)
 jviz.components.loading.prototype.build = function()
 {
   //Initialize the loading div
-  jviz.dom.append({ _tag: 'div', id: this.id, class: this.class, style: 'display:none;' }, this.parent);
+  jviz.dom.append(this.parent, { _tag: 'div', id: this.id, class: this.class, style: 'display:none;' });
 
   //Add the animation
-  jviz.dom.append({ _tag: 'div', id: this.animation.id, class: this.animation.class }, this.id);
+  jviz.dom.append(this.id, { _tag: 'div', id: this.animation.id, class: this.animation.class });
 
   //Add the title div
-  jviz.dom.append({ _tag: 'div', id: this.title.id, class: this.title.class, align: 'center' }, this.id);
+  jviz.dom.append(this.id, { _tag: 'div', id: this.title.id, class: this.title.class, align: 'center' });
 
   //Add the description div
-  jviz.dom.append({ _tag: 'div', id: this.description.id, class: this.description.class, align: 'center' }, this.id);
+  jviz.dom.append(this.id, { _tag: 'div', id: this.description.id, class: this.description.class, align: 'center' });
 
   //Add the title
-  jviz.dom.html(this.title.text, this.title.id);
+  jviz.dom.html(this.title.id, this.title.text);
 
   //Add the description
-  jviz.dom.html(this.description.text, this.description.id);
+  jviz.dom.html(this.description.id, this.description.text);
 };
 
 //jviz screen loading set text
 jviz.components.loading.prototype.setTitle = function(text)
 {
   //Update the title text
-  jviz.dom.html(text, this.title.id);
+  jviz.dom.html(this.title.id, text);
 
   //Return this
   return this;
@@ -87,7 +87,7 @@ jviz.components.loading.prototype.setTitle = function(text)
 jviz.components.loading.prototype.setDescription = function(text)
 {
   //Update the description text
-  jviz.dom.html(text, this.description.id);
+  jviz.dom.html(this.description.id, text);
 
   //Return this
   return this;
