@@ -1,18 +1,18 @@
 //Insert html without removing the content
-jviz.dom.append = function(obj, id)
+jviz.dom.append = function(id, obj)
 {
   //Get the element
-  var el = (typeof id === 'undefined') ? document.getElementsByTagName('body')[0] : document.getElementById(id);
+  var el = (id === 'body') ? document.getElementsByTagName('body')[0] : document.getElementById(id);
 
   //Insert
   el.innerHTML = el.innerHTML + jviz.dom.build(obj);
 };
 
 //Insert html code
-jviz.dom.html = function(obj, id)
+jviz.dom.html = function(id, obj)
 {
   //Get the element
-  var el = (typeof id === 'undefined') ? document.getElementsByTagName('body')[0] : document.getElementById(id);
+  var el = (id === 'body') ? document.getElementsByTagName('body')[0] : document.getElementById(id);
 
   //Insert
   el.innerHTML = jviz.dom.build(obj);
