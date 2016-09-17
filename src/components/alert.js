@@ -49,10 +49,10 @@ jviz.components.alert = function(opt)
 jviz.components.alert.prototype.build = function()
 {
   //Create the alert div
-  jviz.dom.append({ _tag: 'div', id: this.id, class: this.class, style: '' }, this.parent);
+  jviz.dom.append(this.parent, { _tag: 'div', id: this.id, class: this.class, style: '' });
 
   //Add the text div
-  jviz.dom.append({ _tag: 'div', id: this.text.id, class: this.text.class }, this.id);
+  jviz.dom.append(this.id, { _tag: 'div', id: this.text.id, class: this.text.class });
 };
 
 //jviz alert done alert
