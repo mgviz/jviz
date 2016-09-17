@@ -91,3 +91,16 @@ jviz.colors =
   //White base color
   white: { hex: '#ffffff', rgba: { } }
 };
+
+//Check if color exists
+jviz.colors.exists = function(value)
+{
+  //Parse the value
+  value = value.toLowerCase();
+
+  //Check if exists
+  var exists = (jviz.colors.list.indexOf(value) === -1) ? false : true;
+
+  //Return if color exists
+  return exists;
+};
