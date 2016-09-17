@@ -63,22 +63,22 @@ jviz.components.dialog = function(opt)
 jviz.components.dialog.prototype.build = function()
 {
   //Initialize the div
-  jviz.dom.append({ _tag: 'div', id: this.id, class: this.class, align: 'center' }, this.parent);
+  jviz.dom.append(this.parent, { _tag: 'div', id: this.id, class: this.class, align: 'center' });
 
   //Add the panel
-  jviz.dom.append({ _tag: 'div', id: this.panel.id, class: this.panel.class }, this.id);
+  jviz.dom.append(this.id, { _tag: 'div', id: this.panel.id, class: this.panel.class });
 
   //Add the panel head
-  jviz.dom.append({ _tag: 'div', id: this.panel.head.id, class: this.panel.head.class, align: 'left' }, this.panel.id);
+  jviz.dom.append(this.panel.id, { _tag: 'div', id: this.panel.head.id, class: this.panel.head.class, align: 'left' });
 
   //Add the panel title
-  jviz.dom.append({ _tag: 'div', id: this.panel.head.title.id, class: this.panel.head.title.class }, this.panel.head.id);
+  jviz.dom.append(this.panel.head.id, { _tag: 'div', id: this.panel.head.title.id, class: this.panel.head.title.class });
 
   //Add the panel close button
-  jviz.dom.append({ _tag: 'div', id: this.panel.head.close.id, class: this.panel.head.close.class }, this.panel.head.id);
+  jviz.dom.append(this.panel.head.id, { _tag: 'div', id: this.panel.head.close.id, class: this.panel.head.close.class });
 
   //Add the body panel
-  jviz.dom.append({ _tag: 'div', id: this.panel.body.id, class: this.panel.body.class, align: 'left' }, this.panel.id);
+  jviz.dom.append(this.panel.id, { _tag: 'div', id: this.panel.body.id, class: this.panel.body.class, align: 'left' });
 
   //Save this
   var self = this;
