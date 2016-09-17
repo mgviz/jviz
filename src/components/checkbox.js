@@ -38,13 +38,13 @@ jviz.components.checkbox.prototype.build = function()
   //</div>
 
   //Create the parent div
-  jviz.dom.append({ _tag: 'div', id: this.id, class: this.class }, this.parent);
+  jviz.dom.append(this.parent, { _tag: 'div', id: this.id, class: this.class });
 
   //Add the input
-  jviz.dom.append({ _tag: 'input', type: 'checkbox', id: this.checkbox.id, value: 0, name: '' }, this.id);
+  jviz.dom.append(this.id, { _tag: 'input', type: 'checkbox', id: this.checkbox.id, value: 0, name: '' });
 
   //Add the label
-  jviz.dom.append({ _tag: 'label', id: this.label.id, for: this.checkbox.id }, this.id);
+  jviz.dom.append(this.id, { _tag: 'label', id: this.label.id, for: this.checkbox.id });
 
   //Set checked
   this.checked(this.checkbox.default);
