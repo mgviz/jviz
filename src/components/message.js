@@ -34,7 +34,7 @@ jviz.components.message = function(opt)
 jviz.components.message.prototype.build = function()
 {
   //Create the message div
-  jviz.dom.append({ _tag: 'div', id: this.id, class: this.class, style: '' }, this.parent);
+  jviz.dom.append(this.parent, { _tag: 'div', id: this.id, class: this.class, style: '' });
 };
 
 //jviz message done alert
