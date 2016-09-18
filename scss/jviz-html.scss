@@ -1,0 +1,5 @@
+//Import all mixins
+@import "all";
+
+//Default jviz style
+html { @include jvizBody; }
