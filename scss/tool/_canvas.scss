@@ -1,0 +1,9 @@
+//Canvas tool mixin
+@mixin jvizToolCanvas
+{
+  //Style
+  display: block; position: relative;
+
+  //Canvas
+  &-canvas { display: block; position: absolute; top: 0px; left: 0px; }
+}
