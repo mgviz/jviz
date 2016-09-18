@@ -1,5 +1,8 @@
 //Import all mixins
 @import "all";
 
-//Default jviz style
-html { @include jvizBody; }
+//Default jviz html style
+html { }
+
+//Default jviz body style
+body { @include jvizBody; }
