@@ -2,7 +2,7 @@
 jviz.extend('console', {});
 
 //Display methods
-[ 'error', 'warn', 'info'. 'log' ].forEach(function(el)
+[ 'error', 'warn', 'info', 'log' ].forEach(function(el)
 {
   //Initialize the console display
   jviz.console[el] = function(text, ret)
