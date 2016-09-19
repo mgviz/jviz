@@ -27,11 +27,13 @@
 //Import components
 @import "components/alert";
 @import "components/animation";
+@import "components/canvas";
 @import "components/checkbox";
 @import "components/dialog";
 @import "components/group";
 @import "components/loading";
 @import "components/message";
+@import "components/panel";
 @import "components/switch";
 @import "components/tooltip";
 
@@ -40,10 +42,3 @@
 @import "layout/jumbotron";
 @import "layout/navbar";
 @import "layout/panel";
-
-//Import tool
-//@import "tool/canvastrack";
-//@import "tool/navbar";
-//@import "tool/panel";
-//@import "tool/tool";
-//@import "tool/track";
