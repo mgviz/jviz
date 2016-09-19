@@ -1,4 +1,4 @@
-//Canvas tool
+//Canvas layer component
 /*
 // Arguments:
 // opt: an object with the following keys:
@@ -10,7 +10,7 @@
 // - height: the tool height
 // - margin: an object with the tool margins. Default: { left: 50, right: 50, top: 30, bottom: 30 }
 */
-jviz.tool.canvas = function(opt)
+jviz.components.canvas = function(opt)
 {
   //Check the options
   if(typeof opt === 'undefined'){ var opt = {}; }
@@ -72,7 +72,7 @@ jviz.tool.canvas = function(opt)
 };
 
 //Build the canvas tool
-jviz.tool.canvas.prototype.build = function()
+jviz.components.canvas.prototype.build = function()
 {
   //Save this
   var self = this;
@@ -88,7 +88,7 @@ jviz.tool.canvas.prototype.build = function()
 };
 
 //Build the layers
-jviz.tool.canvas.prototype.buildLayers = function()
+jviz.components.canvas.prototype.buildLayers = function()
 {
   //Clear the container
   jviz.dom.html(this._id, '');
@@ -114,7 +114,7 @@ jviz.tool.canvas.prototype.buildLayers = function()
 };
 
 //Set the object size
-jviz.tool.canvas.prototype.setSize = function(opt)
+jviz.components.canvas.prototype.setSize = function(opt)
 {
   //Check the options
   if(typeof opt === 'undefined'){ return this; }
@@ -133,10 +133,10 @@ jviz.tool.canvas.prototype.setSize = function(opt)
 };
 
 //Get the draw object
-jviz.tool.canvas.prototype.draw = function(){ return this._draw; };
+jviz.components.canvas.prototype.draw = function(){ return this._draw; };
 
 //Get the layer
-jviz.tool.canvas.prototype.layer = function(index)
+jviz.components.canvas.prototype.layer = function(index)
 {
   //Check the index
   if(typeof index === 'undefined'){ return jviz.console.error('No layer index provided', null); }
@@ -152,14 +152,14 @@ jviz.tool.canvas.prototype.layer = function(index)
 };
 
 //Get the number of layers
-jviz.tool.canvas.prototype.layerNum = function()
+jviz.components.canvas.prototype.layerNum = function()
 {
   //Return the layers number
   return this._layers.num;
 };
 
 //Get the layer ID
-jviz.tool.canvas.prototype.layerID = function(index)
+jviz.components.canvas.prototype.layerID = function(index)
 {
   //Build the layer ID
   return this._canvas.id + '-' + index;
@@ -169,7 +169,7 @@ jviz.tool.canvas.prototype.layerID = function(index)
 [ 'width', 'height' ].forEach(function(el)
 {
   //Add the canvas track feature
-  jviz.tool.canvas.prototype[el] = function(value)
+  jviz.components.canvas.prototype[el] = function(value)
   {
     //Check the value
     if(typeof value === 'undefined'){ return this['_' + el]; }
@@ -186,7 +186,7 @@ jviz.tool.canvas.prototype.layerID = function(index)
 });
 
 //Resize the tool
-jviz.tool.canvas.prototype.resize = function()
+jviz.components.canvas.prototype.resize = function()
 {
   //Get the element
   var el = $('#' + this._id);
@@ -215,7 +215,7 @@ jviz.tool.canvas.prototype.resize = function()
 };
 
 //Send the mouse down event
-jviz.tool.canvas.prototype.onMouseDown = function(e, x, y)
+jviz.components.canvas.prototype.onMouseDown = function(e, x, y)
 {
   //Prevent default
   e.preventDefault();
@@ -225,7 +225,7 @@ jviz.tool.canvas.prototype.onMouseDown = function(e, x, y)
 };
 
 //Send the mouse up event
-jviz.tool.canvas.prototype.onMouseUp = function(e, x, y)
+jviz.components.canvas.prototype.onMouseUp = function(e, x, y)
 {
   //Prevent default
   e.preventDefault();
@@ -233,4 +233,3 @@ jviz.tool.canvas.prototype.onMouseUp = function(e, x, y)
   //Send the mouse up event
   this.emit('mouse:up', x, y);
 };
-
