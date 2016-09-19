@@ -1,0 +1,183 @@
+//Panel mixin
+@mixin jvizComponentsPanel
+{
+	//Style
+	display: block; width: calc(100% - 12px);
+
+	//Border
+	border-radius: 5px;
+
+	//Background
+	background-color: $jvizGrey4;
+
+	//Margin
+	margin: { bottom: 10px; }
+
+  //Padding
+  padding: { left: 6px; right: 6px; top: 6px; bottom: 6px; }
+
+  //Panel closed
+  &-closed > &-head-arrow { transform: rotate(180deg); }
+
+	//Head
+  &-head
+  {
+    //Style
+    display: block; width: 100%; height: 26px;
+
+    //Text
+    line-height: 26px; @include jvizFont;
+
+    //Info box
+    &-info
+    {
+      //Style
+      display: inline-block; height: 26px; border-radius: 5px; float: left;
+
+      //Background
+      background-color: $jvizGrey2;
+
+      //Font
+      @include jvizFont; font-size: 15px;
+
+      //Padding
+      padding: { left: 5px; right: 5px; }
+
+      //Title
+      &-title { display: inline-block; font-weight: bold; margin: { right: 3px; left: 3px; } }
+
+      //Detail
+      &-detail { display: inline-block; font-weight: normal; color: $jvizNavy3; font-size: 13px; margin: { right: 3px; left: 3px; } }
+
+      //Margin
+      margin: { right: 5px; }
+    }
+
+    //Head arrow
+    &-arrow
+    {
+      //Include the button mixin
+      @include jvizComponentsPanelBtn;
+
+      //Style
+      width: 26px; float: left;
+
+      //Padding
+      padding: 0px !important;
+
+      //Background
+      background: { size: 25px 25px; position: center center; repeat: no-repeat; }
+
+      //Background image
+      background-image: url('');
+
+      //Margin
+      margin: { right: 5px; }
+    }
+
+    //Head loading
+    &-loading
+    {
+      //Style
+      display: inline-block; width: 35px; height: 26px;
+
+      //Padding
+      padding: { left: 8px; right: 8px; }
+
+      //Border
+      border: { radius: 5px; }
+
+      //Animation div
+      &-animation
+      {
+        //Include the default animation
+        @include jvizComponentsAnimation($jvizNavy);
+
+        //Update the middle circle width and height
+        width: 8px; height: 8px;
+
+        //Update the left circle width and height
+        &:before { width: 8px; height: 8px; left: -12px; }
+
+        //Update the right circle width and height
+        &:after { width: 8px; height: 8px; left: 12px;}
+
+        //Update the margin top
+        margin-top: 8px;
+      }
+
+      //Margin
+      margin: { right: 5px; }
+    }
+
+    //Head content
+    &-content
+    {
+      //Style
+      display: inline-block; float: right; height: 26px; line-height: 26px; font-size: 14px;
+
+      //Content separator
+      &-separator
+      {
+        //Style
+        display: inline-block; float: right; width: 2px; height: 26px;
+
+        //Background
+        background-color: $jvizGrey2;
+
+        //Margin
+        margin: { left: 10px; right: 5px; }
+      }
+
+      //Text content
+      &-text { display: inline-block; float: right; margin-left: 5px; line-height: 26px; height: 26px; color: $jvizNavy; font-size: 14px; }
+
+      //Button
+      &-btn
+      {
+
+      }
+    }
+
+    //Margin
+    margin: { bottom: 5px; }
+  }
+
+  //Foot
+  &-foot
+  {
+    //Style
+    display: block;
+  }
+
+  //Body
+  &-body { display: block; width: 100%; }
+}
+
+//Panel button mixin
+@mixin jvizComponentsPanelBtn
+{
+  //Display
+  display: inline-block; cursor: pointer;
+
+  //Size
+  height: 26px; line-height: 26px;
+
+  //Font
+  @include jvizFont; font-size: 15px;
+
+  //Padding
+  padding: { left: 8px; right: 8px; }
+
+  //Transition
+  transition: all 0.3s;
+
+  //Background
+  background-color: $jvizGrey2;
+
+  //Border
+  border: { radius: 5px; }
+
+  //Hover
+  &:hover { background-color: $jvizGrey1; }
+}
