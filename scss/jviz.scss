@@ -70,6 +70,9 @@
     //Animation
     &-animation { @include jvizComponentsAnimationDefault; }
 
+    //Canvas layer
+    &-canvas { @include jvizComponentsCanvas; }
+
     //Check box
     &-checkbox { @include jvizComponentsCheckbox; }
 
@@ -84,6 +87,9 @@
 
     //Message
     &-msg, &-message { @include jvizComponentsMessage; }
+
+    //Panel
+    &-panel { @include jvizComponentsPanel; }
 
     //Switch
     &-switch { @include jvizComponentsSwitch; }
