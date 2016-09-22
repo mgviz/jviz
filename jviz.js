@@ -33,7 +33,7 @@ pkg.directory = './build';
 pkg.repository = 'https://github.com/jviz/jviz';
 
 //Build tasks
-pkg.build = [ 'build:js', 'build:scss', 'build:vendor:cv', 'build:vendor:handlebars', 'build:vendor:jquery', 'build:vendor:objectsort' ];
+pkg.build = [ 'build:js', 'build:scss', 'build:vendor:cv', 'build:vendor:jquery', 'build:vendor:objectsort' ];
 
 //Install tasks
 pkg.install = [ 'install:vendor'];
@@ -49,7 +49,7 @@ pkg.tasks =
 
   //Build vendor cj.js
   'build:vendor:cv': [ { name: 'src', args: './bower_components/cvjs/dist/cv.min.js' }, { name: 'dest', args: './vendor'} ],
-  
+
   //Build vendor jquery
   'build:vendor:jquery': [ { name: 'src', args: './bower_components/jquery/dist/jquery.min.js' }, { name: 'dest', args: './vendor'} ],
 
