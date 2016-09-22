@@ -49,10 +49,7 @@ pkg.tasks =
 
   //Build vendor cj.js
   'build:vendor:cv': [ { name: 'src', args: './bower_components/cvjs/dist/cv.min.js' }, { name: 'dest', args: './vendor'} ],
-
-  //Build vendor handlebars
-  'build:vendor:handlebars': [ { name: 'src', args: './bower_components/handlebars/handlebars.min.js' }, { name: 'dest', args: './vendor'} ],
-
+  
   //Build vendor jquery
   'build:vendor:jquery': [ { name: 'src', args: './bower_components/jquery/dist/jquery.min.js' }, { name: 'dest', args: './vendor'} ],
 
