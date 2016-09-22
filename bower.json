@@ -2,7 +2,7 @@
 	"name": "jviz",
 	"description": "Base library to build genomic visualization tools.",
 	"ignore": [ "**/.*", "node_modules", "bower_components", "build" ],
-	"dependencies": { "jquery": "2.2.3", "cvjs": "1.0.0", "objectsort": "1.0.0", "handlebars": "4.0.5" },
+	"dependencies": { "jquery": "2.2.3", "cvjs": "1.0.0", "objectsort": "1.0.0" },
 	"license": "MIT",
 	"authors": [ "Josemi Juanes <josemijuanes@gmail.com>" ],
 	"keywords": [ "genomic", "visualization", "bioinformatics" ]
