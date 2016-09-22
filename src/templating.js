@@ -17,10 +17,10 @@ jviz.templating = function(id)
   if(typeof this._el === 'undefined'){ return jviz.console.error('Undefined template id ' + this._id); }
 
   //Get the template content
-  this._html = el.innerHTML;
+  this._html = this._el.innerHTML;
 
   //Compiled data
-  this._compiled = el.innerHTML;
+  this._compiled = this._el.innerHTML;
 
   //Return this
   return this;
